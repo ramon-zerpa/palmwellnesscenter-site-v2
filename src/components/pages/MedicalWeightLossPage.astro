@@ -345,14 +345,28 @@ const content = {
 
 const bookAttrs = { target: "_blank", rel: "noopener" } as const;
 const l = content.labels;
+
+const media = {
+  intro: "/images/how-medical-weight-loss-fits-into-primary-care-ft-img.webp",
+  services: "/images/how-medical-weight-loss-fits-into-primary-care-inner-img-1.webp",
+  safety: "/images/how-medical-weight-loss-fits-into-primary-care-inner-img-2.webp",
+  program: "/images/why-patients-choose-medical-weight-loss.webp",
+  integrated: [
+    "/images/our-primary-care-services.webp",
+    "/images/doctor-helping-patient-with-physical-therapy.webp",
+    "/images/chiropractor-helping-his-patient.webp",
+    "/images/placeholders/iv-therapy.svg",
+  ],
+  trust: "/images/why-choose-palm-wellness-center-in-tampa.webp",
+  choose: "/images/medical-weight-loss-program.webp",
+  team: "/images/placeholders/care-team.svg",
+  area: "/images/things-to-do-in-tampa-min.webp",
+};
 ---
 
-<!-- HERO (image left / text right) -->
+<!-- HERO (text left / image right) -->
 <section class="bg-bg-alt">
   <div class="container grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
-    <div class="order-last lg:order-first">
-      <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="h-full max-h-[460px] w-full rounded-lg object-cover" />
-    </div>
     <div class="flex flex-col items-start gap-5">
       <span class="inline-flex rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{content.hero.eyebrow}</span>
       <h1 class="text-4xl leading-[1.08] text-ink sm:text-5xl">{content.hero.title}</h1>
@@ -374,6 +388,9 @@ const l = content.labels;
       </div>
       <p class="text-[13px] text-muted">{content.hero.note}</p>
     </div>
+    <div>
+      <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="h-[460px] w-full rounded-lg object-cover" />
+    </div>
   </div>
 </section>
 
@@ -384,19 +401,23 @@ const l = content.labels;
       <h2 class="text-3xl leading-tight text-ink sm:text-[2.3rem]">{content.intro.heading}</h2>
       {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[17px] leading-relaxed text-body">{p}</p>)}
     </div>
-    <aside class="flex h-fit items-start gap-4 rounded-lg border border-line bg-bg-alt p-7">
-      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="activity" class="h-6 w-6" /></span>
-      <p class="text-[16px] font-medium leading-relaxed text-ink">{content.intro.highlight}</p>
-    </aside>
+    <div class="flex flex-col gap-5">
+      <img src={media.intro} width="560" height="340" alt={content.intro.heading} loading="lazy" decoding="async" class="h-[340px] w-full rounded-lg object-cover" />
+      <aside class="flex items-start gap-4 rounded-lg border border-line bg-bg-alt p-7">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="activity" class="h-6 w-6" /></span>
+        <p class="text-[16px] font-medium leading-relaxed text-ink">{content.intro.highlight}</p>
+      </aside>
+    </div>
   </div>
 </section>
 
 <!-- SERVICES (accordion) -->
 <section class="bg-bg-alt">
   <div class="container grid gap-10 py-16 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
-    <div class="flex flex-col gap-3 lg:sticky lg:top-32 lg:self-start">
+    <div class="flex flex-col gap-5 lg:sticky lg:top-32 lg:self-start">
       <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.services.heading}</h2>
       <p class="max-w-[40ch] text-[16px] leading-relaxed text-body">{content.services.lead}</p>
+      <img src={media.services} width="440" height="340" alt={content.services.heading} loading="lazy" decoding="async" class="h-[340px] w-full rounded-lg object-cover" />
     </div>
     <div class="flex flex-col">
       {content.services.items.map((s) => (
@@ -427,27 +448,30 @@ const l = content.labels;
 <!-- SAFETY -->
 <section class="bg-white">
   <div class="container py-16">
-    <div class="flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-8 lg:p-10">
-      <div class="flex items-center gap-3">
-        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue text-white"><Icon name="shield" class="h-6 w-6" /></span>
-        <h2 class="text-[24px] text-ink">{content.safety.heading}</h2>
-      </div>
-      <p class="max-w-[80ch] text-[15.5px] leading-relaxed text-body">{content.safety.lead}</p>
-      <div class="grid gap-8 border-t border-line pt-6 md:grid-cols-2">
-        <div class="flex flex-col gap-3">
-          <h3 class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{content.safety.commonTitle}</h3>
-          <ul class="flex flex-col gap-2.5">
-            {content.safety.common.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{c}</li>)}
-          </ul>
+    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-stretch lg:gap-12">
+      <img src={media.safety} width="480" height="460" alt={content.safety.heading} loading="lazy" decoding="async" class="h-[520px] w-full rounded-lg object-cover" />
+      <div class="flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-8 lg:p-10">
+        <div class="flex items-center gap-3">
+          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue text-white"><Icon name="shield" class="h-6 w-6" /></span>
+          <h2 class="text-[24px] text-ink">{content.safety.heading}</h2>
         </div>
-        <div class="flex flex-col gap-3">
-          <h3 class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{content.safety.seriousTitle}</h3>
-          <ul class="flex flex-col gap-2.5">
-            {content.safety.serious.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="badge-check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-blue" />{c}</li>)}
-          </ul>
+        <p class="max-w-[80ch] text-[15.5px] leading-relaxed text-body">{content.safety.lead}</p>
+        <div class="grid gap-8 border-t border-line pt-6 md:grid-cols-2">
+          <div class="flex flex-col gap-3">
+            <h3 class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{content.safety.commonTitle}</h3>
+            <ul class="flex flex-col gap-2.5">
+              {content.safety.common.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{c}</li>)}
+            </ul>
+          </div>
+          <div class="flex flex-col gap-3">
+            <h3 class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{content.safety.seriousTitle}</h3>
+            <ul class="flex flex-col gap-2.5">
+              {content.safety.serious.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="badge-check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-blue" />{c}</li>)}
+            </ul>
+          </div>
         </div>
+        <p class="text-[13.5px] leading-relaxed text-muted">{content.safety.note}</p>
       </div>
-      <p class="text-[13.5px] leading-relaxed text-muted">{content.safety.note}</p>
     </div>
   </div>
 </section>
@@ -459,6 +483,7 @@ const l = content.labels;
       <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.program.heading}</h2>
       <p class="max-w-[62ch] text-[17px] leading-relaxed text-body">{content.program.body}</p>
       <p class="max-w-[62ch] text-[13.5px] leading-relaxed text-muted">{content.program.note}</p>
+      <img src={media.program} width="560" height="320" alt={content.program.heading} loading="lazy" decoding="async" class="mt-1 h-[320px] w-full rounded-lg object-cover" />
     </div>
     <article class="flex flex-col gap-6 rounded-lg bg-blue-deep p-8 text-blue-tint">
       <p class="flex items-end gap-2">
@@ -485,12 +510,15 @@ const l = content.labels;
       <p class="text-[17px] leading-relaxed text-body">{content.integrated.lead}</p>
     </div>
     <div class="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-      {content.integrated.items.map((s) => (
-        <a href={s.href} class="group flex flex-col gap-3 bg-white p-6 transition-colors hover:bg-bg-alt">
-          <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
-          <h3 class="text-[17px] text-ink">{s.title}</h3>
-          <p class="text-[14px] leading-relaxed text-body">{s.body}</p>
-          <span class="mt-auto inline-flex items-center gap-1.5 pt-1 text-[13.5px] font-bold text-blue group-hover:text-blue-deep">{l.learn} <Icon name="arrow" class="h-4 w-4" /></span>
+      {content.integrated.items.map((s, i) => (
+        <a href={s.href} class="group flex flex-col bg-white transition-colors hover:bg-bg-alt">
+          <img src={media.integrated[i]} alt={s.title} loading="lazy" decoding="async" class="h-[170px] w-full object-cover" />
+          <span class="flex flex-1 flex-col gap-3 p-6">
+            <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
+            <h3 class="text-[17px] text-ink">{s.title}</h3>
+            <p class="text-[14px] leading-relaxed text-body">{s.body}</p>
+            <span class="mt-auto inline-flex items-center gap-1.5 pt-1 text-[13.5px] font-bold text-blue group-hover:text-blue-deep">{l.learn} <Icon name="arrow" class="h-4 w-4" /></span>
+          </span>
         </a>
       ))}
     </div>
@@ -510,7 +538,7 @@ const l = content.labels;
       </ul>
       <p class="text-[15px] leading-relaxed text-body">{content.why.closing}</p>
     </div>
-    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-full max-h-[480px] w-full rounded-lg object-cover" />
+    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[480px] w-full rounded-lg object-cover" />
   </div>
 </section>
 
@@ -520,6 +548,7 @@ const l = content.labels;
     <div class="flex flex-col gap-5">
       <h2 class="text-3xl text-ink sm:text-[2rem]">{content.trust.heading}</h2>
       {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
+      <img src={media.trust} width="560" height="320" alt={content.trust.heading} loading="lazy" decoding="async" class="mt-1 h-[320px] w-full rounded-lg object-cover" />
     </div>
     <div class="flex h-fit flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7">
       <p class="flex items-center gap-2 text-[13px] font-bold uppercase tracking-wide text-blue-deep">
@@ -547,16 +576,17 @@ const l = content.labels;
         <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
       </a>
     </div>
-    <img src={content.transport.image} width="560" height="360" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-full max-h-[380px] w-full rounded-lg object-cover" />
+    <img src={content.transport.image} width="560" height="360" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[380px] w-full rounded-lg object-cover" />
   </div>
 </section>
 
 <!-- WHY PATIENTS CHOOSE -->
 <section class="bg-white">
   <div class="container grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-    <div class="flex flex-col gap-3">
+    <div class="flex flex-col gap-5">
       <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.choose.heading}</h2>
       <p class="max-w-[46ch] text-[16px] leading-relaxed text-body">{content.choose.lead}</p>
+      <img src={media.choose} width="480" height="300" alt={content.choose.heading} loading="lazy" decoding="async" class="h-[300px] w-full rounded-lg object-cover" />
     </div>
     <ul class="grid gap-x-8 gap-y-4 sm:grid-cols-2">
       {content.choose.items.map((it) => (
@@ -572,7 +602,7 @@ const l = content.labels;
 <section class="bg-bg-alt">
   <div class="container grid gap-10 py-16 lg:grid-cols-[0.6fr_1.4fr] lg:gap-14">
     <div class="flex flex-col items-start gap-4">
-      <span class="grid h-[88px] w-[88px] place-items-center rounded-full bg-blue-pale text-[32px] font-bold text-blue-deep">L</span>
+      <img src={media.team} width="280" height="220" alt={content.team.name} loading="lazy" decoding="async" class="h-[220px] w-full max-w-[280px] rounded-lg object-cover" />
       <div>
         <h2 class="text-[24px] text-ink">{content.team.name}</h2>
         <p class="mt-1 text-[14px] font-semibold text-blue">{content.team.cred}</p>
@@ -629,13 +659,16 @@ const l = content.labels;
       <p class="max-w-[60ch] text-[16px] leading-relaxed text-body">{content.area.lead}</p>
       <p class="max-w-[60ch] text-[15px] leading-relaxed text-body">{content.area.note}</p>
     </div>
-    <ul class="flex flex-wrap content-start gap-3">
-      {content.area.places.map((p) => (
-        <li class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[15px] font-medium text-ink">
-          <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
-        </li>
-      ))}
-    </ul>
+    <div class="flex flex-col gap-5">
+      <ul class="flex flex-wrap content-start gap-3">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[15px] font-medium text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <img src={media.area} width="560" height="260" alt={content.area.heading} loading="lazy" decoding="async" class="h-[260px] w-full rounded-lg object-cover" />
+    </div>
   </div>
 </section>
 

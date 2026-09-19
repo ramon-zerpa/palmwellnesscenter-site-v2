@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Image placeholder">
+  <rect width="800" height="600" fill="#eaf2fb"/>
+  <rect x="22" y="22" width="756" height="556" rx="18" fill="none" stroke="#c9dcf2" stroke-width="2"/>
+  <g transform="translate(356,212)" fill="none" stroke="#2a67b1" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M44 0h0a28 28 0 0128 28v16h16a28 28 0 010 56H72v16a28 28 0 01-56 0V100H0a28 28 0 010-56h16V28A28 28 0 0144 0z" fill="#d7f9ff"/>
+  </g>
+  <text x="400" y="384" text-anchor="middle" font-family="Figtree, Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#164e93">Palm Wellness</text>
+  <text x="400" y="422" text-anchor="middle" font-family="Figtree, Segoe UI, sans-serif" font-size="19" fill="#606e79">Image coming soon</text>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Care team image placeholder">
+  <rect width="800" height="600" fill="#eaf2fb"/>
+  <rect x="22" y="22" width="756" height="556" rx="18" fill="none" stroke="#c9dcf2" stroke-width="2"/>
+  <g transform="translate(344,206)" fill="none" stroke="#2a67b1" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="56" cy="40" r="26" fill="#d7f9ff"/>
+    <path d="M12 148v-24a44 44 0 0144-44h0a44 44 0 0144 44v24" fill="#d7f9ff"/>
+  </g>
+  <text x="400" y="392" text-anchor="middle" font-family="Figtree, Segoe UI, sans-serif" font-size="30" font-weight="700" fill="#164e93">Care Team</text>
+  <text x="400" y="430" text-anchor="middle" font-family="Figtree, Segoe UI, sans-serif" font-size="19" fill="#606e79">Photo coming soon</text>
+</svg>
