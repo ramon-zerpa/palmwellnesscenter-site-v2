@@ -11,6 +11,10 @@
    (`src/components/RichSection.astro:738`).
 2. ✅ **Fixed hreflang** on all new pages — added 9 EN↔ES pairs (18 entries) to
    `src/i18n/altmap.ts`; rebuild verified reciprocal `en`/`es`/`x-default`.
+3. ✅ **Removed `/pricing/` + `/locations/` pages** (EN & ES, + `/locations/north-tampa/`)
+   at client request — these were new pages, not present in the legacy site. Updated nav
+   (`src/i18n/ui.ts`), `altmap.ts`, `public/llms.txt`, docs and data; deleted unused
+   `Pricing.astro` + `data/pricing.ts`.
 
 ## Priority fixes (pending)
 

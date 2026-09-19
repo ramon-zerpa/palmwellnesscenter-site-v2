@@ -34,10 +34,9 @@ Rebuild of `palmwellness.center` (currently an acceptable-but-weak Astro migrati
   - NEW `/primary-care/telemedicine/` · `/es/atencion-primaria/telemedicina/`
   - NEW condition pages: `/primary-care/hypertension/`, `/primary-care/diabetes/`, `/primary-care/high-cholesterol/`, `/primary-care/thyroid/` (+ ES)
 - **Medical Weight Loss** `/medical-weight-loss/` · `/es/perdida-de-peso-medica/`
-- **IV Therapy (coming soon)** NEW `/iv-therapy/` · `/es/terapia-iv/`
+- **IV Therapy** NEW `/iv-therapy/` · `/es/terapia-iv/`
 - **Rehabilitation (secondary hub)** `/physical-rehabilitation/` · `/es/fisioterapia/`
   - existing: `/chiropractor/`, `/car-accident-rehabilitation/`, `/slip-and-fall-injury-treatment/`, `/massage-therapy/`, `/therapeutic-exercises/`, `/therapeutic-ultrasound-treatment/`, `/auto-accident-injury-clinic/` (kept as-is)
-- **Locations / Service areas** NEW `/locations/` · `/es/ubicaciones/` → NEW `/locations/north-tampa/` · `/es/ubicaciones/north-tampa/`
 - **About & Team** `/about-us/` · `/es/acerca-de-nosotros/`
 - **Blog hub** `/news-blog/` · `/es/blog-de-noticias/` (articles stay at their existing root slugs)
 - **Contact** `/contact/` · `/es/contacto/`
@@ -90,7 +89,7 @@ Rebuild of `palmwellness.center` (currently an acceptable-but-weak Astro migrati
 - One H1/page; semantic order; descriptive internal anchor text.
 - `hreflang` EN↔ES + `x-default`; self-canonical; ES pages canonical to ES.
 - Schema: `MedicalClinic`/`LocalBusiness` (NAP, geo, hours, areaServed), `Physician`, `Service`, `FAQPage`, `BreadcrumbList`, `Article` for blog.
-- Local: dedicated location + condition pages; neighborhood copy; NAP consistency.
+- Local: dedicated condition pages; neighborhood copy; NAP consistency.
 - Images: descriptive alt, optimized formats, explicit dimensions (CLS).
 
 ## 9. Pencil deliverables (Phase 3)

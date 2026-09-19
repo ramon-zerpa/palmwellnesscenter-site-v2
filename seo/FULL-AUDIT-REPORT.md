@@ -5,6 +5,7 @@
 - **Date:** 2026-09-19
 - **Methodology:** Agentic SEO Skill v3.0.1 (deterministic scripts + LLM-first analysis) + Lighthouse (mobile, clean Chrome profile)
 - **Pages measured:** `/`, `/pricing/`, `/es/precios/`, `/iv-therapy/` + internal-link crawl (16 pages, 51 unique URLs)
+- **Post-audit change (2026-09-19):** `/pricing/`, `/es/precios/`, `/locations/`, `/es/ubicaciones/`, `/locations/north-tampa/` and `/es/ubicaciones/north-tampa/` were **removed** at client request (new pages, not present in the legacy site). Their hreflang entries, nav items, `llms.txt` links and docs were removed accordingly.
 
 ## Overall Assessment: **Good**
 

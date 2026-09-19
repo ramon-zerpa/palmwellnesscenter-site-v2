@@ -45,8 +45,6 @@ export const nav: Record<Lang, NavItem[]> = {
     },
     { label: "About Us", href: "/about-us/" },
     { label: "Contact", href: "/contact/" },
-    { label: "Locations", href: "/locations/" },
-    { label: "Pricing", href: "/pricing/" },
     { label: "Blog", href: "/news-blog/" },
   ],
   es: [
@@ -76,8 +74,6 @@ export const nav: Record<Lang, NavItem[]> = {
     },
     { label: "Acerca de Nosotros", href: "/es/acerca-de-nosotros/" },
     { label: "Contacto", href: "/es/contacto/" },
-    { label: "Ubicaciones", href: "/es/ubicaciones/" },
-    { label: "Precios", href: "/es/precios/" },
     { label: "Blog", href: "/es/blog-de-noticias/" },
   ],
 };

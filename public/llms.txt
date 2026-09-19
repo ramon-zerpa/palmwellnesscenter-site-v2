@@ -14,9 +14,8 @@ Hours: Monday-Friday 10 AM - 7 PM; Saturday by appointment
 - Preventive Care: https://www.palmwellness.center/primary-care/preventive-care/
 - Telemedicine: https://www.palmwellness.center/primary-care/telemedicine/
 - Medical Weight Loss: https://www.palmwellness.center/medical-weight-loss/
-- IV Therapy (coming soon): https://www.palmwellness.center/iv-therapy/
+- IV Therapy: https://www.palmwellness.center/iv-therapy/
 - Rehabilitation: https://www.palmwellness.center/physical-rehabilitation/
-- Locations: https://www.palmwellness.center/locations/
 - About: https://www.palmwellness.center/about-us/
 - Contact: https://www.palmwellness.center/contact/
 - Blog: https://www.palmwellness.center/news-blog/
@@ -30,4 +29,3 @@ Hours: Monday-Friday 10 AM - 7 PM; Saturday by appointment
 - Pérdida de Peso Médica: https://www.palmwellness.center/es/perdida-de-peso-medica/
 - Terapia IV: https://www.palmwellness.center/es/terapia-iv/
 - Fisioterapia: https://www.palmwellness.center/es/fisioterapia/
-- Ubicaciones: https://www.palmwellness.center/es/ubicaciones/
