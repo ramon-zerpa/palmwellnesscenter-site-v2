@@ -108,13 +108,14 @@ const content = {
       heading: "Why patients choose Palm Wellness Center",
       lead: "Experienced, coordinated, and compassionate care from a wellness center that brings primary care, chiropractic, and rehabilitation together under one roof.",
       items: [
-        "Experienced, licensed medical and rehabilitation providers",
-        "Extended appointment times for thorough evaluation and education",
+        "One unified care team across all services",
+        "Shared treatment plans and medical records",
+        "Weight loss strategies matched to your physical capabilities",
+        "Extended appointments for thorough evaluation and education",
         "Same-day and next-day appointments available",
         "Telemedicine visits throughout Florida",
         "Bilingual care team (English and Spanish)",
         "Free transportation for eligible patients",
-        "Hundreds of satisfied patients annually",
       ],
     },
     team: {
@@ -275,13 +276,14 @@ const content = {
       heading: "Por qué los pacientes eligen Palm Wellness Center",
       lead: "Atención experimentada, coordinada y compasiva de un centro que reúne atención primaria, quiropráctica y rehabilitación bajo un mismo techo.",
       items: [
-        "Proveedores médicos y de rehabilitación licenciados y con experiencia",
-        "Tiempos de cita extendidos para evaluación y educación",
+        "Un equipo unificado en todos los servicios",
+        "Planes de tratamiento e historial médico compartidos",
+        "Pérdida de peso adaptada a tus capacidades físicas",
+        "Citas extendidas para evaluación y educación",
         "Citas el mismo día y al día siguiente",
         "Visitas de telemedicina en toda Florida",
         "Equipo de atención bilingüe (inglés y español)",
         "Transporte gratuito para pacientes elegibles",
-        "Cientos de pacientes satisfechos anualmente",
       ],
     },
     team: {
@@ -346,6 +348,68 @@ const content = {
 const bookAttrs = { target: "_blank", rel: "noopener" } as const;
 const l = content.labels;
 
+const subnav = {
+  en: [
+    { label: "Services", href: "#services" },
+    { label: "Safety", href: "#safety" },
+    { label: "Program & cost", href: "#program" },
+    { label: "Team", href: "#team" },
+    { label: "Get started", href: "#start" },
+    { label: "FAQ", href: "#faq" },
+  ],
+  es: [
+    { label: "Servicios", href: "#services" },
+    { label: "Seguridad", href: "#safety" },
+    { label: "Programa y costo", href: "#program" },
+    { label: "Equipo", href: "#team" },
+    { label: "Cómo comenzar", href: "#start" },
+    { label: "Preguntas", href: "#faq" },
+  ],
+}[lang];
+
+const quick = {
+  en: {
+    eyebrow: "Is this for you?",
+    title: "What it costs, and who it is for",
+    costLabel: "Program visit",
+    cost: "$299",
+    costNote: "60-minute medical visit. Medications are separate and billed by the pharmacy - typically $25-$300+ per month depending on the medication and pharmacy.",
+    candidacyTitle: "You may be a candidate if you",
+    candidacy: [
+      "Have a BMI of 30 or higher, or 27 or higher with a weight-related condition such as diabetes, high blood pressure, or sleep apnea",
+      "Have tried diet and exercise without lasting results",
+      "Want medical supervision, lab monitoring, and a plan you can sustain",
+    ],
+    disclaimer: "GLP-1 medications (a class of appetite-regulating drugs such as semaglutide and tirzepatide) are prescribed only when medically appropriate. Your provider confirms eligibility at your first visit.",
+  },
+  es: {
+    eyebrow: "¿Es para ti?",
+    title: "Cuánto cuesta y para quién es",
+    costLabel: "Consulta del programa",
+    cost: "$299",
+    costNote: "Consulta médica de 60 minutos. Los medicamentos son aparte y los cobra la farmacia - normalmente entre $25 y $300+ al mes según el medicamento y la farmacia.",
+    candidacyTitle: "Puedes ser candidato si",
+    candidacy: [
+      "Tienes un IMC de 30 o más, o de 27 o más con una condición relacionada con el peso como diabetes, presión alta o apnea del sueño",
+      "Has intentado dieta y ejercicio sin resultados duraderos",
+      "Quieres supervisión médica, monitoreo de laboratorio y un plan sostenible",
+    ],
+    disclaimer: "Los medicamentos GLP-1 (una clase de fármacos que regulan el apetito, como semaglutida y tirzepatida) se recetan solo cuando es médicamente apropiado. Tu proveedor confirma la elegibilidad en tu primera visita.",
+  },
+}[lang];
+
+const supervising = {
+  en: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides medical oversight that keeps your weight loss plan safe and guideline-aligned." },
+  es: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda supervisión médica que mantiene tu plan de pérdida de peso seguro y alineado con las guías clínicas." },
+}[lang];
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+const eyebrow = {
+  en: { services: "Our Services", integrated: "Integrated Wellness", steps: "How to Get Started", faq: "FAQ", area: "Service Area" },
+  es: { services: "Nuestros Servicios", integrated: "Bienestar Integrado", steps: "Cómo Comenzar", faq: "Preguntas", area: "Área de Servicio" },
+}[lang];
+
 const media = {
   intro: "/images/how-medical-weight-loss-fits-into-primary-care-ft-img.webp",
   services: "/images/how-medical-weight-loss-fits-into-primary-care-inner-img-1.webp",
@@ -394,6 +458,15 @@ const media = {
   </div>
 </section>
 
+<!-- ANCHOR NAV -->
+<nav class="border-b border-line bg-white lg:sticky lg:top-[78px] lg:z-40" aria-label="On this page">
+  <div class="container flex gap-6 overflow-x-auto py-3.5">
+    {subnav.map((s) => (
+      <a href={s.href} class="whitespace-nowrap py-1 text-[14px] font-semibold text-body transition-colors hover:text-blue">{s.label}</a>
+    ))}
+  </div>
+</nav>
+
 <!-- INTRO -->
 <section class="bg-white">
   <div class="container grid gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
@@ -411,10 +484,39 @@ const media = {
   </div>
 </section>
 
+<!-- QUICK: COST + CANDIDACY -->
+<section class="scroll-mt-24 bg-bg-alt">
+  <div class="container grid gap-8 py-16 lg:grid-cols-2 lg:gap-12">
+    <div class="flex flex-col gap-4 rounded-lg border border-line bg-white p-8">
+      <span class="text-[12px] font-bold uppercase tracking-wide text-blue-deep">{quick.eyebrow}</span>
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{quick.title}</h2>
+      <div class="flex items-end gap-3 border-t border-line pt-5">
+        <strong class="text-[40px] leading-none text-blue-deep">{quick.cost}</strong>
+        <span class="pb-1.5 text-[15px] text-body">{quick.costLabel}</span>
+      </div>
+      <p class="text-[14px] leading-relaxed text-body">{quick.costNote}</p>
+      <a href={APPOINTMENT_URL} {...bookAttrs} class="mt-auto inline-flex w-fit items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+    </div>
+    <div class="flex flex-col gap-4">
+      <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="badge-check" class="h-6 w-6" /></span>
+      <h3 class="text-[22px] text-ink">{quick.candidacyTitle}</h3>
+      <ul class="flex flex-col gap-3">
+        {quick.candidacy.map((c) => (
+          <li class="flex items-start gap-2.5 text-[15px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{c}</li>
+        ))}
+      </ul>
+      <p class="text-[13.5px] leading-relaxed text-muted">{quick.disclaimer}</p>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES (accordion) -->
-<section class="bg-bg-alt">
+<section class="scroll-mt-24 bg-bg-alt" id="services">
   <div class="container grid gap-10 py-16 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
-    <div class="flex flex-col gap-5 lg:sticky lg:top-32 lg:self-start">
+    <div class="flex flex-col gap-4 lg:sticky lg:top-32 lg:self-start">
+      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.services}</span>
       <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.services.heading}</h2>
       <p class="max-w-[40ch] text-[16px] leading-relaxed text-body">{content.services.lead}</p>
       <img src={media.services} width="440" height="340" alt={content.services.heading} loading="lazy" decoding="async" class="h-[340px] w-full rounded-lg object-cover" />
@@ -446,7 +548,7 @@ const media = {
 </section>
 
 <!-- SAFETY -->
-<section class="bg-white">
+<section class="scroll-mt-24 bg-white" id="safety">
   <div class="container py-16">
     <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-stretch lg:gap-12">
       <img src={media.safety} width="480" height="460" alt={content.safety.heading} loading="lazy" decoding="async" class="h-[520px] w-full rounded-lg object-cover" />
@@ -466,7 +568,7 @@ const media = {
           <div class="flex flex-col gap-3">
             <h3 class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{content.safety.seriousTitle}</h3>
             <ul class="flex flex-col gap-2.5">
-              {content.safety.serious.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="badge-check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-blue" />{c}</li>)}
+              {content.safety.serious.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="alert" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-blue-deep" />{c}</li>)}
             </ul>
           </div>
         </div>
@@ -477,7 +579,7 @@ const media = {
 </section>
 
 <!-- PROGRAM -->
-<section class="bg-bg-alt">
+<section class="scroll-mt-24 bg-bg-alt" id="program">
   <div class="container grid items-center gap-12 py-16 lg:grid-cols-2">
     <div class="flex flex-col gap-5">
       <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.program.heading}</h2>
@@ -505,14 +607,15 @@ const media = {
 <!-- INTEGRATED (4-up) -->
 <section class="bg-white">
   <div class="container flex flex-col gap-10 py-16">
-    <div class="flex max-w-[720px] flex-col gap-3">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.integrated}</span>
       <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.integrated.heading}</h2>
       <p class="text-[17px] leading-relaxed text-body">{content.integrated.lead}</p>
     </div>
     <div class="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
       {content.integrated.items.map((s, i) => (
         <a href={s.href} class="group flex flex-col bg-white transition-colors hover:bg-bg-alt">
-          <img src={media.integrated[i]} alt={s.title} loading="lazy" decoding="async" class="h-[170px] w-full object-cover" />
+          <img src={media.integrated[i]} alt={s.title} width="400" height="170" loading="lazy" decoding="async" class="h-[170px] w-full object-cover" />
           <span class="flex flex-1 flex-col gap-3 p-6">
             <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
             <h3 class="text-[17px] text-ink">{s.title}</h3>
@@ -525,20 +628,14 @@ const media = {
   </div>
 </section>
 
-<!-- WHY -->
+<!-- INTEGRATED CARE NOTE -->
 <section class="bg-bg-alt">
-  <div class="container grid items-center gap-12 py-16 lg:grid-cols-2">
-    <div class="flex flex-col gap-5">
+  <div class="container grid items-center gap-10 py-16 lg:grid-cols-2">
+    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[420px] w-full rounded-lg object-cover" />
+    <div class="flex flex-col gap-4">
       <h2 class="text-3xl text-ink sm:text-[2rem]">{content.why.heading}</h2>
-      <p class="text-[16px] leading-relaxed text-body">{content.why.lead}</p>
-      <ul class="grid gap-x-6 gap-y-3 sm:grid-cols-2">
-        {content.why.points.map((p) => (
-          <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{p}</li>
-        ))}
-      </ul>
-      <p class="text-[15px] leading-relaxed text-body">{content.why.closing}</p>
+      <p class="max-w-[62ch] text-[16px] leading-relaxed text-body">{content.why.closing}</p>
     </div>
-    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[480px] w-full rounded-lg object-cover" />
   </div>
 </section>
 
@@ -599,7 +696,7 @@ const media = {
 </section>
 
 <!-- TEAM -->
-<section class="bg-bg-alt">
+<section class="scroll-mt-24 bg-bg-alt" id="team">
   <div class="container grid gap-10 py-16 lg:grid-cols-[0.6fr_1.4fr] lg:gap-14">
     <div class="flex flex-col items-start gap-4">
       <img src={media.team} width="280" height="220" alt={content.team.name} loading="lazy" decoding="async" class="h-[220px] w-full max-w-[280px] rounded-lg object-cover" />
@@ -612,12 +709,17 @@ const media = {
       <h3 class="text-[13px] font-bold uppercase tracking-wide text-muted">{content.team.heading}</h3>
       {content.team.bio.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
       <blockquote class="border-t border-line pt-6 text-[19px] font-medium leading-relaxed text-blue-deep">"{content.team.quote}"</blockquote>
+      <div class="flex flex-col gap-1.5 border-t border-line pt-5">
+        <p class="text-[19px] font-bold text-ink">{supervising.name}</p>
+        <p class="text-[13px] font-semibold text-blue">{supervising.cred}</p>
+        <p class="text-[15px] leading-relaxed text-body">{supervising.bio}</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- STEPS -->
-<section class="bg-white">
+<section class="scroll-mt-24 bg-white" id="start">
   <div class="container flex flex-col gap-10 py-16">
     <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.steps.heading}</h2>
     <ol class="grid gap-6 md:grid-cols-3">
@@ -634,7 +736,7 @@ const media = {
 </section>
 
 <!-- FAQ (2 cols) -->
-<section class="bg-bg-alt">
+<section class="scroll-mt-24 bg-bg-alt" id="faq">
   <div class="container flex flex-col gap-10 py-16">
     <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.faq.heading}</h2>
     <div class="grid gap-x-14 gap-y-1 md:grid-cols-2">
@@ -655,6 +757,7 @@ const media = {
 <section class="bg-white">
   <div class="container grid gap-10 py-16 lg:grid-cols-2 lg:gap-14">
     <div class="flex flex-col gap-4">
+      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.area}</span>
       <h2 class="text-3xl text-ink sm:text-[2rem]">{content.area.heading}</h2>
       <p class="max-w-[60ch] text-[16px] leading-relaxed text-body">{content.area.lead}</p>
       <p class="max-w-[60ch] text-[15px] leading-relaxed text-body">{content.area.note}</p>
@@ -687,6 +790,14 @@ const media = {
     </ul>
   </div>
 </section>
+
+<div class="bg-bg-alt">
+  <div class="container flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
 
 <!-- FINAL CTA -->
 <section class="bg-blue-deep">
