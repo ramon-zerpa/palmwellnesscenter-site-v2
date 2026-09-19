@@ -22,12 +22,18 @@ section rhythm, hero, cards, pills, FAQ, CTA band), redesigned **directly in Ast
 5. One H1; keep title/meta/canonical/hreflang intact; images keep alt + dimensions.
 6. Build must stay green and page count stable (no lost routes) after each group.
 
-## Foundation (built once, reused by all groups)
+## Approach (corrected)
 
-- `src/components/ServicePage.astro` — new-language service/hub template
-  (hero → intro → services → program → integrated → why → team → steps → FAQ → area → related → CTA).
-- `src/data/servicePages.ts` — bilingual content for migrated pages.
-- Additional small templates as needed (legal/prose, contact, blog) in later groups.
+**No shared page template.** Each page gets its own **bespoke Astro component** under
+`src/components/pages/`, designed to the home's visual language (tokens, rhythm, type,
+blue/green palette) but with a **layout unique to that page**. EN + ES render the same
+bespoke component via a `lang` prop. Legacy content is preserved (light edits only for
+flow), with pricing corrected to Optantra truth.
+
+## Shared building blocks (primitives only)
+
+- `src/components/Icon.astro` — icon set (extended with shield, clipboard, pill, clock, video).
+- Tokens in `src/styles/global.css`.
 
 ## Groups (EN pages; ES mirrors each)
 
@@ -58,6 +64,5 @@ section rhythm, hero, cards, pills, FAQ, CTA band), redesigned **directly in Ast
 
 ## Status
 
-- [x] Foundation (`ServicePage.astro` + `servicePages.ts`, icons extended)
-- [x] Group 1 — `/primary-care/` + `/medical-weight-loss/` (+ ES)
+- [x] Group 1 — `/primary-care/` + `/medical-weight-loss/` (bespoke EN/ES components)
 - [ ] Group 2 … Group 12

@@ -1,0 +1,672 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Medical Weight Loss",
+      title: "Your medical weight loss provider in Tampa",
+      lead: "Medically supervised weight loss, metabolic health support, and sustainable lifestyle change - not quick fixes.",
+      badges: ["Led by a primary care provider", "GLP-1 options when appropriate", "Nutrition & movement coaching", "Integrated with rehab", "Bilingual EN/ES"],
+      note: "Physician-supervised · Lab monitoring included · Medication costs billed separately by the pharmacy",
+      image: "/images/medical-weight-loss-program.webp",
+      imageAlt: "Medical weight loss consultation at Palm Wellness Center in Tampa",
+    },
+    intro: {
+      heading: "Weight loss that works with your body, not against it",
+      paras: [
+        "Palm Wellness Center offers medically supervised weight loss led by a licensed provider with advanced training in nutrition and metabolic health. Programs can include GLP-1 medications, personalized nutrition plans, and activity guidance coordinated with our chiropractic and rehabilitation teams.",
+        "Whether you are managing obesity, diabetes, high blood pressure, or weight-related fatigue, your visits are unhurried - so your provider can listen, explain your options clearly, and build a plan that supports long-term results.",
+      ],
+      highlight: "This is a medical program, not a diet. We address the causes - hormones, metabolism, insulin resistance, and chronic conditions - with a plan measured over time.",
+    },
+    services: {
+      heading: "Our weight loss services",
+      lead: "Assessment, treatment, and monitoring - all handled by your care team.",
+      items: [
+        { icon: "scale", title: "Complete medical weight management", body: "Our program starts with a detailed medical evaluation of your history, medications, blood pressure, and metabolic health. Your provider then builds a personalized plan through nutrition, movement, and ongoing follow-up.", bullets: ["Metabolism and health risk assessment", "Personalized nutrition and lifestyle coaching", "Prescription weight loss medications when appropriate", "Coordinated physical activity guidance", "Regular progress monitoring and adjustments"] },
+        { icon: "pill", title: "GLP-1 medication therapy", body: "Some patients may qualify for GLP-1 medications such as semaglutide or tirzepatide under medical supervision. These therapies help regulate appetite, support healthier eating patterns, and improve metabolic function.", bullets: ["Semaglutide: helps reduce appetite and support sustained weight loss", "Tirzepatide: targets multiple hunger hormones and supports blood sugar control", "Coordinated with rehabilitation services when needed"] },
+        { icon: "clipboard", title: "Lab testing & health monitoring", body: "Your provider orders and interprets lab work to understand your metabolic health: metabolic panels, thyroid function, blood sugar and diabetes screening, lipid and cardiovascular markers, and hormone levels. Results are reviewed with you in person or by telemedicine.", bullets: [] },
+        { icon: "shield", title: "Prescription management", body: "When medications are prescribed, your provider reviews potential interactions, monitors side effects, and coordinates with your pharmacy. Prescription weight loss medications are used only when clinically appropriate, and visits include a discussion of pricing and cost-saving programs.", bullets: [] },
+      ],
+    },
+    safety: {
+      heading: "Important safety information",
+      lead: "GLP-1 medications are not right for everyone. Your provider determines whether they are appropriate based on your health history, goals, and current conditions. A thorough medical evaluation is required before prescribing any GLP-1 medication.",
+      commonTitle: "Common side effects may include",
+      common: ["Nausea or vomiting", "Diarrhea or constipation", "Stomach discomfort or bloating", "Decreased appetite"],
+      seriousTitle: "Rare but serious side effects",
+      serious: ["Pancreatitis", "Kidney problems", "Vision changes", "Thyroid tumors (seen in animal studies)"],
+      note: "Your provider will monitor your response and adjust your plan as needed. Medication costs are separate from the program fee and are filled through your pharmacy or compounding facility.",
+    },
+    program: {
+      heading: "The Medical Weight Loss Program",
+      body: "A structured program for patients whose weight is affected by medical causes such as hormone imbalance, slowed metabolism, insulin resistance, and type 2 diabetes - with a focus on safe fat reduction and realistic nutrition, not extreme restriction.",
+      price: "$299",
+      cadence: "60-minute medical visit",
+      benefits: [
+        "60-minute initial consultation",
+        "Regular follow-ups for monitoring and adjustments",
+        "Prescription medication management when needed",
+        "Metabolic health monitoring and lab coordination",
+        "Nutrition and lifestyle coaching",
+        "Ongoing accountability and support",
+        "Telemedicine visits throughout Florida when appropriate",
+      ],
+      note: "Prescription medications, including GLP-1 options, are prescribed only when clinically appropriate and are billed separately through your pharmacy.",
+    },
+    integrated: {
+      heading: "Integrated wellness services",
+      lead: "Weight health works best when the rest of your care is connected.",
+      items: [
+        { icon: "stethoscope", title: "Primary Care", body: "Chronic disease management, preventive care, and routine concerns - coordinated with your weight loss program.", href: "/primary-care/" },
+        { icon: "activity", title: "Physical Therapy", body: "Rehabilitation that supports safe exercise, joint protection, and mobility while you lose weight.", href: "/physical-rehabilitation/" },
+        { icon: "spine", title: "Chiropractic Care", body: "Spine and joint care to reduce pain and support better movement as your body changes.", href: "/chiropractor/" },
+        { icon: "drop", title: "IV Therapy & Injections", body: "Medically supervised infusions and vitamin injections that support energy, recovery, and immune health.", href: "/iv-therapy/" },
+      ],
+    },
+    why: {
+      heading: "Why integrated care matters",
+      lead: "When medical weight loss is coordinated with primary care, chiropractic, and rehabilitation, patients see safer and more sustainable results.",
+      points: [
+        "One unified care team across all services",
+        "Shared treatment plans and medical records",
+        "Weight loss matched to your physical capabilities",
+        "Activity plans coordinated with rehabilitation when needed",
+        "Less repetition of your history at every visit",
+        "Better outcomes through collaborative planning",
+      ],
+      closing: "For rehabilitation services like chiropractic care, physical therapy, and massage therapy, your weight loss provider works closely with our rehab specialists to create integrated treatment plans.",
+      image: "/images/why-integrated-care-matters.webp",
+      imageAlt: "Integrated care planning at Palm Wellness Center",
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered care. Our team follows established clinical standards and emphasizes clear communication, appropriate treatment planning, and continuity of care.",
+        "Patients can be seen in person or through secure telehealth visits for select appointments. We proudly serve Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+    },
+    transport: {
+      title: "Need a ride? We've got you covered.",
+      body: "Free transportation to and from appointments for eligible patients across the Tampa Bay area - so attending your weight loss visits and follow-ups is never the reason you miss care. Just ask when you call or request an appointment.",
+      image: "/images/car-transportation-assistance.webp",
+      imageAlt: "Courtesy transportation for patients in Tampa Bay",
+    },
+    choose: {
+      heading: "Why patients choose Palm Wellness Center",
+      lead: "Experienced, coordinated, and compassionate care from a wellness center that brings primary care, chiropractic, and rehabilitation together under one roof.",
+      items: [
+        "Experienced, licensed medical and rehabilitation providers",
+        "Extended appointment times for thorough evaluation and education",
+        "Same-day and next-day appointments available",
+        "Telemedicine visits throughout Florida",
+        "Bilingual care team (English and Spanish)",
+        "Free transportation for eligible patients",
+        "Hundreds of satisfied patients annually",
+      ],
+    },
+    team: {
+      heading: "Meet your medical team",
+      name: "Leivys C. Marsall, PA, ACN",
+      cred: "Board-Certified Physician Assistant · Advanced Certification in Nutrition",
+      bio: [
+        "Leivys C. Marsall is a Board-Certified Physician Assistant with Advanced Certification in Nutrition, specializing in preventive medicine, metabolic health, and comprehensive primary care.",
+        "With extensive experience in family medicine, chronic disease management, and medical weight loss, PA Marsall combines medical expertise with a patient-centered approach to help individuals achieve sustainable health transformations. Fluent in English and Spanish.",
+      ],
+      quote: "Medicine is art, science, and purpose. We don't just treat disease - we transform lives through prevention and knowledge.",
+    },
+    steps: {
+      heading: "How to get started",
+      items: [
+        { title: "Call or book online", body: "Call (813) 443-5370 or schedule online 24/7 to book your medical weight loss visit." },
+        { title: "Your first visit", body: "A comprehensive health history review, metabolic assessment, and a personalized weight loss plan - 60 minutes with your provider." },
+        { title: "Ongoing partnership", body: "Regular follow-ups, medication management, lab monitoring, and coordination with rehab or wellness services when beneficial." },
+      ],
+      note: "Medical services are provided under physician supervision in accordance with Florida state regulations.",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      items: [
+        { q: "Do I need a referral to start the program?", a: "No referral is required. If you need coordination with your existing providers or specialists, our team can help facilitate communication." },
+        { q: "What should I bring to my first appointment?", a: "Please bring a valid ID, current medication list, and any relevant medical records from previous providers. If you have recent lab work, we can review those results during your visit." },
+        { q: "Do you accept insurance for weight loss services?", a: "Our medical weight loss program operates on a direct-pay basis, which lets us offer extended appointments and personalized care without insurance restrictions. Some patients submit receipts to their insurance for possible reimbursement; we can provide visit documentation, but coverage is not guaranteed." },
+        { q: "How much does the program cost?", a: "The Medical Weight Loss Program is $299 for the 60-minute medical visit, including your evaluation, plan, monitoring, and ongoing support. Prescription medications (when prescribed) are billed separately through your pharmacy." },
+        { q: "How much do weight loss medications cost?", a: "Costs vary by medication, dosage, pharmacy, and manufacturer savings programs - typically $25 to $300+ per month. Your provider will help you explore cost-saving options if medication therapy is recommended." },
+        { q: "Can I see my provider via telemedicine?", a: "Yes - telemedicine visits are available throughout Florida for follow-ups, medication management, lab review, and progress monitoring. Some visits require in-person assessment; your provider will determine the appropriate type." },
+        { q: "How long are appointments?", a: "Initial consultations are 60 minutes; follow-ups are 30-45 minutes. This extended time allows for thorough evaluation, education, and treatment planning." },
+        { q: "What if I have other health conditions?", a: "Your provider evaluates your complete health profile, including chronic conditions like diabetes, hypertension, or thyroid disorders. Plans are tailored to your medical needs and coordinated with your care team when appropriate." },
+        { q: "Do I need to be a primary care member to enroll?", a: "No. Medical weight loss is available as a standalone program. Primary care members may receive discounts on additional medical services - ask about membership benefits during your consultation." },
+        { q: "Am I a candidate for GLP-1 medications?", a: "GLP-1 medications are not appropriate for everyone. Candidates are evaluated based on BMI, medical history, current medications, and overall health. Your provider will assess whether GLP-1 therapy is safe and appropriate for you." },
+      ],
+    },
+    area: {
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Located in the heart of Tampa at 1004 W Linebaugh Ave, we serve weight loss patients from across Hillsborough County and nearby communities.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "Free transportation is available for eligible patients throughout Tampa Bay, making it easier to attend your visits, follow-ups, and related wellness services.",
+    },
+    related: {
+      heading: "Related services",
+      links: [
+        { label: "Primary Care", href: "/primary-care/" },
+        { label: "Physical Rehabilitation", href: "/physical-rehabilitation/" },
+        { label: "Chiropractic Care", href: "/chiropractor/" },
+        { label: "IV Therapy", href: "/iv-therapy/" },
+        { label: "Auto Accident Rehabilitation", href: "/car-accident-rehabilitation/" },
+        { label: "Therapeutic Exercises", href: "/therapeutic-exercises/" },
+      ],
+    },
+    cta: {
+      title: "Ready for the next step in your weight loss plan?",
+      lead: "Stay supported beyond the first visit with ongoing medical guidance, accountability, and adjustments tailored to your progress.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more about" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Pérdida de Peso Médica",
+      title: "Tu proveedor de pérdida de peso médica en Tampa",
+      lead: "Pérdida de peso supervisada médicamente, apoyo a la salud metabólica y cambio de estilo de vida sostenible - no soluciones rápidas.",
+      badges: ["Dirigido por un proveedor de atención primaria", "Opciones GLP-1 cuando corresponde", "Guía de nutrición y movimiento", "Integrado con rehabilitación", "Bilingüe EN/ES"],
+      note: "Supervisado por médicos · Monitoreo de laboratorio incluido · Medicamentos facturados por separado en la farmacia",
+      image: "/images/medical-weight-loss-program.webp",
+      imageAlt: "Consulta de pérdida de peso médica en Palm Wellness Center en Tampa",
+    },
+    intro: {
+      heading: "Pérdida de peso que trabaja con tu cuerpo, no en su contra",
+      paras: [
+        "Palm Wellness Center ofrece pérdida de peso supervisada médicamente, dirigida por una proveedora licenciada con formación avanzada en nutrición y salud metabólica. Los programas pueden incluir medicamentos GLP-1, planes de nutrición personalizados y orientación de actividad coordinada con nuestros equipos de quiropráctica y rehabilitación.",
+        "Ya sea que estés manejando obesidad, diabetes, presión arterial alta o fatiga relacionada con el peso, tus visitas son sin prisas - para que tu proveedor pueda escucharte, explicar tus opciones con claridad y construir un plan que apoye resultados a largo plazo.",
+      ],
+      highlight: "Este es un programa médico, no una dieta. Abordamos las causas - hormonas, metabolismo, resistencia a la insulina y condiciones crónicas - con un plan medido en el tiempo.",
+    },
+    services: {
+      heading: "Nuestros servicios de pérdida de peso",
+      lead: "Evaluación, tratamiento y seguimiento - todo a cargo de tu equipo médico.",
+      items: [
+        { icon: "scale", title: "Manejo médico integral del peso", body: "El programa comienza con una evaluación médica detallada de tu historial, medicamentos, presión arterial y salud metabólica. Tu proveedor luego crea un plan personalizado mediante nutrición, movimiento y seguimiento continuo.", bullets: ["Evaluación del metabolismo y riesgos de salud", "Guía personalizada de nutrición y estilo de vida", "Medicamentos recetados cuando sea apropiado", "Orientación coordinada de actividad física", "Monitoreo regular del progreso y ajustes"] },
+        { icon: "pill", title: "Terapia con medicamentos GLP-1", body: "Algunos pacientes pueden calificar para medicamentos GLP-1 como semaglutida o tirzepatida bajo supervisión médica. Estas terapias ayudan a regular el apetito, apoyar patrones de alimentación más saludables y mejorar la función metabólica.", bullets: ["Semaglutida: ayuda a reducir el apetito y apoyar la pérdida de peso sostenida", "Tirzepatida: actúa sobre múltiples hormonas del hambre y apoya el control del azúcar en sangre", "Coordinado con rehabilitación cuando sea necesario"] },
+        { icon: "clipboard", title: "Pruebas de laboratorio y monitoreo", body: "Tu proveedor solicita e interpreta análisis para entender tu salud metabólica: paneles metabólicos, función tiroidea, detección de diabetes, marcadores lipídicos y cardiovasculares, y niveles hormonales. Los resultados se revisan contigo en persona o por telemedicina.", bullets: [] },
+        { icon: "shield", title: "Gestión de recetas", body: "Cuando se recetan medicamentos, tu proveedor revisa posibles interacciones, monitorea efectos secundarios y se coordina con tu farmacia. Los medicamentos se usan solo cuando es clínicamente apropiado, y las visitas incluyen precios y programas de ahorro.", bullets: [] },
+      ],
+    },
+    safety: {
+      heading: "Información importante de seguridad",
+      lead: "Los medicamentos GLP-1 no son adecuados para todos. Tu proveedor determina si son apropiados según tu historial de salud, objetivos y condiciones actuales. Se requiere una evaluación médica exhaustiva antes de recetar cualquier GLP-1.",
+      commonTitle: "Los efectos secundarios comunes pueden incluir",
+      common: ["Náuseas o vómitos", "Diarrea o estreñimiento", "Malestar estomacal o hinchazón", "Disminución del apetito"],
+      seriousTitle: "Efectos secundarios raros pero graves",
+      serious: ["Pancreatitis", "Problemas renales", "Cambios en la visión", "Tumores de tiroides (observados en estudios en animales)"],
+      note: "Tu proveedor supervisará tu respuesta y ajustará tu plan según sea necesario. El costo de los medicamentos es independiente de la tarifa del programa y se dispensa en tu farmacia o centro de composición.",
+    },
+    program: {
+      heading: "El Programa de Pérdida de Peso Médica",
+      body: "Un programa estructurado para pacientes cuyo peso se ve afectado por causas médicas como desequilibrio hormonal, metabolismo lento, resistencia a la insulina y diabetes tipo 2 - con enfoque en reducción segura de grasa y nutrición realista, no restricciones extremas.",
+      price: "$299",
+      cadence: "consulta médica de 60 minutos",
+      benefits: [
+        "Consulta inicial de 60 minutos",
+        "Seguimientos regulares para monitoreo y ajustes",
+        "Manejo de medicamentos recetados cuando sea necesario",
+        "Monitoreo de salud metabólica y coordinación de laboratorio",
+        "Guía de nutrición y estilo de vida",
+        "Responsabilidad y apoyo continuo",
+        "Visitas de telemedicina en toda Florida cuando sea apropiado",
+      ],
+      note: "Los medicamentos recetados, incluidas las opciones GLP-1, se prescriben solo cuando es clínicamente apropiado y se facturan por separado en tu farmacia.",
+    },
+    integrated: {
+      heading: "Servicios de bienestar integrado",
+      lead: "La salud del peso funciona mejor cuando el resto de tu atención está conectada.",
+      items: [
+        { icon: "stethoscope", title: "Atención Primaria", body: "Manejo de enfermedades crónicas, atención preventiva y problemas rutinarios - coordinados con tu programa.", href: "/es/atencion-primaria/" },
+        { icon: "activity", title: "Fisioterapia", body: "Rehabilitación que apoya el ejercicio seguro, la protección articular y la movilidad mientras pierdes peso.", href: "/es/fisioterapia/" },
+        { icon: "spine", title: "Quiropráctica", body: "Cuidado de columna y articulaciones para reducir el dolor y apoyar un mejor movimiento.", href: "/es/quiropractico/" },
+        { icon: "drop", title: "Terapia IV e Inyecciones", body: "Infusiones e inyecciones supervisadas médicamente que apoyan la energía, la recuperación y la inmunidad.", href: "/es/terapia-iv/" },
+      ],
+    },
+    why: {
+      heading: "Por qué importa la atención integrada",
+      lead: "Cuando la pérdida de peso médica se coordina con atención primaria, quiropráctica y rehabilitación, los pacientes obtienen resultados más seguros y sostenibles.",
+      points: [
+        "Un equipo unificado en todos los servicios",
+        "Planes de tratamiento e historial médico compartidos",
+        "Pérdida de peso adaptada a tus capacidades físicas",
+        "Planes de actividad coordinados con rehabilitación cuando se necesita",
+        "Menos repetición de tu historial en cada visita",
+        "Mejores resultados con planificación colaborativa",
+      ],
+      closing: "Para servicios de rehabilitación como quiropráctica, fisioterapia y masajes terapéuticos, tu proveedor de pérdida de peso trabaja estrechamente con nuestros especialistas para crear planes integrados.",
+      image: "/images/why-integrated-care-matters.webp",
+      imageAlt: "Planificación de atención integrada en Palm Wellness Center",
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center está dirigido por profesionales médicos y de rehabilitación con licencia, comprometidos con una atención segura y centrada en el paciente. Nuestro equipo sigue los estándares clínicos establecidos y prioriza la comunicación clara y la continuidad de la atención.",
+        "Los pacientes pueden ser atendidos en persona o por telesalud segura para citas selectas. Servimos con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+    },
+    transport: {
+      title: "¿Necesitas transporte? Lo tenemos cubierto.",
+      body: "Transporte gratuito de ida y vuelta a las citas para pacientes elegibles en toda la Bahía de Tampa - para que asistir a tus visitas de pérdida de peso y seguimientos nunca sea la razón para faltar. Solo pregúntalo al llamar o solicitar una cita.",
+      image: "/images/car-transportation-assistance.webp",
+      imageAlt: "Transporte de cortesía para pacientes en Tampa Bay",
+    },
+    choose: {
+      heading: "Por qué los pacientes eligen Palm Wellness Center",
+      lead: "Atención experimentada, coordinada y compasiva de un centro que reúne atención primaria, quiropráctica y rehabilitación bajo un mismo techo.",
+      items: [
+        "Proveedores médicos y de rehabilitación licenciados y con experiencia",
+        "Tiempos de cita extendidos para evaluación y educación",
+        "Citas el mismo día y al día siguiente",
+        "Visitas de telemedicina en toda Florida",
+        "Equipo de atención bilingüe (inglés y español)",
+        "Transporte gratuito para pacientes elegibles",
+        "Cientos de pacientes satisfechos anualmente",
+      ],
+    },
+    team: {
+      heading: "Conoce a tu equipo médico",
+      name: "Leivys C. Marsall, PA, ACN",
+      cred: "Asistente Médica Certificada · Certificación Avanzada en Nutrición",
+      bio: [
+        "Leivys C. Marsall es una Asistente Médica Certificada con Certificación Avanzada en Nutrición, especializada en medicina preventiva, salud metabólica y atención primaria integral.",
+        "Con amplia experiencia en medicina familiar, manejo de enfermedades crónicas y pérdida de peso médica, combina experiencia médica con un enfoque centrado en el paciente para lograr transformaciones de salud sostenibles. Habla inglés y español con fluidez.",
+      ],
+      quote: "La medicina es arte, ciencia y propósito. No solo tratamos enfermedades - transformamos vidas a través de la prevención y el conocimiento.",
+    },
+    steps: {
+      heading: "Cómo comenzar",
+      items: [
+        { title: "Llama o reserva en línea", body: "Llama al (813) 443-5370 o agenda en línea 24/7 para tu consulta de pérdida de peso médica." },
+        { title: "Tu primera visita", body: "Revisión integral de tu historial, evaluación metabólica y un plan personalizado de pérdida de peso - 60 minutos con tu proveedor." },
+        { title: "Acompañamiento continuo", body: "Seguimientos regulares, manejo de medicamentos, monitoreo de laboratorio y coordinación con rehabilitación cuando es beneficioso." },
+      ],
+      note: "Los servicios médicos se proporcionan bajo supervisión médica de acuerdo con las regulaciones del estado de Florida.",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      items: [
+        { q: "¿Necesito una referencia para comenzar el programa?", a: "No se requiere referencia. Si necesitas coordinación con tus proveedores o especialistas actuales, nuestro equipo puede ayudar a facilitar la comunicación." },
+        { q: "¿Qué debo traer a mi primera cita?", a: "Trae una identificación válida, lista de medicamentos actuales y cualquier historial médico relevante. Si tienes laboratorios recientes, podemos revisarlos durante tu visita." },
+        { q: "¿Aceptan seguro para los servicios de pérdida de peso?", a: "Nuestro programa funciona con pago directo, lo que nos permite ofrecer citas más largas y atención personalizada sin restricciones de seguro. Algunos pacientes presentan recibos a su seguro para un posible reembolso; podemos dar documentación, pero no garantizamos cobertura." },
+        { q: "¿Cuánto cuesta el programa?", a: "El Programa de Pérdida de Peso Médica cuesta $299 por la consulta médica de 60 minutos, incluyendo evaluación, plan, monitoreo y apoyo continuo. Los medicamentos recetados se facturan por separado en tu farmacia." },
+        { q: "¿Cuánto cuestan los medicamentos?", a: "Los costos varían según el medicamento, la dosis, la farmacia y los programas de ahorro - normalmente entre $25 y $300+ al mes. Tu proveedor te ayudará a explorar opciones de ahorro si se recomienda terapia con medicamentos." },
+        { q: "¿Puedo ver a mi proveedor por telemedicina?", a: "Sí - las visitas de telemedicina están disponibles en toda Florida para seguimientos, manejo de medicamentos, revisión de laboratorios y monitoreo de progreso. Algunas visitas requieren evaluación en persona." },
+        { q: "¿Cuánto duran las citas?", a: "Las consultas iniciales son de 60 minutos; los seguimientos de 30 a 45 minutos. Este tiempo permite una evaluación exhaustiva, educación y planificación del tratamiento." },
+        { q: "¿Qué pasa si tengo otras condiciones de salud?", a: "Tu proveedor evalúa tu perfil de salud completo, incluyendo condiciones crónicas como diabetes, hipertensión o tiroides. Los planes se adaptan a tus necesidades médicas y se coordinan con tu equipo cuando es apropiado." },
+        { q: "¿Necesito ser miembro para inscribirme?", a: "No. La pérdida de peso médica está disponible como programa independiente. Los miembros de atención primaria pueden recibir descuentos en servicios adicionales - pregunta por los beneficios durante tu consulta." },
+        { q: "¿Soy candidato para los medicamentos GLP-1?", a: "Los GLP-1 no son adecuados para todos. Los candidatos se evalúan según IMC, historial médico, medicamentos actuales y estado general de salud. Tu proveedor evaluará si la terapia GLP-1 es segura y apropiada para ti." },
+      ],
+    },
+    area: {
+      heading: "Sirviendo con orgullo a Tampa y sus vecindarios",
+      lead: "Ubicados en el corazón de Tampa en 1004 W Linebaugh Ave, atendemos a pacientes de pérdida de peso médica de todo el condado de Hillsborough y comunidades cercanas.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "El transporte gratuito está disponible para pacientes elegibles en toda el área de Tampa Bay, lo que facilita asistir a tus visitas, seguimientos y servicios de bienestar relacionados.",
+    },
+    related: {
+      heading: "Servicios relacionados",
+      links: [
+        { label: "Atención Primaria", href: "/es/atencion-primaria/" },
+        { label: "Fisioterapia", href: "/es/fisioterapia/" },
+        { label: "Quiropráctica", href: "/es/quiropractico/" },
+        { label: "Terapia IV", href: "/es/terapia-iv/" },
+        { label: "Rehabilitación por Accidente de Auto", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
+        { label: "Ejercicios Terapéuticos", href: "/es/ejercicios-terapeuticos/" },
+      ],
+    },
+    cta: {
+      title: "¿Listo para el siguiente paso en tu plan de pérdida de peso?",
+      lead: "Mantente acompañado más allá de la primera visita con orientación médica continua, responsabilidad y ajustes adaptados a tu progreso.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más sobre" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+---
+
+<!-- HERO (image left / text right) -->
+<section class="bg-bg-alt">
+  <div class="container grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
+    <div class="order-last lg:order-first">
+      <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="h-full max-h-[460px] w-full rounded-lg object-cover" />
+    </div>
+    <div class="flex flex-col items-start gap-5">
+      <span class="inline-flex rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{content.hero.eyebrow}</span>
+      <h1 class="text-4xl leading-[1.08] text-ink sm:text-5xl">{content.hero.title}</h1>
+      <p class="max-w-xl text-[18px] leading-relaxed text-body">{content.hero.lead}</p>
+      <ul class="flex flex-wrap gap-x-5 gap-y-2">
+        {content.hero.badges.map((b) => (
+          <li class="flex items-center gap-2 text-[13.5px] font-semibold text-ink">
+            <Icon name="check" class="h-4 w-4 shrink-0 text-green-dark" />{b}
+          </li>
+        ))}
+      </ul>
+      <div class="flex flex-wrap gap-3">
+        <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
+          <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+        </a>
+        <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue transition-colors hover:bg-blue-pale">
+          <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+        </a>
+      </div>
+      <p class="text-[13px] text-muted">{content.hero.note}</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section class="bg-white">
+  <div class="container grid gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+    <div class="flex flex-col gap-5">
+      <h2 class="text-3xl leading-tight text-ink sm:text-[2.3rem]">{content.intro.heading}</h2>
+      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[17px] leading-relaxed text-body">{p}</p>)}
+    </div>
+    <aside class="flex h-fit items-start gap-4 rounded-lg border border-line bg-bg-alt p-7">
+      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="activity" class="h-6 w-6" /></span>
+      <p class="text-[16px] font-medium leading-relaxed text-ink">{content.intro.highlight}</p>
+    </aside>
+  </div>
+</section>
+
+<!-- SERVICES (accordion) -->
+<section class="bg-bg-alt">
+  <div class="container grid gap-10 py-16 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
+    <div class="flex flex-col gap-3 lg:sticky lg:top-32 lg:self-start">
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.services.heading}</h2>
+      <p class="max-w-[40ch] text-[16px] leading-relaxed text-body">{content.services.lead}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.services.items.map((s) => (
+        <details class="group border-t border-line py-6" open={false}>
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+            <span class="flex items-center gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
+              <span class="text-[20px] font-semibold text-ink">{s.title}</span>
+            </span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <div class="flex flex-col gap-4 pt-4 pl-0 lg:pl-[60px]">
+            <p class="max-w-[62ch] text-[15px] leading-relaxed text-body">{s.body}</p>
+            {s.bullets.length > 0 && (
+              <ul class="flex flex-col gap-2.5">
+                {s.bullets.map((b) => (
+                  <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{b}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section class="bg-white">
+  <div class="container py-16">
+    <div class="flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-8 lg:p-10">
+      <div class="flex items-center gap-3">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue text-white"><Icon name="shield" class="h-6 w-6" /></span>
+        <h2 class="text-[24px] text-ink">{content.safety.heading}</h2>
+      </div>
+      <p class="max-w-[80ch] text-[15.5px] leading-relaxed text-body">{content.safety.lead}</p>
+      <div class="grid gap-8 border-t border-line pt-6 md:grid-cols-2">
+        <div class="flex flex-col gap-3">
+          <h3 class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{content.safety.commonTitle}</h3>
+          <ul class="flex flex-col gap-2.5">
+            {content.safety.common.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{c}</li>)}
+          </ul>
+        </div>
+        <div class="flex flex-col gap-3">
+          <h3 class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{content.safety.seriousTitle}</h3>
+          <ul class="flex flex-col gap-2.5">
+            {content.safety.serious.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="badge-check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-blue" />{c}</li>)}
+          </ul>
+        </div>
+      </div>
+      <p class="text-[13.5px] leading-relaxed text-muted">{content.safety.note}</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section class="bg-bg-alt">
+  <div class="container grid items-center gap-12 py-16 lg:grid-cols-2">
+    <div class="flex flex-col gap-5">
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.program.heading}</h2>
+      <p class="max-w-[62ch] text-[17px] leading-relaxed text-body">{content.program.body}</p>
+      <p class="max-w-[62ch] text-[13.5px] leading-relaxed text-muted">{content.program.note}</p>
+    </div>
+    <article class="flex flex-col gap-6 rounded-lg bg-blue-deep p-8 text-blue-tint">
+      <p class="flex items-end gap-2">
+        <strong class="text-[46px] leading-none text-white">{content.program.price}</strong>
+        <span class="pb-1.5 text-[15px]">{content.program.cadence}</span>
+      </p>
+      <ul class="flex flex-col gap-3 text-[14.5px]">
+        {content.program.benefits.map((b) => (
+          <li class="flex items-start gap-2.5"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{b}</li>
+        ))}
+      </ul>
+      <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 text-[15px] font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+    </article>
+  </div>
+</section>
+
+<!-- INTEGRATED (4-up) -->
+<section class="bg-white">
+  <div class="container flex flex-col gap-10 py-16">
+    <div class="flex max-w-[720px] flex-col gap-3">
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.integrated.heading}</h2>
+      <p class="text-[17px] leading-relaxed text-body">{content.integrated.lead}</p>
+    </div>
+    <div class="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {content.integrated.items.map((s) => (
+        <a href={s.href} class="group flex flex-col gap-3 bg-white p-6 transition-colors hover:bg-bg-alt">
+          <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
+          <h3 class="text-[17px] text-ink">{s.title}</h3>
+          <p class="text-[14px] leading-relaxed text-body">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-1.5 pt-1 text-[13.5px] font-bold text-blue group-hover:text-blue-deep">{l.learn} <Icon name="arrow" class="h-4 w-4" /></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="bg-bg-alt">
+  <div class="container grid items-center gap-12 py-16 lg:grid-cols-2">
+    <div class="flex flex-col gap-5">
+      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.why.heading}</h2>
+      <p class="text-[16px] leading-relaxed text-body">{content.why.lead}</p>
+      <ul class="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+        {content.why.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+      <p class="text-[15px] leading-relaxed text-body">{content.why.closing}</p>
+    </div>
+    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-full max-h-[480px] w-full rounded-lg object-cover" />
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-white">
+  <div class="container grid gap-10 py-16 lg:grid-cols-[1.3fr_0.7fr] lg:gap-14">
+    <div class="flex flex-col gap-5">
+      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
+    </div>
+    <div class="flex h-fit flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7">
+      <p class="flex items-center gap-2 text-[13px] font-bold uppercase tracking-wide text-blue-deep">
+        <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+      </p>
+      <ul class="flex flex-col divide-y divide-line">
+        {content.trust.hours.map((h) => (
+          <li class="flex items-center justify-between gap-4 py-3 text-[15px]">
+            <span class="text-body">{h.day}</span>
+            <span class="font-semibold text-ink">{h.time}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-bg-alt">
+  <div class="container grid items-center gap-10 py-16 lg:grid-cols-2">
+    <div class="flex flex-col gap-4">
+      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-relaxed text-body">{content.transport.body}</p>
+      <a href={PHONE_TEL} class="inline-flex w-fit items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+    <img src={content.transport.image} width="560" height="360" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-full max-h-[380px] w-full rounded-lg object-cover" />
+  </div>
+</section>
+
+<!-- WHY PATIENTS CHOOSE -->
+<section class="bg-white">
+  <div class="container grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+    <div class="flex flex-col gap-3">
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.choose.heading}</h2>
+      <p class="max-w-[46ch] text-[16px] leading-relaxed text-body">{content.choose.lead}</p>
+    </div>
+    <ul class="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+      {content.choose.items.map((it) => (
+        <li class="flex items-start gap-3 text-[15.5px] text-ink">
+          <Icon name="badge-check" class="mt-0.5 h-5 w-5 shrink-0 text-blue" />{it}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="bg-bg-alt">
+  <div class="container grid gap-10 py-16 lg:grid-cols-[0.6fr_1.4fr] lg:gap-14">
+    <div class="flex flex-col items-start gap-4">
+      <span class="grid h-[88px] w-[88px] place-items-center rounded-full bg-blue-pale text-[32px] font-bold text-blue-deep">L</span>
+      <div>
+        <h2 class="text-[24px] text-ink">{content.team.name}</h2>
+        <p class="mt-1 text-[14px] font-semibold text-blue">{content.team.cred}</p>
+      </div>
+    </div>
+    <div class="flex flex-col gap-5">
+      <h3 class="text-[13px] font-bold uppercase tracking-wide text-muted">{content.team.heading}</h3>
+      {content.team.bio.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
+      <blockquote class="border-t border-line pt-6 text-[19px] font-medium leading-relaxed text-blue-deep">"{content.team.quote}"</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="bg-white">
+  <div class="container flex flex-col gap-10 py-16">
+    <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.steps.heading}</h2>
+    <ol class="grid gap-6 md:grid-cols-3">
+      {content.steps.items.map((s, i) => (
+        <li class="flex flex-col gap-3 rounded-lg border border-line bg-bg-alt p-7">
+          <span class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="text-[20px] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-relaxed text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="text-[13px] text-muted">{content.steps.note}</p>
+  </div>
+</section>
+
+<!-- FAQ (2 cols) -->
+<section class="bg-bg-alt">
+  <div class="container flex flex-col gap-10 py-16">
+    <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.faq.heading}</h2>
+    <div class="grid gap-x-14 gap-y-1 md:grid-cols-2">
+      {content.faq.items.map((item) => (
+        <details class="group border-t border-line py-5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold text-ink">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="pt-3 text-[14.5px] leading-relaxed text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- AREA -->
+<section class="bg-white">
+  <div class="container grid gap-10 py-16 lg:grid-cols-2 lg:gap-14">
+    <div class="flex flex-col gap-4">
+      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-relaxed text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-relaxed text-body">{content.area.note}</p>
+    </div>
+    <ul class="flex flex-wrap content-start gap-3">
+      {content.area.places.map((p) => (
+        <li class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[15px] font-medium text-ink">
+          <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="bg-bg-alt">
+  <div class="container flex flex-col items-center gap-8 py-14">
+    <h2 class="text-[22px] text-ink">{content.related.heading}</h2>
+    <ul class="flex flex-wrap justify-center gap-3">
+      {content.related.links.map((lk) => (
+        <li>
+          <a href={lk.href} class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[15px] font-semibold text-blue transition-colors hover:bg-blue-pale hover:text-blue-deep">
+            {lk.label} <Icon name="arrow" class="h-4 w-4" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="container flex flex-col items-center gap-4 py-16 text-center">
+    <h2 class="max-w-[820px] text-3xl text-white sm:text-[2.1rem]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[17px] leading-relaxed text-blue-tint">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white transition-colors hover:bg-white/10">
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

@@ -3,11 +3,9 @@ import Layout from "../../layouts/Layout.astro";
 import TopBar from "../../components/TopBar.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import ServicePage from "../../components/ServicePage.astro";
-import { servicePages } from "../../data/servicePages";
+import PrimaryCarePage from "../../components/pages/PrimaryCarePage.astro";
 
 const path = "/primary-care/";
-const content = servicePages["primary-care"].en;
 ---
 
 <Layout
@@ -19,7 +17,7 @@ const content = servicePages["primary-care"].en;
   <TopBar lang="en" />
   <Header lang="en" path={path} />
   <main id="main">
-    <ServicePage lang="en" content={content} />
+    <PrimaryCarePage lang="en" />
   </main>
   <Footer lang="en" />
 </Layout>

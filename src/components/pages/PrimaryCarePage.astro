@@ -1,0 +1,692 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Primary Care",
+      title: "Your local primary care provider in Tampa",
+      lead: "Integrated primary care, chronic disease management, and preventive health - coordinated with physical therapy and rehabilitation for complete wellness.",
+      badges: ["Physician-supervised providers", "Extended 60-minute visits", "Same-day & next-day", "Telemedicine across Florida", "Bilingual EN/ES"],
+      note: "Most insurance accepted · Medicare · Free transportation for eligible patients",
+      image: "/images/comprehensive-primary-care-that-works-with-your-body.webp",
+      imageAlt: "A primary care provider seeing a patient at Palm Wellness Center in Tampa",
+    },
+    subnav: [
+      { label: "Services", href: "#services" },
+      { label: "Membership", href: "#membership" },
+      { label: "Integrated care", href: "#integrated" },
+      { label: "Team", href: "#team" },
+      { label: "Get started", href: "#start" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    intro: {
+      heading: "Care that takes the time to get it right",
+      paras: [
+        "Palm Wellness Center provides integrated primary care that coordinates with chiropractic, physical therapy, and rehabilitation services - so your medical care supports your body's natural healing and long-term wellness.",
+        "Unlike the rushed 10-15 minute visits common in many healthcare systems, we offer extended 30 and 60 minute appointments that let your provider listen, explain, and tailor care to your needs - whether you are managing chronic conditions, recovering from injury, or maintaining preventive health.",
+      ],
+      stats: [
+        { value: "60 min", label: "First visit" },
+        { value: "30-45 min", label: "Follow-ups" },
+        { value: "EN/ES", label: "Always bilingual" },
+      ],
+    },
+    services: {
+      heading: "Our primary care services",
+      lead: "Five core services, one consistent provider who knows your history.",
+      image: "/images/our-primary-care-services.webp",
+      imageAlt: "Primary care services at Palm Wellness Center",
+      items: [
+        { icon: "stethoscope", title: "Everyday health needs", body: "Evaluation and treatment for respiratory illness, ear infections, sore throat, minor injuries, urinary tract infections, skin conditions, and digestive concerns. Available in person and by telemedicine." },
+        { icon: "activity", title: "Chronic condition management", body: "Coordinated management of high blood pressure, high cholesterol, type 2 diabetes, thyroid disorders, asthma, COPD, arthritis, and chronic joint pain - with care plans that coordinate with chiropractic and physical therapy when beneficial." },
+        { icon: "shield", title: "Preventive care & wellness exams", body: "Stay ahead of illness with proactive care: annual wellness visits, physicals, screenings, contraception counseling, and hormone support for men and women." },
+        { icon: "clipboard", title: "Diagnostic testing & lab coordination", body: "We coordinate essential lab work - blood panels, cholesterol, diabetes, thyroid, and hormone testing - with results clearly reviewed during your visit or telemedicine appointment." },
+        { icon: "pill", title: "Prescription management", body: "We handle renewals, monitor medication safety and side effects, and coordinate with local pharmacies for accurate, affordable care." },
+      ],
+    },
+    membership: {
+      heading: "Primary care membership",
+      lead: "Designed for patients who want consistent access to a provider - without rushed visits and without a long-term contract.",
+      member: {
+        tag: "Membership",
+        price: "$99",
+        cadence: "to start, then $39/month",
+        benefits: [
+          "Extended 60-minute visits with unhurried attention",
+          "Up to 5 visits per month, in person or virtual",
+          "Direct provider messaging through the secure portal",
+          "Same-day or next-day appointments when needed",
+          "Prescription management included",
+          "12% off Palm Wellness medical services, including weight loss and IV therapy",
+          "Lab coordination with discounted partner pricing",
+        ],
+      },
+      nonMember: {
+        tag: "Without membership",
+        price: "Office visit $39",
+        cadence: "New patient $65 · Follow-up $59",
+        benefits: [
+          "45-60 minute initial visits",
+          "In-person and telemedicine appointments across Florida",
+          "Diagnostic testing and lab coordination",
+          "Specialist referrals and medication management",
+        ],
+      },
+    },
+    integrated: {
+      heading: "Integrated wellness services",
+      lead: "Because your health is connected, so is our care.",
+      items: [
+        { icon: "scale", title: "Medical Weight Loss", body: "Physician-supervised programs that integrate nutrition guidance, GLP-1 medications when appropriate, and activity planning coordinated with physical therapy.", href: "/medical-weight-loss/" },
+        { icon: "drop", title: "IV Therapy & Injections", body: "Medically supervised infusions and injectable nutrients - including B12 and vitamin D - prescribed based on clinical evaluation.", href: "/iv-therapy/" },
+        { icon: "video", title: "Telemedicine & Virtual Care", body: "Follow-ups, medication management, lab reviews, and chronic care online. In-person visits are recommended when clinically necessary.", href: "/primary-care/telemedicine/" },
+      ],
+    },
+    why: {
+      heading: "Why integrated care matters",
+      lead: "When primary care is coordinated with rehabilitation and wellness services, patients benefit from more complete, consistent care.",
+      points: [
+        "One coordinated care team across all services",
+        "Shared treatment plans and medical records",
+        "Safer, rehab-informed medical weight loss strategies",
+        "IV therapy evaluated within your full medical context",
+        "Less need to repeat your history at every visit",
+        "Better outcomes through collaborative planning",
+      ],
+      closing: "For rehabilitation services such as chiropractic care, physical therapy, and massage therapy, your primary care provider works closely with our rehab specialists to create integrated treatment plans.",
+      image: "/images/why-integrated-care-matters.webp",
+      imageAlt: "Integrated care planning at Palm Wellness Center",
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered primary care. Our team follows established clinical standards and prioritizes clear communication, thoughtful treatment planning, and continuity of care.",
+        "Patients can be seen in person or through secure telehealth visits for select appointments. We proudly serve Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+    },
+    transport: {
+      title: "Need a ride? We've got you covered.",
+      body: "Palm Wellness Center offers free transportation to and from appointments for eligible patients across the Tampa Bay area. If transportation is a concern, let our team know and we'll help coordinate your visit - just ask when you call or request an appointment.",
+      image: "/images/car-transportation-assistance.webp",
+      imageAlt: "Courtesy transportation for patients in Tampa Bay",
+    },
+    choose: {
+      heading: "Why patients choose Palm Wellness Center",
+      lead: "Primary care led by an experienced Physician Assistant with advanced training in nutrition, preventive medicine, and chronic disease management.",
+      items: [
+        { title: "Experienced provider", body: "Board-Certified Physician Assistant with Advanced Certification in Nutrition." },
+        { title: "Prevention & metabolic health", body: "Care plans that prioritize long-term wellness, not just symptom relief." },
+        { title: "Chronic disease management", body: "Support for hypertension, diabetes, thyroid disorders, and high cholesterol." },
+        { title: "Holistic and patient-centered", body: "Visits that consider lifestyle, rehabilitation needs, and overall well-being." },
+        { title: "Bilingual communication", body: "Primary care available in both English and Spanish." },
+        { title: "Coordinated, supervised care", body: "Medical services under physician supervision, with integrated rehab and wellness services when needed." },
+      ],
+    },
+    team: {
+      heading: "Meet your medical team",
+      name: "Leivys C. Marsall, PA, ACN",
+      cred: "Board-Certified Physician Assistant · Advanced Certification in Nutrition",
+      bio: [
+        "Leivys C. Marsall is a Board-Certified Physician Assistant with Advanced Certification in Nutrition (ACN), specializing in preventive medicine, metabolic health, and comprehensive primary care.",
+        "With extensive experience in family medicine, chronic disease management, and medical weight loss, PA Marsall combines medical expertise with a holistic, patient-centered approach to help patients achieve sustainable health transformations. Fluent in English and Spanish.",
+      ],
+      quote: "Medicine is art, science, and purpose. We don't just treat disease - we transform lives through prevention and knowledge.",
+    },
+    steps: {
+      heading: "How to get started",
+      items: [
+        { title: "Call or book online", body: "Call (813) 443-5370 or schedule online 24/7." },
+        { title: "Your first visit", body: "A comprehensive health history review, evaluation, and a personalized care plan." },
+        { title: "Ongoing partnership", body: "Regular follow-ups, medication management, lab monitoring, and coordination with rehab or wellness services when beneficial." },
+      ],
+      note: "Medical services are provided under physician supervision in accordance with Florida state regulations.",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      items: [
+        { q: "Do I need a referral to see a primary care provider?", a: "Often, no referral is required. However, some insurance and Medicare plans may request one from your existing provider. Our administrative team can verify your coverage and help coordinate any needed referrals." },
+        { q: "What should I bring to my first appointment?", a: "Please bring a valid ID, insurance card, current medication list, and any relevant medical records from previous providers. If you have recent lab work or imaging, we can review those results during your visit." },
+        { q: "Do you accept my insurance?", a: "We accept most major insurance plans, including Medicare. Contact our office at (813) 443-5370 to verify your specific coverage before your visit." },
+        { q: "Can I see my provider via telemedicine?", a: "Yes - telemedicine visits are available throughout Florida for follow-ups, medication management, lab review, chronic condition monitoring, and some minor illness evaluations. Some visits require in-person assessment; your provider will determine the appropriate visit type." },
+        { q: "How long are appointments?", a: "Initial primary care visits are typically 60 minutes. Follow-up appointments are 30-45 minutes. This extended time allows for thorough evaluation, education, and treatment planning." },
+        { q: "What if I need specialist care?", a: "If your condition requires specialized treatment, your provider will coordinate referrals to trusted specialists in the Tampa Bay area and ensure continuity of care." },
+      ],
+    },
+    area: {
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Located in the heart of Tampa at 1004 W Linebaugh Ave, we serve patients from across Hillsborough County and nearby communities.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "Free transportation is available for eligible patients throughout Tampa Bay, making our centrally located clinic easy to reach - whether you are recovering from an injury, managing chronic pain, or starting a medical weight loss program.",
+    },
+    related: {
+      heading: "Related services",
+      links: [
+        { label: "Physical Rehabilitation", href: "/physical-rehabilitation/" },
+        { label: "Chiropractic Care", href: "/chiropractor/" },
+        { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
+        { label: "IV Therapy", href: "/iv-therapy/" },
+        { label: "Auto Accident Rehabilitation", href: "/car-accident-rehabilitation/" },
+        { label: "Massage Therapy", href: "/massage-therapy/" },
+      ],
+    },
+    cta: {
+      title: "Ready to experience integrated primary care?",
+      lead: "Choose a primary care home that connects your everyday health, preventive visits, and wellness goals in one place.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more about" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Atención Primaria",
+      title: "Tu proveedor de atención primaria local en Tampa",
+      lead: "Atención primaria integrada, manejo de enfermedades crónicas y salud preventiva, coordinadas con fisioterapia y rehabilitación para un bienestar completo.",
+      badges: ["Proveedores con supervisión médica", "Citas extendidas de 60 minutos", "Mismo día y al día siguiente", "Telemedicina en toda Florida", "Bilingüe EN/ES"],
+      note: "Aceptamos la mayoría de seguros · Medicare · Transporte gratis para pacientes elegibles",
+      image: "/images/comprehensive-primary-care-that-works-with-your-body.webp",
+      imageAlt: "Proveedor de atención primaria atendiendo a un paciente en Palm Wellness Center en Tampa",
+    },
+    subnav: [
+      { label: "Servicios", href: "#services" },
+      { label: "Membresía", href: "#membership" },
+      { label: "Atención integrada", href: "#integrated" },
+      { label: "Equipo", href: "#team" },
+      { label: "Cómo comenzar", href: "#start" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    intro: {
+      heading: "Atención que se toma el tiempo de hacerlo bien",
+      paras: [
+        "Palm Wellness Center ofrece atención primaria integrada que se coordina con servicios de quiropráctica, fisioterapia y rehabilitación, para que tu atención médica apoye la curación natural del cuerpo y el bienestar a largo plazo.",
+        "A diferencia de las visitas apresuradas de 10 a 15 minutos comunes en muchos sistemas de salud, ofrecemos citas extendidas de 30 y 60 minutos que permiten a tu proveedor escucharte, explicarte y adaptar la atención a tus necesidades - ya sea que estés manejando condiciones crónicas, recuperándote de una lesión o manteniendo una salud preventiva.",
+      ],
+      stats: [
+        { value: "60 min", label: "Primera visita" },
+        { value: "30-45 min", label: "Seguimientos" },
+        { value: "EN/ES", label: "Siempre bilingüe" },
+      ],
+    },
+    services: {
+      heading: "Nuestros servicios de atención primaria",
+      lead: "Cinco servicios esenciales, un solo proveedor que conoce tu historial.",
+      image: "/images/our-primary-care-services.webp",
+      imageAlt: "Servicios de atención primaria en Palm Wellness Center",
+      items: [
+        { icon: "stethoscope", title: "Necesidades de salud cotidiana", body: "Evaluación y tratamiento de enfermedades respiratorias, infecciones de oído, dolor de garganta, lesiones menores, infecciones urinarias, afecciones de la piel y problemas digestivos. Disponible en persona y por telemedicina." },
+        { icon: "activity", title: "Manejo de condiciones crónicas", body: "Manejo coordinado de presión arterial alta, colesterol alto, diabetes tipo 2, trastornos de la tiroides, asma, EPOC, artritis y dolor articular crónico - con planes que se coordinan con quiropráctica y fisioterapia cuando es beneficioso." },
+        { icon: "shield", title: "Atención preventiva y exámenes", body: "Anticípate a las enfermedades con atención proactiva: visitas anuales de bienestar, exámenes físicos, evaluaciones, asesoramiento sobre anticoncepción y apoyo hormonal para hombres y mujeres." },
+        { icon: "clipboard", title: "Pruebas diagnósticas y laboratorio", body: "Coordinamos análisis esenciales - paneles de sangre, colesterol, diabetes, tiroides y hormonas - con resultados revisados claramente durante tu visita o cita de telemedicina." },
+        { icon: "pill", title: "Gestión de recetas y medicamentos", body: "Gestionamos renovaciones, monitoreamos la seguridad de los medicamentos y los efectos secundarios, y nos coordinamos con farmacias locales para una atención precisa y asequible." },
+      ],
+    },
+    membership: {
+      heading: "Membresía de atención primaria",
+      lead: "Diseñada para pacientes que quieren acceso constante a un proveedor, sin visitas apresuradas y sin contrato a largo plazo.",
+      member: {
+        tag: "Membresía",
+        price: "$99",
+        cadence: "para comenzar y luego $39/mes",
+        benefits: [
+          "Visitas extendidas de 60 minutos sin prisas",
+          "Hasta 5 visitas por mes, en persona o virtuales",
+          "Mensajería directa con tu proveedor por el portal seguro",
+          "Citas el mismo día o al día siguiente cuando sea necesario",
+          "Gestión de recetas incluida",
+          "12% de descuento en servicios médicos, incluida pérdida de peso y terapia IV",
+          "Coordinación de laboratorio con precios de socio",
+        ],
+      },
+      nonMember: {
+        tag: "Sin membresía",
+        price: "Consulta $39",
+        cadence: "Paciente nuevo $65 · Seguimiento $59",
+        benefits: [
+          "Visitas iniciales de 45 a 60 minutos",
+          "Citas en persona y por telemedicina en toda Florida",
+          "Pruebas diagnósticas y coordinación de laboratorio",
+          "Referencias a especialistas y manejo de medicamentos",
+        ],
+      },
+    },
+    integrated: {
+      heading: "Servicios de bienestar integrado",
+      lead: "Como tu salud está conectada, nuestra atención también lo está.",
+      items: [
+        { icon: "scale", title: "Pérdida de Peso Médica", body: "Programas supervisados por médicos que integran orientación nutricional, medicamentos GLP-1 cuando corresponde y planificación de actividad coordinada con fisioterapia.", href: "/es/perdida-de-peso-medica/" },
+        { icon: "drop", title: "Terapia IV e Inyecciones", body: "Infusiones y nutrientes inyectables supervisados médicamente - incluidas opciones de B12 y vitamina D - según evaluación clínica.", href: "/es/terapia-iv/" },
+        { icon: "video", title: "Telemedicina y Atención Virtual", body: "Seguimientos, manejo de medicamentos, revisión de laboratorios y cuidado crónico en línea. Recomendamos visitas en persona cuando es clínicamente necesario.", href: "/es/atencion-primaria/telemedicina/" },
+      ],
+    },
+    why: {
+      heading: "Por qué importa la atención integrada",
+      lead: "Cuando la atención primaria se coordina con rehabilitación y bienestar, los pacientes reciben una atención más completa y consistente.",
+      points: [
+        "Un equipo coordinado en todos los servicios",
+        "Planes de tratamiento e historial médico compartidos",
+        "Estrategias de pérdida de peso más seguras e informadas",
+        "Terapia IV evaluada dentro de tu contexto médico completo",
+        "Menos necesidad de repetir tu historial en cada visita",
+        "Mejores resultados con planificación colaborativa",
+      ],
+      closing: "Para servicios de rehabilitación como quiropráctica, fisioterapia y masajes terapéuticos, tu proveedor de atención primaria trabaja estrechamente con nuestros especialistas para crear planes de tratamiento integrados.",
+      image: "/images/why-integrated-care-matters.webp",
+      imageAlt: "Planificación de atención integrada en Palm Wellness Center",
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center está dirigido por profesionales médicos y de rehabilitación con licencia, comprometidos con una atención primaria segura y centrada en el paciente. Nuestro equipo sigue los estándares clínicos establecidos y prioriza la comunicación clara y la continuidad de la atención.",
+        "Los pacientes pueden ser atendidos en persona o por telesalud segura para citas selectas. Servimos con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+    },
+    transport: {
+      title: "¿Necesitas transporte? Lo tenemos cubierto.",
+      body: "Palm Wellness Center ofrece transporte gratuito de ida y vuelta a las citas para pacientes elegibles en toda el área de la Bahía de Tampa. Si el transporte es una preocupación, avísale a nuestro equipo y te ayudaremos a coordinar tu visita - solo pregúntalo al llamar o solicitar una cita.",
+      image: "/images/car-transportation-assistance.webp",
+      imageAlt: "Transporte de cortesía para pacientes en Tampa Bay",
+    },
+    choose: {
+      heading: "Por qué los pacientes eligen Palm Wellness Center",
+      lead: "Atención primaria dirigida por una Asistente Médica con formación avanzada en nutrición, medicina preventiva y manejo de enfermedades crónicas.",
+      items: [
+        { title: "Proveedora con experiencia", body: "Asistente Médica Certificada con Certificación Avanzada en Nutrición." },
+        { title: "Prevención y salud metabólica", body: "Planes que priorizan el bienestar a largo plazo, no solo el alivio de síntomas." },
+        { title: "Manejo de enfermedades crónicas", body: "Apoyo para hipertensión, diabetes, trastornos de tiroides y colesterol alto." },
+        { title: "Enfoque holístico y centrado en ti", body: "Visitas que consideran tu estilo de vida, necesidades de rehabilitación y bienestar." },
+        { title: "Comunicación bilingüe", body: "Atención primaria disponible en inglés y español." },
+        { title: "Atención coordinada y supervisada", body: "Servicios médicos bajo supervisión médica, con servicios integrados cuando se necesitan." },
+      ],
+    },
+    team: {
+      heading: "Conoce a tu equipo médico",
+      name: "Leivys C. Marsall, PA, ACN",
+      cred: "Asistente Médica Certificada · Certificación Avanzada en Nutrición",
+      bio: [
+        "Leivys C. Marsall es una Asistente Médica Certificada con Certificación Avanzada en Nutrición (ACN), especializada en medicina preventiva, salud metabólica y atención primaria integral.",
+        "Con amplia experiencia en medicina familiar, manejo de enfermedades crónicas y pérdida de peso médica, combina experiencia médica con un enfoque holístico y centrado en el paciente. Habla inglés y español con fluidez.",
+      ],
+      quote: "La medicina es arte, ciencia y propósito. No solo tratamos enfermedades - transformamos vidas a través de la prevención y el conocimiento.",
+    },
+    steps: {
+      heading: "Cómo comenzar",
+      items: [
+        { title: "Llama o reserva en línea", body: "Llama al (813) 443-5370 o agenda en línea 24/7." },
+        { title: "Tu primera visita", body: "Revisión integral de tu historial de salud, evaluación y plan de atención personalizado." },
+        { title: "Acompañamiento continuo", body: "Seguimientos regulares, manejo de medicamentos, monitoreo de laboratorio y coordinación con rehabilitación cuando es beneficioso." },
+      ],
+      note: "Los servicios médicos se proporcionan bajo supervisión médica de acuerdo con las regulaciones del estado de Florida.",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      items: [
+        { q: "¿Necesito una referencia para ver a un proveedor de atención primaria?", a: "Por lo general, no se requiere referencia. Sin embargo, algunos planes de seguro y Medicare pueden solicitarla a tu proveedor actual. Nuestro equipo administrativo puede verificar tu cobertura y ayudar a coordinar las referencias necesarias." },
+        { q: "¿Qué debo traer a mi primera cita?", a: "Trae una identificación válida, tarjeta de seguro, lista de medicamentos actuales y cualquier historial médico relevante de proveedores anteriores. Si tienes laboratorios o imágenes recientes, podemos revisarlos durante tu visita." },
+        { q: "¿Aceptan mi seguro?", a: "Aceptamos la mayoría de los seguros principales, incluido Medicare. Llama al (813) 443-5370 para verificar tu cobertura antes de tu visita." },
+        { q: "¿Puedo ver a mi proveedor por telemedicina?", a: "Sí - las visitas de telemedicina están disponibles en toda Florida para seguimientos, manejo de medicamentos, revisión de laboratorios, monitoreo de condiciones crónicas y algunas evaluaciones de enfermedades menores. Algunas visitas requieren evaluación en persona; tu proveedor determinará el tipo adecuado." },
+        { q: "¿Cuánto duran las citas?", a: "Las visitas iniciales suelen durar 60 minutos y los seguimientos de 30 a 45 minutos. Este tiempo extendido permite una evaluación exhaustiva, educación y planificación del tratamiento." },
+        { q: "¿Qué pasa si necesito atención especializada?", a: "Si tu condición requiere tratamiento especializado, tu proveedor coordinará referencias a especialistas de confianza en el área de la Bahía de Tampa y garantizará la continuidad de la atención." },
+      ],
+    },
+    area: {
+      heading: "Sirviendo con orgullo a Tampa y sus vecindarios",
+      lead: "Ubicados en el corazón de Tampa en 1004 W Linebaugh Ave, atendemos a pacientes de todo el condado de Hillsborough y comunidades cercanas.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "Ofrecemos transporte gratuito para pacientes elegibles en toda la Bahía de Tampa, lo que facilita el acceso a nuestra clínica céntrica - ya sea que te recuperes de una lesión, controles el dolor crónico o inicies un programa de pérdida de peso médica.",
+    },
+    related: {
+      heading: "Servicios relacionados",
+      links: [
+        { label: "Fisioterapia", href: "/es/fisioterapia/" },
+        { label: "Quiropráctica", href: "/es/quiropractico/" },
+        { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
+        { label: "Terapia IV", href: "/es/terapia-iv/" },
+        { label: "Rehabilitación por Accidente de Auto", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
+        { label: "Terapia de Masajes", href: "/es/terapia-de-masajes/" },
+      ],
+    },
+    cta: {
+      title: "¿Listo para experimentar la atención primaria integrada?",
+      lead: "Elige un hogar de atención primaria que conecte tu salud cotidiana, tus visitas preventivas y tus metas de bienestar en un solo lugar.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más sobre" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+---
+
+<!-- HERO -->
+<section class="bg-bg-alt">
+  <div class="container grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
+    <div class="flex flex-col items-start gap-5">
+      <span class="inline-flex rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{content.hero.eyebrow}</span>
+      <h1 class="text-4xl leading-[1.08] text-ink sm:text-5xl">{content.hero.title}</h1>
+      <p class="max-w-xl text-[18px] leading-relaxed text-body">{content.hero.lead}</p>
+      <ul class="flex flex-wrap gap-x-5 gap-y-2">
+        {content.hero.badges.map((b) => (
+          <li class="flex items-center gap-2 text-[13.5px] font-semibold text-ink">
+            <Icon name="check" class="h-4 w-4 shrink-0 text-green-dark" />{b}
+          </li>
+        ))}
+      </ul>
+      <div class="flex flex-wrap gap-3">
+        <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
+          <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+        </a>
+        <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue transition-colors hover:bg-blue-pale">
+          <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+        </a>
+      </div>
+      <p class="text-[13px] text-muted">{content.hero.note}</p>
+    </div>
+    <div class="relative">
+      <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="h-full max-h-[460px] w-full rounded-lg object-cover" />
+    </div>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<nav class="border-b border-line bg-white lg:sticky lg:top-[78px] lg:z-40" aria-label="On this page">
+  <div class="container flex gap-6 overflow-x-auto py-3.5">
+    {content.subnav.map((s) => (
+      <a href={s.href} class="whitespace-nowrap text-[14px] font-semibold text-body transition-colors hover:text-blue">{s.label}</a>
+    ))}
+  </div>
+</nav>
+
+<!-- INTRO -->
+<section class="bg-white" id="about">
+  <div class="container grid gap-10 py-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+    <h2 class="text-3xl leading-tight text-ink sm:text-[2.3rem]">{content.intro.heading}</h2>
+    <div class="flex flex-col gap-5">
+      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[17px] leading-relaxed text-body">{p}</p>)}
+      <dl class="mt-2 grid gap-4 border-t border-line pt-6 sm:grid-cols-3">
+        {content.intro.stats.map((s) => (
+          <div class="flex flex-col gap-1">
+            <dt class="text-[20px] font-bold text-blue-deep">{s.value}</dt>
+            <dd class="text-[13.5px] uppercase tracking-wide text-muted">{s.label}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="scroll-mt-24 bg-bg-alt" id="services">
+  <div class="container grid gap-12 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+    <div class="flex flex-col gap-5 lg:sticky lg:top-32 lg:self-start">
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.services.heading}</h2>
+      <p class="max-w-[42ch] text-[16px] leading-relaxed text-body">{content.services.lead}</p>
+      <img src={content.services.image} width="480" height="360" alt={content.services.imageAlt} loading="lazy" decoding="async" class="mt-2 w-full rounded-lg object-cover" />
+    </div>
+    <ul class="flex flex-col">
+      {content.services.items.map((s) => (
+        <li class="flex items-start gap-5 border-t border-line py-7 first:border-t-0 first:pt-0">
+          <span class="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-white text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
+          <div class="flex flex-col gap-1.5">
+            <h3 class="text-[20px] text-ink">{s.title}</h3>
+            <p class="max-w-[60ch] text-[15px] leading-relaxed text-body">{s.body}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="scroll-mt-24 bg-white" id="membership">
+  <div class="container flex flex-col gap-10 py-16">
+    <div class="flex max-w-[720px] flex-col gap-3">
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.membership.heading}</h2>
+      <p class="text-[17px] leading-relaxed text-body">{content.membership.lead}</p>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-2">
+      <article class="flex flex-col gap-5 rounded-lg bg-blue-deep p-8 text-blue-tint">
+        <span class="w-fit rounded-full bg-white/15 px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-white">{content.membership.member.tag}</span>
+        <p class="flex items-end gap-2">
+          <strong class="text-[46px] leading-none text-white">{content.membership.member.price}</strong>
+          <span class="pb-1.5 text-[15px]">{content.membership.member.cadence}</span>
+        </p>
+        <ul class="flex flex-col gap-3 text-[14.5px]">
+          {content.membership.member.benefits.map((b) => (
+            <li class="flex items-start gap-2.5"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{b}</li>
+          ))}
+        </ul>
+        <a href={APPOINTMENT_URL} {...bookAttrs} class="mt-auto inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 text-[15px] font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+          <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+        </a>
+      </article>
+      <article class="flex flex-col gap-5 rounded-lg border border-line bg-bg-alt p-8">
+        <span class="w-fit rounded-full bg-blue-pale px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{content.membership.nonMember.tag}</span>
+        <p class="flex flex-col">
+          <strong class="text-[28px] leading-tight text-ink">{content.membership.nonMember.price}</strong>
+          <span class="mt-1 text-[15px] text-body">{content.membership.nonMember.cadence}</span>
+        </p>
+        <ul class="flex flex-col gap-3 text-[14.5px] text-body">
+          {content.membership.nonMember.benefits.map((b) => (
+            <li class="flex items-start gap-2.5"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{b}</li>
+          ))}
+        </ul>
+        <a href={PHONE_TEL} class="mt-auto inline-flex items-center justify-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-5 py-3 text-[15px] font-bold text-blue transition-colors hover:bg-blue-pale">
+          <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATED -->
+<section class="scroll-mt-24 bg-bg-alt" id="integrated">
+  <div class="container flex flex-col gap-10 py-16">
+    <div class="flex max-w-[720px] flex-col gap-3">
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.integrated.heading}</h2>
+      <p class="text-[17px] leading-relaxed text-body">{content.integrated.lead}</p>
+    </div>
+    <div class="grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-3">
+      {content.integrated.items.map((s) => (
+        <a href={s.href} class="group flex flex-col gap-3 bg-white p-7 transition-colors hover:bg-bg-alt">
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
+          <h3 class="text-[19px] text-ink">{s.title}</h3>
+          <p class="text-[14.5px] leading-relaxed text-body">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-1.5 pt-2 text-[14px] font-bold text-blue group-hover:text-blue-deep">{l.learn} {s.title} <Icon name="arrow" class="h-4 w-4" /></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="bg-white">
+  <div class="container grid items-center gap-12 py-16 lg:grid-cols-2">
+    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-full max-h-[480px] w-full rounded-lg object-cover" />
+    <div class="flex flex-col gap-5">
+      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.why.heading}</h2>
+      <p class="text-[16px] leading-relaxed text-body">{content.why.lead}</p>
+      <ul class="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+        {content.why.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+      <p class="text-[15px] leading-relaxed text-body">{content.why.closing}</p>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-bg-alt">
+  <div class="container grid gap-10 py-16 lg:grid-cols-[1.3fr_0.7fr] lg:gap-14">
+    <div class="flex flex-col gap-5">
+      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
+    </div>
+    <div class="flex flex-col gap-4 rounded-lg border border-line bg-white p-7">
+      <p class="flex items-center gap-2 text-[13px] font-bold uppercase tracking-wide text-blue-deep">
+        <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+      </p>
+      <ul class="flex flex-col divide-y divide-line">
+        {content.trust.hours.map((h) => (
+          <li class="flex items-center justify-between gap-4 py-3 text-[15px]">
+            <span class="text-body">{h.day}</span>
+            <span class="font-semibold text-ink">{h.time}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="container grid items-center gap-10 overflow-hidden py-16 lg:grid-cols-2">
+    <img src={content.transport.image} width="560" height="360" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-full max-h-[380px] w-full rounded-lg object-cover" />
+    <div class="flex flex-col gap-4">
+      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-relaxed text-body">{content.transport.body}</p>
+      <a href={PHONE_TEL} class="inline-flex w-fit items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PATIENTS CHOOSE -->
+<section class="bg-bg-alt">
+  <div class="container flex flex-col gap-10 py-16">
+    <div class="flex max-w-[760px] flex-col gap-3">
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.choose.heading}</h2>
+      <p class="text-[17px] leading-relaxed text-body">{content.choose.lead}</p>
+    </div>
+    <div class="grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+      {content.choose.items.map((it) => (
+        <div class="flex flex-col gap-2">
+          <p class="flex items-center gap-2 text-[16px] font-bold text-ink"><Icon name="badge-check" class="h-5 w-5 shrink-0 text-blue" />{it.title}</p>
+          <p class="text-[14.5px] leading-relaxed text-body">{it.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="scroll-mt-24 bg-white" id="team">
+  <div class="container grid gap-10 py-16 lg:grid-cols-[0.6fr_1.4fr] lg:gap-14">
+    <div class="flex flex-col items-start gap-4">
+      <span class="grid h-[88px] w-[88px] place-items-center rounded-full bg-blue-pale text-[32px] font-bold text-blue-deep">L</span>
+      <div>
+        <h2 class="text-[24px] text-ink">{content.team.name}</h2>
+        <p class="mt-1 text-[14px] font-semibold text-blue">{content.team.cred}</p>
+      </div>
+    </div>
+    <div class="flex flex-col gap-5">
+      <h3 class="text-[13px] font-bold uppercase tracking-wide text-muted">{content.team.heading}</h3>
+      {content.team.bio.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
+      <blockquote class="border-t border-line pt-6 text-[19px] font-medium leading-relaxed text-blue-deep">
+        "{content.team.quote}"
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="scroll-mt-24 bg-bg-alt" id="start">
+  <div class="container flex flex-col gap-10 py-16">
+    <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.steps.heading}</h2>
+    <ol class="grid gap-6 md:grid-cols-3">
+      {content.steps.items.map((s, i) => (
+        <li class="flex flex-col gap-3 rounded-lg border border-line bg-white p-7">
+          <span class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="text-[20px] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-relaxed text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="text-[13px] text-muted">{content.steps.note}</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="scroll-mt-24 bg-white" id="faq">
+  <div class="container grid gap-10 py-16 lg:grid-cols-[0.6fr_1.4fr] lg:gap-16">
+    <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.faq.heading}</h2>
+    <div class="flex flex-col gap-3">
+      {content.faq.items.map((item) => (
+        <details class="group border-t border-line pt-5">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold text-ink">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="pt-3 text-[15px] leading-relaxed text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- AREA -->
+<section class="bg-bg-alt">
+  <div class="container grid gap-10 py-16 lg:grid-cols-2 lg:gap-14">
+    <div class="flex flex-col gap-4">
+      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-relaxed text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-relaxed text-body">{content.area.note}</p>
+    </div>
+    <ul class="flex flex-wrap content-start gap-3">
+      {content.area.places.map((p) => (
+        <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[15px] font-medium text-ink">
+          <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- RELATED -->
+<section class="bg-white">
+  <div class="container flex flex-col items-center gap-8 py-14">
+    <h2 class="text-[22px] text-ink">{content.related.heading}</h2>
+    <ul class="flex flex-wrap justify-center gap-3">
+      {content.related.links.map((lk) => (
+        <li>
+          <a href={lk.href} class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[15px] font-semibold text-blue transition-colors hover:bg-blue-pale hover:text-blue-deep">
+            {lk.label} <Icon name="arrow" class="h-4 w-4" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="container flex flex-col items-center gap-4 py-16 text-center">
+    <h2 class="max-w-[820px] text-3xl text-white sm:text-[2.1rem]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[17px] leading-relaxed text-blue-tint">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white transition-colors hover:bg-white/10">
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

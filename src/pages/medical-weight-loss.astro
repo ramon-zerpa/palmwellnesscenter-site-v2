@@ -3,11 +3,9 @@ import Layout from "../layouts/Layout.astro";
 import TopBar from "../components/TopBar.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import ServicePage from "../components/ServicePage.astro";
-import { servicePages } from "../data/servicePages";
+import MedicalWeightLossPage from "../components/pages/MedicalWeightLossPage.astro";
 
 const path = "/medical-weight-loss/";
-const content = servicePages["medical-weight-loss"].en;
 ---
 
 <Layout
@@ -19,7 +17,7 @@ const content = servicePages["medical-weight-loss"].en;
   <TopBar lang="en" />
   <Header lang="en" path={path} />
   <main id="main">
-    <ServicePage lang="en" content={content} />
+    <MedicalWeightLossPage lang="en" />
   </main>
   <Footer lang="en" />
 </Layout>
