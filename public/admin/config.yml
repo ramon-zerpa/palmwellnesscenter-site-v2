@@ -1,0 +1,68 @@
+# Sveltia CMS configuration — Palm Wellness Center blog
+# Docs: https://github.com/sveltia/sveltia-cms
+
+backend:
+  name: github
+  repo: TrueWebmaster6/palmwellnesscenter-site
+  branch: main
+  # >>> FILL IN: your deployed sveltia-cms-auth Worker URL (no trailing slash) <<<
+  base_url: https://YOUR-SVELTIA-AUTH.workers.dev
+  # auth_endpoint defaults to 'auth', which matches sveltia-cms-auth's /auth route.
+
+# Sveltia commits straight to `branch`. For a review step instead, uncomment:
+# publish_mode: editorial_workflow
+
+site_url: https://www.palmwellness.center
+display_url: https://www.palmwellness.center
+logo_url: https://www.palmwellness.center/images/logo.webp
+
+# Images are committed into the site's public/images and served from /images
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "blog_en"
+    label: "Blog — English"
+    label_singular: "English post"
+    folder: "src/content/blog/en"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    preview_path: "{{slug}}"
+    summary: "{{title}}  ·  {{pubDate}}"
+    sortable_fields: ["pubDate", "title"]
+    fields:
+      - { label: "Language", name: "lang", widget: "hidden", default: "en" }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "SEO title", name: "seoTitle", widget: "string", required: false, hint: "Optional browser/search title when it differs from the visible article title." }
+      - { label: "Meta description", name: "description", widget: "text", required: false, hint: "Shown in search results and link previews (~155 chars)." }
+      - { label: "Social description", name: "socialDescription", widget: "text", required: false, hint: "Optional Open Graph and social-card summary." }
+      - { label: "Publish date", name: "pubDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+      - { label: "Updated date", name: "updatedDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+      - { label: "Featured image", name: "heroImage", widget: "image", required: false, choose_url: false }
+      - { label: "Other-language URL", name: "altPath", widget: "string", required: false, hint: "Path of the translated post, e.g. /es/mi-articulo/ — powers the EN/ES switcher. Leave blank if none." }
+      - { label: "Draft (hide from site)", name: "draft", widget: "boolean", default: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  - name: "blog_es"
+    label: "Blog — Español"
+    label_singular: "Entrada en español"
+    folder: "src/content/blog/es"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    preview_path: "es/{{slug}}"
+    summary: "{{title}}  ·  {{pubDate}}"
+    sortable_fields: ["pubDate", "title"]
+    fields:
+      - { label: "Idioma", name: "lang", widget: "hidden", default: "es" }
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Título SEO", name: "seoTitle", widget: "string", required: false, hint: "Título opcional para buscadores cuando difiere del título visible." }
+      - { label: "Meta descripción", name: "description", widget: "text", required: false, hint: "Aparece en resultados de búsqueda y vistas previas (~155 caracteres)." }
+      - { label: "Descripción social", name: "socialDescription", widget: "text", required: false, hint: "Resumen opcional para Open Graph y redes sociales." }
+      - { label: "Fecha de publicación", name: "pubDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true }
+      - { label: "Fecha de actualización", name: "updatedDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, picker_utc: true, required: false }
+      - { label: "Imagen destacada", name: "heroImage", widget: "image", required: false, choose_url: false }
+      - { label: "URL en el otro idioma", name: "altPath", widget: "string", required: false, hint: "Ruta del artículo traducido, p. ej. /mi-articulo/ — activa el selector EN/ES. Déjalo en blanco si no hay." }
+      - { label: "Borrador (ocultar del sitio)", name: "draft", widget: "boolean", default: false }
+      - { label: "Contenido", name: "body", widget: "markdown" }

@@ -1,0 +1,15 @@
+# Cloudflare Pages redirects
+
+# Sitemap: point the conventional path at the generated index
+/sitemap.xml   /sitemap-index.xml   301
+
+# Spanish root -> Spanish home (ES home lives at /es/inicio/)
+/es        /es/inicio/   301
+/es/       /es/inicio/   301
+/es/index  /es/inicio/   301
+
+# Legacy WordPress / feed paths
+/feed      /             301
+/feed/     /             301
+/home      /             301
+/home/     /             301

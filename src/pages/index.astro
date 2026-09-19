@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import HomePage from "../components/HomePage.astro";
+import Footer from "../components/Footer.astro";
+
+const lang = "en";
+const path = "/";
+---
+
+<Layout
+  lang={lang}
+  path={path}
+  title="Primary Care in Tampa, FL | Palm Wellness Center"
+  description="Primary care in Tampa, FL - chronic care, prevention, medical weight loss, and rehabilitation. Extended visits, same-day appointments, and bilingual care."
+  ogImage="/images/our-primary-care-services.webp"
+>
+  <link slot="head" rel="preload" as="image" href="/images/our-primary-care-services.webp" fetchpriority="high" />
+  <TopBar lang={lang} />
+  <Header lang={lang} path={path} />
+  <main id="main">
+    <HomePage lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

@@ -1,0 +1,484 @@
+---
+import type { Lang } from "../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../i18n/utils";
+import Icon from "./Icon.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const c = {
+  en: {
+    hero: {
+      eyebrow: "Primary Care in Tampa",
+      title: "Primary care that works with your body.",
+      lead: "Extended visits, chronic condition management, and preventive care - coordinated with rehabilitation and wellness services, all under one roof in Tampa.",
+      badges: ["Licensed providers", "Bilingual EN/ES", "Same-day visits"],
+      note: "Most insurance accepted · Medicare · Free transportation for eligible patients",
+      imageAlt: "A primary care physician greeting a patient at Palm Wellness Center",
+      book: "Book Appointment",
+    },
+    services: {
+      eyebrow: "Our Services",
+      title: "Care built around you, all in one place",
+      lead: "Primary care is our focus - supported by weight loss, IV therapy, and rehabilitation under one roof.",
+      cards: [
+        { icon: "stethoscope", title: "Primary Care", body: "Comprehensive care for chronic conditions, preventive visits, and everyday health - in person or by telehealth.", href: "/primary-care/" },
+        { icon: "scale", title: "Medical Weight Loss", body: "Physician-supervised programs with GLP-1 medications when appropriate, nutrition guidance, and monitoring.", href: "/medical-weight-loss/" },
+        { icon: "drop", title: "IV Therapy", body: "Beauty IV, Mayer Signature IV, and a weekly NAD+ protocol - medically supervised, from $170.", href: "/iv-therapy/" },
+      ],
+      rehabTitle: "Rehabilitation services",
+      rehabList: "Chiropractic · Physical therapy · Auto accident · Slip & fall · Massage · Therapeutic exercise",
+    },
+    why: {
+      eyebrow: "Why Palm Wellness",
+      title: "Integrated care means nothing falls through the cracks.",
+      lead: "Your primary care provider works alongside our rehabilitation team, so medical care and recovery support share one plan, one record, and one team.",
+      features: [
+        { icon: "link", title: "One coordinated team", body: "Primary care, chiropractic, and physical therapy working from a shared plan." },
+        { icon: "car", title: "Free transportation", body: "Ride assistance to and from appointments for eligible patients across Tampa Bay." },
+        { icon: "languages", title: "Bilingual, always", body: "Care in English and Spanish - no interpreter needed." },
+      ],
+      imageAlt: "A bilingual care team reviewing a patient's integrated treatment plan",
+    },
+    membership: {
+      eyebrow: "Membership",
+      title: "Primary care without the rush",
+      lead: "One simple membership - $99 to start, then $39/month. No long-term contract.",
+      plans: [
+        { name: "Monthly Membership", price: "$99", cadence: "initial, then $39/mo", benefits: ["Extended, unhurried visits", "Same-day & next-day", "Direct provider messaging"], popular: true },
+        { name: "Office Visit", price: "$39", cadence: "/ visit", benefits: ["New Patient visit $65", "Follow-up visit $59", "In-person in Tampa"], popular: false },
+        { name: "Telehealth", price: "$55", cadence: "/ visit", benefits: ["Follow-up $45", "Anywhere in Florida", "Prescriptions & lab reviews"], popular: false },
+      ],
+      choose: "Choose",
+      popularLabel: "Most popular",
+    },
+    team: {
+      eyebrow: "Our Care Team",
+      title: "Licensed providers who know you by name",
+      lead: "Physician-supervised care, delivered by a bilingual team.",
+      members: [
+        { name: "Leivys C. Marsall", cred: "PA, ACN - Board-Certified", bio: "Primary care, preventive medicine, and medical weight loss. Fluent in English and Spanish." },
+        { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Medical oversight ensuring safe, guideline-aligned care across every service." },
+        { name: "Michel Reyes", cred: "LMT - Founder & Clinic Administrator", bio: "Founded Palm Wellness Center in 2011 to deliver patient-centered, integrated care." },
+      ],
+    },
+    conditions: {
+      eyebrow: "Conditions We Treat",
+      title: "Ongoing support for what matters most",
+      lead: "Chronic and preventive care with a plan that fits your life.",
+      items: ["High blood pressure", "Type 2 diabetes", "High cholesterol", "Thyroid disorders", "Asthma & COPD", "Arthritis & joint pain", "Preventive exams", "Hormone support"],
+    },
+    rehab: {
+      eyebrow: "Rehabilitation",
+      title: "Recovery services, coordinated with your care",
+      lead: "Also under our roof - chiropractic, physical therapy, and injury recovery.",
+      items: ["Chiropractic", "Physical therapy", "Auto accident", "Slip & fall", "Massage therapy", "Therapeutic exercise"],
+      link: "Explore rehabilitation services",
+      href: "/physical-rehabilitation/",
+    },
+    area: {
+      eyebrow: "Service Area",
+      title: "Proudly serving Tampa and nearby communities",
+      lead: "Centrally located on W Linebaugh Ave, minutes from across Hillsborough County.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase", "University"],
+      transportTitle: "Need a ride? We've got you covered.",
+      transportBody: "Free transportation to and from appointments for eligible patients across the Tampa Bay area. Just ask when you call or book - we'll help coordinate your visit.",
+      transportAlt: "Courtesy transportation vehicle for patients in Tampa Bay",
+    },
+    testimonials: {
+      eyebrow: "Patient Stories",
+      title: "Care our patients recommend",
+      items: [
+        { quote: "They finally listened. My first visit was a full hour and I left with a real plan for my diabetes - in Spanish, which made everything easier.", name: "Maria G.", context: "Primary care patient" },
+        { quote: "I came in after a car accident and stayed for primary care. Having my PT and my doctor in the same office made recovery so much simpler.", name: "James R.", context: "Rehabilitation & primary care" },
+        { quote: "The membership pays for itself. Same-day appointments, refills handled, and a provider who actually answers messages.", name: "Daniela P.", context: "Membership patient" },
+      ],
+    },
+    faq: {
+      eyebrow: "FAQ",
+      title: "Frequently asked questions",
+      items: [
+        { q: "Do I need a referral to see a primary care provider?", a: "Often no referral is required. Some insurance and Medicare plans may request one from your existing provider - our team can verify your coverage and coordinate it." },
+        { q: "What should I bring to my first appointment?", a: "A valid ID, your insurance card, a current medication list, and any relevant medical records. If you have recent labs or imaging, we can review them during your visit." },
+        { q: "Do you accept my insurance?", a: "We accept most major insurance plans, including Medicare. Call (813) 443-5370 to verify your specific coverage before your visit." },
+        { q: "Can I see my provider by telemedicine?", a: "Yes - telemedicine visits are available throughout Florida for follow-ups, medication management, lab review, and chronic care monitoring." },
+        { q: "How long are appointments?", a: "Initial primary care visits are typically 60 minutes and follow-ups 30-45 minutes, so your provider has time to listen and explain." },
+        { q: "What if I need specialist care?", a: "Your provider coordinates referrals to trusted specialists across Tampa Bay and ensures continuity of care." },
+      ],
+    },
+    finalCta: { title: "Take the first step toward feeling better.", lead: "Same-day and next-day appointments available. Most insurance accepted, Medicare included.", book: "Book Appointment" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Atención Primaria en Tampa",
+      title: "Atención primaria que trabaja con tu cuerpo.",
+      lead: "Consultas extendidas, manejo de enfermedades crónicas y atención preventiva - coordinadas con rehabilitación y bienestar, todo bajo un mismo techo en Tampa.",
+      badges: ["Proveedores licenciados", "Bilingüe EN/ES", "Citas el mismo día"],
+      note: "Aceptamos la mayoría de seguros · Medicare · Transporte gratis para pacientes elegibles",
+      imageAlt: "Médico de atención primaria recibiendo a un paciente en Palm Wellness Center",
+      book: "Reservar cita",
+    },
+    services: {
+      eyebrow: "Nuestros Servicios",
+      title: "Atención diseñada para ti, en un solo lugar",
+      lead: "La atención primaria es nuestro enfoque - con pérdida de peso, terapia IV y rehabilitación bajo un mismo techo.",
+      cards: [
+        { icon: "stethoscope", title: "Atención Primaria", body: "Atención integral para enfermedades crónicas, visitas preventivas y salud diaria - en persona o por telemedicina.", href: "/es/atencion-primaria/" },
+        { icon: "scale", title: "Pérdida de Peso Médica", body: "Programas supervisados por médicos con medicamentos GLP-1 cuando corresponde, nutrición y seguimiento.", href: "/es/perdida-de-peso-medica/" },
+        { icon: "drop", title: "Terapia IV", body: "Beauty IV, Mayer Signature IV y un protocolo NAD+ semanal - supervisado médicamente, desde $170.", href: "/es/terapia-iv/" },
+      ],
+      rehabTitle: "Servicios de rehabilitación",
+      rehabList: "Quiropráctica · Fisioterapia · Accidente de auto · Resbalones · Masaje · Ejercicio terapéutico",
+    },
+    why: {
+      eyebrow: "Por Qué Palm Wellness",
+      title: "La atención integrada evita que algo quede sin atender.",
+      lead: "Tu proveedor de atención primaria trabaja junto a nuestro equipo de rehabilitación: un plan, un expediente y un equipo.",
+      features: [
+        { icon: "link", title: "Un equipo coordinado", body: "Atención primaria, quiropráctica y fisioterapia trabajando desde un mismo plan." },
+        { icon: "car", title: "Transporte gratis", body: "Ayuda de transporte de ida y vuelta a las citas para pacientes elegibles en Tampa Bay." },
+        { icon: "languages", title: "Siempre bilingüe", body: "Atención en inglés y español - sin necesidad de intérprete." },
+      ],
+      imageAlt: "Equipo bilingüe revisando el plan de tratamiento integrado de un paciente",
+    },
+    membership: {
+      eyebrow: "Membresía",
+      title: "Atención primaria sin prisas",
+      lead: "Una membresía simple - $99 para comenzar y luego $39/mes. Sin contrato a largo plazo.",
+      plans: [
+        { name: "Membresía Mensual", price: "$99", cadence: "inicial, luego $39/mes", benefits: ["Consultas extendidas sin prisas", "Mismo día y al día siguiente", "Mensajería directa con tu proveedor"], popular: true },
+        { name: "Consulta de Oficina", price: "$39", cadence: "/ visita", benefits: ["Paciente nuevo $65", "Seguimiento $59", "En persona en Tampa"], popular: false },
+        { name: "Telemedicina", price: "$55", cadence: "/ visita", benefits: ["Seguimiento $45", "En cualquier parte de Florida", "Recetas y revisión de laboratorios"], popular: false },
+      ],
+      choose: "Elegir",
+      popularLabel: "Más popular",
+    },
+    team: {
+      eyebrow: "Nuestro Equipo",
+      title: "Proveedores licenciados que te conocen por tu nombre",
+      lead: "Atención supervisada por médicos, brindada por un equipo bilingüe.",
+      members: [
+        { name: "Leivys C. Marsall", cred: "PA, ACN - Certificada", bio: "Atención primaria, medicina preventiva y pérdida de peso médica. Habla inglés y español." },
+        { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Supervisión médica que garantiza una atención segura y alineada con las guías clínicas." },
+        { name: "Michel Reyes", cred: "LMT - Fundador y Administrador", bio: "Fundó Palm Wellness Center en 2011 para brindar atención integrada y centrada en el paciente." },
+      ],
+    },
+    conditions: {
+      eyebrow: "Condiciones que Tratamos",
+      title: "Apoyo continuo para lo que más importa",
+      lead: "Atención crónica y preventiva con un plan que se adapta a tu vida.",
+      items: ["Presión alta", "Diabetes tipo 2", "Colesterol alto", "Trastornos de tiroides", "Asma y EPOC", "Artritis y dolor articular", "Exámenes preventivos", "Apoyo hormonal"],
+    },
+    rehab: {
+      eyebrow: "Rehabilitación",
+      title: "Servicios de recuperación, coordinados con tu atención",
+      lead: "También bajo nuestro techo - quiropráctica, fisioterapia y recuperación de lesiones.",
+      items: ["Quiropráctica", "Fisioterapia", "Accidente de auto", "Resbalones y caídas", "Terapia de masaje", "Ejercicio terapéutico"],
+      link: "Explorar servicios de rehabilitación",
+      href: "/es/fisioterapia/",
+    },
+    area: {
+      eyebrow: "Área de Servicio",
+      title: "Sirviendo con orgullo a Tampa y comunidades cercanas",
+      lead: "Ubicados centralmente en W Linebaugh Ave, a minutos de todo el Condado de Hillsborough.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase", "University"],
+      transportTitle: "¿Necesitas transporte? Nosotros te llevamos.",
+      transportBody: "Transporte gratis de ida y vuelta a las citas para pacientes elegibles en el área de Tampa Bay. Solo pídelo al llamar o reservar - te ayudamos a coordinar tu visita.",
+      transportAlt: "Vehículo de transporte de cortesía para pacientes en Tampa Bay",
+    },
+    testimonials: {
+      eyebrow: "Historias de Pacientes",
+      title: "Atención que nuestros pacientes recomiendan",
+      items: [
+        { quote: "Por fin me escucharon. Mi primera visita duró una hora y salí con un plan real para mi diabetes - en español, lo que hizo todo más fácil.", name: "Maria G.", context: "Paciente de atención primaria" },
+        { quote: "Llegué tras un accidente de auto y me quedé por la atención primaria. Tener mi fisioterapia y mi médico en la misma oficina hizo la recuperación mucho más simple.", name: "James R.", context: "Rehabilitación y atención primaria" },
+        { quote: "La membresía se paga sola. Citas el mismo día, recetas resueltas y un proveedor que de verdad responde los mensajes.", name: "Daniela P.", context: "Paciente de membresía" },
+      ],
+    },
+    faq: {
+      eyebrow: "Preguntas",
+      title: "Preguntas frecuentes",
+      items: [
+        { q: "¿Necesito referido para ver a un proveedor de atención primaria?", a: "Por lo general no se requiere referido. Algunos seguros y planes de Medicare pueden pedir uno de tu proveedor actual - nuestro equipo puede verificar tu cobertura y coordinarlo." },
+        { q: "¿Qué debo traer a mi primera cita?", a: "Una identificación válida, tu tarjeta del seguro, una lista actual de medicamentos y cualquier expediente médico relevante. Si tienes laboratorios o imágenes recientes, podemos revisarlos durante tu visita." },
+        { q: "¿Aceptan mi seguro?", a: "Aceptamos la mayoría de los seguros principales, incluido Medicare. Llama al (813) 443-5370 para verificar tu cobertura antes de tu visita." },
+        { q: "¿Puedo ver a mi proveedor por telemedicina?", a: "Sí - las visitas de telemedicina están disponibles en toda Florida para seguimientos, manejo de medicamentos, revisión de laboratorios y control de enfermedades crónicas." },
+        { q: "¿Cuánto duran las citas?", a: "Las primeras visitas de atención primaria suelen durar 60 minutos y los seguimientos de 30 a 45 minutos, para que tu proveedor tenga tiempo de escucharte y explicarte." },
+        { q: "¿Qué pasa si necesito atención de especialista?", a: "Tu proveedor coordina referidos a especialistas de confianza en Tampa Bay y garantiza la continuidad de la atención." },
+      ],
+    },
+    finalCta: { title: "Da el primer paso para sentirte mejor.", lead: "Citas el mismo día o al día siguiente. Aceptamos la mayoría de seguros, incluido Medicare.", book: "Reservar cita" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+---
+
+<!-- HERO -->
+<section class="bg-bg-alt">
+  <div class="container grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
+    <div class="flex flex-col items-start gap-5">
+      <span class="inline-flex rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.hero.eyebrow}</span>
+      <h1 class="text-4xl leading-[1.1] text-ink sm:text-5xl">{c.hero.title}</h1>
+      <p class="max-w-xl text-[18px] leading-relaxed text-body">{c.hero.lead}</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2">
+        {c.hero.badges.map((b) => (
+          <li class="flex items-center gap-2 text-[14px] font-semibold text-ink">
+            <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name="badge-check" class="h-4 w-4" /></span>
+            {b}
+          </li>
+        ))}
+      </ul>
+      <div class="flex flex-wrap gap-3">
+        <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
+          <Icon name="calendar-check" class="h-[18px] w-[18px]" />{c.hero.book}
+        </a>
+        <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue transition-colors hover:bg-blue-pale">
+          <Icon name="phone" class="h-[18px] w-[18px]" />(813) 443-5370
+        </a>
+      </div>
+      <p class="text-[13px] text-muted">{c.hero.note}</p>
+    </div>
+    <div>
+      <img src="/images/our-primary-care-services.webp" width="560" height="440" alt={c.hero.imageAlt} fetchpriority="high" decoding="async" class="h-full max-h-[460px] w-full rounded-lg object-cover" />
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="bg-white">
+  <div class="container flex flex-col items-center gap-11 py-16">
+    <div class="flex max-w-[760px] flex-col items-center gap-3 text-center">
+      <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.services.eyebrow}</span>
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{c.services.title}</h2>
+      <p class="text-[17px] leading-relaxed text-body">{c.services.lead}</p>
+    </div>
+    <div class="grid w-full gap-6 lg:grid-cols-3">
+      {c.services.cards.map((s) => (
+        <article class="flex flex-col gap-4 rounded-lg border border-line bg-white p-7">
+          <span class="grid h-[52px] w-[52px] place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-7 w-7" /></span>
+          {s.tag && <span class="self-start rounded-full bg-green-bright px-2.5 py-1 text-[11px] font-bold text-ink">{s.tag}</span>}
+          <h3 class="text-[22px] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-relaxed text-body">{s.body}</p>
+          {s.href ? (
+            <a href={s.href} aria-label={`${lang === "es" ? "Ver más sobre" : "Learn more about"} ${s.title}`} class="mt-auto inline-flex items-center gap-1.5 text-[14px] font-bold text-blue hover:text-blue-deep">
+              {lang === "es" ? "Ver más sobre" : "Learn more about"} {s.title} <Icon name="arrow" class="h-4 w-4" />
+            </a>
+          ) : <span class="mt-auto" />}
+        </article>
+      ))}
+    </div>
+    <div class="flex w-full items-center justify-between gap-5 rounded-lg bg-bg-alt px-7 py-5">
+      <div>
+        <p class="text-[18px] font-bold text-ink">{c.services.rehabTitle}</p>
+        <p class="text-[14px] text-body">{c.services.rehabList}</p>
+      </div>
+      <Icon name="arrow" class="h-5 w-5 shrink-0 text-blue" />
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="bg-bg-alt">
+  <div class="container grid items-center gap-12 py-16 lg:grid-cols-2">
+    <img src="/images/why-integrated-care-matters.webp" width="560" height="460" alt={c.why.imageAlt} loading="lazy" decoding="async" class="h-full max-h-[480px] w-full rounded-lg object-cover" />
+    <div class="flex flex-col items-start gap-5">
+      <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.why.eyebrow}</span>
+      <h2 class="text-3xl text-ink sm:text-[2rem]">{c.why.title}</h2>
+      <p class="text-[16px] leading-relaxed text-body">{c.why.lead}</p>
+      <ul class="flex flex-col gap-5">
+        {c.why.features.map((f) => (
+          <li class="flex items-start gap-4">
+            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={f.icon} class="h-6 w-6" /></span>
+            <span>
+              <strong class="block text-[18px] text-ink">{f.title}</strong>
+              <span class="block text-[15px] text-body">{f.body}</span>
+            </span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERSHIP -->
+<section class="bg-white">
+  <div class="container flex flex-col items-center gap-11 py-16">
+    <div class="flex max-w-[760px] flex-col items-center gap-3 text-center">
+      <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.membership.eyebrow}</span>
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{c.membership.title}</h2>
+      <p class="text-[17px] leading-relaxed text-body">{c.membership.lead}</p>
+    </div>
+    <div class="grid w-full gap-6 lg:grid-cols-3">
+      {c.membership.plans.map((p) => (
+        <article class:list={["flex flex-col gap-4 rounded-lg border p-7", p.popular ? "border-blue-deep bg-blue-deep text-blue-tint" : "border-line bg-white"]}>
+          <div class="flex items-center justify-between gap-3">
+            <h3 class:list={["text-[18px]", p.popular ? "text-white" : "text-ink"]}>{p.name}</h3>
+            {p.popular && <span class="rounded-full bg-green-bright px-2.5 py-1 text-[11px] font-bold text-ink">{c.membership.popularLabel}</span>}
+          </div>
+          <p class:list={["flex items-end gap-1.5", p.popular ? "text-blue-tint" : "text-body"]}>
+            <strong class:list={["text-[38px] leading-none", p.popular ? "text-white" : "text-ink"]}>{p.price}</strong>
+            <span class="text-[15px]">{p.cadence}</span>
+          </p>
+          <ul class="flex flex-col gap-3 text-[14px]">
+            {p.benefits.map((b) => (
+              <li class="flex items-center gap-2.5">
+                <Icon name="check" class:list={["h-[18px] w-[18px] shrink-0", p.popular ? "text-green-bright" : "text-green-dark"]} />{b}
+              </li>
+            ))}
+          </ul>
+          <a href={APPOINTMENT_URL} {...bookAttrs} class:list={["mt-auto inline-flex items-center justify-center rounded-md px-5 py-3 text-[15px] font-bold transition-colors", p.popular ? "bg-white text-blue-deep hover:bg-blue-pale" : "bg-blue text-white hover:bg-blue-deep"]}>
+            {c.membership.choose} {p.name}
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="bg-bg-alt">
+  <div class="container flex flex-col items-center gap-11 py-16">
+    <div class="flex max-w-[760px] flex-col items-center gap-3 text-center">
+      <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.team.eyebrow}</span>
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{c.team.title}</h2>
+      <p class="text-[17px] leading-relaxed text-body">{c.team.lead}</p>
+    </div>
+    <div class="grid w-full gap-6 lg:grid-cols-3">
+      {c.team.members.map((m) => (
+        <article class="flex flex-col items-center gap-3 rounded-lg border border-line bg-white p-7 text-center">
+          <span class="grid h-[76px] w-[76px] place-items-center rounded-full bg-blue-pale text-[26px] font-bold text-blue-deep">{m.name.charAt(0)}</span>
+          <h3 class="text-[19px] text-ink">{m.name}</h3>
+          <p class="text-[13px] font-semibold text-blue">{m.cred}</p>
+          <p class="text-[14px] text-body">{m.bio}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section class="bg-white">
+  <div class="container flex flex-col items-center gap-10 py-16">
+    <div class="flex max-w-[760px] flex-col items-center gap-3 text-center">
+      <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.conditions.eyebrow}</span>
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{c.conditions.title}</h2>
+      <p class="text-[17px] leading-relaxed text-body">{c.conditions.lead}</p>
+    </div>
+    <ul class="flex max-w-[900px] flex-wrap justify-center gap-3.5">
+      {c.conditions.items.map((i) => (
+        <li class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[15px] font-medium text-ink">
+          <Icon name="heart" class="h-4 w-4 text-blue" />{i}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- REHAB (secondary) -->
+<section class="bg-bg-alt">
+  <div class="container flex flex-col items-center gap-9 py-16">
+    <div class="flex max-w-[760px] flex-col items-center gap-3 text-center">
+      <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.rehab.eyebrow}</span>
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{c.rehab.title}</h2>
+      <p class="text-[17px] leading-relaxed text-body">{c.rehab.lead}</p>
+    </div>
+    <ul class="flex flex-wrap justify-center gap-3.5">
+      {c.rehab.items.map((i) => (
+        <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[15px] font-medium text-ink">
+          <Icon name="heart" class="h-4 w-4 text-blue" />{i}
+        </li>
+      ))}
+    </ul>
+    <a href={c.rehab.href} class="inline-flex items-center gap-2 text-[15px] font-bold text-blue hover:text-blue-deep">
+      {c.rehab.link} <Icon name="arrow" class="h-4 w-4" />
+    </a>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="container flex flex-col items-center gap-10 py-16">
+    <div class="flex max-w-[760px] flex-col items-center gap-3 text-center">
+      <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.area.eyebrow}</span>
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{c.area.title}</h2>
+      <p class="text-[17px] leading-relaxed text-body">{c.area.lead}</p>
+    </div>
+    <ul class="flex flex-wrap justify-center gap-3.5">
+      {c.area.places.map((p) => (
+        <li class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[15px] font-medium text-ink">
+          <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+        </li>
+      ))}
+    </ul>
+    <div class="grid w-full max-w-[1100px] items-center overflow-hidden rounded-lg bg-bg-alt lg:grid-cols-[400px_1fr]">
+      <img src="/images/car-transportation-assistance.webp" width="400" height="250" alt={c.area.transportAlt} loading="lazy" decoding="async" class="h-full w-full object-cover" />
+      <div class="flex flex-col gap-3 p-8">
+        <h3 class="text-[22px] text-ink">{c.area.transportTitle}</h3>
+        <p class="text-[15px] leading-relaxed text-body">{c.area.transportBody}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="bg-bg-alt">
+  <div class="container flex flex-col items-center gap-11 py-16">
+    <div class="flex max-w-[760px] flex-col items-center gap-3 text-center">
+      <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.testimonials.eyebrow}</span>
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{c.testimonials.title}</h2>
+    </div>
+    <div class="grid w-full gap-6 lg:grid-cols-3">
+      {c.testimonials.items.map((q) => (
+        <figure class="flex flex-col gap-4 rounded-lg border border-line bg-white p-7">
+          <Icon name="quote" class="h-8 w-8 text-blue-tint" />
+          <blockquote class="text-[16px] leading-relaxed text-ink">{q.quote}</blockquote>
+          <figcaption class="mt-auto flex items-center gap-3">
+            <span class="grid h-11 w-11 place-items-center rounded-full bg-blue-pale font-bold text-blue-deep">{q.name.charAt(0)}</span>
+            <span>
+              <strong class="block text-[15px] text-ink">{q.name}</strong>
+              <span class="block text-[13px] text-muted">{q.context}</span>
+            </span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bg-white">
+  <div class="container flex flex-col items-center gap-10 py-16">
+    <div class="flex flex-col items-center gap-3 text-center">
+      <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.faq.eyebrow}</span>
+      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{c.faq.title}</h2>
+    </div>
+    <div class="flex w-full max-w-[900px] flex-col gap-3">
+      {c.faq.items.map((item) => (
+        <details class="group rounded-md bg-bg-alt">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 text-[17px] font-semibold text-ink">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="px-6 pb-5 text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="container flex flex-col items-center gap-4 py-16 text-center">
+    <h2 class="max-w-[800px] text-3xl text-white sm:text-[2.1rem]">{c.finalCta.title}</h2>
+    <p class="max-w-[640px] text-[17px] leading-relaxed text-blue-tint">{c.finalCta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{c.finalCta.book}
+      </a>
+      <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white transition-colors hover:bg-white/10">
+        <Icon name="phone" class="h-[18px] w-[18px]" />(813) 443-5370
+      </a>
+    </div>
+  </div>
+</section>

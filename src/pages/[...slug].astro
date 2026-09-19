@@ -1,0 +1,69 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import RichPage from "../components/RichPage.astro";
+import BlogPost from "../components/BlogPost.astro";
+import type { Lang } from "../i18n/ui";
+import richpages from "../data/richpages.json";
+import physicalRehabilitationPages from "../data/physicalRehabilitation";
+import therapeuticExercises, { therapeuticExercisesSpanish } from "../data/therapeuticExercises";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const physicalRehabilitationByPath = new Map(
+    physicalRehabilitationPages.map((page) => [page.path, page]),
+  );
+  const therapeuticExercisesByPath = new Map([
+    [therapeuticExercises.path, therapeuticExercises],
+    [therapeuticExercisesSpanish.path, therapeuticExercisesSpanish],
+  ]);
+  const resolvedRichPages = (richpages as any[]).map(
+    (page) => therapeuticExercisesByPath.get(page.path) ?? physicalRehabilitationByPath.get(page.path) ?? page,
+  );
+  const trim = (s: string) => s.replace(/^\/|\/$/g, "");
+  const rich = resolvedRichPages.map((p) => ({
+    params: { slug: trim(p.path) },
+    props: { ...p, type: "rich" },
+  }));
+  const posts = await getCollection("blog");
+  const postPaths = posts.map((entry) => {
+    const slug = String(entry.id).split("/").pop();
+    const url = entry.data.path || (entry.data.lang === "en" ? `/${slug}/` : `/es/${slug}/`);
+    return { params: { slug: trim(url) }, props: { type: "post", entry } };
+  });
+  return [...rich, ...postPaths];
+}
+
+const props = Astro.props as any;
+let Content: any = null;
+if (props.type === "post") {
+  const r = await render(props.entry);
+  Content = r.Content;
+}
+
+const isPost = props.type === "post";
+const data = isPost ? props.entry.data : props;
+const lang: Lang = data.lang;
+// Posts: derive the URL from the file's slug + language (so the CMS editor only
+// sets a slug, never a raw path). Rich pages keep their explicit path.
+const postSlug = isPost ? String(props.entry.id).split("/").pop() : "";
+const path: string = isPost ? data.path || (lang === "en" ? `/${postSlug}/` : `/es/${postSlug}/`) : data.path;
+const altPath = isPost ? data.altPath || undefined : undefined;
+const seoTitle = isPost ? data.seoTitle || data.title : data.title;
+const description = data.description;
+const socialDescription = isPost ? data.socialDescription || description : data.socialDescription || description;
+const og = isPost ? data.heroImage : props.ogImage;
+---
+
+<Layout lang={lang} path={path} altPath={altPath} title={seoTitle} description={description} socialDescription={socialDescription} ogImage={og} ogType={isPost ? "article" : "website"}>
+  <TopBar lang={lang} />
+  <Header lang={lang} path={path} altPath={altPath} />
+  <main id="main">
+    {isPost
+      ? <BlogPost lang={lang} title={data.title} date={data.pubDate} image={data.heroImage} Content={Content} />
+      : <RichPage lang={lang} blocks={props.blocks} styles={props.styles} />}
+  </main>
+  <Footer lang={lang} />
+</Layout>

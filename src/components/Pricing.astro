@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "./TopBar.astro";
+import Header from "./Header.astro";
+import Footer from "./Footer.astro";
+import Icon from "./Icon.astro";
+import { pricing } from "../data/pricing";
+import { APPOINTMENT_URL, PHONE_TEL } from "../i18n/utils";
+import type { Lang } from "../i18n/ui";
+
+interface Props { lang: Lang; path: string; }
+const { lang, path } = Astro.props;
+const c = pricing[lang];
+const bookLabel = lang === "es" ? "Reservar cita" : "Book Appointment";
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+---
+
+<Layout lang={lang} path={path} title={c.title} description={c.desc}>
+  <TopBar lang={lang} />
+  <Header lang={lang} path={path} />
+  <main id="main">
+    <section class="bg-bg-alt">
+      <div class="container flex flex-col items-start gap-4 py-14 lg:py-16">
+        <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{c.eyebrow}</span>
+        <h1 class="max-w-3xl text-4xl leading-[1.12] text-ink sm:text-5xl">{c.h1}</h1>
+        <p class="max-w-2xl text-[18px] leading-relaxed text-body">{c.lead}</p>
+        <div class="mt-2 flex flex-wrap gap-3">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
+            <Icon name="calendar-check" class="h-[18px] w-[18px]" />{bookLabel}
+          </a>
+          <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue transition-colors hover:bg-blue-pale">
+            <Icon name="phone" class="h-[18px] w-[18px]" />(813) 443-5370
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white">
+      <div class="container grid gap-8 py-16 md:grid-cols-2">
+        {c.groups.map((g) => (
+          <div class="rounded-lg border border-line bg-white p-7">
+            <h2 class="text-[22px] text-ink">{g.title}</h2>
+            <ul class="mt-5 flex flex-col divide-y divide-line">
+              {g.rows.map((r) => (
+                <li class="flex items-baseline justify-between gap-4 py-3">
+                  <span>
+                    <span class="block text-[15px] font-semibold text-ink">{r.name}</span>
+                    {r.meta && <span class="block text-[13px] text-muted">{r.meta}</span>}
+                  </span>
+                  <span class="whitespace-nowrap text-[16px] font-bold text-blue">{r.price}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div class="container pb-12">
+        <p class="text-[13px] text-muted">{c.note}</p>
+      </div>
+    </section>
+
+    <section class="bg-blue-deep">
+      <div class="container flex flex-col items-center gap-4 py-14 text-center">
+        <h2 class="max-w-[760px] text-3xl text-white sm:text-[2rem]">{lang === "es" ? "Da el primer paso para sentirte mejor." : "Take the first step toward feeling better."}</h2>
+        <div class="mt-2 flex flex-wrap justify-center gap-3">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+            <Icon name="calendar-check" class="h-[18px] w-[18px]" />{bookLabel}
+          </a>
+          <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white transition-colors hover:bg-white/10">
+            <Icon name="phone" class="h-[18px] w-[18px]" />(813) 443-5370
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Layout>

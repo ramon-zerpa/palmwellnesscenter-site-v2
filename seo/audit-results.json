@@ -1,0 +1,255 @@
+{
+  "url": "http://localhost:4321/",
+  "scores": {
+    "overall": 36,
+    "categories": {
+      "security": 0,
+      "social": 0,
+      "robots": 0,
+      "article": 0,
+      "broken_links": 100,
+      "internal_links": 100,
+      "redirects": 100,
+      "llms_txt": 0,
+      "pagespeed": 0,
+      "onpage": 0,
+      "readability": 0,
+      "entity": 0,
+      "link_profile": 55,
+      "hreflang": 0,
+      "duplicate_content": 100
+    },
+    "weights": {
+      "security": 8,
+      "social": 5,
+      "robots": 8,
+      "broken_links": 10,
+      "internal_links": 8,
+      "redirects": 3,
+      "llms_txt": 5,
+      "pagespeed": 13,
+      "onpage": 10,
+      "readability": 8,
+      "entity": 5,
+      "link_profile": 7,
+      "hreflang": 5,
+      "duplicate_content": 5
+    },
+    "scoring_version": 1
+  },
+  "data": {
+    "url": "http://localhost:4321/",
+    "domain": "localhost:4321",
+    "timestamp": "2026-09-19T15:07:13.964694",
+    "sections": {
+      "robots": {
+        "url": "http://localhost:4321/robots.txt",
+        "status": null,
+        "user_agents": {},
+        "sitemaps": [],
+        "crawl_delays": {},
+        "ai_crawler_status": {},
+        "issues": [],
+        "error": "Blocked: URL resolves to private/internal IP (127.0.0.1)"
+      },
+      "security": {
+        "url": "http://localhost:4321/",
+        "score": 0,
+        "https": false,
+        "headers_present": {},
+        "headers_missing": {},
+        "header_values": {},
+        "issues": [],
+        "recommendations": [],
+        "error": "Blocked: URL resolves to private/internal IP (127.0.0.1)"
+      },
+      "social": {
+        "url": "http://localhost:4321/",
+        "score": 0,
+        "og_tags": {},
+        "twitter_tags": {},
+        "og_present": [],
+        "og_missing": [],
+        "twitter_present": [],
+        "twitter_missing": [],
+        "issues": [],
+        "recommendations": [],
+        "preview": {
+          "title": null,
+          "description": null,
+          "image": null,
+          "site_name": null
+        },
+        "error": "Blocked: URL resolves to private/internal IP (127.0.0.1)"
+      },
+      "redirects": {
+        "url": "http://localhost:4321/",
+        "final_url": null,
+        "chain": [],
+        "total_hops": 0,
+        "total_time_ms": 0,
+        "has_loop": false,
+        "has_mixed_protocol": false,
+        "issues": [],
+        "error": "Blocked: URL resolves to private/internal IP (127.0.0.1)"
+      },
+      "llms_txt": {
+        "url": "http://localhost:4321/llms.txt",
+        "full_url": "http://localhost:4321/llms-full.txt",
+        "exists": false,
+        "full_exists": false,
+        "status": null,
+        "full_status": null,
+        "parsed": {
+          "title": null,
+          "description": null,
+          "sections": [],
+          "links": []
+        },
+        "quality": {
+          "score": 0,
+          "issues": [],
+          "suggestions": []
+        },
+        "error": "Blocked: URL resolves to private/internal IP (127.0.0.1)"
+      },
+      "broken_links": {
+        "page_url": "http://localhost:4321/",
+        "total_links": 0,
+        "checked": 0,
+        "broken": [],
+        "redirected": [],
+        "timeout": [],
+        "healthy": 0,
+        "summary": {},
+        "issues": [],
+        "error": "Failed to fetch page: Blocked: URL resolves to private/internal IP (127.0.0.1)"
+      },
+      "internal_links": {
+        "start_url": "http://localhost:4321/",
+        "domain": "localhost:4321",
+        "pages_crawled": 1,
+        "total_internal_links": 0,
+        "unique_pages_found": 0,
+        "max_depth_reached": 0,
+        "pages": {
+          "http://localhost:4321/": {
+            "outgoing_links": 0,
+            "incoming_links": 0
+          }
+        },
+        "anchor_texts": {},
+        "link_distribution": {
+          "min": 0,
+          "max": 0,
+          "avg": 0.0
+        },
+        "orphan_candidates": [],
+        "nofollow_links": [],
+        "issues": [],
+        "recommendations": [
+          "Increase internal linking \u2014 aim for 3-5 relevant links per 1000 words"
+        ],
+        "error": null
+      },
+      "pagespeed": {
+        "url": "http://localhost:4321/",
+        "strategy": "mobile",
+        "performance_score": null,
+        "metrics": {},
+        "opportunities": [],
+        "diagnostics": [],
+        "field_data_available": false,
+        "error": "Rate limited by Google API. Wait a few minutes or add an API key."
+      },
+      "entity": {
+        "error": "Failed to fetch http://localhost:4321/",
+        "url": "http://localhost:4321/"
+      },
+      "link_profile": {
+        "pages_crawled": 0,
+        "total_internal_links": 0,
+        "total_external_links": 0,
+        "unique_internal_targets": 0,
+        "unique_external_domains": 0,
+        "avg_internal_links_per_page": 0.0,
+        "orphan_pages": {
+          "count": 0,
+          "urls": []
+        },
+        "dead_end_pages": {
+          "count": 0,
+          "urls": []
+        },
+        "top_linked_pages": [],
+        "top_external_domains": [],
+        "issues": [
+          {
+            "type": "low_internal_linking",
+            "severity": "High",
+            "finding": "Average internal links per page is only 0.0 (target: 5-10).",
+            "fix": "Increase internal linking by adding contextual links within content."
+          }
+        ],
+        "site_url": "http://localhost:4321/"
+      },
+      "hreflang": {
+        "error": "Failed to fetch URL: http://localhost:4321/",
+        "url": "http://localhost:4321/"
+      },
+      "duplicate_content": {
+        "pages_analyzed": 0,
+        "exact_duplicates": [],
+        "near_duplicates": [],
+        "thin_content": [],
+        "summary": {
+          "exact_duplicate_groups": 0,
+          "near_duplicate_pairs": 0,
+          "thin_pages": 0,
+          "avg_word_count": 0
+        }
+      }
+    },
+    "environment": {
+      "primary": "Unknown",
+      "runtime": "Unknown",
+      "confidence": "low",
+      "signals": [
+        "No strong CMS/framework markers were found in HTML source."
+      ],
+      "alternatives": []
+    },
+    "environment_fixes": [
+      {
+        "severity": "critical",
+        "title": "Missing H1 on page",
+        "reason": "No primary content heading was detected, which weakens topical clarity.",
+        "fix": "Ensure each page has exactly one descriptive H1 aligned to intent."
+      },
+      {
+        "severity": "warning",
+        "title": "Meta description is missing or out of range",
+        "reason": "This can reduce SERP CTR and snippet quality.",
+        "fix": "Update page templates to set complete title/meta/OG/Twitter tags."
+      },
+      {
+        "severity": "warning",
+        "title": "Title tag needs optimization",
+        "reason": "Title length/content is likely suboptimal for rankings and click-through.",
+        "fix": "Update page templates to set complete title/meta/OG/Twitter tags."
+      },
+      {
+        "severity": "warning",
+        "title": "No llms.txt found",
+        "reason": "AI crawlers and assistants have no curated machine-readable guidance for key pages.",
+        "fix": "Add `/llms.txt` at site root with concise site description and key URLs."
+      },
+      {
+        "severity": "info",
+        "title": "Performance measurement incomplete",
+        "reason": "PageSpeed API returned an error, so CWV recommendations are less reliable.",
+        "fix": "Set `PAGESPEED_API_KEY` in your environment or `.env` file (see `.env.example`), then rerun. The CLI also accepts `--api-key`. Prioritize LCP/INP/CLS fixes from that output."
+      }
+    ]
+  }
+}

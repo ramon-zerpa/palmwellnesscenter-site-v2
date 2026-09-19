@@ -1,0 +1,34 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Icon from "../components/Icon.astro";
+import { PHONE_TEL } from "../i18n/utils";
+const lang = "en";
+const path = "/404/";
+---
+<Layout lang={lang} path={path} title="Page Not Found - Palm Wellness Center" robots="noindex, follow">
+  <TopBar lang={lang} />
+  <Header lang={lang} path={path} />
+  <main id="main" class="bg-bg-alt">
+    <section class="container flex min-h-[55vh] flex-col items-center justify-center py-20 text-center">
+      <p class="text-6xl font-bold text-green" style="font-family:var(--font-titles)">404</p>
+      <h1 class="mt-4 text-3xl text-blue sm:text-4xl">Page Not Found</h1>
+      <p class="mt-4 max-w-xl text-body">The page you're looking for may have moved or no longer exists. Let's get you back on track.</p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a href="/" class="inline-flex items-center gap-2 rounded-full bg-green px-7 py-3 font-bold text-white transition-colors hover:bg-green-dark">Back to Home</a>
+        <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-full border-2 border-blue px-7 py-2.5 font-bold text-blue transition-colors hover:bg-blue hover:text-white"><Icon name="phone" class="h-4 w-4" />(813) 443-5370</a>
+      </div>
+      <nav class="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[14px] text-blue">
+        <a href="/about-us/" class="hover:text-green-dark">About Us</a>
+        <a href="/chiropractor/" class="hover:text-green-dark">Chiropractic</a>
+        <a href="/physical-rehabilitation/" class="hover:text-green-dark">Physical Therapy</a>
+        <a href="/medical-weight-loss/" class="hover:text-green-dark">Medical Weight Loss</a>
+        <a href="/news-blog/" class="hover:text-green-dark">Blog</a>
+        <a href="/contact/" class="hover:text-green-dark">Contact</a>
+      </nav>
+    </section>
+  </main>
+  <Footer lang={lang} />
+</Layout>

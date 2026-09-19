@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import HomePage from "../../components/HomePage.astro";
+import Footer from "../../components/Footer.astro";
+
+const lang = "es";
+const path = "/es/inicio/";
+---
+
+<Layout
+  lang={lang}
+  path={path}
+  title="Atención Primaria en Tampa, FL | Palm Wellness Center"
+  description="Atención primaria en Tampa, FL - enfermedades crónicas, prevención, pérdida de peso y rehabilitación. Consultas extendidas, citas el mismo día y atención bilingüe."
+  ogImage="/images/our-primary-care-services.webp"
+>
+  <link slot="head" rel="preload" as="image" href="/images/our-primary-care-services.webp" fetchpriority="high" />
+  <TopBar lang={lang} />
+  <Header lang={lang} path={path} />
+  <main id="main">
+    <HomePage lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Layout>

@@ -1,0 +1,145 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Palm Wellness Center — design system (exact-clone palette)
+   Source brand colors lifted verbatim from the WordPress/Oxygen build:
+   blue #2a67b1, deep blue #164e93, green #78a74b / #558429,
+   body text #606e79, fonts Figtree (headings) + Noto Sans (body).
+   ============================================================ */
+
+@theme {
+  /* Brand */
+  --color-blue:        #2a67b1;   /* primary brand blue (headings, links, topbar) */
+  --color-blue-deep:   #164e93;   /* deep blue (footer, dark bands) */
+  --color-blue-dark:   #165096;
+  --color-green:       #78a74b;   /* primary CTA green */
+  --color-green-dark:  #558429;   /* CTA hover */
+  --color-green-bright:#c4e038;
+
+  /* Tints / accents */
+  --color-blue-tint:   #afcbff;
+  --color-blue-pale:   #d7f9ff;
+  --color-pink-pale:   #fcefef;
+
+  /* Neutrals */
+  --color-ink:         #374047;   /* darkest text */
+  --color-body:        #606e79;   /* body copy */
+  --color-muted:       #677079;   /* AA-compliant on white (5.0:1) */
+  --color-line:        #dee1e3;   /* hairline borders */
+  --color-bg:          #ffffff;   /* page background */
+  --color-bg-alt:      #f9f9fa;   /* alternating section bg */
+  --color-footer-bottom:#262626;  /* dark copyright bar */
+
+  /* Typography */
+  --font-titles: "Figtree", system-ui, -apple-system, sans-serif;
+  --font-body: "Noto Sans", system-ui, -apple-system, sans-serif;
+
+  /* Layout */
+  --container: 1140px;
+}
+
+/* ---------- Fonts: Figtree + Noto Sans (self-hosted, preloaded) ---------- */
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 600; font-display: swap; src: url("/fonts/figtree-600.woff2") format("woff2"); }
+@font-face { font-family: "Figtree"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/figtree-700.woff2") format("woff2"); }
+@font-face { font-family: "Noto Sans"; font-style: normal; font-weight: 400; font-display: swap; src: url("/fonts/noto-sans-400.woff2") format("woff2"); }
+@font-face { font-family: "Noto Sans"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/noto-sans-500.woff2") format("woff2"); }
+@font-face { font-family: "Noto Sans"; font-style: normal; font-weight: 600; font-display: swap; src: url("/fonts/noto-sans-600.woff2") format("woff2"); }
+
+/* ---------- Base ----------
+   Wrapped in @layer base so Tailwind v4 utilities (text-white, text-green-dark,
+   etc.) override these element defaults. Unlayered, the `color: var(--color-blue)`
+   below beat utilities, turning footer/band headings + links blue-on-blue and
+   forcing green section headings to blue. */
+@layer base {
+  html {
+    font-family: var(--font-body);
+    color: var(--color-body);
+    -webkit-text-size-adjust: 100%;
+    font-optical-sizing: auto;
+  }
+
+  body {
+    background: var(--color-bg);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-titles);
+    color: var(--color-blue);
+    font-weight: 700;
+    line-height: 1.15;
+    text-wrap: balance;
+    margin: 0;
+  }
+
+  p { text-wrap: pretty; }
+  p a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.16em; }
+
+  a { color: var(--color-blue); text-decoration: none; }
+  a:hover { color: var(--color-green-dark); }
+
+  img { max-width: 100%; height: auto; display: block; }
+}
+
+/* Utility: constrained content container */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+.container.source-wide { max-width: 1200px; }
+
+/* Prose blocks (blog posts, legal pages) */
+.prose { color: var(--color-body); font-size: 1rem; line-height: 1.75; }
+.prose h2 { font-size: 1.875rem; margin-top: 2rem; margin-bottom: 0.75rem; }
+.prose h3 { font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+.prose p { margin-bottom: 1.1rem; max-width: 75ch; }
+.prose ul, .prose ol { margin: 0 0 1.1rem 1.25rem; }
+.prose li { margin-bottom: 0.4rem; }
+.prose ul { list-style: disc; }
+.prose ol { list-style: decimal; }
+.prose a { color: var(--color-blue); text-decoration: underline; }
+.prose a:hover { color: var(--color-green-dark); }
+.prose img { border-radius: 0.5rem; margin: 1.5rem 0; }
+.prose strong { color: var(--color-ink); }
+.prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+.prose th, .prose td { border: 1px solid var(--color-line); padding: 0.8rem 0.9rem; text-align: left; vertical-align: top; }
+.prose th { background: var(--color-bg-alt); color: var(--color-ink); font-family: var(--font-titles); }
+.prose tbody tr:nth-child(even) { background: color-mix(in srgb, var(--color-bg-alt) 55%, white); }
+
+@media (max-width: 640px) {
+  .prose table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .prose th, .prose td { min-width: 15rem; }
+}
+
+/* Source-style AOS markers stay in the DOM, but content remains visible for
+   crawlers, capture tools, and users even before any scroll script runs. */
+[data-aos] { opacity: 1; transform: none; }
+
+/* Honor reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   Interior migration layer
+   Bridges the legacy interior components (RichPage/RichSection,
+   blog, contact) to the new visual language without rewriting
+   them: primary CTAs adopt brand blue, buttons share the md
+   radius, and legacy italic accents are normalized.
+   ============================================================ */
+a.bg-green { background-color: var(--color-blue); }
+a.bg-green:hover { background-color: var(--color-blue-deep); }
+a.text-green-dark { color: var(--color-blue); }
+.hover\:text-green-dark:hover { color: var(--color-blue-deep); }
+a.rounded-full { border-radius: 0.625rem; }
+a.italic { font-style: normal; }
+time.text-green-dark { color: var(--color-blue); }
+

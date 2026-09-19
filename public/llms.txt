@@ -1,0 +1,33 @@
+# Palm Wellness Center
+
+> Integrated primary care, medical weight loss, IV therapy, and rehabilitation in Tampa, FL.
+
+Location: 1004 W Linebaugh Ave Ste A, Tampa, FL 33612
+Phone: (813) 443-5370
+Languages: English, Spanish
+Hours: Monday-Friday 10 AM - 7 PM; Saturday by appointment
+
+## Key pages (English)
+- Primary Care: https://www.palmwellness.center/primary-care/
+- Membership: https://www.palmwellness.center/primary-care/membership/
+- Chronic Condition Care: https://www.palmwellness.center/primary-care/chronic-condition-management/
+- Preventive Care: https://www.palmwellness.center/primary-care/preventive-care/
+- Telemedicine: https://www.palmwellness.center/primary-care/telemedicine/
+- Medical Weight Loss: https://www.palmwellness.center/medical-weight-loss/
+- IV Therapy (coming soon): https://www.palmwellness.center/iv-therapy/
+- Rehabilitation: https://www.palmwellness.center/physical-rehabilitation/
+- Locations: https://www.palmwellness.center/locations/
+- About: https://www.palmwellness.center/about-us/
+- Contact: https://www.palmwellness.center/contact/
+- Blog: https://www.palmwellness.center/news-blog/
+
+## Páginas clave (Español)
+- Atención Primaria: https://www.palmwellness.center/es/atencion-primaria/
+- Membresía: https://www.palmwellness.center/es/atencion-primaria/membresia/
+- Enfermedades Crónicas: https://www.palmwellness.center/es/atencion-primaria/manejo-enfermedades-cronicas/
+- Atención Preventiva: https://www.palmwellness.center/es/atencion-primaria/atencion-preventiva/
+- Telemedicina: https://www.palmwellness.center/es/atencion-primaria/telemedicina/
+- Pérdida de Peso Médica: https://www.palmwellness.center/es/perdida-de-peso-medica/
+- Terapia IV: https://www.palmwellness.center/es/terapia-iv/
+- Fisioterapia: https://www.palmwellness.center/es/fisioterapia/
+- Ubicaciones: https://www.palmwellness.center/es/ubicaciones/

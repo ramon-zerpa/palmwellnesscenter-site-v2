@@ -1,0 +1,52 @@
+---
+const { videoId, title, class: className = "" } = Astro.props;
+const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<div
+  class={`lite-youtube relative aspect-video overflow-hidden bg-slate-900 shadow-[0_2px_8px_rgba(0,0,0,0.18)] ${className}`}
+  data-lite-youtube
+  data-video-id={videoId}
+  data-title={title}
+>
+  <img
+    src={thumbnail}
+    alt=""
+    loading="lazy"
+    decoding="async"
+    referrerpolicy="no-referrer"
+    class="absolute inset-0 h-full w-full object-cover opacity-90"
+  />
+  <button
+    type="button"
+    class="absolute inset-0 flex items-center justify-center bg-black/15 transition hover:bg-black/5 focus:outline-none focus-visible:ring-4 focus-visible:ring-white/80"
+    aria-label={`Play video: ${title}`}
+  >
+    <span class="flex h-14 w-20 items-center justify-center rounded-xl bg-[#d82020] shadow-[0_2px_10px_rgba(0,0,0,0.3)] transition hover:bg-[#f01818]">
+      <span class="ml-1 h-0 w-0 border-y-[12px] border-l-[18px] border-y-transparent border-l-white"></span>
+    </span>
+  </button>
+</div>
+
+<script is:inline>
+  if (!window.__pwcLiteYoutubeInitialized) {
+    window.__pwcLiteYoutubeInitialized = true;
+    document.addEventListener("click", (event) => {
+      const trigger = event.target.closest("[data-lite-youtube] button");
+      if (!trigger) return;
+
+      const root = trigger.closest("[data-lite-youtube]");
+      if (!root || root.dataset.loaded === "true") return;
+
+      root.dataset.loaded = "true";
+      const iframe = document.createElement("iframe");
+      iframe.className = "absolute inset-0 h-full w-full";
+      iframe.src = `https://www.youtube-nocookie.com/embed/${root.dataset.videoId}?autoplay=1&rel=0`;
+      iframe.title = root.dataset.title || "YouTube video";
+      iframe.loading = "lazy";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen = true;
+      root.replaceChildren(iframe);
+    });
+  }
+</script>

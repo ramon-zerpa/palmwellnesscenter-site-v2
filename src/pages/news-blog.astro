@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BlogIndex from "../components/BlogIndex.astro";
+import { getBlogArchivePage } from "../data/blogArchive";
+
+const lang = "en";
+const path = "/news-blog/";
+const archive = await getBlogArchivePage(lang);
+---
+<Layout lang={lang} path={path}
+  title="News Blog - Palm Wellness Center"
+  description="Health news, recovery tips, and wellness advice from Palm Wellness Center in Tampa - chiropractic, physical therapy, massage, ultrasound, and injury recovery.">
+  <TopBar lang={lang} />
+  <Header lang={lang} path={path} />
+  <main id="main"><BlogIndex lang={lang} basePath={path} {...archive} /></main>
+  <Footer lang={lang} />
+</Layout>

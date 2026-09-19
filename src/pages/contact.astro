@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ContactPage from "../components/ContactPage.astro";
+const lang = "en";
+const path = "/contact/";
+---
+<Layout lang={lang} path={path}
+  title="Contact | Palm Wellness Center | 813 443 5370"
+  description="Contact Palm Wellness Center in Tampa, FL. Call (813) 443-5370 or send us a message to schedule chiropractic, physical therapy, primary care, or medical weight loss.">
+  <TopBar lang={lang} />
+  <Header lang={lang} path={path} />
+  <main id="main"><ContactPage lang={lang} /></main>
+  <Footer lang={lang} />
+</Layout>

@@ -1,0 +1,126 @@
+---
+import "../styles/global.css";
+import type { Lang } from "../i18n/ui";
+import { getAltUrl } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+  title: string;
+  description?: string;
+  /** Optional summary used only for Open Graph and Twitter cards. */
+  socialDescription?: string;
+  /** Path of THIS page, e.g. "/chiropractor/" or "/es/quiropractico/". Used for canonical + hreflang. */
+  path: string;
+  /** Explicit other-language URL (overrides the derived map — used by CMS-driven blog posts). */
+  altPath?: string;
+  ogImage?: string;
+  robots?: string;
+  ogType?: "website" | "article";
+}
+
+const SITE = "https://www.palmwellness.center";
+const {
+  lang,
+  title,
+  description = "",
+  socialDescription = description,
+  path,
+  altPath: altPathProp,
+  ogImage = "/images/og-default.jpg",
+  robots = "index, follow, max-image-preview:large",
+  ogType = "website",
+} = Astro.props;
+
+const canonical = SITE + path;
+const altPath = altPathProp || getAltUrl(path, lang);
+const enHref = lang === "en" ? path : altPath;
+const esHref = lang === "es" ? path : altPath;
+const ogImageAbs = ogImage.startsWith("http") ? ogImage : SITE + ogImage;
+---
+
+<!doctype html>
+<html lang={lang === "es" ? "es" : "en"} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2a67b1" />
+    <meta name="apple-mobile-web-app-title" content="Palm Wellness" />
+    <meta name="robots" content={robots} />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={SITE + enHref} />
+    <link rel="alternate" hreflang="es" href={SITE + esHref} />
+    <link rel="alternate" hreflang="x-default" href={SITE + (lang === "en" ? path : enHref)} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <!-- Fonts: Figtree (headings) + Noto Sans (body), self-hosted -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/figtree-700.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/noto-sans-400.woff2" crossorigin />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
+    <meta property="og:site_name" content="Palm Wellness Center" />
+    <meta property="og:title" content={title} />
+    {socialDescription && <meta property="og:description" content={socialDescription} />}
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageAbs} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {socialDescription && <meta name="twitter:description" content={socialDescription} />}
+    <meta name="twitter:image" content={ogImageAbs} />
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "MedicalClinic",
+      name: "Palm Wellness Center",
+      url: SITE + "/",
+      image: SITE + "/images/logo.webp",
+      logo: SITE + "/images/logo.webp",
+      telephone: "+1-813-443-5370",
+      faxNumber: "+1-813-443-5604",
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "1004 W Linebaugh Ave Ste A",
+        addressLocality: "Tampa",
+        addressRegion: "FL",
+        postalCode: "33612",
+        addressCountry: "US",
+      },
+      geo: { "@type": "GeoCoordinates", latitude: 28.0436, longitude: -82.4709 },
+      openingHoursSpecification: [{
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "10:00", closes: "19:00",
+      }],
+      medicalSpecialty: ["Chiropractic", "PhysicalTherapy", "PrimaryCare"],
+      sameAs: [
+        "https://www.facebook.com/palmwellnesscenter",
+        "https://www.instagram.com/palmwellnesscenter/",
+      ],
+    })} />
+
+    <slot name="head" />
+  </head>
+  <body class="antialiased">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-blue focus:px-4 focus:py-2 focus:text-white"
+    >
+      {lang === "es" ? "Saltar al contenido" : "Skip to content"}
+    </a>
+    <slot />
+
+    <script>
+      document.querySelectorAll("[data-aos]").forEach((el) => el.classList.add("in"));
+    </script>
+  </body>
+</html>

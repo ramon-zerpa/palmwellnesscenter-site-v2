@@ -1,0 +1,75 @@
+---
+import type { Lang } from "../i18n/ui";
+import { useTranslations, PHONE_TEL, FAX_DISPLAY, SOCIAL, APPOINTMENT_URL } from "../i18n/utils";
+import ContactForm from "./ContactForm.astro";
+import Icon from "./Icon.astro";
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const bizHref = lang === "en" ? "/business-profiles/" : "/business-profiles/";
+const mapSrc = "https://www.google.com/maps?q=1004+W+Linebaugh+Ave+Ste+A,+Tampa,+FL+33612&output=embed";
+---
+
+<!-- Hero -->
+<section class="relative overflow-hidden bg-blue-deep text-white">
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.10),transparent_55%)]"></div>
+  <div class="container relative py-16 lg:py-20">
+    <h1 class="text-4xl text-white sm:text-5xl">{t("contact.h1")}</h1>
+    <p class="mt-3 text-lg text-white/85">{t("contact.lead")}</p>
+    <a href={APPOINTMENT_URL} target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 rounded-full bg-green px-7 py-3 font-bold text-white transition-colors hover:bg-green-dark"><Icon name="calendar" class="h-4 w-4" />{t("cta.appointment")}</a>
+  </div>
+</section>
+
+<!-- Info + Form -->
+<section class="bg-[#b3cce8]">
+  <div class="container grid gap-12 py-14 lg:grid-cols-2">
+    <div data-aos="fade-right">
+      <h2 class="text-2xl text-blue sm:text-3xl">{t("contact.infoTitle")}</h2>
+      <p class="mt-4 leading-relaxed text-body">{t("contact.infoIntro")}</p>
+      <ul class="mt-7 space-y-5">
+        <li class="flex items-start gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icon name="check" class="h-5 w-5" /></span>
+          <span class="text-[15px] text-body">1004 W Linebaugh Ave Ste A,<br />Tampa, FL 33612</span>
+        </li>
+        <li class="flex items-center gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icon name="phone" class="h-5 w-5" /></span>
+          <a href={PHONE_TEL} class="text-[15px] font-semibold text-blue hover:text-green-dark">{t("cta.phone")}</a>
+        </li>
+        <li class="flex items-center gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icon name="check" class="h-5 w-5" /></span>
+          <span class="text-[15px] text-body">Fax: {FAX_DISPLAY}</span>
+        </li>
+        <li class="flex items-start gap-4">
+          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icon name="calendar" class="h-5 w-5" /></span>
+          <span class="text-[15px] text-body">{t("footer.hours").split("\n").map((l, i) => (<>{i > 0 && <br />}{l}</>))}</span>
+        </li>
+      </ul>
+      <div class="mt-7 flex flex-wrap items-center gap-3">
+        <a href={bizHref} class="inline-flex items-center gap-2 rounded-full border-2 border-blue px-5 py-2 text-[14px] font-bold text-blue transition-colors hover:bg-blue hover:text-white">{t("contact.businessProfiles")}</a>
+        <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex h-9 w-9 items-center justify-center rounded-full bg-blue/10 text-blue transition-colors hover:bg-blue hover:text-white"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg></a>
+        <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex h-9 w-9 items-center justify-center rounded-full bg-blue/10 text-blue transition-colors hover:bg-blue hover:text-white"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zm0 5.04a4.8 4.8 0 100 9.6 4.8 4.8 0 000-9.6zm0 7.92a3.12 3.12 0 110-6.24 3.12 3.12 0 010 6.24zm6.12-8.16a1.12 1.12 0 11-2.24 0 1.12 1.12 0 012.24 0z"/></svg></a>
+      </div>
+    </div>
+    <div data-aos="fade-left" class="rounded-lg border border-line bg-bg-alt/50 p-6 sm:p-8">
+      <h2 class="text-2xl text-blue sm:text-3xl">{t("contact.formTitle")}</h2>
+      <div class="mt-5"><ContactForm lang={lang} /></div>
+    </div>
+  </div>
+</section>
+
+<!-- Map -->
+<section class="bg-bg-alt">
+  <div class="container py-14">
+    <div class="text-center" data-aos="fade-up">
+      <h2 class="text-3xl text-blue sm:text-4xl">{t("contact.locationTitle")}</h2>
+      <div class="mx-auto mt-3 h-1 w-16 rounded bg-green"></div>
+    </div>
+    <div class="mt-8 overflow-hidden rounded-lg border border-line">
+      <iframe
+        title="Palm Wellness Center — 1004 W Linebaugh Ave Ste A, Tampa, FL 33612"
+        src={mapSrc}
+        width="100%" height="420" style="border:0; display:block;"
+        loading="eager" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>

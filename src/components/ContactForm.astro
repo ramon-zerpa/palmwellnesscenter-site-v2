@@ -1,0 +1,106 @@
+---
+import type { Lang } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
+---
+<form id="contact-form" novalidate class="space-y-4">
+  <p class="text-[13px] text-muted">{t("form.requiredNote")}</p>
+
+  <div>
+    <label for="cf-name" class="mb-1 block text-[14px] font-semibold text-ink">{t("contact.fName")} *</label>
+    <input id="cf-name" name="name" type="text" required maxlength="100" autocomplete="name"
+      class="w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-[15px] text-ink outline-none focus-visible:border-blue focus-visible:ring-2 focus-visible:ring-blue/30" />
+  </div>
+
+  <div>
+    <label for="cf-email" class="mb-1 block text-[14px] font-semibold text-ink">{t("contact.fEmail")} *</label>
+    <input id="cf-email" name="email" type="email" required maxlength="200" autocomplete="email" placeholder="name@example.com"
+      class="w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-[15px] text-ink outline-none focus-visible:border-blue focus-visible:ring-2 focus-visible:ring-blue/30" />
+  </div>
+
+  <div>
+    <label for="cf-message" class="mb-1 block text-[14px] font-semibold text-ink">{t("contact.fMessage")} *</label>
+    <textarea id="cf-message" name="message" required maxlength="5000" rows="5"
+      class="w-full rounded-md border border-line bg-white px-3.5 py-2.5 text-[15px] text-ink outline-none focus-visible:border-blue focus-visible:ring-2 focus-visible:ring-blue/30"></textarea>
+  </div>
+
+  <!-- Honeypot: bots fill it, humans never see it -->
+  <input type="text" name="company" tabindex="-1" autocomplete="off" class="absolute left-[-9999px]" aria-hidden="true" />
+
+  <!-- Turnstile renders here once its script lazy-loads -->
+  <div class="min-h-[65px]">
+    {siteKey ? (
+      <div class="cf-turnstile" data-sitekey={siteKey} data-theme="light" data-action="contact"></div>
+    ) : (
+      <p class="rounded-md border border-red-200 bg-red-50 px-3 py-2 text-[13px] font-medium text-red-700">
+        Turnstile site key is not configured.
+      </p>
+    )}
+  </div>
+
+  <button type="submit" class="inline-flex items-center gap-2 rounded-md bg-blue px-8 py-3 font-bold text-white transition-colors hover:bg-blue-deep focus-visible:ring-2 focus-visible:ring-blue/40">
+    {lang === "es" ? "Enviar" : "Send"}
+  </button>
+  <p id="cf-status" role="status" aria-live="polite" class="text-[14px] font-medium"></p>
+</form>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement | null;
+  const status = document.getElementById("cf-status");
+  const submit = form?.querySelector("button[type='submit']") as HTMLButtonElement | null;
+  const I18N = {
+    sending: document.documentElement.lang === "es" ? "Enviando…" : "Sending…",
+    success: document.documentElement.lang === "es"
+      ? "Gracias — recibimos tu mensaje y responderemos en un día hábil."
+      : "Thank you — we received your message and will reply within one business day.",
+    error: document.documentElement.lang === "es" ? "Algo salió mal. Inténtalo de nuevo." : "Something went wrong. Please try again.",
+    network: document.documentElement.lang === "es" ? "Error de red. Inténtalo de nuevo." : "Network error. Please try again.",
+    captcha: document.documentElement.lang === "es" ? "Completa el CAPTCHA antes de enviar." : "Please complete the CAPTCHA before submitting.",
+  };
+
+  // Lazy-load Turnstile when the form approaches the viewport
+  const sec = document.getElementById("contact-form");
+  if (sec && document.querySelector(".cf-turnstile")) {
+    const io = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        io.disconnect();
+        const s = document.createElement("script");
+        s.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+        s.async = true; s.defer = true;
+        document.body.appendChild(s);
+      }
+    }, { rootMargin: "300px" });
+    io.observe(sec);
+  }
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    const hasTurnstile = Boolean(form.querySelector(".cf-turnstile"));
+    const turnstileToken = String(new FormData(form).get("cf-turnstile-response") || "").trim();
+    if (hasTurnstile && !turnstileToken) {
+      if (status) { status.textContent = I18N.captcha; status.style.color = "#b3261e"; }
+      return;
+    }
+    if (status) { status.textContent = I18N.sending; status.style.color = "var(--color-body)"; }
+    if (submit) submit.disabled = true;
+    try {
+      const res = await fetch("/api/contact", { method: "POST", body: new FormData(form) });
+      const data = (await res.json()) as { success: boolean; error?: string };
+      if (data.success) {
+        if (status) { status.textContent = I18N.success; status.style.color = "var(--color-green-dark)"; }
+        form.reset();
+        (window as any).turnstile?.reset?.();
+      } else {
+        if (status) { status.textContent = data.error || I18N.error; status.style.color = "#b3261e"; }
+      }
+    } catch {
+      if (status) { status.textContent = I18N.network; status.style.color = "#b3261e"; }
+    } finally {
+      if (submit) submit.disabled = false;
+    }
+  });
+</script>
