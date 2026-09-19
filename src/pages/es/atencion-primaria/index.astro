@@ -1,0 +1,25 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import TopBar from "../../../components/TopBar.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import ServicePage from "../../../components/ServicePage.astro";
+import { servicePages } from "../../../data/servicePages";
+
+const path = "/es/atencion-primaria/";
+const content = servicePages["primary-care"].es;
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Atención Primaria en Tampa - Palm Wellness Center"
+  description="Atención primaria integrada en Tampa con manejo de enfermedades crónicas, atención preventiva y telemedicina. Consultas extendidas, proveedores bilingües y membresía desde $99, luego $39/mes."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <ServicePage lang="es" content={content} />
+  </main>
+  <Footer lang="es" />
+</Layout>

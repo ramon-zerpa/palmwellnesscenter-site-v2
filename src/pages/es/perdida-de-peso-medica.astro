@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import ServicePage from "../../components/ServicePage.astro";
+import { servicePages } from "../../data/servicePages";
+
+const path = "/es/perdida-de-peso-medica/";
+const content = servicePages["medical-weight-loss"].es;
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Pérdida de Peso Médica en Tampa | Programas GLP-1 | Palm Wellness Center"
+  description="Pérdida de peso supervisada médicamente en Tampa con opciones GLP-1, monitoreo de laboratorio y guía nutricional. Programa médico por $299. Llama al (813) 443-5370."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <ServicePage lang="es" content={content} />
+  </main>
+  <Footer lang="es" />
+</Layout>

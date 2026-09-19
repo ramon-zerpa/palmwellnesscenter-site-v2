@@ -19,9 +19,18 @@ export async function getStaticPaths() {
     [therapeuticExercises.path, therapeuticExercises],
     [therapeuticExercisesSpanish.path, therapeuticExercisesSpanish],
   ]);
-  const resolvedRichPages = (richpages as any[]).map(
-    (page) => therapeuticExercisesByPath.get(page.path) ?? physicalRehabilitationByPath.get(page.path) ?? page,
-  );
+  // Paths migrated to dedicated new-design pages (removed from the legacy rich renderer).
+  const migrated = new Set([
+    "/primary-care/",
+    "/es/atencion-primaria/",
+    "/medical-weight-loss/",
+    "/es/perdida-de-peso-medica/",
+  ]);
+  const resolvedRichPages = (richpages as any[])
+    .filter((page) => !migrated.has(page.path))
+    .map(
+      (page) => therapeuticExercisesByPath.get(page.path) ?? physicalRehabilitationByPath.get(page.path) ?? page,
+    );
   const trim = (s: string) => s.replace(/^\/|\/$/g, "");
   const rich = resolvedRichPages.map((p) => ({
     params: { slug: trim(p.path) },

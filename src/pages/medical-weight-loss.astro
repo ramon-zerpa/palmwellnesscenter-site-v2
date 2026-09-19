@@ -1,0 +1,25 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ServicePage from "../components/ServicePage.astro";
+import { servicePages } from "../data/servicePages";
+
+const path = "/medical-weight-loss/";
+const content = servicePages["medical-weight-loss"].en;
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Medical Weight Loss Tampa | GLP-1 Programs | Palm Wellness Center"
+  description="Medically supervised weight loss in Tampa with GLP-1 options, lab monitoring, and nutrition guidance. Physician-supervised program, $299. Call (813) 443-5370 today."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <ServicePage lang="en" content={content} />
+  </main>
+  <Footer lang="en" />
+</Layout>

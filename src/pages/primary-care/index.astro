@@ -1,0 +1,25 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import ServicePage from "../../components/ServicePage.astro";
+import { servicePages } from "../../data/servicePages";
+
+const path = "/primary-care/";
+const content = servicePages["primary-care"].en;
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Primary Care in Tampa - Palm Wellness Center"
+  description="Integrated primary care in Tampa with chronic condition management, preventive care, and telemedicine. Extended visits, bilingual providers, and a membership from $99, then $39/month."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <ServicePage lang="en" content={content} />
+  </main>
+  <Footer lang="en" />
+</Layout>
