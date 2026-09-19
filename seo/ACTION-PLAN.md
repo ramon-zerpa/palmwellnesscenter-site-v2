@@ -1,37 +1,66 @@
-# Action Plan
+# SEO / Quality Action Plan
 
-- URL: `http://localhost:4321/`
-- Overall score: `36/100`
+- **Target:** `https://palmwellnesscenter-site-v2.vercel.app/`
+- **Date:** 2026-09-19
+- **Related report:** `seo/FULL-AUDIT-REPORT.md`
 
-## Priority Fixes
+## Done during this audit
 
-1. **Missing H1 on page**
-   - Priority: `Critical`
-   - Area: `environment`
-   - Evidence: No primary content heading was detected, which weakens topical clarity.
-   - Fix: Ensure each page has exactly one descriptive H1 aligned to intent.
-2. **Average internal links per page is only 0.0 (target: 5-10).**
-   - Priority: `Critical`
-   - Area: `link_profile`
-   - Evidence: See audit output.
-   - Fix: Increase internal linking by adding contextual links within content.
-3. **Meta description is missing or out of range**
-   - Priority: `Warning`
-   - Area: `environment`
-   - Evidence: This can reduce SERP CTR and snippet quality.
-   - Fix: Update page templates to set complete title/meta/OG/Twitter tags.
-4. **Title tag needs optimization**
-   - Priority: `Warning`
-   - Area: `environment`
-   - Evidence: Title length/content is likely suboptimal for rankings and click-through.
-   - Fix: Update page templates to set complete title/meta/OG/Twitter tags.
-5. **No llms.txt found**
-   - Priority: `Warning`
-   - Area: `environment`
-   - Evidence: AI crawlers and assistants have no curated machine-readable guidance for key pages.
-   - Fix: Add `/llms.txt` at site root with concise site description and key URLs.
-6. **Performance measurement incomplete**
-   - Priority: `Info`
-   - Area: `environment`
-   - Evidence: PageSpeed API returned an error, so CWV recommendations are less reliable.
-   - Fix: Set `PAGESPEED_API_KEY` in your environment or `.env` file (see `.env.example`), then rerun. The CLI also accepts `--api-key`. Prioritize LCP/INP/CLS fixes from that output.
+1. ✅ **Fixed broken internal link** `/primary-care-membership/` (404) → locale-aware
+   `/primary-care/membership/` and `/es/atencion-primaria/membresia/`
+   (`src/components/RichSection.astro:738`).
+2. ✅ **Fixed hreflang** on all new pages — added 9 EN↔ES pairs (18 entries) to
+   `src/i18n/altmap.ts`; rebuild verified reciprocal `en`/`es`/`x-default`.
+
+## Priority fixes (pending)
+
+### P1 — before final launch
+
+1. **Logo resolution (Best Practices 96 → 100)**
+   - Evidence: LH `image-size-responsive` fails on `logo.webp` (120×60 displayed larger).
+   - Fix: request SVG or 2× raster logo from client; update header/footer image.
+
+2. **`llms.txt` quality (65/100)**
+   - Evidence: `llms_txt_checker.py` → "No links found".
+   - Fix: add key page links: `- [Primary Care](https://www.palmwellness.center/primary-care/): ...`
+
+3. **AI crawler policy in `robots.txt`**
+   - Evidence: 11 crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot-Extended, Bytespider, CCBot, anthropic-ai, FacebookBot, Amazonbot, ChatGPT-User) inherit `*`.
+   - Fix: explicitly allow/deny per business intent.
+
+4. **Thin content**
+   - Evidence: `/pricing/` 194 words; `/iv-therapy/` 238 words.
+   - Fix: expand with unique, intent-focused copy (services, what to expect, FAQ).
+
+### P2 — within 1 month
+
+5. **Structured data**
+   - Evidence: only `MedicalClinic` present.
+   - Fix: add `BreadcrumbList` site-wide; `Service`/`Offer` on `/pricing/`; `FAQPage` on pages with FAQs (FAQ schema is permitted for healthcare).
+
+6. **Internal linking & anchor text**
+   - Evidence: 18 pages with ≤1 incoming link; 16 links with no anchor text.
+   - Fix: add contextual internal links from related content; label icon-only links with `aria-label`.
+
+7. **Social meta polish**
+   - Evidence: `og:image` missing dimensions; `twitter:site`/`creator` absent.
+   - Fix: add `og:image:width/height` (1200×630) and Twitter handles if available.
+
+### P3 — verify after Cloudflare migration
+
+8. **Security headers** — confirm `public/_headers` (CSP, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy) is served on Cloudflare Pages; re-run `security_headers.py`.
+9. **Cache headers** — confirm asset caching (`cache-insight`) improves on Cloudflare.
+10. **Production Lighthouse** — re-measure on the live domain with a clean browser (this machine's audits are contaminated by AdBlock360 on real domains).
+
+## Re-run commands
+
+```powershell
+$env:PYTHONUTF8=1; $SK="C:\Users\raymo\.claude\skills\seo"
+python "$SK\scripts\robots_checker.py"  <url>
+python "$SK\scripts\llms_txt_checker.py" <url>
+python "$SK\scripts\security_headers.py" <url>
+python "$SK\scripts\social_meta.py"      <url>
+python "$SK\scripts\broken_links.py"     <url> --workers 5
+python "$SK\scripts\redirect_checker.py" <url>
+python "$SK\scripts\internal_links.py"   <url> --depth 1 --max-pages 20
+```
