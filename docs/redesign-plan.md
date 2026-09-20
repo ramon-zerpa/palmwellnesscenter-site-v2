@@ -1,9 +1,9 @@
 # Internal Pages Redesign — Plan (Home as visual reference)
 
 **Goal:** bring every internal page onto the **HomePage visual language** (same tokens,
-section rhythm, hero, cards, pills, FAQ, CTA band), redesigned **directly in Astro**
-(no Pencil), in **groups of 2 EN pages** per iteration. ES mirrors each group translated
-(same layout, `/es/...` slug).
+section rhythm, hero, cards, pills, FAQ, CTA band), designed in **Pencil** first (frame
+approved by the client) and then built **directly in Astro**, in **groups of 2 EN pages** per
+iteration. ES mirrors each group translated (same layout, `/es/...` slug).
 
 **Reference:** `src/components/HomePage.astro` (approved).
 **Tokens:** `src/styles/global.css` (`bg-bg-alt`, `bg-white`, `bg-blue-deep`, `bg-blue-pale`,
@@ -16,8 +16,9 @@ section rhythm, hero, cards, pills, FAQ, CTA band), redesigned **directly in Ast
 2. **Content is preserved** from the legacy page, but **corrected to Optantra truth**
    (`docs/optimantra-services.md`): membership **$99 initial + $39/mo**, office $39,
    new patient $65, telehealth $55, IV Therapy is **live** (not "coming soon").
-3. Migrating a "rich" page = create a dedicated Astro page **and remove its entry from
-   `src/data/richpages.json`** (avoids duplicate-route conflict).
+3. Migrating a "rich" page = create a dedicated Astro page and add its path to the `migrated`
+   `Set` in `getStaticPaths()` of `src/pages/[...slug].astro`. **Do not delete the entry from
+   `richpages.json`**: it stays as a historical record and the catch-all filters it out.
 4. Bilingual: every group ships EN + ES.
 5. One H1; keep title/meta/canonical/hreflang intact; images keep alt + dimensions.
 6. Build must stay green and page count stable (no lost routes) after each group.
@@ -57,7 +58,7 @@ flow), with pricing corrected to Optantra truth.
 1. Read the legacy content (`richpages.json` blocks) for the 2 pages.
 2. Draft corrected bilingual content into `servicePages.ts` (or the relevant data file).
 3. Create the dedicated Astro pages (EN + ES) using the shared template.
-4. Remove the 2 pages' entries from `richpages.json` (×2 for ES).
+4. Add the 2 pages' paths to the `migrated` `Set` in `[...slug].astro` (×2 for ES).
 5. `npm run build` → verify routes still 200, no orphan/broken links, hreflang intact.
 6. Screenshot/QA pass (desktop + mobile) in one batched round.
 7. Report + move to next group.
