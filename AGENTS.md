@@ -310,22 +310,31 @@ Invoke-RestMethod "https://api.vercel.com/v6/deployments?projectId=$($p.id)&limi
 Es un **preview** para revisión (tú, el jefe, el cliente). No debe aparecer en buscadores ni
 ser accesible para terceros. Hoy **no hay ninguna protección activa**: `ssoProtection` y
 `passwordProtection` están vacíos en la API, y el sitio es público en
-`https://palmwellnesscenter-site-v2.vercel.app/`.
+`https://palmwellnesscenter-site-v2.vercel.app/`. El equipo tiene **un solo miembro**
+(`ramon-zerpa`, OWNER) y plan **hobby**.
 
 Opciones evaluadas (decisión **pendiente** del cliente):
 
-| Tier | Solución | Coste | Protege de |
-|---|---|---|---|
-| 1 | `robots.txt` con `Disallow: /` + header `X-Robots-Tag: noindex` en `vercel.json` | gratis | buscadores. **No** de una persona con el enlace. Requiere quitarlo al lanzar |
-| 2 | Vercel Authentication en *preview deployments* y revisar con previews (`vercel deploy` sin `--prod`) en vez de producción | gratis (hobby) | cualquiera sin cuenta en el equipo: recibe 401. Obliga a invitar a Vercel al jefe y al cliente |
-| 3 | **Password Protection** (Vercel Pro) con una contraseña compartida | ~Pro | cualquiera sin la contraseña. La mejor experiencia para revisores no técnicos: no hay que crear cuentas |
+| Tier | Solución | Coste | Protege de | Fricción |
+|---|---|---|---|---|
+| **1** | **Vercel Authentication** con scope **All Deployments** (Settings → Deployment Protection) | **gratis en todos los planes** | todo el mundo, buscadores incluidos: sin sesión se recibe 401 | cada revisor necesita cuenta de Vercel + invitación al equipo |
+| 2 | **Password Protection** | Pro, **$20/mes por proyecto** (no existe en Hobby) | cualquiera sin la contraseña | ninguna: se comparte una contraseña |
+| 3 | `robots.txt` con `Disallow: /` + header `X-Robots-Tag: noindex` en `vercel.json` | gratis | buscadores. **No** de una persona con el enlace | hay que retirarlo antes del lanzamiento |
+| 4 | Mover el preview a **Cloudflare Pages + Cloudflare Access** | gratis (Zero Trust, hasta 50 usuarios) | cualquiera sin un correo autorizado (login por código de un solo uso) | migrar el hosting. A cambio revive el formulario de contacto, los `_redirects` y los `_headers`, hoy inertes |
 
-En hobby, la protección de Vercel solo cubre **preview deployments**; proteger también producción
-exige plan Pro. Cualquier opción de las tres evita que los buscadores vean el contenido, pero
-solo la 2 y la 3 impiden el acceso humano.
+**El Tier 1 es la respuesta correcta por defecto** y es reciente: hasta el **2026-09-09** proteger
+un dominio de producción exigía el add-on *Advanced Deployment Protection* de **$150/mes**; desde
+esa fecha Vercel Authentication con scope *All Deployments* es gratis en todos los planes. No
+requiere tocar código, no deja `noindex` en el HTML y por tanto **no hay nada que recordar
+deshacer el día del lanzamiento**.
 
-**Si se aplica el Tier 1, hay que retirarlo antes de apuntar el dominio real**, o el sitio de
-producción nacerá con `noindex` y no se indexará nunca. Es el riesgo principal de esa opción.
+El Tier 3 sigue siendo útil como **red de seguridad** (por si alguien desactiva la protección),
+pero con el Tier 1 activo ya no hace falta. Si se aplica el 3 en solitario, **hay que retirarlo
+antes de apuntar el dominio real**, o el sitio de producción nacerá con `noindex` y no se
+indexará nunca: es su riesgo principal.
+
+Pasar a Password Protection (Tier 2) solo tiene sentido si crear cuentas de Vercel al jefe y al
+cliente resulta un obstáculo; el plan Pro cuesta $20/mes **por proyecto**.
 
 ---
 
