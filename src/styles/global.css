@@ -159,6 +159,127 @@
     .prose table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .prose th, .prose td { min-width: 15rem; }
   }
+
+  /* ============================================================
+     Hero motion primitives — reusable on every page hero.
+     Budget rules so this cannot cost page speed:
+       · Only `transform` and `opacity` animate (compositor-only).
+         The single exception is the one-shot clip-path wipe below,
+         which is a small, 900ms, non-repeating paint.
+       · Every background is a gradient or an inline data-URI pattern,
+         rasterised once into its own layer. No animated filters, no
+         blurs, no shadows, no backdrop-filter.
+       · Durations are 26-42s and the layer count is fixed (4), so the
+         cost is the same on a 1-section page and a 20-section page.
+       · Everything is decorative: `aria-hidden`, no layout impact, so
+         no CLS. Wrapped in the reduced-motion block further down.
+     ============================================================ */
+
+  /* --- Media entrance + permanent micro-drift -------------------
+     The frame carries the resting shadow; the inner element carries the
+     overflow clip and the reveal. They have to be two elements: `clip-path`
+     clips an element's own box-shadow away, so a shadow on the clipping node
+     would never show. */
+  .hero-media-frame {
+    position: relative;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 44px -26px rgba(0, 0, 0, 0.3);
+  }
+  .hero-media {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    animation: hero-wipe 900ms cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+  .hero-media__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation:
+      hero-settle 1100ms cubic-bezier(0.22, 0.7, 0.24, 1) both,
+      hero-drift 26s ease-in-out 1.1s infinite;
+  }
+  @keyframes hero-wipe {
+    from { clip-path: inset(0 0 0 100%); }
+    to   { clip-path: inset(0 0 0 0); }
+  }
+  @keyframes hero-settle {
+    from { transform: scale(1.08) translate3d(48px, 0, 0); opacity: 0; }
+    to   { transform: scale(1.02) translate3d(0, 0, 0);    opacity: 1; }
+  }
+  /* Hand-off is exact: drift starts where settle ends (scale 1.02, no offset),
+     so nothing jumps when the second animation takes over. Amplitude is tuned
+     to sit at the edge of perception — visible if you look, never distracting. */
+  @keyframes hero-drift {
+    0%, 100% { transform: scale(1.02) translate3d(0, 0, 0); }
+    50%      { transform: scale(1.05) translate3d(-6px, 4px, 0); }
+  }
+
+  /* --- Decorative layer that holds the background motion -------- */
+  .hero-ambient {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* --- Heart badge over the hero media: constant heartbeat ------ */
+  .hero-heart {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--color-blue-deep);
+    color: #fff;
+    box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.45);
+    animation:
+      hero-heart-in 500ms cubic-bezier(0.22, 0.7, 0.24, 1) 800ms both,
+      hero-heart-beat 1.8s ease-in-out 1.3s infinite;
+  }
+  @keyframes hero-heart-in {
+    from { opacity: 0; transform: scale(0.5); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  /* Two thumps then a rest, so it reads as a pulse and not a blink. */
+  @keyframes hero-heart-beat {
+    0%, 58%, 100% { transform: scale(1); }
+    12%           { transform: scale(1.13); }
+    24%           { transform: scale(1); }
+    36%           { transform: scale(1.18); }
+    48%           { transform: scale(1); }
+  }
+
+  /* --- Monitor trace: one ECG period tiled, slid by exactly one
+         period so the loop is seamless and never repaints.
+         `bottom` is half the hero's bottom padding minus half the trace
+         height, so the trace sits optically centred in the gap between the
+         content above and the end of the section. Keep it in step with the
+         hero's pb (104px below lg, 128px at lg). --------------------- */
+  .hero-pulse {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    height: 64px;
+    width: calc(100% + 480px);
+    opacity: 0.4;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='480' height='64' viewBox='0 0 480 64'%3E%3Cpath d='M0 44 H28 l8 0 l6 -4 l6 -20 l6 30 l6 -18 l6 8 l6 4 H188 l8 0 l6 -4 l6 -20 l6 30 l6 -18 l6 8 l6 4 H348 l8 0 l6 -4 l6 -20 l6 30 l6 -18 l6 8 l6 4 H480' fill='none' stroke='%23afcbff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: repeat-x;
+    background-size: 480px 64px;
+    animation: hero-pulse-slide 40s linear infinite;
+  }
+  /* lg — 1024px: hero pb is 128px there, so the centred offset is 32px. */
+  @media (min-width: 64rem) {
+    .hero-pulse { bottom: 32px; }
+  }
+  @keyframes hero-pulse-slide {
+    to { transform: translate3d(-480px, 0, 0); }
+  }
 }
 
 /* Below xl — 1280px: reserve room for the mobile sticky action bar so it
@@ -179,6 +300,13 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  /* Decorative hero motion: switch it off outright instead of running the
+     infinite loops at a 0.01ms duration. Base styles are the end state, so the
+     image stays fully visible. */
+  .hero-media,
+  .hero-media__img,
+  .hero-heart,
+  .hero-pulse { animation: none !important; }
 }
 
 /* Visible keyboard focus for interactive elements (UA ring was inconsistent) */

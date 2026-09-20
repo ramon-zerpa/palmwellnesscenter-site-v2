@@ -1,0 +1,71 @@
+---
+// In-page section navigation used at the top of a page's content.
+// Renders as an ordinary anchor list (works with JS disabled) and upgrades to
+// hash-free smooth scrolling via the script below.
+interface Props {
+  label: string;
+  items: { label: string; href: string }[];
+}
+const { label, items } = Astro.props;
+
+const pillCls =
+  "inline-flex rounded-full bg-bg-alt px-4 py-2 text-[14px] font-semibold text-body transition-all duration-200 hover:-translate-y-0.5 hover:bg-blue-pale hover:text-blue-deep hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.22)]";
+---
+
+<nav
+  class="border-b border-line bg-white lg:sticky lg:top-[70px] lg:z-40"
+  aria-label={label}
+  data-anchor-nav
+>
+  <div class="shell flex flex-col gap-2.5 py-6 sm:flex-row sm:items-center sm:gap-4 sm:py-7">
+    <span class="shrink-0 text-[11px] font-bold uppercase tracking-[0.1em] text-muted">{label}</span>
+    <ul class="flex flex-wrap gap-2">
+      {items.map((item) => (
+        <li>
+          <a href={item.href} class={pillCls}>{item.label}</a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  // Scroll to the section without writing "#section" into the address bar.
+  // The hrefs stay real anchors, so keyboard activation, "open in new tab",
+  // middle-click and no-JS all keep working exactly as before.
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  document.querySelectorAll<HTMLElement>("[data-anchor-nav]").forEach((nav) => {
+    nav.addEventListener("click", (event) => {
+      const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#"]');
+      if (!link) return;
+      // Only plain left-clicks: leave modified clicks to the browser.
+      if (
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+
+      const id = decodeURIComponent(link.hash.slice(1));
+      const target = id ? document.getElementById(id) : null;
+      if (!target) return;
+
+      event.preventDefault();
+      // `block: "start"` honours each section's scroll-margin, which is what
+      // keeps the heading clear of the sticky header + this bar.
+      target.scrollIntoView({
+        behavior: reduced.matches ? "auto" : "smooth",
+        block: "start",
+      });
+      // Move the reading position too, without a second scroll or a focus ring
+      // (the global rule deliberately skips tabindex="-1").
+      if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+      target.focus({ preventScroll: true });
+    });
+  });
+</script>

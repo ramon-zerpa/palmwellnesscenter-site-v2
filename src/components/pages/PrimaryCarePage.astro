@@ -2,6 +2,7 @@
 import type { Lang } from "../../i18n/ui";
 import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
 import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -9,13 +10,22 @@ const { lang } = Astro.props;
 const content = {
   en: {
     hero: {
-      eyebrow: "Primary Care",
+      eyebrow: "Primary Care in Tampa",
       title: "Your local primary care provider in Tampa",
       lead: "Integrated primary care, chronic disease management, and preventive health - coordinated with physical therapy and rehabilitation for complete wellness.",
-      badges: ["Physician-supervised providers", "Extended 60-minute visits", "Same-day & next-day", "Telemedicine across Florida", "Bilingual EN/ES"],
+      chips: [
+        { icon: "badge-check", label: "Physician-supervised" },
+        { icon: "calendar-check", label: "Same-day & next-day" },
+        { icon: "video", label: "Telemedicine in Florida" },
+      ],
       note: "Most insurance accepted · Medicare · Free transportation for eligible patients",
       image: "/images/comprehensive-primary-care-that-works-with-your-body.webp",
       imageAlt: "A primary care provider seeing a patient at Palm Wellness Center in Tampa",
+      rail: [
+        { value: "60 min", label: "First visit" },
+        { value: "30-45 min", label: "Follow-ups" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
     },
     subnav: [
       { label: "Services", href: "#services" },
@@ -31,15 +41,15 @@ const content = {
         "Palm Wellness Center provides integrated primary care that coordinates with chiropractic, physical therapy, and rehabilitation services - so your medical care supports your body's natural healing and long-term wellness.",
         "Unlike the rushed 10-15 minute visits common in many healthcare systems, we offer extended 30 and 60 minute appointments that let your provider listen, explain, and tailor care to your needs - whether you are managing chronic conditions, recovering from injury, or maintaining preventive health.",
       ],
-      stats: [
-        { value: "60 min", label: "First visit" },
-        { value: "30-45 min", label: "Follow-ups" },
-        { value: "EN/ES", label: "Always bilingual" },
+      compare: [
+        { tag: "Typical clinic visit", value: "10-15 min", body: "Rushed appointments where you repeat your history and leave with unanswered questions." },
+        { tag: "At Palm Wellness", value: "30-60 min", body: "Extended visits that let your provider listen, explain, and build a plan with you." },
       ],
     },
     services: {
       heading: "Our primary care services",
       lead: "Five core services, one consistent provider who knows your history.",
+      eyebrow: "Our Services",
       image: "/images/our-primary-care-services.webp",
       imageAlt: "Primary care services at Palm Wellness Center",
       items: [
@@ -51,8 +61,11 @@ const content = {
       ],
     },
     membership: {
+      eyebrow: "Membership",
       heading: "Primary care membership",
       lead: "Designed for patients who want consistent access to a provider - without rushed visits and without a long-term contract.",
+      clarity: "No membership required - you can also pay per visit, in person or by telehealth.",
+      bestValue: "Best value",
       member: {
         tag: "Membership",
         price: "$99",
@@ -80,12 +93,22 @@ const content = {
       },
     },
     integrated: {
+      eyebrow: "Integrated Wellness",
       heading: "Integrated wellness services",
       lead: "Because your health is connected, so is our care.",
+      relatedLabel: "Related services",
       items: [
         { icon: "scale", title: "Medical Weight Loss", body: "Physician-supervised programs that integrate nutrition guidance, GLP-1 medications when appropriate, and activity planning coordinated with physical therapy.", href: "/medical-weight-loss/" },
         { icon: "drop", title: "IV Therapy & Injections", body: "Medically supervised infusions and injectable nutrients - including B12 and vitamin D - prescribed based on clinical evaluation.", href: "/iv-therapy/" },
         { icon: "video", title: "Telemedicine & Virtual Care", body: "Follow-ups, medication management, lab reviews, and chronic care online. In-person visits are recommended when clinically necessary.", href: "/primary-care/telemedicine/" },
+      ],
+      related: [
+        { label: "Physical Rehabilitation", href: "/physical-rehabilitation/" },
+        { label: "Chiropractic Care", href: "/chiropractor/" },
+        { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
+        { label: "IV Therapy", href: "/iv-therapy/" },
+        { label: "Auto Accident Rehabilitation", href: "/car-accident-rehabilitation/" },
+        { label: "Massage Therapy", href: "/massage-therapy/" },
       ],
     },
     why: {
@@ -107,14 +130,18 @@ const content = {
       heading: "Professional and compassionate care you can trust",
       paras: [
         "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered primary care. Our team follows established clinical standards and prioritizes clear communication, thoughtful treatment planning, and continuity of care.",
-        "Patients can be seen in person or through secure telehealth visits for select appointments. We proudly serve Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+        "Patients can be seen in person or through secure telehealth visits for select appointments.",
       ],
+      image: "/images/primary-care-vs-urgent-care-inner-img-1.webp",
+      imageAlt: "A provider reviewing care options with a patient",
       hoursLabel: "Hours",
       hours: [
         { day: "Monday - Friday", time: "10 AM - 7 PM" },
         { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
         { day: "Sunday", time: "Closed" },
       ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
     },
     transport: {
       title: "Need a ride? We've got you covered.",
@@ -123,6 +150,7 @@ const content = {
       imageAlt: "Courtesy transportation for patients in Tampa Bay",
     },
     choose: {
+      eyebrow: "Why Patients Choose",
       heading: "Why patients choose Palm Wellness Center",
       lead: "Primary care led by an experienced Physician Assistant with advanced training in nutrition, preventive medicine, and chronic disease management.",
       items: [
@@ -135,16 +163,16 @@ const content = {
       ],
     },
     team: {
+      eyebrow: "Our Care Team",
       heading: "Meet your medical team",
       name: "Leivys C. Marsall, PA, ACN",
-      cred: "Board-Certified Physician Assistant · Advanced Certification in Nutrition",
-      bio: [
-        "Leivys C. Marsall is a Board-Certified Physician Assistant with Advanced Certification in Nutrition (ACN), specializing in preventive medicine, metabolic health, and comprehensive primary care.",
-        "With extensive experience in family medicine, chronic disease management, and medical weight loss, PA Marsall combines medical expertise with a holistic, patient-centered approach to help patients achieve sustainable health transformations. Fluent in English and Spanish.",
-      ],
+      initials: "LM",
+      cred: "Board-Certified Physician Assistant - Advanced Certification in Nutrition",
+      bio: "Leivys C. Marsall specializes in preventive medicine, metabolic health, and comprehensive primary care, with extensive experience in family medicine, chronic disease management, and medical weight loss.",
       quote: "Medicine is art, science, and purpose. We don't just treat disease - we transform lives through prevention and knowledge.",
     },
     steps: {
+      eyebrow: "How to Get Started",
       heading: "How to get started",
       items: [
         { title: "Call or book online", body: "Call (813) 443-5370 or schedule online 24/7." },
@@ -154,7 +182,9 @@ const content = {
       note: "Medical services are provided under physician supervision in accordance with Florida state regulations.",
     },
     faq: {
+      eyebrow: "FAQ",
       heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through coverage, scheduling, and what to expect on your first visit.",
       items: [
         { q: "Do I need a referral to see a primary care provider?", a: "Often, no referral is required. However, some insurance and Medicare plans may request one from your existing provider. Our administrative team can verify your coverage and help coordinate any needed referrals." },
         { q: "What should I bring to my first appointment?", a: "Please bring a valid ID, insurance card, current medication list, and any relevant medical records from previous providers. If you have recent lab work or imaging, we can review those results during your visit." },
@@ -165,37 +195,37 @@ const content = {
       ],
     },
     area: {
+      eyebrow: "Service Area",
       heading: "Proudly serving Tampa and surrounding neighborhoods",
       lead: "Located in the heart of Tampa at 1004 W Linebaugh Ave, we serve patients from across Hillsborough County and nearby communities.",
       places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
       note: "Free transportation is available for eligible patients throughout Tampa Bay, making our centrally located clinic easy to reach - whether you are recovering from an injury, managing chronic pain, or starting a medical weight loss program.",
-    },
-    related: {
-      heading: "Related services",
-      links: [
-        { label: "Physical Rehabilitation", href: "/physical-rehabilitation/" },
-        { label: "Chiropractic Care", href: "/chiropractor/" },
-        { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
-        { label: "IV Therapy", href: "/iv-therapy/" },
-        { label: "Auto Accident Rehabilitation", href: "/car-accident-rehabilitation/" },
-        { label: "Massage Therapy", href: "/massage-therapy/" },
-      ],
+      contactNote: "Free transportation for eligible patients - ask when you book.",
     },
     cta: {
       title: "Ready to experience integrated primary care?",
       lead: "Choose a primary care home that connects your everyday health, preventive visits, and wellness goals in one place.",
     },
-    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more about" },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learnMore: "Learn more", onThisPage: "On this page" },
   },
   es: {
     hero: {
-      eyebrow: "Atención Primaria",
+      eyebrow: "Atención Primaria en Tampa",
       title: "Tu proveedor de atención primaria local en Tampa",
       lead: "Atención primaria integrada, manejo de enfermedades crónicas y salud preventiva, coordinadas con fisioterapia y rehabilitación para un bienestar completo.",
-      badges: ["Proveedores con supervisión médica", "Citas extendidas de 60 minutos", "Mismo día y al día siguiente", "Telemedicina en toda Florida", "Bilingüe EN/ES"],
+      chips: [
+        { icon: "badge-check", label: "Supervisión médica" },
+        { icon: "calendar-check", label: "Mismo día y al día siguiente" },
+        { icon: "video", label: "Telemedicina en Florida" },
+      ],
       note: "Aceptamos la mayoría de seguros · Medicare · Transporte gratis para pacientes elegibles",
       image: "/images/comprehensive-primary-care-that-works-with-your-body.webp",
       imageAlt: "Proveedor de atención primaria atendiendo a un paciente en Palm Wellness Center en Tampa",
+      rail: [
+        { value: "60 min", label: "Primera visita" },
+        { value: "30-45 min", label: "Seguimientos" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
     },
     subnav: [
       { label: "Servicios", href: "#services" },
@@ -211,13 +241,13 @@ const content = {
         "Palm Wellness Center ofrece atención primaria integrada que se coordina con servicios de quiropráctica, fisioterapia y rehabilitación, para que tu atención médica apoye la curación natural del cuerpo y el bienestar a largo plazo.",
         "A diferencia de las visitas apresuradas de 10 a 15 minutos comunes en muchos sistemas de salud, ofrecemos citas extendidas de 30 y 60 minutos que permiten a tu proveedor escucharte, explicarte y adaptar la atención a tus necesidades - ya sea que estés manejando condiciones crónicas, recuperándote de una lesión o manteniendo una salud preventiva.",
       ],
-      stats: [
-        { value: "60 min", label: "Primera visita" },
-        { value: "30-45 min", label: "Seguimientos" },
-        { value: "EN/ES", label: "Siempre bilingüe" },
+      compare: [
+        { tag: "Consulta típica", value: "10-15 min", body: "Citas apresuradas donde repites tu historial y sales con preguntas sin responder." },
+        { tag: "En Palm Wellness", value: "30-60 min", body: "Citas extendidas que permiten a tu proveedor escucharte, explicarte y crear un plan contigo." },
       ],
     },
     services: {
+      eyebrow: "Nuestros Servicios",
       heading: "Nuestros servicios de atención primaria",
       lead: "Cinco servicios esenciales, un solo proveedor que conoce tu historial.",
       image: "/images/our-primary-care-services.webp",
@@ -231,8 +261,11 @@ const content = {
       ],
     },
     membership: {
+      eyebrow: "Membresía",
       heading: "Membresía de atención primaria",
       lead: "Diseñada para pacientes que quieren acceso constante a un proveedor, sin visitas apresuradas y sin contrato a largo plazo.",
+      clarity: "No necesitas membresía - también puedes pagar por visita, en persona o por telesalud.",
+      bestValue: "Mejor valor",
       member: {
         tag: "Membresía",
         price: "$99",
@@ -260,12 +293,22 @@ const content = {
       },
     },
     integrated: {
+      eyebrow: "Bienestar Integrado",
       heading: "Servicios de bienestar integrado",
       lead: "Como tu salud está conectada, nuestra atención también lo está.",
+      relatedLabel: "Servicios relacionados",
       items: [
         { icon: "scale", title: "Pérdida de Peso Médica", body: "Programas supervisados por médicos que integran orientación nutricional, medicamentos GLP-1 cuando corresponde y planificación de actividad coordinada con fisioterapia.", href: "/es/perdida-de-peso-medica/" },
         { icon: "drop", title: "Terapia IV e Inyecciones", body: "Infusiones y nutrientes inyectables supervisados médicamente - incluidas opciones de B12 y vitamina D - según evaluación clínica.", href: "/es/terapia-iv/" },
         { icon: "video", title: "Telemedicina y Atención Virtual", body: "Seguimientos, manejo de medicamentos, revisión de laboratorios y cuidado crónico en línea. Recomendamos visitas en persona cuando es clínicamente necesario.", href: "/es/atencion-primaria/telemedicina/" },
+      ],
+      related: [
+        { label: "Fisioterapia", href: "/es/fisioterapia/" },
+        { label: "Quiropráctica", href: "/es/quiropractico/" },
+        { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
+        { label: "Terapia IV", href: "/es/terapia-iv/" },
+        { label: "Rehabilitación por Accidente de Auto", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
+        { label: "Terapia de Masajes", href: "/es/terapia-de-masajes/" },
       ],
     },
     why: {
@@ -287,14 +330,18 @@ const content = {
       heading: "Atención profesional y compasiva en la que puedes confiar",
       paras: [
         "Palm Wellness Center está dirigido por profesionales médicos y de rehabilitación con licencia, comprometidos con una atención primaria segura y centrada en el paciente. Nuestro equipo sigue los estándares clínicos establecidos y prioriza la comunicación clara y la continuidad de la atención.",
-        "Los pacientes pueden ser atendidos en persona o por telesalud segura para citas selectas. Servimos con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+        "Los pacientes pueden ser atendidos en persona o por telesalud segura para citas selectas.",
       ],
+      image: "/images/primary-care-vs-urgent-care-inner-img-1.webp",
+      imageAlt: "Proveedor revisando opciones de atención con un paciente",
       hoursLabel: "Horario",
       hours: [
         { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
         { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
         { day: "Domingo", time: "Cerrado" },
       ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
     },
     transport: {
       title: "¿Necesitas transporte? Lo tenemos cubierto.",
@@ -303,6 +350,7 @@ const content = {
       imageAlt: "Transporte de cortesía para pacientes en Tampa Bay",
     },
     choose: {
+      eyebrow: "Por Qué Elegirnos",
       heading: "Por qué los pacientes eligen Palm Wellness Center",
       lead: "Atención primaria dirigida por una Asistente Médica con formación avanzada en nutrición, medicina preventiva y manejo de enfermedades crónicas.",
       items: [
@@ -315,16 +363,16 @@ const content = {
       ],
     },
     team: {
+      eyebrow: "Nuestro Equipo",
       heading: "Conoce a tu equipo médico",
       name: "Leivys C. Marsall, PA, ACN",
-      cred: "Asistente Médica Certificada · Certificación Avanzada en Nutrición",
-      bio: [
-        "Leivys C. Marsall es una Asistente Médica Certificada con Certificación Avanzada en Nutrición (ACN), especializada en medicina preventiva, salud metabólica y atención primaria integral.",
-        "Con amplia experiencia en medicina familiar, manejo de enfermedades crónicas y pérdida de peso médica, combina experiencia médica con un enfoque holístico y centrado en el paciente. Habla inglés y español con fluidez.",
-      ],
+      initials: "LM",
+      cred: "Asistente Médica Certificada - Certificación Avanzada en Nutrición",
+      bio: "Leivys C. Marsall está especializada en medicina preventiva, salud metabólica y atención primaria integral, con amplia experiencia en medicina familiar, manejo de enfermedades crónicas y pérdida de peso médica.",
       quote: "La medicina es arte, ciencia y propósito. No solo tratamos enfermedades - transformamos vidas a través de la prevención y el conocimiento.",
     },
     steps: {
+      eyebrow: "Cómo Comenzar",
       heading: "Cómo comenzar",
       items: [
         { title: "Llama o reserva en línea", body: "Llama al (813) 443-5370 o agenda en línea 24/7." },
@@ -334,7 +382,9 @@ const content = {
       note: "Los servicios médicos se proporcionan bajo supervisión médica de acuerdo con las regulaciones del estado de Florida.",
     },
     faq: {
+      eyebrow: "Preguntas",
       heading: "Preguntas frecuentes",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará tu cobertura, cómo agendar y qué esperar en tu primera visita.",
       items: [
         { q: "¿Necesito una referencia para ver a un proveedor de atención primaria?", a: "Por lo general, no se requiere referencia. Sin embargo, algunos planes de seguro y Medicare pueden solicitarla a tu proveedor actual. Nuestro equipo administrativo puede verificar tu cobertura y ayudar a coordinar las referencias necesarias." },
         { q: "¿Qué debo traer a mi primera cita?", a: "Trae una identificación válida, tarjeta de seguro, lista de medicamentos actuales y cualquier historial médico relevante de proveedores anteriores. Si tienes laboratorios o imágenes recientes, podemos revisarlos durante tu visita." },
@@ -345,47 +395,23 @@ const content = {
       ],
     },
     area: {
+      eyebrow: "Área de Servicio",
       heading: "Sirviendo con orgullo a Tampa y sus vecindarios",
       lead: "Ubicados en el corazón de Tampa en 1004 W Linebaugh Ave, atendemos a pacientes de todo el condado de Hillsborough y comunidades cercanas.",
       places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
       note: "Ofrecemos transporte gratuito para pacientes elegibles en toda la Bahía de Tampa, lo que facilita el acceso a nuestra clínica céntrica - ya sea que te recuperes de una lesión, controles el dolor crónico o inicies un programa de pérdida de peso médica.",
-    },
-    related: {
-      heading: "Servicios relacionados",
-      links: [
-        { label: "Fisioterapia", href: "/es/fisioterapia/" },
-        { label: "Quiropráctica", href: "/es/quiropractico/" },
-        { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
-        { label: "Terapia IV", href: "/es/terapia-iv/" },
-        { label: "Rehabilitación por Accidente de Auto", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
-        { label: "Terapia de Masajes", href: "/es/terapia-de-masajes/" },
-      ],
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
     },
     cta: {
       title: "¿Listo para experimentar la atención primaria integrada?",
       lead: "Elige un hogar de atención primaria que conecte tu salud cotidiana, tus visitas preventivas y tus metas de bienestar en un solo lugar.",
     },
-    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más sobre" },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learnMore: "Ver más", onThisPage: "En esta página" },
   },
 }[lang];
 
 const bookAttrs = { target: "_blank", rel: "noopener" } as const;
 const l = content.labels;
-
-const media = {
-  intro: "/images/primary-care-vs-urgent-care-inner-img-1.webp",
-  membership: "/images/primary-care-membership.webp",
-  integrated: [
-    "/images/medical-weight-loss-program.webp",
-    "/images/placeholders/iv-therapy.svg",
-    "/images/placeholders/telemedicine.svg",
-  ],
-  trust: "/images/why-choose-palm-wellness-center-in-tampa.webp",
-  choose: "/images/doctor-helping-patient-with-physical-therapy.webp",
-  team: "/images/placeholders/care-team.svg",
-  area: "/images/things-to-do-in-tampa-min.webp",
-  faq: "/images/primary-care-vs-urgent-care-inner-img-2.webp",
-};
 
 const supervising = {
   en: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides medical oversight that ensures safe, guideline-aligned care across every service." },
@@ -394,86 +420,110 @@ const supervising = {
 
 const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
 
-const eyebrow = {
-  en: { services: "Our Services", membership: "Membership", integrated: "Integrated Wellness", choose: "Why Patients Choose", steps: "How to Get Started", faq: "FAQ", area: "Service Area" },
-  es: { services: "Nuestros Servicios", membership: "Membresía", integrated: "Bienestar Integrado", choose: "Por Qué Elegirnos", steps: "Cómo Comenzar", faq: "Preguntas", area: "Área de Servicio" },
-}[lang];
+// Single hover language: a 2px lift plus ONE soft black shadow. Never a tinted
+// shadow, so nothing reads as a coloured glow, and deliberately light so it
+// stays quiet. It belongs to things the user can act on, or to the single card
+// that fronts an action — never to both at once (a button inside a hovering
+// card used to fire two shadows).
+const hover = "transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.22)]";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
 ---
 
 <!-- HERO -->
-<section class="bg-bg-alt">
-  <div class="shell grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
-    <div class="flex flex-col items-start gap-5">
-      <span class="inline-flex rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{content.hero.eyebrow}</span>
-      <h1 class="text-4xl leading-[1.08] text-ink sm:text-5xl">{content.hero.title}</h1>
-      <p class="max-w-xl text-[18px] leading-relaxed text-body">{content.hero.lead}</p>
-      <ul class="flex flex-wrap gap-x-5 gap-y-2">
-        {content.hero.badges.map((b) => (
-          <li class="flex items-center gap-2 text-[13.5px] font-semibold text-ink">
-            <Icon name="check" class="h-4 w-4 shrink-0 text-green-dark" />{b}
-          </li>
-        ))}
-      </ul>
-      <div class="flex flex-wrap gap-3">
-        <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
-          <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
-        </a>
-        <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue transition-colors hover:bg-blue-pale">
-          <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
-        </a>
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="stethoscope" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
       </div>
-      <p class="text-[13px] text-muted">{content.hero.note}</p>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
     </div>
-    <div class="relative">
-      <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="h-[460px] w-full rounded-lg object-cover" />
-    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
   </div>
 </section>
 
-<!-- ANCHOR NAV -->
-<nav class="border-b border-line bg-white lg:sticky lg:top-[78px] lg:z-40" aria-label="On this page">
-  <div class="shell flex gap-6 overflow-x-auto py-3.5">
-    {content.subnav.map((s) => (
-      <a href={s.href} class="whitespace-nowrap text-[14px] font-semibold text-body transition-colors hover:text-blue">{s.label}</a>
-    ))}
-  </div>
-</nav>
+<!-- ANCHOR NAV — in flow after the hero; sticks flush to the bottom edge of the
+     sticky primary nav (header is 70px at lg, 64px below), so no gap appears. -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
 
 <!-- INTRO -->
-<section class="bg-white" id="about">
-  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+<section class="bg-white">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
     <div class="flex flex-col gap-5">
-      <h2 class="text-3xl leading-tight text-ink sm:text-[2.3rem]">{content.intro.heading}</h2>
-      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[17px] leading-relaxed text-body">{p}</p>)}
-      <dl class="mt-2 grid gap-4 border-t border-line pt-6 sm:grid-cols-3">
-        {content.intro.stats.map((s) => (
-          <div class="flex flex-col gap-1">
-            <dt class="text-[20px] font-bold text-blue-deep">{s.value}</dt>
-            <dd class="text-[13.5px] uppercase tracking-wide text-muted">{s.label}</dd>
-          </div>
-        ))}
-      </dl>
+      <h2 class={h2Cls}>{content.intro.heading}</h2>
+      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
     </div>
-    <img src={media.intro} width="560" height="520" alt={content.intro.heading} loading="lazy" decoding="async" class="h-[520px] w-full rounded-lg object-cover" />
+    <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-1">
+      {content.intro.compare.map((c, i) => (
+        <div class={i === 1
+          ? `flex flex-col gap-2.5 rounded-lg bg-blue-deep p-7 ${hover}`
+          : `flex flex-col gap-2.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+          <p class={i === 1 ? "text-[11px] font-bold uppercase tracking-[0.1em] text-blue-tint" : "text-[11px] font-bold uppercase tracking-[0.1em] text-muted"}>{c.tag}</p>
+          <p class={i === 1 ? "font-titles text-[34px] font-bold leading-none text-white" : "font-titles text-[34px] font-bold leading-none text-ink"}>{c.value}</p>
+          <p class={i === 1 ? "text-[15px] leading-[1.55] text-blue-tint" : "text-[15px] leading-[1.55] text-body"}>{c.body}</p>
+        </div>
+      ))}
+    </div>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section class="scroll-mt-24 bg-bg-alt" id="services">
-  <div class="shell grid gap-12 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
-    <div class="flex flex-col gap-4 lg:sticky lg:top-32 lg:self-start">
-      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.services}</span>
-      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.services.heading}</h2>
-      <p class="max-w-[42ch] text-[16px] leading-relaxed text-body">{content.services.lead}</p>
-      <img src={content.services.image} width="480" height="360" alt={content.services.imageAlt} loading="lazy" decoding="async" class="mt-2 w-full rounded-lg object-cover" />
+<section id="services" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid items-start gap-12 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-[18px]">
+      <span class={eyebrowCls}>{content.services.eyebrow}</span>
+      <h2 class={h2Cls}>{content.services.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-body">{content.services.lead}</p>
+      <img src={content.services.image} width="480" height="360" alt={content.services.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover lg:h-[300px]" />
     </div>
     <ul class="flex flex-col">
-      {content.services.items.map((s) => (
-        <li class="flex items-start gap-5 border-t border-line py-7 first:border-t-0 first:pt-0">
-          <span class="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-white text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
+      {content.services.items.map((s, i) => (
+        <li class={`flex items-start gap-5 pb-7 ${i > 0 ? "border-t border-line pt-7" : ""}`}>
+          <span class="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-white text-blue-deep"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
           <div class="flex flex-col gap-1.5">
-            <h3 class="text-[20px] text-ink">{s.title}</h3>
-            <p class="max-w-[60ch] text-[15px] leading-relaxed text-body">{s.body}</p>
+            <div class="flex items-center gap-3">
+              <h3 class="flex-1 font-titles text-[19px] leading-[1.25] text-ink sm:text-[20px]">{s.title}</h3>
+              <span class="text-[13px] font-bold text-muted">{String(i + 1).padStart(2, "0")}</span>
+            </div>
+            <p class="max-w-[62ch] text-[15px] leading-[1.6] text-body">{s.body}</p>
           </div>
         </li>
       ))}
@@ -482,44 +532,49 @@ const eyebrow = {
 </section>
 
 <!-- MEMBERSHIP -->
-<section class="scroll-mt-24 bg-white" id="membership">
-  <div class="shell flex flex-col gap-10 py-16">
-    <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+<section id="membership" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_320px] lg:items-end lg:gap-12">
       <div class="flex flex-col gap-4">
-        <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.membership}</span>
-        <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.membership.heading}</h2>
-        <p class="text-[17px] leading-relaxed text-body">{content.membership.lead}</p>
+        <span class={eyebrowCls}>{content.membership.eyebrow}</span>
+        <h2 class={h2Cls}>{content.membership.heading}</h2>
+        <p class={leadCls}>{content.membership.lead}</p>
       </div>
-      <img src={media.membership} width="560" height="340" alt={content.membership.heading} loading="lazy" decoding="async" class="h-[340px] w-full rounded-lg object-cover" />
+      <p class="text-[14px] leading-[1.55] text-muted">{content.membership.clarity}</p>
     </div>
-    <div class="grid gap-6 lg:grid-cols-2">
-      <article class="flex flex-col gap-5 rounded-lg bg-blue-deep p-8 text-blue-tint">
-        <span class="w-fit rounded-full bg-white/15 px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-white">{content.membership.member.tag}</span>
-        <p class="flex items-end gap-2">
-          <strong class="text-[46px] leading-none text-white">{content.membership.member.price}</strong>
-          <span class="pb-1.5 text-[15px]">{content.membership.member.cadence}</span>
+    <div class="grid gap-6 md:grid-cols-2">
+      <!-- Member -->
+      <article class={`flex flex-col gap-5 rounded-lg bg-blue-deep p-7 lg:p-9 ${hover}`}>
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <span class="rounded-full bg-white/15 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-white">{content.membership.member.tag}</span>
+          <span class="rounded-full bg-green-bright px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-[#14301b]">{content.membership.bestValue}</span>
+        </div>
+        <p class="flex flex-wrap items-end gap-2.5">
+          <strong class="font-titles text-[44px] font-bold leading-none text-white lg:text-[52px]">{content.membership.member.price}</strong>
+          <span class="pb-1 text-[15px] text-blue-tint">{content.membership.member.cadence}</span>
         </p>
         <ul class="flex flex-col gap-3 text-[14.5px]">
           {content.membership.member.benefits.map((b) => (
-            <li class="flex items-start gap-2.5"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{b}</li>
+            <li class="flex items-start gap-2.5 text-blue-tint"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{b}</li>
           ))}
         </ul>
-        <a href={APPOINTMENT_URL} {...bookAttrs} class="mt-auto inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 text-[15px] font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+        <a href={APPOINTMENT_URL} {...bookAttrs} class="mt-auto inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3.5 text-[15px] font-bold text-blue-deep transition-colors hover:bg-blue-pale">
           <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
         </a>
       </article>
-      <article class="flex flex-col gap-5 rounded-lg border border-line bg-bg-alt p-8">
-        <span class="w-fit rounded-full bg-blue-pale px-3 py-1 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{content.membership.nonMember.tag}</span>
-        <p class="flex flex-col">
-          <strong class="text-[28px] leading-tight text-ink">{content.membership.nonMember.price}</strong>
-          <span class="mt-1 text-[15px] text-body">{content.membership.nonMember.cadence}</span>
-        </p>
-        <ul class="flex flex-col gap-3 text-[14.5px] text-body">
+      <!-- Non-member -->
+      <article class={`flex flex-col gap-5 rounded-lg border border-line bg-bg-alt p-7 lg:p-9 ${hover}`}>
+        <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.membership.nonMember.tag}</span>
+        <div class="flex flex-col gap-1.5">
+          <strong class="font-titles text-[28px] font-bold leading-[1.1] text-ink lg:text-[30px]">{content.membership.nonMember.price}</strong>
+          <span class="text-[15px] text-body">{content.membership.nonMember.cadence}</span>
+        </div>
+        <ul class="flex flex-col gap-3 text-[14.5px]">
           {content.membership.nonMember.benefits.map((b) => (
-            <li class="flex items-start gap-2.5"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{b}</li>
+            <li class="flex items-start gap-2.5 text-body"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{b}</li>
           ))}
         </ul>
-        <a href={PHONE_TEL} class="mt-auto inline-flex items-center justify-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-5 py-3 text-[15px] font-bold text-blue transition-colors hover:bg-blue-pale">
+        <a href={PHONE_TEL} class="mt-auto inline-flex items-center justify-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-5 py-3.5 text-[15px] font-bold text-blue transition-colors hover:bg-blue-pale">
           <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
         </a>
       </article>
@@ -527,140 +582,161 @@ const eyebrow = {
   </div>
 </section>
 
-<!-- INTEGRATED -->
-<section class="scroll-mt-24 bg-bg-alt" id="integrated">
-  <div class="shell flex flex-col gap-10 py-16">
+<!-- INTEGRATED (dark band) -->
+<section id="integrated" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
     <div class="flex max-w-[720px] flex-col gap-4">
-      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.integrated}</span>
-      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.integrated.heading}</h2>
-      <p class="text-[17px] leading-relaxed text-body">{content.integrated.lead}</p>
+      <span class={eyebrowDarkCls}>{content.integrated.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.integrated.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.integrated.lead}</p>
     </div>
-    <div class="grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-3">
+    <div class="grid overflow-hidden rounded-lg border border-white/15 bg-white/5 lg:grid-cols-3">
       {content.integrated.items.map((s, i) => (
-        <a href={s.href} class="group flex flex-col bg-white transition-colors hover:bg-bg-alt">
-          <img src={media.integrated[i]} alt={s.title} width="400" height="210" loading="lazy" decoding="async" class="h-[210px] w-full object-cover" />
-          <span class="flex flex-1 flex-col gap-3 p-7">
-            <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
-            <h3 class="text-[19px] text-ink">{s.title}</h3>
-            <p class="text-[14.5px] leading-relaxed text-body">{s.body}</p>
-            <span class="mt-auto inline-flex items-center gap-1.5 pt-2 text-[14px] font-bold text-blue group-hover:text-blue-deep">{l.learn} {s.title} <Icon name="arrow" class="h-4 w-4" /></span>
-          </span>
+        <a href={s.href} class={`group flex flex-col gap-3.5 p-7 hover:bg-white/10 lg:p-9 ${hover} ${i > 0 ? "border-t border-white/15 lg:border-l lg:border-t-0" : ""}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white sm:text-[20px]">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-white">{l.learnMore}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
         </a>
       ))}
+    </div>
+    <div class="flex flex-col gap-4 pt-9">
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.integrated.relatedLabel}</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.integrated.related.map((r) => (
+          <a href={r.href} class={`flex items-center justify-between gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-[14px] font-semibold text-white hover:bg-white/15 ${hover}`}>
+            {r.label}<Icon name="arrow" class="h-[15px] w-[15px] shrink-0" />
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
-<!-- WHY -->
+<!-- WHY INTEGRATED -->
 <section class="bg-white">
-  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-2">
-    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[480px] w-full rounded-lg object-cover" />
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[300px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[480px]" />
     <div class="flex flex-col gap-5">
-      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.why.heading}</h2>
-      <p class="text-[16px] leading-relaxed text-body">{content.why.lead}</p>
-      <p class="text-[15px] leading-relaxed text-body">{content.why.closing}</p>
+      <h2 class={h2Cls}>{content.why.heading}</h2>
+      <p class={leadCls}>{content.why.lead}</p>
+      <ul class="grid gap-3.5 sm:grid-cols-2">
+        {content.why.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+      <div class={`rounded-md bg-bg-alt p-5 ${hover}`}>
+        <p class="text-[14.5px] leading-[1.55] text-body">{content.why.closing}</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- TRUST + HOURS -->
 <section class="bg-bg-alt">
-  <div class="shell grid gap-10 py-16 lg:grid-cols-[1.3fr_0.7fr] lg:gap-14">
-    <div class="flex flex-col gap-5">
-      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.trust.heading}</h2>
-      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
-      <img src={media.trust} width="560" height="320" alt={content.trust.heading} loading="lazy" decoding="async" class="mt-1 h-[320px] w-full rounded-lg object-cover" />
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover lg:h-[300px]" />
     </div>
-    <div class="flex flex-col gap-4 rounded-lg border border-line bg-white p-7">
-      <p class="flex items-center gap-2 text-[13px] font-bold uppercase tracking-wide text-blue-deep">
-        <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
-      </p>
-      <ul class="flex flex-col divide-y divide-line">
-        {content.trust.hours.map((h) => (
-          <li class="flex items-center justify-between gap-4 py-3 text-[15px]">
-            <span class="text-body">{h.day}</span>
-            <span class="font-semibold text-ink">{h.time}</span>
-          </li>
-        ))}
-      </ul>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- TRANSPORT -->
 <section class="bg-white">
-  <div class="shell grid items-center gap-10 overflow-hidden py-16 lg:grid-cols-2">
-    <img src={content.transport.image} width="560" height="360" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[380px] w-full rounded-lg object-cover" />
-    <div class="flex flex-col gap-4">
-      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.transport.title}</h2>
-      <p class="max-w-[62ch] text-[16px] leading-relaxed text-body">{content.transport.body}</p>
-      <a href={PHONE_TEL} class="inline-flex w-fit items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
-        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
-      </a>
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
     </div>
   </div>
 </section>
 
-<!-- WHY PATIENTS CHOOSE -->
-<section class="bg-bg-alt">
-  <div class="shell flex flex-col gap-10 py-16">
-    <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-      <div class="flex flex-col gap-4">
-        <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.choose}</span>
-        <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.choose.heading}</h2>
-        <p class="text-[17px] leading-relaxed text-body">{content.choose.lead}</p>
-      </div>
-      <img src={media.choose} width="560" height="320" alt={content.choose.heading} loading="lazy" decoding="async" class="h-[320px] w-full rounded-lg object-cover" />
+<!-- WHY PATIENTS CHOOSE (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[800px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{content.choose.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.choose.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.choose.lead}</p>
     </div>
-    <div class="grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+    <ul class="grid gap-x-12 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
       {content.choose.items.map((it) => (
-        <div class="flex flex-col gap-2">
-          <p class="flex items-center gap-2 text-[16px] font-bold text-ink"><Icon name="badge-check" class="h-5 w-5 shrink-0 text-blue" />{it.title}</p>
-          <p class="text-[14.5px] leading-relaxed text-body">{it.body}</p>
-        </div>
+        <li class="flex flex-col gap-2.5">
+          <Icon name="badge-check" class="h-6 w-6 text-green-bright" />
+          <h3 class="font-titles text-[18px] leading-[1.25] text-white sm:text-[19px]">{it.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-blue-tint">{it.body}</p>
+        </li>
       ))}
-    </div>
+    </ul>
   </div>
 </section>
 
 <!-- TEAM -->
-<section class="scroll-mt-24 bg-white" id="team">
-  <div class="shell grid gap-10 py-16 lg:grid-cols-[0.6fr_1.4fr] lg:gap-14">
-    <div class="flex flex-col items-start gap-4">
-      <img src={media.team} width="280" height="220" alt={content.team.name} loading="lazy" decoding="async" class="h-[220px] w-full max-w-[280px] rounded-lg object-cover" />
-      <div>
-        <h2 class="text-[24px] text-ink">{content.team.name}</h2>
-        <p class="mt-1 text-[14px] font-semibold text-blue">{content.team.cred}</p>
-      </div>
-    </div>
+<section id="team" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[1fr_520px] lg:gap-16 lg:py-20">
     <div class="flex flex-col gap-5">
-      <h3 class="text-[13px] font-bold uppercase tracking-wide text-muted">{content.team.heading}</h3>
-      {content.team.bio.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
-      <blockquote class="border-t border-line pt-6 text-[19px] font-medium leading-relaxed text-blue-deep">
-        "{content.team.quote}"
+      <span class={eyebrowCls}>{content.team.eyebrow}</span>
+      <h2 class={h2Cls}>{content.team.heading}</h2>
+      <blockquote class="flex items-start gap-3.5">
+        <Icon name="quote" class="mt-1 h-7 w-7 shrink-0 text-blue-tint" />
+        <p class="font-titles text-[20px] font-bold leading-[1.4] text-blue-deep sm:text-[24px]">{content.team.quote}</p>
       </blockquote>
-      <div class="flex flex-col gap-1.5 border-t border-line pt-5">
-        <p class="text-[19px] font-bold text-ink">{supervising.name}</p>
-        <p class="text-[13px] font-semibold text-blue">{supervising.cred}</p>
-        <p class="text-[15px] leading-relaxed text-body">{supervising.bio}</p>
+    </div>
+    <div class={`flex flex-col gap-5 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <div class="flex items-center gap-4">
+        <span class="grid h-[74px] w-[74px] shrink-0 place-items-center rounded-full bg-blue-deep font-titles text-[26px] font-bold text-white">{content.team.initials}</span>
+        <div class="flex flex-col gap-1">
+          <h3 class="font-titles text-[20px] font-bold leading-[1.2] text-ink sm:text-[22px]">{content.team.name}</h3>
+          <p class="text-[13px] font-semibold leading-[1.4] text-blue">{content.team.cred}</p>
+        </div>
+      </div>
+      <p class="text-[15px] leading-[1.6] text-body">{content.team.bio}</p>
+      <div class="flex flex-col gap-1.5 border-l-[3px] border-blue-tint pl-5">
+        <p class="font-titles text-[18px] font-bold text-ink">{supervising.name}</p>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{supervising.cred}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{supervising.bio}</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- STEPS -->
-<section class="scroll-mt-24 bg-bg-alt" id="start">
-  <div class="shell flex flex-col gap-10 py-16">
+<section id="start" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
     <div class="flex flex-col gap-4">
-      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.steps}</span>
-      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.steps.heading}</h2>
+      <span class={eyebrowCls}>{content.steps.eyebrow}</span>
+      <h2 class={h2Cls}>{content.steps.heading}</h2>
     </div>
-    <ol class="grid gap-6 md:grid-cols-3">
+    <ol class="grid gap-5 md:grid-cols-3">
       {content.steps.items.map((s, i) => (
-        <li class="flex flex-col gap-3 rounded-lg border border-line bg-white p-7">
-          <span class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
-          <h3 class="text-[20px] text-ink">{s.title}</h3>
-          <p class="text-[15px] leading-relaxed text-body">{s.body}</p>
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[20px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{s.body}</p>
         </li>
       ))}
     </ol>
@@ -669,65 +745,53 @@ const eyebrow = {
 </section>
 
 <!-- FAQ -->
-<section class="scroll-mt-24 bg-white" id="faq">
-  <div class="shell grid gap-10 py-16 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
-    <div class="flex flex-col gap-6">
-      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.faq}</span>
-      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.faq.heading}</h2>
-      <img src={media.faq} width="480" height="300" alt={content.faq.heading} loading="lazy" decoding="async" class="hidden h-[300px] w-full rounded-lg object-cover lg:block" />
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{content.faq.eyebrow}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
     </div>
-    <div class="flex flex-col gap-3">
-      {content.faq.items.map((item) => (
-        <details class="group border-t border-line pt-5">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[17px] font-semibold text-ink">
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-bg-alt [&::-webkit-details-marker]:hidden">
             <span>{item.q}</span>
             <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
           </summary>
-          <p class="pt-3 text-[15px] leading-relaxed text-body">{item.a}</p>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
         </details>
       ))}
     </div>
   </div>
 </section>
 
-<!-- AREA -->
+<!-- SERVICE AREA -->
 <section class="bg-bg-alt">
-  <div class="shell grid gap-10 py-16 lg:grid-cols-2 lg:gap-14">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
     <div class="flex flex-col gap-4">
-      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.area}</span>
-      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.area.heading}</h2>
-      <p class="max-w-[60ch] text-[16px] leading-relaxed text-body">{content.area.lead}</p>
-      <p class="max-w-[60ch] text-[15px] leading-relaxed text-body">{content.area.note}</p>
+      <span class={eyebrowCls}>{content.area.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
     </div>
-    <div class="flex flex-col gap-5">
-      <ul class="flex flex-wrap content-start gap-3">
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
         {content.area.places.map((p) => (
-          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[15px] font-medium text-ink">
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[14px] font-semibold text-ink">
             <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
           </li>
         ))}
       </ul>
-      <img src={media.area} width="560" height="260" alt={content.area.heading} loading="lazy" decoding="async" class="h-[260px] w-full rounded-lg object-cover" />
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- RELATED -->
-<section class="bg-white">
-  <div class="shell flex flex-col items-center gap-8 py-14">
-    <h2 class="text-[22px] text-ink">{content.related.heading}</h2>
-    <ul class="flex flex-wrap justify-center gap-3">
-      {content.related.links.map((lk) => (
-        <li>
-          <a href={lk.href} class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[15px] font-semibold text-blue transition-colors hover:bg-blue-pale hover:text-blue-deep">
-            {lk.label} <Icon name="arrow" class="h-4 w-4" />
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-</section>
-
+<!-- BACK TO TOP -->
 <div class="bg-white">
   <div class="shell flex justify-end py-6">
     <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
@@ -738,14 +802,14 @@ const eyebrow = {
 
 <!-- FINAL CTA -->
 <section class="bg-blue-deep">
-  <div class="shell flex flex-col items-center gap-4 py-16 text-center">
-    <h2 class="max-w-[820px] text-3xl text-white sm:text-[2.1rem]">{content.cta.title}</h2>
-    <p class="max-w-[640px] text-[17px] leading-relaxed text-blue-tint">{content.cta.lead}</p>
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
     <div class="mt-2 flex flex-wrap justify-center gap-3">
-      <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
         <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
       </a>
-      <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white transition-colors hover:bg-white/10">
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
         <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
       </a>
     </div>
