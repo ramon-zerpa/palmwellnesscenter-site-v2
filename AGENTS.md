@@ -313,10 +313,12 @@ Invoke-RestMethod "https://api.vercel.com/v6/deployments?projectId=$($p.id)&limi
 ### Este sitio NO debe ser indexado ni visto por nadie más
 
 Es un **preview** para revisión (tú, el jefe, el cliente). No debe aparecer en buscadores ni
-ser accesible para terceros. Hoy **no hay ninguna protección activa**: `ssoProtection` y
-`passwordProtection` están vacíos en la API, y el sitio es público en
-`https://palmwellnesscenter-site-v2.vercel.app/`. El equipo tiene **un solo miembro**
-(`ramon-zerpa`, OWNER) y plan **hobby**.
+ser accesible para terceros.
+
+Estado verificado el 2026-09-20: **contra los buscadores sí está cubierto** (ver "Qué está
+aplicado hoy" más abajo). **Contra las personas no hay nada**: `ssoProtection` y
+`passwordProtection` siguen vacíos en la API, así que cualquiera con el enlace puede verlo. El
+equipo tiene **un solo miembro** (`ramon-zerpa`, OWNER) y plan **hobby**.
 
 **Estado: aplicado el Tier 3** (decisión del cliente, 2026-09-20). Los otros tres siguen
 disponibles por si más adelante hace falta bloquear también el acceso humano.
