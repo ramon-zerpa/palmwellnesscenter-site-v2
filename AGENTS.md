@@ -267,6 +267,8 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 - Primera página del patrón nuevo verificada de punta a punta (build, 2 idiomas × 5 anchos,
   reduced-motion, click del nav de anclas).
 - Pencil: frame **`EnF3Q` (Primary Care Desktop)** construido y aprobado por el cliente.
+- `AGENTS.md`, `README.md` y el harness CDP versionado en `tools/qa/`.
+- Preview **no indexable**: `robots.txt` con `Disallow: /` + header `X-Robots-Tag` (ver § 9).
 
 **Siguiente**
 
@@ -285,6 +287,9 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 - **El frame `EnF3Q` y el código divergen en 2 puntos**: Pencil todavía muestra el separador del
   bloque de Related Services (eliminado en código) y el orden viejo del nav de anclas. Sincronizar
   si el diseño se va a seguir usando como referencia.
+- **El formulario de contacto está muerto en producción** (§ 10). Es lo único que hoy pierde
+  leads de verdad.
+- El `noindex` del preview **hay que retirarlo antes de apuntar el dominio real** (§ 9).
 
 ---
 
@@ -313,13 +318,16 @@ ser accesible para terceros. Hoy **no hay ninguna protección activa**: `ssoProt
 `https://palmwellnesscenter-site-v2.vercel.app/`. El equipo tiene **un solo miembro**
 (`ramon-zerpa`, OWNER) y plan **hobby**.
 
-Opciones evaluadas (decisión **pendiente** del cliente):
+**Estado: aplicado el Tier 3** (decisión del cliente, 2026-09-20). Los otros tres siguen
+disponibles por si más adelante hace falta bloquear también el acceso humano.
+
+Opciones evaluadas:
 
 | Tier | Solución | Coste | Protege de | Fricción |
 |---|---|---|---|---|
 | **1** | **Vercel Authentication** con scope **All Deployments** (Settings → Deployment Protection) | **gratis en todos los planes** | todo el mundo, buscadores incluidos: sin sesión se recibe 401 | cada revisor necesita cuenta de Vercel + invitación al equipo |
 | 2 | **Password Protection** | Pro, **$20/mes por proyecto** (no existe en Hobby) | cualquiera sin la contraseña | ninguna: se comparte una contraseña |
-| 3 | `robots.txt` con `Disallow: /` + header `X-Robots-Tag: noindex` en `vercel.json` | gratis | buscadores. **No** de una persona con el enlace | hay que retirarlo antes del lanzamiento |
+| **3** | **APLICADO** — `robots.txt` con `Disallow: /` + header `X-Robots-Tag: noindex` en `vercel.json` | gratis | buscadores. **No** de una persona con el enlace | hay que retirarlo antes del lanzamiento (ver checklist) |
 | 4 | Mover el preview a **Cloudflare Pages + Cloudflare Access** | gratis (Zero Trust, hasta 50 usuarios) | cualquiera sin un correo autorizado (login por código de un solo uso) | migrar el hosting. A cambio revive el formulario de contacto, los `_redirects` y los `_headers`, hoy inertes |
 
 **El Tier 1 es la respuesta correcta por defecto** y es reciente: hasta el **2026-09-09** proteger
@@ -328,13 +336,42 @@ esa fecha Vercel Authentication con scope *All Deployments* es gratis en todos l
 requiere tocar código, no deja `noindex` en el HTML y por tanto **no hay nada que recordar
 deshacer el día del lanzamiento**.
 
-El Tier 3 sigue siendo útil como **red de seguridad** (por si alguien desactiva la protección),
-pero con el Tier 1 activo ya no hace falta. Si se aplica el 3 en solitario, **hay que retirarlo
-antes de apuntar el dominio real**, o el sitio de producción nacerá con `noindex` y no se
-indexará nunca: es su riesgo principal.
+El Tier 1 sigue siendo la opción correcta si algún día hay que bloquear también a las personas, y
+es reciente: hasta el **2026-09-09** proteger un dominio de producción exigía el add-on
+*Advanced Deployment Protection* de **$150/mes**; desde esa fecha Vercel Authentication con scope
+*All Deployments* es gratis en todos los planes y no requiere tocar código.
 
-Pasar a Password Protection (Tier 2) solo tiene sentido si crear cuentas de Vercel al jefe y al
-cliente resulta un obstáculo; el plan Pro cuesta $20/mes **por proyecto**.
+### Qué está aplicado hoy (Tier 3)
+
+Dos piezas, y **las dos** hay que revertir antes de apuntar el dominio real:
+
+1. `public/robots.txt` → `Disallow: /`. El procedimiento de reversión está escrito dentro del
+   propio archivo, para que quien lo abra lo vea antes de tocarlo.
+2. `vercel.json` → header `X-Robots-Tag: noindex, nofollow, noarchive` en `/(.*)`. Es JSON
+   estricto, **no admite comentarios**, así que la advertencia vive aquí y en `robots.txt`.
+
+Comprobar que sigue activo en producción:
+
+```powershell
+(Invoke-WebRequest "https://palmwellnesscenter-site-v2.vercel.app/primary-care/" -UseBasicParsing).Headers["X-Robots-Tag"]
+(Invoke-WebRequest "https://palmwellnesscenter-site-v2.vercel.app/robots.txt" -UseBasicParsing).Content
+```
+
+### Checklist antes de apuntar el dominio real (www.palmwellness.center)
+
+1. Revertir `public/robots.txt` a `Allow: /` + la línea `Sitemap:` (el texto exacto está en el
+   comentario del archivo).
+2. Borrar `vercel.json`, o solo su bloque `headers`.
+3. Resolver el formulario de contacto: **sigue muerto** (§ 10).
+4. Portar a `vercel.json` los headers de seguridad de `public/_headers` (HSTS, nosniff, etc.),
+   hoy inertes.
+
+Saltarse el paso 1 o el 2 deja el sitio de producción con `noindex`: **no se indexaría nunca**.
+Es el riesgo principal de esta opción y ya está aceptado por el cliente.
+
+**Por qué no el Tier 1**: habría bloqueado también a las personas (gratis), pero obliga a que el
+jefe y el cliente creen cuenta de Vercel y acepten una invitación al equipo. Se eligió el Tier 3
+para no añadir esa fricción. Consecuencia aceptada: cualquiera con el enlace puede verlo.
 
 ---
 

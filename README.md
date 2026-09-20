@@ -174,14 +174,15 @@ git push origin main    # publica: Vercel despliega solo
 No lances `vercel deploy` a mano: crearía un deployment huérfano que no corresponde a ningún
 commit.
 
+> **El sitio es un preview y no debe indexarse.** Está aplicado: `public/robots.txt` sirve
+> `Disallow: /` y `vercel.json` fuerza el header `X-Robots-Tag: noindex, nofollow, noarchive`.
+> **Las dos piezas hay que revertirlas antes de apuntar el dominio real**, o el sitio de
+> producción nacerá con `noindex` y no se indexará nunca. Checklist exacto en `AGENTS.md` § 9.
+
 > **Antes de apuntar el dominio real, lee `AGENTS.md` § 9.**
-> 1. El repo trae artefactos de **Cloudflare Pages** (`public/_redirects`, `public/_headers`,
->    `functions/api/contact.ts`) que **Vercel ignora**. Consecuencia verificada hoy: el
->    formulario de contacto responde 404 en producción y los headers de seguridad no están
->    activos.
-> 2. El sitio es un preview: **no debe ser indexado**. Hoy no hay ninguna protección activa.
->    En `AGENTS.md` § 9 están las tres opciones evaluadas (robots/noindex, Vercel
->    Authentication en previews, o Password Protection con plan Pro).
+> El repo trae artefactos de **Cloudflare Pages** (`public/_redirects`, `public/_headers`,
+> `functions/api/contact.ts`) que **Vercel ignora**. Consecuencia verificada: el formulario de
+> contacto responde **404** en producción y los headers de seguridad no están activos.
 
 ## Reglas que no se negocian
 

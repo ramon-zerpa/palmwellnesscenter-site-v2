@@ -1,4 +1,24 @@
-User-agent: *
-Allow: /
+# Palm Wellness Center — PREVIEW
+# Host: palmwellnesscenter-site-v2.vercel.app
+#
+# ESTE DESPLIEGUE NO DEBE INDEXARSE. Es un preview de revision (tu, el jefe, el
+# cliente), no el sitio publico. Ver AGENTS.md seccion 9.
+#
+# ---------------------------------------------------------------------------
+# AL APUNTAR EL DOMINIO REAL (www.palmwellness.center) HAY QUE REVERTIR ESTE
+# ARCHIVO A SU VERSION PUBLICADA:
+#
+#   User-agent: *
+#   Allow: /
+#
+#   Sitemap: https://www.palmwellness.center/sitemap-index.xml
+#
+# Y QUITAR el archivo vercel.json (o al menos su bloque de headers), que fuerza
+# el header X-Robots-Tag: noindex. Si no se revierten los dos, el sitio de
+# produccion nacera con noindex y no se indexara nunca.
+#
+# Comprobacion: curl -sI https://palmwellnesscenter-site-v2.vercel.app/ | findstr -i robots
+# ---------------------------------------------------------------------------
 
-Sitemap: https://www.palmwellness.center/sitemap-index.xml
+User-agent: *
+Disallow: /
