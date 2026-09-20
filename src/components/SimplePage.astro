@@ -21,7 +21,7 @@ const bookAttrs = { target: "_blank", rel: "noopener" } as const;
   <main id="main">
     <!-- Hero -->
     <section class="bg-bg-alt">
-      <div class="container flex flex-col items-start gap-4 py-14 lg:py-16">
+      <div class="shell flex flex-col items-start gap-4 py-14 lg:py-16">
         <span class="rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{page.eyebrow}</span>
         <h1 class="max-w-3xl text-4xl leading-[1.12] text-ink sm:text-5xl">{page.h1}</h1>
         <p class="max-w-2xl text-[18px] leading-relaxed text-body">{page.lead}</p>
@@ -38,7 +38,7 @@ const bookAttrs = { target: "_blank", rel: "noopener" } as const;
 
     <!-- Body + benefits -->
     <section class="bg-white">
-      <div class="container grid gap-12 py-16 lg:grid-cols-2">
+      <div class="shell grid gap-12 py-16 lg:grid-cols-2">
         <div class="prose max-w-none">
           <p class="text-[17px] leading-relaxed text-body">{page.body}</p>
         </div>
@@ -58,7 +58,7 @@ const bookAttrs = { target: "_blank", rel: "noopener" } as const;
 
     <!-- FAQ -->
     <section class="bg-bg-alt">
-      <div class="container flex flex-col items-center gap-10 py-16">
+      <div class="shell flex flex-col items-center gap-10 py-16">
         <h2 class="text-3xl text-ink sm:text-[2.1rem]">{lang === "es" ? "Preguntas frecuentes" : "Frequently asked questions"}</h2>
         <div class="flex w-full max-w-[900px] flex-col gap-3">
           {page.faq.map((item) => (
@@ -76,7 +76,7 @@ const bookAttrs = { target: "_blank", rel: "noopener" } as const;
 
     <!-- CTA -->
     <section class="bg-blue-deep">
-      <div class="container flex flex-col items-center gap-4 py-14 text-center">
+      <div class="shell flex flex-col items-center gap-4 py-14 text-center">
         <h2 class="max-w-[760px] text-3xl text-white sm:text-[2rem]">{lang === "es" ? "Da el primer paso para sentirte mejor." : "Take the first step toward feeling better."}</h2>
         <div class="mt-2 flex flex-wrap justify-center gap-3">
           <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep transition-colors hover:bg-blue-pale">

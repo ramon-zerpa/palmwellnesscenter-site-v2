@@ -471,7 +471,7 @@ for (let i = 0; i < plans.length; i++) {
 <!-- HERO -->
 <section class:list={["relative overflow-hidden bg-bg-alt bg-cover", hero?.variant === "dark" ? (leftAlignedDarkHero ? "text-left text-white" : compactDarkHero ? "text-left text-white sm:text-center" : "text-center text-white") : ""]} style={heroStyle}>
   {!hero && <div class="absolute inset-0 bg-[radial-gradient(circle_at_85%_25%,rgba(42,103,177,0.06),transparent_55%)]"></div>}
-  <div class:list={["container relative", hero?.variant === "dark" ? "flex min-h-[430px] items-center justify-center py-16 lg:min-h-[460px]" : aboutPage ? "py-11 lg:py-14" : modernLightHero ? "grid min-h-[320px] items-center gap-10 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:py-12" : "grid min-h-[520px] items-center gap-10 py-16 lg:grid-cols-[0.95fr_1.05fr] lg:py-20"]}>
+  <div class:list={["shell relative", hero?.variant === "dark" ? "flex min-h-[430px] items-center justify-center py-16 lg:min-h-[460px]" : aboutPage ? "py-11 lg:py-14" : modernLightHero ? "grid min-h-[320px] items-center gap-10 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:py-12" : "grid min-h-[520px] items-center gap-10 py-16 lg:grid-cols-[0.95fr_1.05fr] lg:py-20"]}>
     <div data-aos="fade-right" class:list={[hero?.variant === "dark" ? "mx-auto max-w-3xl" : "max-w-[620px]"]}>
       {heroTitleText && darkParagraphTitle ? (
         <p class:list={["font-titles font-bold uppercase leading-tight text-white", compactDarkHero ? "text-[1.875rem] sm:text-[2.8rem]" : therapeuticExercises ? "text-[30px] sm:text-[2.8rem]" : "text-4xl sm:text-[2.8rem]"]} set:html={heroTitleText}></p>
@@ -549,7 +549,7 @@ for (let i = 0; i < plans.length; i++) {
     )}
   </div>
   {!hero && !aboutPage && displayHeroParas.length > 0 && (
-    <div class="container relative pb-12">
+    <div class="shell relative pb-12">
       {displayHeroParas.map((p) => <p class="max-w-4xl leading-relaxed text-body" set:html={p.html} />)}
     </div>
   )}
@@ -567,7 +567,7 @@ for (let i = 0; i < plans.length; i++) {
     {p.left.bg === "ultrasound-gradient" && (
       <div class="pointer-events-none absolute inset-x-0 bottom-0 h-8 bg-white" style="clip-path: polygon(0 42%,25% 58%,50% 40%,76% 55%,100% 42%,100% 100%,0 100%);"></div>
     )}
-    <div class:list={["container", p.left.carSymptoms || p.left.slipIntegratedServices || p.left.ultrasoundWound || p.left.medicalIntegratedServices || p.left.medicalTrust || p.left.medicalServing ? "source-wide py-16" : "py-14", p.left.physicalRehab ? "[&_p]:text-[16px] [&_p_a]:underline [&_p_a]:decoration-1 [&_p_a]:underline-offset-2" : ""]}>
+    <div class:list={["shell", p.left.carSymptoms || p.left.slipIntegratedServices || p.left.ultrasoundWound || p.left.medicalIntegratedServices || p.left.medicalTrust || p.left.medicalServing ? " py-16" : "py-14", p.left.physicalRehab ? "[&_p]:text-[16px] [&_p_a]:underline [&_p_a]:decoration-1 [&_p_a]:underline-offset-2" : ""]}>
       <div class:list={["grid gap-10 lg:grid-cols-2", p.left.aboutPage ? "lg:gap-20" : "lg:gap-12"]}>
         <div>
           <RichSection p={p.left} col />
@@ -581,7 +581,7 @@ for (let i = 0; i < plans.length; i++) {
 ) : p.isBand ? (
   <section class:list={[p.band.color === "green" ? "bg-green text-white" : "bg-blue-deep text-white"]}>
     {therapeuticExercises && p.band.color === "blue" ? (
-      <div class="container py-9 lg:py-10" data-aos="fade-up">
+      <div class="shell py-9 lg:py-10" data-aos="fade-up">
         <div class="grid items-center gap-7 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
           <h2 class="max-w-md text-3xl leading-tight text-white sm:text-[2.1rem]" set:html={p.band.lines?.[0] || ""} />
           <div class="max-w-2xl">
@@ -600,7 +600,7 @@ for (let i = 0; i < plans.length; i++) {
         </div>
       </div>
     ) : (
-      <div class="container py-10">
+      <div class="shell py-10">
         <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between" data-aos="fade-up">
           <div class="max-w-2xl">
             {aboutPage && p.band.color === "green" ? (
@@ -648,7 +648,7 @@ for (let i = 0; i < plans.length; i++) {
     {((p.massageTherapy && ["massage-blue", "massage-gray"].includes(p.bg)) || (p.ultrasoundTherapy && ["ultrasound-deep", "ultrasound-light"].includes(p.bg)) || (p.therapeuticExercises && ["exercise-blush", "exercise-blue"].includes(p.bg))) && (
       <div class="pointer-events-none absolute inset-x-0 bottom-0 h-9 bg-white" style="clip-path: polygon(0 42%,25% 58%,50% 38%,76% 55%,100% 42%,100% 100%,0 100%);"></div>
     )}
-    <div class:list={["container", p.whiplashPage && p.introWithImage ? "source-wide pt-0 pb-0" : p.massageTherapy || p.ultrasoundTherapy || p.therapeuticExercises || p.chiropractorPage || p.primaryCarePage || p.medicalWeightLossPage || p.aboutPage ? "source-wide py-16" : p.slipIntroProvider ? "pt-14 pb-0" : p.rehabVisitSection ? "source-wide py-20" : p.rehabServicesGrid ? "source-wide py-16" : "py-14", p.physicalRehab ? "[&_p]:text-[16px] [&_p_a]:underline [&_p_a]:decoration-1 [&_p_a]:underline-offset-2" : ""]}>
+    <div class:list={["shell", p.whiplashPage && p.introWithImage ? " pt-0 pb-0" : p.massageTherapy || p.ultrasoundTherapy || p.therapeuticExercises || p.chiropractorPage || p.primaryCarePage || p.medicalWeightLossPage || p.aboutPage ? " py-16" : p.slipIntroProvider ? "pt-14 pb-0" : p.rehabVisitSection ? " py-20" : p.rehabServicesGrid ? " py-16" : "py-14", p.physicalRehab ? "[&_p]:text-[16px] [&_p_a]:underline [&_p_a]:decoration-1 [&_p_a]:underline-offset-2" : ""]}>
       <RichSection p={p} />
     </div>
   </section>

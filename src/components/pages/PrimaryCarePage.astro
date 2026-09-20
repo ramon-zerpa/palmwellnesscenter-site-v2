@@ -402,7 +402,7 @@ const eyebrow = {
 
 <!-- HERO -->
 <section class="bg-bg-alt">
-  <div class="container grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
+  <div class="shell grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
     <div class="flex flex-col items-start gap-5">
       <span class="inline-flex rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{content.hero.eyebrow}</span>
       <h1 class="text-4xl leading-[1.08] text-ink sm:text-5xl">{content.hero.title}</h1>
@@ -432,7 +432,7 @@ const eyebrow = {
 
 <!-- ANCHOR NAV -->
 <nav class="border-b border-line bg-white lg:sticky lg:top-[78px] lg:z-40" aria-label="On this page">
-  <div class="container flex gap-6 overflow-x-auto py-3.5">
+  <div class="shell flex gap-6 overflow-x-auto py-3.5">
     {content.subnav.map((s) => (
       <a href={s.href} class="whitespace-nowrap text-[14px] font-semibold text-body transition-colors hover:text-blue">{s.label}</a>
     ))}
@@ -441,7 +441,7 @@ const eyebrow = {
 
 <!-- INTRO -->
 <section class="bg-white" id="about">
-  <div class="container grid items-start gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
     <div class="flex flex-col gap-5">
       <h2 class="text-3xl leading-tight text-ink sm:text-[2.3rem]">{content.intro.heading}</h2>
       {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[17px] leading-relaxed text-body">{p}</p>)}
@@ -460,7 +460,7 @@ const eyebrow = {
 
 <!-- SERVICES -->
 <section class="scroll-mt-24 bg-bg-alt" id="services">
-  <div class="container grid gap-12 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+  <div class="shell grid gap-12 py-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
     <div class="flex flex-col gap-4 lg:sticky lg:top-32 lg:self-start">
       <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.services}</span>
       <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.services.heading}</h2>
@@ -483,7 +483,7 @@ const eyebrow = {
 
 <!-- MEMBERSHIP -->
 <section class="scroll-mt-24 bg-white" id="membership">
-  <div class="container flex flex-col gap-10 py-16">
+  <div class="shell flex flex-col gap-10 py-16">
     <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
       <div class="flex flex-col gap-4">
         <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.membership}</span>
@@ -529,7 +529,7 @@ const eyebrow = {
 
 <!-- INTEGRATED -->
 <section class="scroll-mt-24 bg-bg-alt" id="integrated">
-  <div class="container flex flex-col gap-10 py-16">
+  <div class="shell flex flex-col gap-10 py-16">
     <div class="flex max-w-[720px] flex-col gap-4">
       <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.integrated}</span>
       <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.integrated.heading}</h2>
@@ -553,7 +553,7 @@ const eyebrow = {
 
 <!-- WHY -->
 <section class="bg-white">
-  <div class="container grid items-center gap-12 py-16 lg:grid-cols-2">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-2">
     <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[480px] w-full rounded-lg object-cover" />
     <div class="flex flex-col gap-5">
       <h2 class="text-3xl text-ink sm:text-[2rem]">{content.why.heading}</h2>
@@ -565,7 +565,7 @@ const eyebrow = {
 
 <!-- TRUST + HOURS -->
 <section class="bg-bg-alt">
-  <div class="container grid gap-10 py-16 lg:grid-cols-[1.3fr_0.7fr] lg:gap-14">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1.3fr_0.7fr] lg:gap-14">
     <div class="flex flex-col gap-5">
       <h2 class="text-3xl text-ink sm:text-[2rem]">{content.trust.heading}</h2>
       {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
@@ -589,7 +589,7 @@ const eyebrow = {
 
 <!-- TRANSPORT -->
 <section class="bg-white">
-  <div class="container grid items-center gap-10 overflow-hidden py-16 lg:grid-cols-2">
+  <div class="shell grid items-center gap-10 overflow-hidden py-16 lg:grid-cols-2">
     <img src={content.transport.image} width="560" height="360" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[380px] w-full rounded-lg object-cover" />
     <div class="flex flex-col gap-4">
       <h2 class="text-3xl text-ink sm:text-[2rem]">{content.transport.title}</h2>
@@ -603,7 +603,7 @@ const eyebrow = {
 
 <!-- WHY PATIENTS CHOOSE -->
 <section class="bg-bg-alt">
-  <div class="container flex flex-col gap-10 py-16">
+  <div class="shell flex flex-col gap-10 py-16">
     <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
       <div class="flex flex-col gap-4">
         <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.choose}</span>
@@ -625,7 +625,7 @@ const eyebrow = {
 
 <!-- TEAM -->
 <section class="scroll-mt-24 bg-white" id="team">
-  <div class="container grid gap-10 py-16 lg:grid-cols-[0.6fr_1.4fr] lg:gap-14">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[0.6fr_1.4fr] lg:gap-14">
     <div class="flex flex-col items-start gap-4">
       <img src={media.team} width="280" height="220" alt={content.team.name} loading="lazy" decoding="async" class="h-[220px] w-full max-w-[280px] rounded-lg object-cover" />
       <div>
@@ -650,7 +650,7 @@ const eyebrow = {
 
 <!-- STEPS -->
 <section class="scroll-mt-24 bg-bg-alt" id="start">
-  <div class="container flex flex-col gap-10 py-16">
+  <div class="shell flex flex-col gap-10 py-16">
     <div class="flex flex-col gap-4">
       <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.steps}</span>
       <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.steps.heading}</h2>
@@ -670,7 +670,7 @@ const eyebrow = {
 
 <!-- FAQ -->
 <section class="scroll-mt-24 bg-white" id="faq">
-  <div class="container grid gap-10 py-16 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
     <div class="flex flex-col gap-6">
       <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.faq}</span>
       <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.faq.heading}</h2>
@@ -692,7 +692,7 @@ const eyebrow = {
 
 <!-- AREA -->
 <section class="bg-bg-alt">
-  <div class="container grid gap-10 py-16 lg:grid-cols-2 lg:gap-14">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-2 lg:gap-14">
     <div class="flex flex-col gap-4">
       <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.area}</span>
       <h2 class="text-3xl text-ink sm:text-[2rem]">{content.area.heading}</h2>
@@ -714,7 +714,7 @@ const eyebrow = {
 
 <!-- RELATED -->
 <section class="bg-white">
-  <div class="container flex flex-col items-center gap-8 py-14">
+  <div class="shell flex flex-col items-center gap-8 py-14">
     <h2 class="text-[22px] text-ink">{content.related.heading}</h2>
     <ul class="flex flex-wrap justify-center gap-3">
       {content.related.links.map((lk) => (
@@ -729,7 +729,7 @@ const eyebrow = {
 </section>
 
 <div class="bg-white">
-  <div class="container flex justify-end py-6">
+  <div class="shell flex justify-end py-6">
     <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
       <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
     </a>
@@ -738,7 +738,7 @@ const eyebrow = {
 
 <!-- FINAL CTA -->
 <section class="bg-blue-deep">
-  <div class="container flex flex-col items-center gap-4 py-16 text-center">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center">
     <h2 class="max-w-[820px] text-3xl text-white sm:text-[2.1rem]">{content.cta.title}</h2>
     <p class="max-w-[640px] text-[17px] leading-relaxed text-blue-tint">{content.cta.lead}</p>
     <div class="mt-2 flex flex-wrap justify-center gap-3">

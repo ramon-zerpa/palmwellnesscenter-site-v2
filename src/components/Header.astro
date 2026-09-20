@@ -10,28 +10,37 @@ const t = useTranslations(lang);
 const items = nav[lang];
 const homeHref = lang === "en" ? "/" : "/es/inicio/";
 const bookLabel = lang === "es" ? "Reservar cita" : "Book Appointment";
+const bookLabelShort = lang === "es" ? "Reservar" : "Book";
+const callLabel = lang === "es" ? "Llamar" : "Call";
+const submenuLabel = lang === "es" ? "Mostrar submenú de" : "Show submenu for";
 const isActive = (href: string) =>
   href === path || (href !== "/" && href !== "/es/inicio/" && path.startsWith(href));
+const ext = { target: "_blank", rel: "noopener" } as const;
+const itemCls = (active: boolean) =>
+  `flex items-center gap-1 whitespace-nowrap rounded px-2.5 py-2 text-[15px] font-medium transition-colors ${active ? "text-blue" : "text-ink hover:text-blue"}`;
+const dropCls =
+  "invisible absolute left-0 top-full z-50 mt-1 min-w-[248px] translate-y-1 rounded-md border border-line bg-white py-2 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100";
 ---
 
 <header class="sticky top-0 z-50 bg-white shadow-[0_1px_2px_rgba(22,78,147,0.12)]">
-  <div class="container flex items-center justify-between gap-4 py-3">
+  <div class="shell flex items-center justify-between gap-3 py-2.5">
     <a href={homeHref} class="shrink-0" aria-label="Palm Wellness Center — Home">
-      <img src="/images/logo.webp" width="120" height="60" alt="Palm Wellness Center" class="h-[54px] w-auto" fetchpriority="high" />
+      <img src="/images/logo.webp" width="120" height="60" alt="Palm Wellness Center" class="h-[42px] w-auto sm:h-[50px]" fetchpriority="high" />
     </a>
 
-    <nav class="hidden items-center gap-1 xl:flex" aria-label="Primary">
+    <nav class="hidden items-center gap-0.5 xl:flex" aria-label="Primary">
       {items.map((item) => (
         item.children ? (
           <div class="group relative">
             <a
               href={item.href}
-              class:list={["flex items-center gap-1 whitespace-nowrap rounded px-3 py-2 text-[15px] font-medium transition-colors", isActive(item.href) ? "text-blue" : "text-ink hover:text-blue"]}
+              aria-haspopup="true"
+              class:list={[itemCls(isActive(item.href))]}
             >
               {item.label}
-              <svg class="h-3.5 w-3.5 transition-transform group-hover:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              <svg class="h-3.5 w-3.5 transition-transform group-hover:rotate-180 group-focus-within:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
             </a>
-            <ul class="invisible absolute left-0 top-full z-50 mt-2 min-w-[260px] translate-y-1 rounded-md border border-line bg-white py-2 opacity-0 shadow-lg transition-all duration-150 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+            <ul class={dropCls}>
               {item.children.map((child) => (
                 <li>
                   <a href={child.href} class:list={["block px-4 py-2 text-[14px] transition-colors", isActive(child.href) ? "text-blue" : "text-body hover:bg-bg-alt hover:text-blue"]}>{child.label}</a>
@@ -40,67 +49,103 @@ const isActive = (href: string) =>
             </ul>
           </div>
         ) : (
-          <a
-            href={item.href}
-            class:list={["whitespace-nowrap rounded px-3 py-2 text-[15px] font-medium transition-colors", isActive(item.href) ? "text-blue" : "text-ink hover:text-blue"]}
-          >
-            {item.label}
-          </a>
+          <a href={item.href} class:list={[itemCls(isActive(item.href))]}>{item.label}</a>
         )
       ))}
     </nav>
 
-    <div class="flex items-center gap-3">
-      <a href={PHONE_TEL} class="hidden items-center gap-2 whitespace-nowrap text-[15px] font-semibold text-blue transition-colors hover:text-blue-deep lg:flex">
-        <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        <span>{t("cta.phone")}</span>
-      </a>
-      <a href={APPOINTMENT_URL} class="hidden items-center gap-2 whitespace-nowrap rounded-md bg-blue px-5 py-3 text-[15px] font-bold text-white transition-colors hover:bg-blue-deep sm:flex">
+    <div class="flex items-center gap-2 sm:gap-3">
+      <a href={APPOINTMENT_URL} {...ext} class="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-md bg-blue px-4 py-2.5 text-[15px] font-bold text-white transition-colors hover:bg-blue-deep xl:flex">
         <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/><path d="m9 16 2 2 4-4"/></svg>
         {bookLabel}
       </a>
-      <button id="menu-toggle" type="button" class="flex h-11 w-11 items-center justify-center rounded-md border border-line text-ink xl:hidden" aria-label={t("nav.menu")} aria-expanded="false" aria-controls="mobile-menu">
+      <button id="menu-toggle" type="button" class="flex h-11 w-11 shrink-0 items-center justify-center rounded-md border border-line text-ink xl:hidden" aria-label={t("nav.menu")} aria-expanded="false" aria-controls="mobile-menu">
         <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
       </button>
     </div>
   </div>
 
   <nav id="mobile-menu" class="hidden border-t border-line bg-white xl:hidden" aria-label="Mobile">
-    <ul class="container flex flex-col py-2">
-      {items.map((item) => (
+    <ul class="shell flex max-h-[calc(100vh-8rem)] flex-col overflow-y-auto py-2 pb-24">
+      {items.map((item, i) => (
         <li class="border-b border-line/60">
           {item.children ? (
-            <details>
-              <summary class="flex cursor-pointer list-none items-center justify-between py-3 text-[15px] font-semibold text-ink">
-                <a href={item.href} class="hover:text-blue">{item.label}</a>
-                <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-              </summary>
-              <ul class="pb-2 pl-4">
+            <>
+              <div class="flex items-center gap-2">
+                <a href={item.href} class="flex-1 py-3 text-[15px] font-semibold text-ink hover:text-blue">{item.label}</a>
+                <button
+                  type="button"
+                  class="js-submenu -mr-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-ink"
+                  aria-expanded="false"
+                  aria-controls={`submenu-${i}`}
+                  aria-label={`${submenuLabel} ${item.label}`}
+                >
+                  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </button>
+              </div>
+              <ul id={`submenu-${i}`} class="hidden pb-2 pl-4">
                 {item.children.map((child) => (
                   <li><a href={child.href} class="block py-2 text-[14px] text-body hover:text-blue">{child.label}</a></li>
                 ))}
               </ul>
-            </details>
+            </>
           ) : (
             <a href={item.href} class="block py-3 text-[15px] font-semibold text-ink hover:text-blue">{item.label}</a>
           )}
         </li>
       ))}
-      <li class="py-4">
-        <a href={APPOINTMENT_URL} class="flex w-full items-center justify-center gap-2 rounded-md bg-blue px-5 py-3 text-[15px] font-bold text-white">
-          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/><path d="m9 16 2 2 4-4"/></svg>
-          {bookLabel}
-        </a>
-      </li>
     </ul>
   </nav>
 </header>
 
+<!-- Mobile sticky action bar: primary actions stay in the thumb zone -->
+<div
+  class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 backdrop-blur xl:hidden"
+  style="padding-bottom: env(safe-area-inset-bottom, 0px)"
+>
+  <div class="shell flex items-center gap-3 py-2.5">
+    <a href={PHONE_TEL} class="flex flex-1 items-center justify-center gap-2 rounded-md border-[1.5px] border-blue bg-white py-2.5 text-[15px] font-bold text-blue transition-colors hover:bg-blue-pale">
+      <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      {callLabel}
+    </a>
+    <a href={APPOINTMENT_URL} {...ext} class="flex flex-1 items-center justify-center gap-2 rounded-md bg-blue py-2.5 text-[15px] font-bold text-white transition-colors hover:bg-blue-deep">
+      <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M16 2v4"/><path d="m9 16 2 2 4-4"/></svg>
+      <span class="hidden sm:inline">{bookLabel}</span>
+      <span class="sm:hidden">{bookLabelShort}</span>
+    </a>
+  </div>
+</div>
+
 <script>
   const toggle = document.getElementById("menu-toggle");
   const menu = document.getElementById("mobile-menu");
-  toggle?.addEventListener("click", () => {
-    const open = menu?.classList.toggle("hidden") === false;
+
+  function setMenu(open: boolean) {
+    if (!menu || !toggle) return;
+    menu.classList.toggle("hidden", !open);
     toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Close menu" : "Menu");
+  }
+
+  toggle?.addEventListener("click", () => {
+    setMenu(menu?.classList.contains("hidden") ?? false);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && menu && !menu.classList.contains("hidden")) {
+      setMenu(false);
+      toggle?.focus();
+    }
+  });
+
+  document.querySelectorAll<HTMLButtonElement>(".js-submenu").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const panel = btn.getAttribute("aria-controls")
+        ? document.getElementById(btn.getAttribute("aria-controls")!)
+        : null;
+      if (!panel) return;
+      const open = panel.classList.toggle("hidden") === false;
+      btn.setAttribute("aria-expanded", String(open));
+    });
   });
 </script>

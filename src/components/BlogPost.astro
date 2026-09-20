@@ -42,7 +42,7 @@ const recentHeading = lang === "es" ? "Publicaciones Recientes" : "Recent Posts"
 
 <article>
   <header class="bg-bg-alt">
-    <div class="container max-w-4xl py-10 lg:py-12">
+    <div class="shell max-w-4xl py-10 lg:py-12">
       <nav class="text-[13px] text-muted" aria-label="Breadcrumb">
         <a href={lang === "en" ? "/" : "/es/inicio/"} class="hover:text-blue">{lang === "es" ? "Inicio" : "Home"}</a>
         <span class="mx-1.5">/</span>
@@ -53,7 +53,7 @@ const recentHeading = lang === "es" ? "Publicaciones Recientes" : "Recent Posts"
     </div>
   </header>
 
-  <div class="container max-w-6xl py-10 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-12">
+  <div class="shell max-w-6xl py-10 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-12">
     <div class="min-w-0">
       {image && (
         <img src={image} alt={title} width="1000" height="560" fetchpriority="high" decoding="async" class="mb-8 w-full rounded-lg object-cover" />

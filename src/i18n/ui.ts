@@ -30,9 +30,10 @@ export const nav: Record<Lang, NavItem[]> = {
         { label: "Membership", href: "/primary-care/membership/" },
       ],
     },
+    { label: "Weight Loss", href: "/medical-weight-loss/" },
     { label: "IV Therapy", href: "/iv-therapy/" },
     {
-      label: "Physical Rehabilitation",
+      label: "Rehabilitation",
       href: "/physical-rehabilitation/",
       children: [
         { label: "Auto Accident Rehabilitation", href: "/car-accident-rehabilitation/" },
@@ -43,9 +44,8 @@ export const nav: Record<Lang, NavItem[]> = {
         { label: "Chiropractor", href: "/chiropractor/" },
       ],
     },
-    { label: "About Us", href: "/about-us/" },
+    { label: "About", href: "/about-us/" },
     { label: "Contact", href: "/contact/" },
-    { label: "Blog", href: "/news-blog/" },
   ],
   es: [
     {
@@ -59,9 +59,10 @@ export const nav: Record<Lang, NavItem[]> = {
         { label: "Membresía", href: "/es/atencion-primaria/membresia/" },
       ],
     },
+    { label: "Pérdida de Peso", href: "/es/perdida-de-peso-medica/" },
     { label: "Terapia IV", href: "/es/terapia-iv/" },
     {
-      label: "Rehabilitación Física",
+      label: "Rehabilitación",
       href: "/es/fisioterapia/",
       children: [
         { label: "Rehabilitación de Accidentes de Auto", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
@@ -72,9 +73,8 @@ export const nav: Record<Lang, NavItem[]> = {
         { label: "Quiropráctico", href: "/es/quiropractico/" },
       ],
     },
-    { label: "Acerca de Nosotros", href: "/es/acerca-de-nosotros/" },
+    { label: "Acerca de", href: "/es/acerca-de-nosotros/" },
     { label: "Contacto", href: "/es/contacto/" },
-    { label: "Blog", href: "/es/blog-de-noticias/" },
   ],
 };
 

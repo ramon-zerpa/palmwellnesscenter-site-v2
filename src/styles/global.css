@@ -1,4 +1,9 @@
-@import "tailwindcss";
+/* Tailwind scans ONLY application code. Without `source(none)` it also scans
+   saved audit artefacts (seo/audit/*.html|json) and docs; stray strings there
+   inject dead utilities — notably Tailwind's built-in `.container` utility,
+   which is what made the project's own layout class ambiguous. */
+@import "tailwindcss" source(none);
+@source "../";
 
 /* ============================================================
    Palm Wellness Center — design system (exact-clone palette)
@@ -30,12 +35,40 @@
   --color-bg-alt:      #f9f9fa;   /* alternating section bg */
   --color-footer-bottom:#262626;  /* dark copyright bar */
 
+  --color-danger:      #dc2626;   /* clinical alerts / serious warnings */
+  --color-footer-bg:   #123252;
+  --color-footer-text: #c7d2e0;
+  --color-footer-muted:#8fa3bc;
+
   /* Typography */
   --font-titles: "Figtree", system-ui, -apple-system, sans-serif;
   --font-body: "Noto Sans", system-ui, -apple-system, sans-serif;
 
-  /* Layout */
-  --container: 1140px;
+  /* Radii (match the committed design world: sm 6, md 10, lg 16) */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+
+  /* Layout — width of the single content row (`.shell`).
+     Deliberately NOT named `--container-*`: that namespace belongs to
+     Tailwind's own width scale (`--container-4xl` → `max-w-4xl`). */
+  --shell-max: 1200px;
+
+  /* ============================================================
+     Responsive breakpoints — declared explicitly on purpose.
+     These are the ONLY widths where the layout is allowed to change.
+     Do not introduce ad-hoc media queries at other values.
+
+     QA / design capture widths do NOT belong here. Capture at:
+       360 (Android floor) · 390 (iPhone 12-14) · 412 (Pixel-class)
+       768 (tablet) · 1024 (laptop) · 1440 (desktop)
+     Frames are free; breakpoints are code.
+     ============================================================ */
+  --breakpoint-sm: 40rem;   /* 640px  · phone → wide phone (stacks become rows) */
+  --breakpoint-md: 48rem;   /* 768px  · tablet */
+  --breakpoint-lg: 64rem;   /* 1024px · laptop */
+  --breakpoint-xl: 80rem;   /* 1280px · full desktop nav (needs 966px EN / 1053px ES) */
 }
 
 /* ---------- Fonts: Figtree + Noto Sans (self-hosted, preloaded) ---------- */
@@ -82,36 +115,56 @@
   img { max-width: 100%; height: auto; display: block; }
 }
 
-/* Utility: constrained content container */
-.container {
-  width: 100%;
-  max-width: var(--container);
-  margin-inline: auto;
-  padding-inline: 1.25rem;
+/* ============================================================
+   Layered components.
+   These live in @layer components (NOT unlayered) so that Tailwind
+   utilities can still override them where a one-off needs to win
+   (e.g. `shell max-w-4xl`). Unlayered rules silently beat every
+   utility, which is how the old `.container` class was masking
+   Tailwind's own `container` utility and `max-w-*` overrides.
+   ============================================================ */
+@layer components {
+  /* Single content row used by the utility bar, header and every section,
+     so all left/right edges align (design: 1200px content row). */
+  .shell {
+    width: 100%;
+    max-width: var(--shell-max);
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  /* lg — 1024px */
+  @media (min-width: 64rem) {
+    .shell { padding-inline: 2rem; }
+  }
+
+  /* Prose blocks (blog posts, legal pages, legacy rich content) */
+  .prose { color: var(--color-body); font-size: 1rem; line-height: 1.75; }
+  .prose h2 { font-size: 1.875rem; margin-top: 2rem; margin-bottom: 0.75rem; }
+  .prose h3 { font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+  .prose p { margin-bottom: 1.1rem; max-width: 75ch; }
+  .prose ul, .prose ol { margin: 0 0 1.1rem 1.25rem; }
+  .prose li { margin-bottom: 0.4rem; }
+  .prose ul { list-style: disc; }
+  .prose ol { list-style: decimal; }
+  .prose a { color: var(--color-blue); text-decoration: underline; }
+  .prose a:hover { color: var(--color-green-dark); }
+  .prose img { border-radius: 0.5rem; margin: 1.5rem 0; }
+  .prose strong { color: var(--color-ink); }
+  .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
+  .prose th, .prose td { border: 1px solid var(--color-line); padding: 0.8rem 0.9rem; text-align: left; vertical-align: top; }
+  .prose th { background: var(--color-bg-alt); color: var(--color-ink); font-family: var(--font-titles); }
+  .prose tbody tr:nth-child(even) { background: color-mix(in srgb, var(--color-bg-alt) 55%, white); }
+
+  @media (max-width: 39.99rem) {
+    .prose table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .prose th, .prose td { min-width: 15rem; }
+  }
 }
-.container.source-wide { max-width: 1200px; }
 
-/* Prose blocks (blog posts, legal pages) */
-.prose { color: var(--color-body); font-size: 1rem; line-height: 1.75; }
-.prose h2 { font-size: 1.875rem; margin-top: 2rem; margin-bottom: 0.75rem; }
-.prose h3 { font-size: 1.4rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-.prose p { margin-bottom: 1.1rem; max-width: 75ch; }
-.prose ul, .prose ol { margin: 0 0 1.1rem 1.25rem; }
-.prose li { margin-bottom: 0.4rem; }
-.prose ul { list-style: disc; }
-.prose ol { list-style: decimal; }
-.prose a { color: var(--color-blue); text-decoration: underline; }
-.prose a:hover { color: var(--color-green-dark); }
-.prose img { border-radius: 0.5rem; margin: 1.5rem 0; }
-.prose strong { color: var(--color-ink); }
-.prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.95rem; }
-.prose th, .prose td { border: 1px solid var(--color-line); padding: 0.8rem 0.9rem; text-align: left; vertical-align: top; }
-.prose th { background: var(--color-bg-alt); color: var(--color-ink); font-family: var(--font-titles); }
-.prose tbody tr:nth-child(even) { background: color-mix(in srgb, var(--color-bg-alt) 55%, white); }
-
-@media (max-width: 640px) {
-  .prose table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .prose th, .prose td { min-width: 15rem; }
+/* Below xl — 1280px: reserve room for the mobile sticky action bar so it
+   never covers the footer. */
+@media (max-width: 79.99rem) {
+  body { padding-bottom: calc(3.75rem + env(safe-area-inset-bottom, 0px)); }
 }
 
 /* Source-style AOS markers stay in the DOM, but content remains visible for
