@@ -24,16 +24,15 @@ export const nav: Record<Lang, NavItem[]> = {
       href: "/primary-care/",
       children: [
         { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
+        { label: "IV Therapy", href: "/iv-therapy/" },
         { label: "Chronic Condition Care", href: "/primary-care/chronic-condition-management/" },
         { label: "Preventive Care", href: "/primary-care/preventive-care/" },
         { label: "Telemedicine", href: "/primary-care/telemedicine/" },
         { label: "Membership", href: "/primary-care/membership/" },
       ],
     },
-    { label: "Weight Loss", href: "/medical-weight-loss/" },
-    { label: "IV Therapy", href: "/iv-therapy/" },
     {
-      label: "Rehabilitation",
+      label: "Physical Rehabilitation",
       href: "/physical-rehabilitation/",
       children: [
         { label: "Auto Accident Rehabilitation", href: "/car-accident-rehabilitation/" },
@@ -44,7 +43,8 @@ export const nav: Record<Lang, NavItem[]> = {
         { label: "Chiropractor", href: "/chiropractor/" },
       ],
     },
-    { label: "About", href: "/about-us/" },
+    { label: "About Us", href: "/about-us/" },
+    { label: "Blog", href: "/news-blog/" },
     { label: "Contact", href: "/contact/" },
   ],
   es: [
@@ -53,16 +53,15 @@ export const nav: Record<Lang, NavItem[]> = {
       href: "/es/atencion-primaria/",
       children: [
         { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
+        { label: "Terapia IV", href: "/es/terapia-iv/" },
         { label: "Enfermedades Crónicas", href: "/es/atencion-primaria/manejo-enfermedades-cronicas/" },
         { label: "Atención Preventiva", href: "/es/atencion-primaria/atencion-preventiva/" },
         { label: "Telemedicina", href: "/es/atencion-primaria/telemedicina/" },
         { label: "Membresía", href: "/es/atencion-primaria/membresia/" },
       ],
     },
-    { label: "Pérdida de Peso", href: "/es/perdida-de-peso-medica/" },
-    { label: "Terapia IV", href: "/es/terapia-iv/" },
     {
-      label: "Rehabilitación",
+      label: "Rehabilitación Física",
       href: "/es/fisioterapia/",
       children: [
         { label: "Rehabilitación de Accidentes de Auto", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
@@ -73,7 +72,8 @@ export const nav: Record<Lang, NavItem[]> = {
         { label: "Quiropráctico", href: "/es/quiropractico/" },
       ],
     },
-    { label: "Acerca de", href: "/es/acerca-de-nosotros/" },
+    { label: "Acerca de Nosotros", href: "/es/acerca-de-nosotros/" },
+    { label: "Blog", href: "/es/blog-de-noticias/" },
     { label: "Contacto", href: "/es/contacto/" },
   ],
 };

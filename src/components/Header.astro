@@ -3,6 +3,7 @@ import type { Lang } from "../i18n/ui";
 import { nav } from "../i18n/ui";
 import { useTranslations, PHONE_TEL, APPOINTMENT_URL } from "../i18n/utils";
 import Icon from "./Icon.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 interface Props { lang: Lang; path: string; altPath?: string; }
 const { lang } = Astro.props;
@@ -55,7 +56,8 @@ const dropCls =
       ))}
     </nav>
 
-    <div class="flex items-center gap-2 sm:gap-3">
+    <div class="flex items-center gap-4">
+      <div class="hidden xl:block"><LanguageSwitcher lang={lang} path={path} /></div>
       <a href={APPOINTMENT_URL} {...ext} class="hidden shrink-0 items-center gap-2 whitespace-nowrap rounded-md bg-blue px-4 py-2.5 text-[15px] font-bold text-white transition-colors hover:bg-blue-deep xl:flex">
         <Icon name="calendar-check" class="h-[18px] w-[18px]" />
         {bookLabel}
@@ -67,7 +69,7 @@ const dropCls =
   </div>
 
   <nav id="mobile-menu" class="hidden border-t border-line bg-white xl:hidden" aria-label="Mobile">
-    <ul class="shell flex max-h-[calc(100vh-8rem)] flex-col overflow-y-auto py-2 pb-24">
+    <ul class="shell flex max-h-[calc(100vh-8rem)] flex-col overflow-y-auto py-2">
       {items.map((item, i) => (
         <li class="border-b border-line/60">
           {item.children ? (
@@ -95,21 +97,28 @@ const dropCls =
           )}
         </li>
       ))}
+      <li class="flex items-center gap-4 pt-6 pb-4">
+        <LanguageSwitcher lang={lang} path={path} />
+        <a href={APPOINTMENT_URL} {...ext} class="flex min-h-11 flex-1 items-center justify-center gap-2 rounded-md bg-blue px-4 py-2.5 text-[15px] font-bold text-white transition-colors hover:bg-blue-deep">
+          <Icon name="calendar-check" class="h-[18px] w-[18px]" />
+          {bookLabel}
+        </a>
+      </li>
     </ul>
   </nav>
 </header>
 
 <!-- Mobile sticky action bar: primary actions stay in the thumb zone -->
 <div
-  class="fixed inset-x-0 bottom-0 z-40 border-t border-line bg-white/95 backdrop-blur xl:hidden"
+  class="fixed inset-x-0 bottom-0 z-40 border-t border-white/15 bg-blue-deep xl:hidden"
   style="padding-bottom: env(safe-area-inset-bottom, 0px)"
 >
-  <div class="shell flex items-center gap-3 py-2.5">
-    <a href={PHONE_TEL} class="flex flex-1 items-center justify-center gap-2 rounded-md border-[1.5px] border-blue bg-white py-2.5 text-[15px] font-bold text-blue transition-colors hover:bg-blue-pale">
+  <div class="shell flex items-center gap-3 pt-6 pb-4">
+    <a href={PHONE_TEL} class="flex flex-1 items-center justify-center gap-2 rounded-md bg-white py-2.5 text-[15px] font-bold text-blue-deep transition-colors hover:bg-blue-pale">
       <Icon name="phone" class="h-[18px] w-[18px]" />
       {callLabel}
     </a>
-    <a href={APPOINTMENT_URL} {...ext} class="flex flex-1 items-center justify-center gap-2 rounded-md bg-blue py-2.5 text-[15px] font-bold text-white transition-colors hover:bg-blue-deep">
+    <a href={APPOINTMENT_URL} {...ext} class="flex flex-1 items-center justify-center gap-2 rounded-md bg-blue-pale py-2.5 text-[15px] font-bold text-blue-deep transition-colors hover:bg-white">
       <Icon name="calendar-check" class="h-[18px] w-[18px]" />
       <span class="hidden sm:inline">{bookLabel}</span>
       <span class="sm:hidden">{bookLabelShort}</span>

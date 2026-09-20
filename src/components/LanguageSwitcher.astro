@@ -1,0 +1,28 @@
+---
+import type { Lang } from "../i18n/ui";
+import { getAltUrl } from "../i18n/utils";
+
+interface Props {
+  lang: Lang;
+  path: string;
+}
+
+const { lang, path } = Astro.props;
+const altUrl = getAltUrl(path, lang);
+const alternateLang = lang === "en" ? "ES" : "EN";
+const label = lang === "en" ? "Language" : "Idioma";
+const alternateLabel = lang === "en" ? "Cambiar a español" : "Switch to English";
+---
+
+<div class="relative inline-flex h-11 items-center text-[13px] font-bold leading-none" role="group" aria-label={label}>
+  <div class="inline-flex h-9 overflow-hidden rounded-md border-2 border-blue-deep">
+    <span class="flex h-full min-w-11 items-center justify-center bg-blue px-3 text-white" aria-current="page">{lang.toUpperCase()}</span>
+    <span class="h-full min-w-11 bg-white" aria-hidden="true"></span>
+  </div>
+  <a
+    href={altUrl}
+    hreflang={lang === "en" ? "es" : "en"}
+    class="group absolute inset-y-0 right-0 flex min-w-11 items-center justify-center focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-deep focus-visible:ring-offset-2"
+    aria-label={alternateLabel}
+  ><span class="absolute bottom-[6px] left-0 right-[2px] top-[6px] flex items-center justify-center rounded-r-md bg-white text-blue-deep transition-colors group-hover:bg-blue-pale">{alternateLang}</span></a>
+</div>

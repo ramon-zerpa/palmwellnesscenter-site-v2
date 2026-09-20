@@ -146,8 +146,8 @@ const content = {
     transport: {
       title: "Need a ride? We've got you covered.",
       body: "Palm Wellness Center offers free transportation to and from appointments for eligible patients across the Tampa Bay area. If transportation is a concern, let our team know and we'll help coordinate your visit - just ask when you call or request an appointment.",
-      image: "/images/car-transportation-assistance.webp",
-      imageAlt: "Courtesy transportation for patients in Tampa Bay",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
     },
     choose: {
       eyebrow: "Why Patients Choose",
@@ -346,8 +346,8 @@ const content = {
     transport: {
       title: "¿Necesitas transporte? Lo tenemos cubierto.",
       body: "Palm Wellness Center ofrece transporte gratuito de ida y vuelta a las citas para pacientes elegibles en toda el área de la Bahía de Tampa. Si el transporte es una preocupación, avísale a nuestro equipo y te ayudaremos a coordinar tu visita - solo pregúntalo al llamar o solicitar una cita.",
-      image: "/images/car-transportation-assistance.webp",
-      imageAlt: "Transporte de cortesía para pacientes en Tampa Bay",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
     },
     choose: {
       eyebrow: "Por Qué Elegirnos",
@@ -420,12 +420,10 @@ const supervising = {
 
 const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
 
-// Single hover language: a 2px lift plus ONE soft black shadow. Never a tinted
-// shadow, so nothing reads as a coloured glow, and deliberately light so it
-// stays quiet. It belongs to things the user can act on, or to the single card
-// that fronts an action — never to both at once (a button inside a hovering
-// card used to fire two shadows).
-const hover = "transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-14px_rgba(0,0,0,0.22)]";
+// Single hover language: a 2px lift plus ONE soft black shadow. It belongs to
+// things the user can act on, or to the single card that fronts an action —
+// never to both at once.
+const hover = "hover-lift";
 
 const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
 const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";

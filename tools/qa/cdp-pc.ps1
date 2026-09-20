@@ -107,7 +107,7 @@ try {
       Start-Sleep -Milliseconds 900
 
       if ($Mode -eq "motion") {
-        $mprobe = '(()=>{const s=[".hero-media",".hero-media__img",".hero-ambient__glow--a",".hero-pulse"];const o=s.map(x=>{const e=document.querySelector(x);if(!e)return x+" MISSING";const c=getComputedStyle(e);return x+" => "+c.animationName+" | dur "+c.animationDuration+" | iter "+c.animationIterationCount;});return o.join("\n");})()'
+        $mprobe = '(()=>{const s=[".hero-media-frame",".hero-media",".hero-media__img",".hero-ambient__glow--a",".hero-pulse"];const o=s.map(x=>{const e=document.querySelector(x);if(!e)return x+" MISSING";const c=getComputedStyle(e);return x+" => "+c.animationName+" | dur "+c.animationDuration+" | iter "+c.animationIterationCount;});return o.join("\n");})()'
         $r1 = Send-Cdp "Runtime.evaluate" @{ expression=$mprobe; returnByValue=$true }
         $o1 = Wait-Cdp $r1
         Write-Output "--- normal (w=$w) ---"

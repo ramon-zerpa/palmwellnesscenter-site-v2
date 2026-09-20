@@ -1,6 +1,6 @@
 ---
 import type { Lang } from "../i18n/ui";
-import { useTranslations, getAltUrl, PHONE_TEL } from "../i18n/utils";
+import { useTranslations } from "../i18n/utils";
 import Icon from "./Icon.astro";
 
 interface Props {
@@ -8,38 +8,23 @@ interface Props {
 }
 const { lang } = Astro.props;
 const t = useTranslations(lang);
-const altUrl = getAltUrl(Astro.url.pathname, lang);
-const altLabel = lang === "en" ? "Español" : "English";
 
 const ic = "h-3.5 w-3.5 shrink-0";
 ---
 
 <div class="bg-blue-deep">
-  <div class="shell flex flex-wrap items-center justify-between gap-x-6 gap-y-1 py-2 text-[12.5px] text-blue-tint">
-    <ul class="flex flex-wrap items-center gap-x-6 gap-y-1">
-      <li class="flex items-center gap-1.5">
-        <Icon name="map-pin" class={ic} />
-        <span>{t("top.address")}</span>
-      </li>
-      <li class="hidden items-center gap-1.5 sm:flex">
-        <Icon name="clock" class={ic} />
-        <span>{t("top.hours").replace(/\n/g, " · ")}</span>
-      </li>
-    </ul>
-    <div class="flex flex-wrap items-center gap-x-5 gap-y-1">
-      <span class="hidden items-center gap-1.5 lg:flex">
-        <Icon name="shield-check" class={ic} />
-        <span>{t("top.licenses")}</span>
-      </span>
-      <a href={altUrl} class="flex items-center gap-1.5 text-blue-tint transition-colors hover:text-white" hreflang={lang === "en" ? "es" : "en"}>
-        <strong class="font-bold text-white">{lang === "en" ? "EN" : "ES"}</strong>
-        <span aria-hidden="true">/</span>
-        <span>{altLabel}</span>
-      </a>
-      <a href={PHONE_TEL} class="flex items-center gap-1.5 font-semibold text-white transition-colors hover:text-blue-tint">
-        <Icon name="phone" class={ic} />
-        <span>{t("cta.phone")}</span>
-      </a>
-    </div>
+  <div class="shell flex items-center justify-center py-2 text-center text-[12.5px] text-blue-tint xl:grid xl:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] xl:gap-4 xl:text-left">
+    <span class="flex items-center justify-center gap-1.5 xl:justify-self-start">
+      <Icon name="map-pin" class={ic} />
+      <span>{t("top.address")}</span>
+    </span>
+    <span class="hidden items-center justify-center gap-1.5 xl:flex xl:justify-self-center">
+      <Icon name="clock" class={ic} />
+      <span>{t("top.hours").replace(/\n/g, " · ")}</span>
+    </span>
+    <span class="hidden items-center justify-center gap-1.5 xl:flex xl:justify-self-end">
+      <Icon name="shield-check" class={ic} />
+      <span>{t("top.licenses")}</span>
+    </span>
   </div>
 </div>
