@@ -1,5 +1,5 @@
 ---
-import type { Lang } from "../i18n/ui";
+import { nav, type Lang } from "../i18n/ui";
 import { useTranslations, route, PHONE_TEL, FAX_DISPLAY, SOCIAL } from "../i18n/utils";
 
 interface Props { lang: Lang; }
@@ -11,33 +11,7 @@ const tagline =
     ? "Atención primaria integrada, pérdida de peso médica y rehabilitación: todo bajo un mismo techo en Tampa, Florida."
     : "Integrated primary care, medical weight loss, and rehabilitation - all under one roof in Tampa, Florida.";
 
-const services = lang === "es"
-  ? [
-      { label: "Atención Primaria", href: "/es/atencion-primaria/" },
-      { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
-      { label: "Terapia IV", href: "/es/terapia-iv/" },
-      { label: "Rehabilitación", href: "/es/fisioterapia/" },
-      { label: "Telemedicina", href: "/es/atencion-primaria/telemedicina/" },
-    ]
-  : [
-      { label: "Primary Care", href: "/primary-care/" },
-      { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
-      { label: "IV Therapy", href: "/iv-therapy/" },
-      { label: "Rehabilitation", href: "/physical-rehabilitation/" },
-      { label: "Telemedicine", href: "/primary-care/telemedicine/" },
-    ];
-
-const company = lang === "es"
-  ? [
-      { label: "Acerca de Nosotros", href: "/es/acerca-de-nosotros/" },
-      { label: "Blog", href: "/es/blog-de-noticias/" },
-      { label: "Contacto", href: "/es/contacto/" },
-    ]
-  : [
-      { label: "About Us", href: "/about-us/" },
-      { label: "Blog", href: "/news-blog/" },
-      { label: "Contact", href: "/contact/" },
-    ];
+const [primaryCare, physicalRehabilitation] = nav[lang];
 
 const legal = [
   { label: t("footer.hipaa"), href: route(lang, "hipaa") },
@@ -45,13 +19,12 @@ const legal = [
 ];
 const year = 2026;
 const hoursLines = t("footer.hours").split("\n");
-const companyTitle = lang === "es" ? "Empresa" : "Company";
 const phoneLabel = lang === "es" ? "Teléfono:" : "Phone:";
 const linkCls = "text-[14px] text-footer-text transition-colors hover:text-white";
 ---
 
 <footer class="bg-footer-bg text-footer-text">
-  <div class="shell grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-[1.25fr_1fr_0.8fr_1.45fr]">
+  <div class="shell grid gap-10 pt-16 pb-14 md:grid-cols-2 lg:grid-cols-[1.1fr_1fr_1.2fr_1.1fr]">
     <div>
       <p class="font-titles text-[23px] leading-tight text-white">Palm Wellness Center</p>
       <p class="mt-5 max-w-[34ch] text-[14px] leading-relaxed">{tagline}</p>
@@ -64,23 +37,23 @@ const linkCls = "text-[14px] text-footer-text transition-colors hover:text-white
       </div>
     </div>
 
-    <div>
-      <h3 class="mb-5 text-[16px] text-white">{t("footer.services")}</h3>
+    <nav aria-labelledby="footer-primary-care">
+      <h3 id="footer-primary-care" class="mb-5 text-[16px] text-white">{primaryCare.label}</h3>
       <ul class="flex flex-col gap-3">
-        {services.map((s) => (
+        {primaryCare.children?.map((s) => (
           <li><a href={s.href} class={linkCls}>{s.label}</a></li>
         ))}
       </ul>
-    </div>
+    </nav>
 
-    <div>
-      <h3 class="mb-5 text-[16px] text-white">{companyTitle}</h3>
+    <nav aria-labelledby="footer-physical-rehabilitation">
+      <h3 id="footer-physical-rehabilitation" class="mb-5 text-[16px] text-white">{physicalRehabilitation.label}</h3>
       <ul class="flex flex-col gap-3">
-        {company.map((c) => (
-          <li><a href={c.href} class={linkCls}>{c.label}</a></li>
+        {physicalRehabilitation.children?.map((service) => (
+          <li><a href={service.href} class={linkCls}>{service.label}</a></li>
         ))}
       </ul>
-    </div>
+    </nav>
 
     <div>
       <h3 class="mb-5 text-[16px] text-white">{t("footer.contact")}</h3>
@@ -95,7 +68,7 @@ const linkCls = "text-[14px] text-footer-text transition-colors hover:text-white
   </div>
 
   <div class="border-t border-white/15">
-    <div class="shell flex flex-col items-center gap-3 py-4 text-center text-[13px] text-footer-muted lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-4">
+    <div class="shell flex flex-col items-center gap-3 pt-6 pb-[calc(6rem+env(safe-area-inset-bottom,0px))] text-center text-[13px] text-footer-muted lg:grid lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center lg:gap-4 xl:pt-6 xl:pb-5">
       <span class="lg:text-left">© {year} {t("footer.copyright")}</span>
       <span class="flex items-center justify-center gap-4">
         {legal.map((item) => <a href={item.href} class="font-semibold text-blue-tint transition-colors hover:text-white">{item.label}</a>)}

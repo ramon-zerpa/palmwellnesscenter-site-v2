@@ -290,12 +290,6 @@
   }
 }
 
-/* Below xl — 1280px: reserve room for the mobile sticky action bar so it
-   never covers the footer. */
-@media (max-width: 79.99rem) {
-  body { padding-bottom: calc(3.75rem + env(safe-area-inset-bottom, 0px)); }
-}
-
 /* Source-style AOS markers stay in the DOM, but content remains visible for
    crawlers, capture tools, and users even before any scroll script runs. */
 [data-aos] { opacity: 1; transform: none; }
