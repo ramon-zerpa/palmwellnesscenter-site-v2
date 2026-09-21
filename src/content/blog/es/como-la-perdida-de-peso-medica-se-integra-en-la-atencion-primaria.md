@@ -240,4 +240,4 @@ La telesalud puede estar disponible para visitas de seguimiento apropiadas. Su p
 
 La pérdida de peso puede ser más fácil de afrontar cuando su plan está conectado con su salud general. Si tiene dificultades con el peso, la energía, el apetito, las afecciones crónicas o las preguntas sobre medicamentos, una visita de atención primaria puede ayudarle a comprender sus opciones.
 
-Palm Wellness Center ofrece atención primaria y apoyo para la pérdida de peso médica en Tampa con un enfoque seguro, personalizado y coordinado. Llame al (813) 443-5370 o [solicite una cita hoy](https://www.optimantra.com/optimus/patient/patientaccess/servicesall?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNHdDQVg2UlJCTitCU1JOZz09).
+Palm Wellness Center ofrece atención primaria y apoyo para la pérdida de peso médica en Tampa con un enfoque seguro, personalizado y coordinado. Llame al (813) 443-5370 o [solicite una cita hoy](https://www.optimantra.com/optimus/om/patientaccess/servicesallV2?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNHdDQVg2UlJCTitCU1JOZz09).

@@ -8,6 +8,7 @@ import BlockList from "./BlockList.astro";
 import FaIcon from "./FaIcon.astro";
 import Icon from "./Icon.astro";
 import LiteYouTube from "./LiteYouTube.astro";
+import { APPOINTMENT_URL } from "../i18n/utils";
 const { p, col = false } = Astro.props;
 const isSpanish = p.lang === "es" || (p.currentPath || "").startsWith("/es/");
 const exerciseVideos = isSpanish
@@ -985,7 +986,7 @@ const splitHalf = (items: any[]) => Math.ceil(items.length / 2);
         </div>
       ))}
     </div>
-    <a href="https://www.optimantra.com/optimus/om/patientaccess/servicesallV2?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNC4wQ0FYNlJSQk4rQlNSTmc9PQ==" target="_blank" rel="noopener" class="mt-5 inline-block text-[13px] font-bold italic text-green-dark">» {requestAnAppointmentLabel}</a>
+    <a href={APPOINTMENT_URL} target="_blank" rel="noopener" class="mt-5 inline-block text-[13px] font-bold italic text-green-dark">» {requestAnAppointmentLabel}</a>
   </div>
 ) : p.chiroTrust ? (
   <div data-aos="fade-up">
@@ -1018,7 +1019,7 @@ const splitHalf = (items: any[]) => Math.ceil(items.length / 2);
       ))}
     </ul>
     <div class="mt-7 flex flex-wrap justify-center gap-3">
-      <a href="https://www.optimantra.com/optimus/om/patientaccess/servicesallV2?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNC4wQ0FYNlJSQk4rQlNSTmc9PQ==" target="_blank" rel="noopener" class="inline-flex rounded bg-green px-5 py-2.5 text-[13px] font-bold text-white hover:bg-green-dark">{requestAppointmentLabel}</a>
+      <a href={APPOINTMENT_URL} target="_blank" rel="noopener" class="inline-flex rounded bg-green px-5 py-2.5 text-[13px] font-bold text-white hover:bg-green-dark">{requestAppointmentLabel}</a>
       <a href="tel:8134435370" class="inline-flex rounded border border-white px-5 py-2.5 text-[13px] font-bold text-white hover:bg-white/10">(813) 443-5370</a>
     </div>
   </div>
@@ -1700,7 +1701,7 @@ const splitHalf = (items: any[]) => Math.ceil(items.length / 2);
           </div>
         )}
         <img src="/images/massage-therapy-session.webp" alt="Massage therapy session" width="600" height="400" loading="lazy" decoding="async" class="mt-10 w-full max-w-[560px] object-cover" />
-        <a href="https://www.optimantra.com/optimus/om/patientaccess/servicesallV2?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNC4wQ0FYNlJSQk4rQlNSTmc9PQ==" target="_blank" rel="noopener" class="mt-8 inline-flex rounded bg-green px-7 py-4 text-[14px] font-bold uppercase text-white hover:bg-green-dark">{beginSessionsLabel}</a>
+        <a href={APPOINTMENT_URL} target="_blank" rel="noopener" class="mt-8 inline-flex rounded bg-green px-7 py-4 text-[14px] font-bold uppercase text-white hover:bg-green-dark">{beginSessionsLabel}</a>
       </div>
     </div>
   </div>

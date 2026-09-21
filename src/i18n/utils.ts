@@ -53,7 +53,7 @@ export function getAlternateLang(lang: Lang): Lang {
 
 /** Appointment booking link (OptiMantra) — shared across both languages. */
 export const APPOINTMENT_URL =
-  "https://www.optimantra.com/optimus/om/patientaccess/servicesallV2?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNC4wQ0FYNlJSQk4rQlNSTmc9PQ==";
+  "https://www.optimantra.com/optimus/om/patientaccess/servicesallV2?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNHdDQVg2UlJCTitCU1JOZz09";
 
 export const PHONE_TEL = "tel:8134435370";
 export const FAX_DISPLAY = "(813) 443-5604";

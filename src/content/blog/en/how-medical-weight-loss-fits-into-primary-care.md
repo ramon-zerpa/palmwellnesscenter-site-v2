@@ -239,4 +239,4 @@ Telehealth may be available for appropriate follow-up visits. Your provider can 
 
 Weight loss can feel easier to navigate when your plan is connected to your overall health. If you are struggling with weight, energy, appetite, chronic conditions, or medication questions, a primary care visit can help you understand your options.
 
-Palm Wellness Center provides primary care and medical weight loss support in Tampa with a focus on safe, personalized, and coordinated care. Call (813) 443-5370 or [request an appointment today](https://www.optimantra.com/optimus/patient/patientaccess/servicesall?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNHdDQVg2UlJCTitCU1JOZz09).
+Palm Wellness Center provides primary care and medical weight loss support in Tampa with a focus on safe, personalized, and coordinated care. Call (813) 443-5370 or [request an appointment today](https://www.optimantra.com/optimus/om/patientaccess/servicesallV2?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNHdDQVg2UlJCTitCU1JOZz09).

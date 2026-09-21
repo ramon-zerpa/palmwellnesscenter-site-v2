@@ -1,4 +1,6 @@
-const appointmentUrl = "https://www.optimantra.com/optimus/om/patientaccess/servicesallV2?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNC4wQ0FYNlJSQk4rQlNSTmc9PQ==";
+import { APPOINTMENT_URL } from "../i18n/utils";
+
+const appointmentUrl = APPOINTMENT_URL;
 const p = (html: string) => ({ t: "p", html });
 const h2 = (text: string) => ({ t: "h2", text });
 const h3 = (text: string) => ({ t: "h3", text });

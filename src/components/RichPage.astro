@@ -1,6 +1,6 @@
 ---
 import type { Lang } from "../i18n/ui";
-import { useTranslations } from "../i18n/utils";
+import { useTranslations, APPOINTMENT_URL } from "../i18n/utils";
 import Icon from "./Icon.astro";
 import RichSection from "./RichSection.astro";
 
@@ -527,7 +527,7 @@ for (let i = 0; i < plans.length; i++) {
         </div>
       )}
       {hero?.variant === "dark" && !heroCta && !darkParagraphOnlyHero && (
-        <a href={ultrasoundTherapy ? "tel:8134435370" : therapeuticExercises ? "/contact/" : "https://www.optimantra.com/optimus/om/patientaccess/servicesallV2?pid=cDlsZGtiZmltZ2VxOTFhMW5DUkVjUT09&lid=enlzbUNpNC4wQ0FYNlJSQk4rQlNSTmc9PQ=="} target={ultrasoundTherapy || therapeuticExercises ? undefined : "_blank"} rel={ultrasoundTherapy || therapeuticExercises ? undefined : "noopener"} class="mt-7 inline-flex rounded bg-green px-7 py-3 text-[12px] font-bold uppercase text-white hover:bg-green-dark">
+        <a href={ultrasoundTherapy ? "tel:8134435370" : therapeuticExercises ? "/contact/" : APPOINTMENT_URL} target={ultrasoundTherapy || therapeuticExercises ? undefined : "_blank"} rel={ultrasoundTherapy || therapeuticExercises ? undefined : "noopener"} class="mt-7 inline-flex rounded bg-green px-7 py-3 text-[12px] font-bold uppercase text-white hover:bg-green-dark">
           {ultrasoundTherapy || therapeuticExercises ? (lang === "es" ? "Comience su rehabilitación" : "Start your rehabilitation") : (lang === "es" ? "Comience su sesión con nosotros" : "Start your session with us")}
         </a>
       )}
