@@ -13,3 +13,13 @@
 /feed/     /             301
 /home      /             301
 /home/     /             301
+
+# Primary care subpages flattened to top level (301)
+/primary-care/chronic-condition-management/   /chronic-condition-management/   301
+/primary-care/preventive-care/                /preventive-care/                301
+/primary-care/telemedicine/                   /telemedicine/                   301
+/primary-care/membership/                     /membership/                     301
+/es/atencion-primaria/manejo-enfermedades-cronicas/  /es/manejo-enfermedades-cronicas/  301
+/es/atencion-primaria/atencion-preventiva/           /es/atencion-preventiva/           301
+/es/atencion-primaria/telemedicina/                  /es/telemedicina/                  301
+/es/atencion-primaria/membresia/                     /es/membresia/                     301

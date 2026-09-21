@@ -25,10 +25,10 @@ export const nav: Record<Lang, NavItem[]> = {
       children: [
         { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
         { label: "IV Therapy", href: "/iv-therapy/" },
-        { label: "Chronic Condition Care", href: "/primary-care/chronic-condition-management/" },
-        { label: "Preventive Care", href: "/primary-care/preventive-care/" },
-        { label: "Telemedicine", href: "/primary-care/telemedicine/" },
-        { label: "Membership", href: "/primary-care/membership/" },
+        { label: "Chronic Condition Care", href: "/chronic-condition-management/" },
+        { label: "Preventive Care", href: "/preventive-care/" },
+        { label: "Telemedicine", href: "/telemedicine/" },
+        { label: "Membership", href: "/membership/" },
       ],
     },
     {
@@ -54,10 +54,10 @@ export const nav: Record<Lang, NavItem[]> = {
       children: [
         { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
         { label: "Terapia IV", href: "/es/terapia-iv/" },
-        { label: "Enfermedades Crónicas", href: "/es/atencion-primaria/manejo-enfermedades-cronicas/" },
-        { label: "Atención Preventiva", href: "/es/atencion-primaria/atencion-preventiva/" },
-        { label: "Telemedicina", href: "/es/atencion-primaria/telemedicina/" },
-        { label: "Membresía", href: "/es/atencion-primaria/membresia/" },
+        { label: "Enfermedades Crónicas", href: "/es/manejo-enfermedades-cronicas/" },
+        { label: "Atención Preventiva", href: "/es/atencion-preventiva/" },
+        { label: "Telemedicina", href: "/es/telemedicina/" },
+        { label: "Membresía", href: "/es/membresia/" },
       ],
     },
     {

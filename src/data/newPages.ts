@@ -13,7 +13,7 @@ const consult = "Virtual visits anywhere in Florida";
 
 export const newPages: Record<string, SimpleContent> = {
   /* ---------------- PRIMARY CARE ---------------- */
-  "/primary-care/chronic-condition-management/": {
+  "/chronic-condition-management/": {
     title: "Chronic Condition Management in Tampa, FL | Palm Wellness Center",
     desc: "Ongoing management for high blood pressure, diabetes, cholesterol, thyroid, asthma and arthritis in Tampa. Extended visits and coordinated care. Call (813) 443-5370.",
     eyebrow: "Primary Care in Tampa",
@@ -31,7 +31,7 @@ export const newPages: Record<string, SimpleContent> = {
       { q: "Can I manage my condition by telemedicine?", a: "Yes - follow-ups, medication management, and lab reviews can be handled by telemedicine throughout Florida when clinically appropriate." },
     ],
   },
-  "/es/atencion-primaria/manejo-enfermedades-cronicas/": {
+  "/es/manejo-enfermedades-cronicas/": {
     title: "Manejo de Enfermedades Crónicas en Tampa, FL | Palm Wellness Center",
     desc: "Manejo continuo de presión alta, diabetes, colesterol, tiroides, asma y artritis en Tampa. Consultas extendidas y atención coordinada. Llama al (813) 443-5370.",
     eyebrow: "Atención Primaria en Tampa",
@@ -50,7 +50,7 @@ export const newPages: Record<string, SimpleContent> = {
     ],
   },
 
-  "/primary-care/preventive-care/": {
+  "/preventive-care/": {
     title: "Preventive Care & Wellness Exams in Tampa, FL | Palm Wellness Center",
     desc: "Annual wellness visits, physicals, screenings, contraception counseling and hormone support in Tampa, FL. Same-day and next-day appointments. Call (813) 443-5370.",
     eyebrow: "Primary Care in Tampa",
@@ -68,7 +68,7 @@ export const newPages: Record<string, SimpleContent> = {
       { q: "Is telehealth available for preventive care?", a: "Some preventive follow-ups can be done by telemedicine. Your provider will recommend an in-person visit when it is clinically needed." },
     ],
   },
-  "/es/atencion-primaria/atencion-preventiva/": {
+  "/es/atencion-preventiva/": {
     title: "Atención Preventiva y Exámenes de Bienestar en Tampa, FL | Palm Wellness Center",
     desc: "Visitas anuales de bienestar, físicos, exámenes, consejería de anticoncepción y apoyo hormonal en Tampa, FL. Citas el mismo día o al día siguiente. Llama al (813) 443-5370.",
     eyebrow: "Atención Primaria en Tampa",
@@ -87,7 +87,7 @@ export const newPages: Record<string, SimpleContent> = {
     ],
   },
 
-  "/primary-care/telemedicine/": {
+  "/telemedicine/": {
     title: "Telemedicine Visits Across Florida | Palm Wellness Center",
     desc: "See your Palm Wellness provider online for follow-ups, medication management, lab reviews, and chronic care. Telemedicine available throughout Florida.",
     eyebrow: "Primary Care in Tampa",
@@ -105,7 +105,7 @@ export const newPages: Record<string, SimpleContent> = {
       { q: "When is an in-person visit required?", a: "When a physical exam or in-person test is necessary, your provider will let you know and help you schedule." },
     ],
   },
-  "/es/atencion-primaria/telemedicina/": {
+  "/es/telemedicina/": {
     title: "Telemedicina en Toda Florida | Palm Wellness Center",
     desc: "Consulta a tu proveedor de Palm Wellness en línea para seguimientos, manejo de medicamentos, revisión de laboratorios y enfermedades crónicas. Telemedicina en toda Florida.",
     eyebrow: "Atención Primaria en Tampa",
@@ -124,7 +124,7 @@ export const newPages: Record<string, SimpleContent> = {
     ],
   },
 
-  "/primary-care/membership/": {
+  "/membership/": {
     title: "Primary Care Membership in Tampa | Palm Wellness Center",
     desc: "Monthly Medical Membership: $99 initial + $39/month for extended primary care. Single visits from $39. Most insurance accepted.",
     eyebrow: "Membership",
@@ -142,7 +142,7 @@ export const newPages: Record<string, SimpleContent> = {
       { q: "Does membership replace insurance?", a: "Membership is not insurance. We still accept most major insurance plans for covered services." },
     ],
   },
-  "/es/atencion-primaria/membresia/": {
+  "/es/membresia/": {
     title: "Membresía de Atención Primaria en Tampa | Palm Wellness Center",
     desc: "Membresía médica mensual: $99 inicial + $39/mes para atención primaria extendida. Visitas desde $39. Aceptamos la mayoría de seguros.",
     eyebrow: "Membresía",
