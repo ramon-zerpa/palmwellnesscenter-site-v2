@@ -1,0 +1,787 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Physical Rehabilitation in Tampa",
+      title: "Physical rehabilitation built around how you move",
+      lead: "Recover from an injury, manage pain, or regain mobility with a coordinated rehabilitation plan - chiropractic care, therapeutic exercises, massage, ultrasound, and medical support in one Tampa clinic.",
+      chips: [
+        { icon: "activity", label: "Movement-focused care" },
+        { icon: "clipboard-check", label: "Evaluation first" },
+        { icon: "car", label: "Auto accident recovery" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "One coordinated care team · In-person evaluations · Free transportation for eligible patients",
+      image: "/images/top-physical-rehabilitation-clinic-in-tampa-bay-min.jpg",
+      imageAlt: "A provider evaluating a patient's leg mobility at Palm Wellness Center in Tampa",
+      rail: [
+        { value: "6", label: "Treatment options" },
+        { value: "1 team", label: "Coordinated care" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "What it is", href: "#what" },
+      { label: "We can help", href: "#conditions" },
+      { label: "Programs", href: "#programs" },
+      { label: "Treatments", href: "#treatments" },
+      { label: "Process", href: "#process" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    intro: {
+      heading: "What is physical rehabilitation?",
+      paras: [
+        "Physical rehabilitation is a coordinated recovery program designed to help you improve movement, strength, flexibility, balance, and daily function after an injury, accident, surgery, or a mobility-related condition.",
+        "It is not one single treatment. Your plan may combine guided movement, chiropractic care, massage therapy, ultrasound therapy, mobility work, and medical follow-up depending on your symptoms, recovery goals, and how your body responds.",
+        "The goal is simple: help you move better, feel more confident, and get back to everyday life safely.",
+      ],
+      compare: [
+        { tag: "Treating only the symptom", value: "Where it hurts", body: "Focusing on today's pain alone can miss the movement patterns and weakness that keep it coming back." },
+        { tag: "At Palm Wellness", value: "The whole picture", body: "We look at how your muscles, joints, movement patterns, and overall health work together - and build a plan that supports recovery over time." },
+      ],
+    },
+    conditions: {
+      eyebrow: "Who we help",
+      heading: "Rehabilitation can help with",
+      lead: "If pain, stiffness, or limited mobility is getting in the way of work, sleep, exercise, or daily life, an evaluation is the right first step.",
+      items: [
+        { icon: "spine", title: "Back and neck pain", body: "Discomfort and stiffness that limits how you sit, stand, lift, or sleep." },
+        { icon: "bone", title: "Joint pain or stiffness", body: "Shoulders, hips, knees, and other joints that feel tight, achy, or slow to move." },
+        { icon: "bandage", title: "Muscle strains and soft tissue injuries", body: "Pulled muscles and soft tissue injuries that need guided, graded recovery." },
+        { icon: "move", title: "Limited flexibility or mobility", body: "Range of motion that has not returned after injury, surgery, or time off your feet." },
+        { icon: "car", title: "Pain after an auto accident", body: "Whiplash, headaches, and back or neck pain that can appear days after a crash." },
+        { icon: "footprints", title: "Injuries from a slip and fall", body: "Joint, muscle, and balance problems after a fall-related injury." },
+        { icon: "dumbbell", title: "Weakness after an injury", body: "Strength and stability lost during recovery, rebuilt step by step." },
+        { icon: "gauge", title: "Reduced range of motion", body: "Movement that feels restricted and interferes with normal daily activities." },
+      ],
+    },
+    programs: {
+      eyebrow: "Rehabilitation programs",
+      heading: "Choose your rehabilitation path",
+      lead: "Some patients need a structured injury-recovery program; others need a specific treatment as part of a broader plan. Start with the path that fits your situation.",
+      items: [
+        {
+          icon: "car",
+          title: "Auto Accident Rehabilitation",
+          body: "Recover after a crash with care focused on mobility, range of motion, strength, comfort, and daily function - for injuries that may not fully show up right away.",
+          href: "/car-accident-rehabilitation/",
+          image: "/images/auto-accident-rehabilitation-in-tampa-fl.webp",
+          imageAlt: "A person seeking care after an auto accident in Tampa",
+        },
+        {
+          icon: "footprints",
+          title: "Slip and Fall Rehabilitation",
+          body: "Restore mobility, improve balance, rebuild strength, and return to daily activities after a fall-related injury.",
+          href: "/slip-and-fall-injury-treatment/",
+          image: "/images/what-is-a-slip-and-fall-accident.webp",
+          imageAlt: "A wet floor caution sign representing slip and fall injuries",
+        },
+      ],
+      note: "Recently in a crash and need an initial evaluation?",
+      noteLink: { label: "Car accident treatment in Tampa", href: "/car-accident-treatment/" },
+    },
+    treatments: {
+      eyebrow: "Treatments",
+      heading: "Treatments used during rehabilitation",
+      lead: "Your provider may recommend one or more of these services, depending on your symptoms, condition, and progress.",
+      items: [
+        { icon: "spine", title: "Chiropractic Care", body: "Gentle spinal and extremity adjustments that may improve joint function, reduce stiffness, and support better movement.", href: "/chiropractor/" },
+        { icon: "dumbbell", title: "Therapeutic Exercises", body: "Guided movements that build strength, flexibility, balance, coordination, and range of motion - adjusted as you improve.", href: "/therapeutic-exercises/" },
+        { icon: "hand-heart", title: "Massage Therapy", body: "Hands-on soft tissue work that may reduce muscle tension, improve circulation, and ease discomfort during recovery.", href: "/massage-therapy/" },
+        { icon: "waves", title: "Therapeutic Ultrasound", body: "Sound waves that deliver gentle heat into deeper tissues to support circulation, reduce stiffness, and assist soft tissue recovery.", href: "/therapeutic-ultrasound-treatment/" },
+      ],
+    },
+    process: {
+      eyebrow: "How it works",
+      heading: "How rehabilitation works at Palm Wellness Center",
+      lead: "Your plan is built around your needs - not a preset list of treatments.",
+      steps: [
+        { title: "Evaluation", body: "Your provider reviews your symptoms, health history, previous injuries, mobility concerns, and recovery goals." },
+        { title: "Functional assessment", body: "We look at how your condition affects movement, strength, flexibility, balance, range of motion, and daily activities." },
+        { title: "Personalized plan", body: "You get a care plan that may combine one or more rehabilitation services based on what you actually need." },
+        { title: "Guided treatment", body: "Care may include chiropractic care, therapeutic exercises, massage, ultrasound, and mobility work." },
+        { title: "Progress monitoring", body: "As you improve, your provider adjusts the plan so care keeps matching your progress." },
+        { title: "Return to activity", body: "The goal is to get you back to daily life with better movement, more confidence, and less discomfort." },
+      ],
+    },
+    why: {
+      eyebrow: "Why patients choose",
+      heading: "Why patients choose Palm Wellness Center",
+      lead: "Rehabilitation here is designed around the person, not just the injury.",
+      items: [
+        { title: "Coordinated care under one roof", body: "Rehabilitation, chiropractic care, therapeutic exercises, massage therapy, ultrasound, and medical support in one clinic." },
+        { title: "Personalized treatment plans", body: "Your plan reflects your symptoms, condition, lifestyle, progress, and recovery goals." },
+        { title: "Focus on movement and function", body: "We do not just chase pain relief - we help you move better, rebuild strength, and return to daily life." },
+        { title: "Bilingual care", body: "Our team proudly supports patients in English and Spanish." },
+        { title: "Transportation assistance", body: "Free transportation may be available for eligible patients who need help getting to appointments." },
+        { title: "Convenient Tampa location", body: "We serve Tampa and nearby communities from 1004 W Linebaugh Ave Ste A." },
+      ],
+    },
+    start: {
+      eyebrow: "Getting started",
+      heading: "How to get started with physical rehabilitation",
+      items: [
+        { title: "Call or book online", body: "Call (813) 443-5370 or request an appointment, and our team will schedule your rehabilitation evaluation." },
+        { title: "Check your coverage", body: "Our team can help you understand whether a referral is needed and review your insurance and payment options before treatment." },
+        { title: "Your first visit", body: "Your provider reviews your symptoms, health history, movement, strength, flexibility, and recovery goals." },
+        { title: "Start your care plan", body: "Begin a plan that may include one or more treatment services, adjusted as your body responds to care." },
+      ],
+      note: "Evaluations are in person at our Tampa clinic. Free transportation is available for eligible patients.",
+    },
+    integrated: {
+      eyebrow: "Integrated Wellness",
+      heading: "Rehabilitation is better with context",
+      lead: "Because your rehabilitation team can see your whole record, your recovery fits safely into the rest of your care.",
+      relatedLabel: "Related services",
+      items: [
+        { icon: "stethoscope", title: "Primary Care", body: "Your medical home - where your history, medications, and lab results live.", href: "/primary-care/" },
+        { icon: "scale", title: "Medical Weight Loss", body: "A supervised program that pairs activity planning with your rehabilitation goals.", href: "/medical-weight-loss/" },
+        { icon: "droplet", title: "IV Therapy", body: "Hydration and nutrient support while you rebuild strength and mobility.", href: "/iv-therapy/" },
+        { icon: "shield", title: "Preventive Care", body: "Screenings and wellness visits that keep recovery on track.", href: "/preventive-care/" },
+      ],
+      related: [
+        { label: "Primary Care", href: "/primary-care/" },
+        { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
+        { label: "IV Therapy", href: "/iv-therapy/" },
+        { label: "Chiropractic Care", href: "/chiropractor/" },
+        { label: "Massage Therapy", href: "/massage-therapy/" },
+        { label: "Therapeutic Exercises", href: "/therapeutic-exercises/" },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered care. Our team follows established clinical standards and builds rehabilitation plans that are clear, coordinated, and matched to your progress.",
+        "Physical rehabilitation is supported by licensed providers focused on safe, coordinated care, and every visit is documented in your medical record.",
+      ],
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "A provider listening to a patient and reviewing a rehabilitation care plan",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Medical supervision",
+    },
+    transport: {
+      title: "Need a ride? We've got you covered.",
+      body: "Palm Wellness Center offers free transportation to and from appointments for eligible patients across the Tampa Bay area, so getting to your evaluation is never the reason you miss care. Just ask when you call or request an appointment.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through your options, scheduling, and what to expect at your evaluation.",
+      items: [
+        { q: "What is physical rehabilitation?", a: "Physical rehabilitation is a coordinated recovery program focused on improving movement, reducing pain, rebuilding strength, restoring mobility, and helping you return to daily activities after an injury, accident, surgery, or mobility-related condition." },
+        { q: "Is physical rehabilitation the same as physical therapy?", a: "Physical therapy may be part of rehabilitation, but rehabilitation is broader. At Palm Wellness Center it may include therapeutic exercises, chiropractic care, massage therapy, therapeutic ultrasound, mobility work, and coordinated medical support depending on your needs." },
+        { q: "What treatments may be included in my plan?", a: "Your plan may include chiropractic care, therapeutic exercises, massage therapy, therapeutic ultrasound, mobility training, strength and flexibility work, and medical coordination when appropriate." },
+        { q: "Do I need a referral for physical rehabilitation?", a: "Referral requirements depend on your insurance plan and the type of care you need. Our team can help you understand whether a referral is needed before your appointment." },
+        { q: "How long does physical rehabilitation take?", a: "Every recovery is different. Your provider will recommend a plan based on your condition, symptoms, goals, and progress during care." },
+        { q: "Can rehabilitation help after an auto accident?", a: "Yes. Rehabilitation may help after an auto accident by improving mobility, reducing stiffness, rebuilding strength, and supporting recovery from accident-related injuries." },
+        { q: "Can rehabilitation help after a slip and fall?", a: "Yes. Rehabilitation may help you recover from fall-related pain, stiffness, balance problems, joint injuries, soft tissue injuries, and reduced mobility." },
+        { q: "Will my treatment plan change as I improve?", a: "Yes. Your plan may be adjusted as your pain, strength, mobility, flexibility, and daily function improve." },
+      ],
+    },
+    area: {
+      eyebrow: "Service Area",
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Located in the heart of Tampa at 1004 W Linebaugh Ave, we serve patients from across Hillsborough County and nearby communities.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Town 'N' Country", "Temple Terrace", "Brandon"],
+      note: "Free transportation is available for eligible patients throughout Tampa Bay, so getting to your appointment is never the reason you miss care.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Start your rehabilitation in Tampa",
+      lead: "Pain, stiffness, or limited mobility does not have to be your normal. Request an evaluation and start a plan built around your goals.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Rehabilitación Física en Tampa",
+      title: "Rehabilitación física diseñada según cómo te mueves",
+      lead: "Recupérate de una lesión, controla el dolor o recupera movilidad con un plan de rehabilitación coordinado: atención quiropráctica, ejercicios terapéuticos, masajes, ultrasonido y apoyo médico en una sola clínica en Tampa.",
+      chips: [
+        { icon: "activity", label: "Enfoque en el movimiento" },
+        { icon: "clipboard-check", label: "Primero la evaluación" },
+        { icon: "car", label: "Recuperación de accidentes" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "Un equipo coordinado · Evaluaciones en persona · Transporte gratis para pacientes elegibles",
+      image: "/images/top-physical-rehabilitation-clinic-in-tampa-bay-min.jpg",
+      imageAlt: "Proveedor evaluando la movilidad de la pierna de un paciente en Palm Wellness Center en Tampa",
+      rail: [
+        { value: "6", label: "Opciones de tratamiento" },
+        { value: "1 equipo", label: "Atención coordinada" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Qué es", href: "#what" },
+      { label: "Te ayudamos", href: "#conditions" },
+      { label: "Programas", href: "#programs" },
+      { label: "Tratamientos", href: "#treatments" },
+      { label: "Proceso", href: "#process" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    intro: {
+      heading: "¿Qué es la rehabilitación física?",
+      paras: [
+        "La rehabilitación física es un programa coordinado de recuperación diseñado para ayudarte a mejorar el movimiento, la fuerza, la flexibilidad, el equilibrio y la función diaria después de una lesión, un accidente, una cirugía o una afección relacionada con la movilidad.",
+        "No es un solo tratamiento. Tu plan puede combinar movimiento guiado, atención quiropráctica, terapia de masajes, ultrasonido, ejercicios de movilidad y seguimiento médico, según tus síntomas, tus objetivos y la manera en que responde tu cuerpo.",
+        "El objetivo es simple: ayudarte a moverte mejor, con más confianza, y retomar tu vida cotidiana de forma segura.",
+      ],
+      compare: [
+        { tag: "Tratar solo el síntoma", value: "Dónde duele", body: "Enfocarse únicamente en el dolor de hoy puede pasar por alto los patrones de movimiento y la debilidad que hacen que regrese." },
+        { tag: "En Palm Wellness", value: "El panorama completo", body: "Analizamos cómo trabajan juntos tus músculos, articulaciones, patrones de movimiento y salud general, y creamos un plan que apoya tu recuperación con el tiempo." },
+      ],
+    },
+    conditions: {
+      eyebrow: "A quién ayudamos",
+      heading: "La rehabilitación puede ayudar con",
+      lead: "Si el dolor, la rigidez o la movilidad limitada te dificultan trabajar, dormir, hacer ejercicio o tu vida diaria, una evaluación es el primer paso correcto.",
+      items: [
+        { icon: "spine", title: "Dolor de espalda y cuello", body: "Molestias y rigidez que limitan cómo te sientas, te paras, levantas peso o duermes." },
+        { icon: "bone", title: "Dolor o rigidez articular", body: "Hombros, caderas, rodillas y otras articulaciones que se sienten tensas o lentas." },
+        { icon: "bandage", title: "Distensiones y tejidos blandos", body: "Músculos lastimados y lesiones de tejidos blandos que necesitan una recuperación guiada." },
+        { icon: "move", title: "Flexibilidad o movilidad limitada", body: "Rango de movimiento que no ha regresado tras una lesión, cirugía o tiempo sin moverte." },
+        { icon: "car", title: "Dolor después de un accidente de auto", body: "Latigazo cervical, dolores de cabeza y dolor de espalda o cuello que puede aparecer días después." },
+        { icon: "footprints", title: "Lesiones por resbalón o caída", body: "Problemas articulares, musculares y de equilibrio después de una caída." },
+        { icon: "dumbbell", title: "Debilidad después de una lesión", body: "Fuerza y estabilidad perdidas durante la recuperación, reconstruidas paso a paso." },
+        { icon: "gauge", title: "Rango de movimiento reducido", body: "Movimiento limitado que interfiere con tus actividades cotidianas." },
+      ],
+    },
+    programs: {
+      eyebrow: "Programas de rehabilitación",
+      heading: "Elige tu camino de rehabilitación",
+      lead: "Algunos pacientes necesitan un programa estructurado de recuperación; otros, un tratamiento específico dentro de un plan más amplio. Comienza por el camino que se ajuste a tu situación.",
+      items: [
+        {
+          icon: "car",
+          title: "Rehabilitación por Accidentes de Auto",
+          body: "Recupérate tras un choque con atención enfocada en movilidad, rango de movimiento, fuerza, comodidad y función diaria, incluso en lesiones que no se manifiestan de inmediato.",
+          href: "/es/rehabilitacion-de-accidentes-automovilisticos/",
+          image: "/images/auto-accident-rehabilitation-in-tampa-fl.webp",
+          imageAlt: "Persona buscando atención después de un accidente de auto en Tampa",
+        },
+        {
+          icon: "footprints",
+          title: "Rehabilitación por Resbalones y Caídas",
+          body: "Recupera movilidad, mejora el equilibrio, reconstruye fuerza y retoma tus actividades tras una lesión por caída.",
+          href: "/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/",
+          image: "/images/what-is-a-slip-and-fall-accident.webp",
+          imageAlt: "Señal de precaución de piso mojado que representa lesiones por resbalones y caídas",
+        },
+      ],
+      note: "¿Sufriste un choque y necesitas una evaluación inicial?",
+      noteLink: { label: "Tratamiento de accidentes de auto en Tampa", href: "/es/tratamiento-de-accidentes-de-auto/" },
+    },
+    treatments: {
+      eyebrow: "Tratamientos",
+      heading: "Tratamientos que se usan durante la rehabilitación",
+      lead: "Tu proveedor puede recomendar uno o más de estos servicios, según tus síntomas, tu condición y tu progreso.",
+      items: [
+        { icon: "spine", title: "Atención Quiropráctica", body: "Ajustes suaves de columna y extremidades que pueden mejorar la función articular, reducir la rigidez y favorecer un mejor movimiento.", href: "/es/quiropractico/" },
+        { icon: "dumbbell", title: "Ejercicios Terapéuticos", body: "Movimientos guiados que desarrollan fuerza, flexibilidad, equilibrio, coordinación y rango de movimiento, ajustados a medida que mejoras.", href: "/es/ejercicios-terapeuticos/" },
+        { icon: "hand-heart", title: "Terapia de Masajes", body: "Trabajo manual de tejidos blandos que puede reducir la tensión muscular, mejorar la circulación y aliviar molestias durante la recuperación.", href: "/es/terapia-de-masajes/" },
+        { icon: "waves", title: "Ultrasonido Terapéutico", body: "Ondas sonoras que entregan calor suave a tejidos profundos para favorecer la circulación, reducir la rigidez y apoyar la recuperación.", href: "/es/tratamiento-de-ultrasonido-terapeutico/" },
+      ],
+    },
+    process: {
+      eyebrow: "Cómo funciona",
+      heading: "Cómo funciona la rehabilitación en Palm Wellness Center",
+      lead: "Tu plan se construye según tus necesidades, no a partir de una lista predeterminada de tratamientos.",
+      steps: [
+        { title: "Evaluación", body: "Tu proveedor revisa tus síntomas, antecedentes de salud, lesiones previas, dificultades de movilidad y objetivos de recuperación." },
+        { title: "Evaluación funcional", body: "Analizamos cómo tu condición afecta el movimiento, la fuerza, la flexibilidad, el equilibrio, el rango de movimiento y las actividades diarias." },
+        { title: "Plan personalizado", body: "Recibes un plan que puede combinar uno o más servicios de rehabilitación según lo que realmente necesitas." },
+        { title: "Tratamiento guiado", body: "La atención puede incluir quiropráctica, ejercicios terapéuticos, masajes, ultrasonido y trabajo de movilidad." },
+        { title: "Seguimiento del progreso", body: "A medida que mejoras, tu proveedor ajusta el plan para que la atención siga tu progreso." },
+        { title: "Regreso a tus actividades", body: "El objetivo es que retomes tu vida diaria con mejor movimiento, más confianza y menos molestias." },
+      ],
+    },
+    why: {
+      eyebrow: "Por qué elegirnos",
+      heading: "Por qué los pacientes eligen Palm Wellness Center",
+      lead: "Aquí la rehabilitación se diseña en torno a la persona, no solo a la lesión.",
+      items: [
+        { title: "Atención coordinada en un solo lugar", body: "Rehabilitación, quiropráctica, ejercicios terapéuticos, masajes, ultrasonido y apoyo médico en una sola clínica." },
+        { title: "Planes de tratamiento personalizados", body: "Tu plan refleja tus síntomas, condición, estilo de vida, progreso y objetivos." },
+        { title: "Enfoque en el movimiento y la función", body: "No solo buscamos aliviar el dolor: te ayudamos a moverte mejor, recuperar fuerza y retomar tu vida." },
+        { title: "Atención bilingüe", body: "Nuestro equipo atiende con orgullo a pacientes en inglés y español." },
+        { title: "Asistencia de transporte", body: "Transporte gratis disponible para pacientes elegibles que necesiten ayuda para llegar a sus citas." },
+        { title: "Ubicación conveniente en Tampa", body: "Atendemos a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A." },
+      ],
+    },
+    start: {
+      eyebrow: "Cómo comenzar",
+      heading: "Cómo comenzar la rehabilitación física",
+      items: [
+        { title: "Llama o reserva en línea", body: "Llama al (813) 443-5370 o solicita una cita, y nuestro equipo programará tu evaluación de rehabilitación." },
+        { title: "Revisa tu cobertura", body: "Nuestro equipo te ayuda a entender si necesitas una remisión y revisa tus opciones de seguro y pago antes del tratamiento." },
+        { title: "Tu primera visita", body: "Tu proveedor revisa tus síntomas, historial de salud, movimiento, fuerza, flexibilidad y objetivos." },
+        { title: "Comienza tu plan", body: "Inicia un plan que puede incluir uno o más tratamientos, ajustado según cómo responde tu cuerpo." },
+      ],
+      note: "Las evaluaciones son en persona en nuestra clínica de Tampa. Hay transporte gratis para pacientes elegibles.",
+    },
+    integrated: {
+      eyebrow: "Bienestar Integrado",
+      heading: "La rehabilitación es mejor con contexto",
+      lead: "Como tu equipo de rehabilitación ve todo tu expediente, tu recuperación encaja de forma segura con el resto de tu atención.",
+      relatedLabel: "Servicios relacionados",
+      items: [
+        { icon: "stethoscope", title: "Atención Primaria", body: "Tu hogar médico, donde están tu historial, medicamentos y laboratorios.", href: "/es/atencion-primaria/" },
+        { icon: "scale", title: "Pérdida de Peso Médica", body: "Un programa supervisado que combina la planificación de actividad con tus metas de rehabilitación.", href: "/es/perdida-de-peso-medica/" },
+        { icon: "droplet", title: "Terapia IV", body: "Apoyo de hidratación y nutrientes mientras recuperas fuerza y movilidad.", href: "/es/terapia-iv/" },
+        { icon: "shield", title: "Atención Preventiva", body: "Evaluaciones y visitas de bienestar que mantienen tu recuperación en curso.", href: "/es/atencion-preventiva/" },
+      ],
+      related: [
+        { label: "Atención Primaria", href: "/es/atencion-primaria/" },
+        { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
+        { label: "Terapia IV", href: "/es/terapia-iv/" },
+        { label: "Quiropráctica", href: "/es/quiropractico/" },
+        { label: "Terapia de Masajes", href: "/es/terapia-de-masajes/" },
+        { label: "Ejercicios Terapéuticos", href: "/es/ejercicios-terapeuticos/" },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center está dirigido por profesionales médicos y de rehabilitación con licencia, comprometidos con una atención segura y centrada en el paciente. Nuestro equipo sigue estándares clínicos establecidos y crea planes de rehabilitación claros, coordinados y ajustados a tu progreso.",
+        "La rehabilitación física cuenta con el apoyo de proveedores con licencia enfocados en una atención segura y coordinada, y cada visita queda documentada en tu expediente médico.",
+      ],
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "Proveedor escuchando a un paciente y revisando un plan de rehabilitación",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Supervisión médica",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Lo tenemos cubierto.",
+      body: "Palm Wellness Center ofrece transporte gratuito de ida y vuelta a las citas para pacientes elegibles en toda el área de la Bahía de Tampa, para que llegar a tu evaluación nunca sea la razón para faltar. Solo pregúntalo al llamar o solicitar una cita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará tus opciones, cómo agendar y qué esperar en tu evaluación.",
+      items: [
+        { q: "¿Qué es la rehabilitación física?", a: "La rehabilitación física es un programa coordinado de recuperación enfocado en mejorar el movimiento, reducir el dolor, recuperar la fuerza, restaurar la movilidad y ayudarte a retomar tus actividades cotidianas después de una lesión, un accidente, una cirugía o una afección relacionada con la movilidad." },
+        { q: "¿La rehabilitación física es lo mismo que la fisioterapia?", a: "La fisioterapia puede formar parte de la rehabilitación, pero la rehabilitación es más amplia. En Palm Wellness Center puede incluir ejercicios terapéuticos, atención quiropráctica, terapia de masajes, ultrasonido terapéutico, ejercicios de movilidad y apoyo médico coordinado según tus necesidades." },
+        { q: "¿Qué tratamientos pueden incluirse en mi plan?", a: "Tu plan puede incluir atención quiropráctica, ejercicios terapéuticos, terapia de masajes, ultrasonido terapéutico, entrenamiento de movilidad, fortalecimiento, trabajo de flexibilidad y coordinación médica cuando corresponda." },
+        { q: "¿Necesito una remisión para la rehabilitación física?", a: "Los requisitos de remisión dependen de tu plan de seguro y del tipo de atención que necesites. Nuestro equipo puede ayudarte a entender si necesitas una remisión antes de tu cita." },
+        { q: "¿Cuánto tiempo dura la rehabilitación física?", a: "Cada recuperación es diferente. Tu proveedor recomendará un plan basado en tu condición, síntomas, objetivos y progreso durante la atención." },
+        { q: "¿Puede ayudar la rehabilitación después de un accidente de auto?", a: "Sí. La rehabilitación puede ayudar después de un accidente de auto al mejorar la movilidad, reducir la rigidez, recuperar la fuerza y apoyar la recuperación de lesiones relacionadas con el accidente." },
+        { q: "¿Puede ayudar la rehabilitación después de un resbalón o una caída?", a: "Sí. La rehabilitación puede ayudarte a recuperarte de dolor, rigidez, problemas de equilibrio, lesiones articulares o de tejidos blandos y movilidad reducida relacionados con una caída." },
+        { q: "¿Cambiará mi plan de tratamiento a medida que mejore?", a: "Sí. Tu plan puede ajustarse a medida que mejoran el dolor, la fuerza, la movilidad, la flexibilidad y la función diaria." },
+      ],
+    },
+    area: {
+      eyebrow: "Área de Servicio",
+      heading: "Sirviendo con orgullo a Tampa y sus vecindarios",
+      lead: "Ubicados en el corazón de Tampa en 1004 W Linebaugh Ave, atendemos a pacientes de todo el condado de Hillsborough y comunidades cercanas.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Town 'N' Country", "Temple Terrace", "Brandon"],
+      note: "Ofrecemos transporte gratuito para pacientes elegibles en toda la Bahía de Tampa, para que llegar a tu cita nunca sea la razón para faltar.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
+    },
+    cta: {
+      title: "Comienza tu rehabilitación en Tampa",
+      lead: "El dolor, la rigidez o la movilidad limitada no tienen que ser tu normal. Solicita una evaluación y comienza un plan diseñado según tus metas.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+// Single hover language: a 2px lift plus ONE soft black shadow. It belongs to
+// things the user can act on, or to the single card that fronts an action —
+// never to both at once.
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="activity" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV — in flow after the hero; sticks flush to the bottom edge of the
+     sticky primary nav (header is 70px at lg, 64px below), so no gap appears. -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- INTRO -->
+<section id="what" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.intro.heading}</h2>
+      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+    </div>
+    <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-1">
+      {content.intro.compare.map((c, i) => (
+        <div class={i === 1
+          ? `flex flex-col gap-2.5 rounded-lg bg-blue-deep p-7 ${hover}`
+          : `flex flex-col gap-2.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+          <p class={i === 1 ? "text-[11px] font-bold uppercase tracking-[0.1em] text-blue-tint" : "text-[11px] font-bold uppercase tracking-[0.1em] text-muted"}>{c.tag}</p>
+          <p class={i === 1 ? "font-titles text-[30px] font-bold leading-none text-white" : "font-titles text-[30px] font-bold leading-none text-ink"}>{c.value}</p>
+          <p class={i === 1 ? "text-[15px] leading-[1.55] text-blue-tint" : "text-[15px] leading-[1.55] text-body"}>{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section id="conditions" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="activity" class="h-3.5 w-3.5" />{content.conditions.eyebrow}</span>
+        <h2 class={h2Cls}>{content.conditions.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.conditions.lead}</p>
+    </div>
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {content.conditions.items.map((c) => (
+        <li class="flex flex-col gap-3 rounded-lg border border-line bg-white p-6 lg:p-7">
+          <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-5 w-5" /></span>
+          <h3 class="font-titles text-[17px] leading-[1.25] text-ink sm:text-[18px]">{c.title}</h3>
+          <p class="text-[14.5px] leading-[1.5] text-body">{c.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section id="programs" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="route" class="h-3.5 w-3.5" />{content.programs.eyebrow}</span>
+        <h2 class={h2Cls}>{content.programs.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.programs.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+      {content.programs.items.map((p) => (
+        <a href={p.href} class={`group flex flex-col overflow-hidden rounded-lg border border-line bg-white ${hover}`}>
+          <img src={p.image} width="560" height="320" alt={p.imageAlt} loading="lazy" decoding="async" class="h-[200px] w-full object-cover sm:h-[240px]" />
+          <div class="flex flex-1 flex-col gap-3 p-7 lg:p-8">
+            <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={p.icon} class="h-[22px] w-[22px]" /></span>
+            <h3 class="font-titles text-[20px] leading-[1.25] text-ink lg:text-[22px]">{p.title}</h3>
+            <p class="text-[15px] leading-[1.6] text-body">{p.body}</p>
+            <span class="mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-blue">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+          </div>
+        </a>
+      ))}
+    </div>
+    <p class="text-[14px] text-muted">
+      {content.programs.note} <a href={content.programs.noteLink.href} class="font-semibold text-blue underline-offset-4 hover:text-blue-deep hover:underline">{content.programs.noteLink.label}</a>.
+    </p>
+  </div>
+</section>
+
+<!-- TREATMENTS -->
+<section id="treatments" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="list-checks" class="h-3.5 w-3.5" />{content.treatments.eyebrow}</span>
+        <h2 class={h2Cls}>{content.treatments.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.treatments.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+      {content.treatments.items.map((t) => (
+        <a href={t.href} class={`group flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <div class="flex items-center gap-4">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={t.icon} class="h-[22px] w-[22px]" /></span>
+            <h3 class="font-titles text-[19px] leading-[1.25] text-ink lg:text-[20px]">{t.title}</h3>
+          </div>
+          <p class="text-[15px] leading-[1.6] text-body">{t.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS (dark band) -->
+<section id="process" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{content.process.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.process.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.process.lead}</p>
+    </div>
+    <ol class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {content.process.steps.map((s, i) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-white/15 bg-white/5 p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-green-bright">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white lg:text-[20px]">{s.title}</h3>
+          <p class="text-[14.5px] leading-[1.6] text-blue-tint">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- WHY CHOOSE -->
+<section class="bg-white">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[800px] flex-col gap-4">
+      <span class={eyebrowCls}>{content.why.eyebrow}</span>
+      <h2 class={h2Cls}>{content.why.heading}</h2>
+      <p class={leadCls}>{content.why.lead}</p>
+    </div>
+    <ul class="grid gap-x-12 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+      {content.why.items.map((it) => (
+        <li class="flex flex-col gap-2.5">
+          <Icon name="badge-check" class="h-6 w-6 text-green-dark" />
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink sm:text-[19px]">{it.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-body">{it.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- HOW TO GET STARTED -->
+<section class="bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="calendar-check" class="h-3.5 w-3.5" />{content.start.eyebrow}</span>
+      <h2 class={h2Cls}>{content.start.heading}</h2>
+    </div>
+    <ol class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {content.start.items.map((s, i) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink lg:text-[19px]">{s.title}</h3>
+          <p class="text-[14.5px] leading-[1.6] text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="text-[13px] text-muted">{content.start.note}</p>
+  </div>
+</section>
+
+<!-- INTEGRATED (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{content.integrated.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.integrated.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.integrated.lead}</p>
+    </div>
+    <div class="grid overflow-hidden rounded-lg border border-white/15 bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
+      {content.integrated.items.map((s, i) => (
+        <a href={s.href} class={`group flex flex-col gap-3.5 p-7 hover:bg-white/10 lg:p-8 ${hover} ${i > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white sm:text-[20px]">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-white">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+    <div class="flex flex-col gap-4 pt-9">
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.integrated.relatedLabel}</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.integrated.related.map((r) => (
+          <a href={r.href} class={`flex items-center justify-between gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-[14px] font-semibold text-white hover:bg-white/15 ${hover}`}>
+            {r.label}<Icon name="arrow" class="h-[15px] w-[15px] shrink-0" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+      <div class={`flex flex-col gap-1.5 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{content.trust.supervisorLabel}</p>
+        <p class="font-titles text-[18px] font-bold text-ink">Dr. Arnaldo V. Orellana-Molina</p>
+        <p class="text-[13px] font-semibold leading-[1.4] text-blue">{lang === "es" ? "MD - Médico Supervisor" : "MD - Supervising Physician"}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{lang === "es" ? "Brinda supervisión médica que mantiene cada plan seguro y alineado con las guías clínicas." : "Provides medical oversight that keeps every care plan safe and guideline-aligned."}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{lang === "es" ? "Preguntas" : "FAQ"}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{content.area.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

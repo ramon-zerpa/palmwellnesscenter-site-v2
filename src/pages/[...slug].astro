@@ -7,14 +7,10 @@ import RichPage from "../components/RichPage.astro";
 import BlogPost from "../components/BlogPost.astro";
 import type { Lang } from "../i18n/ui";
 import richpages from "../data/richpages.json";
-import physicalRehabilitationPages from "../data/physicalRehabilitation";
 import therapeuticExercises, { therapeuticExercisesSpanish } from "../data/therapeuticExercises";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const physicalRehabilitationByPath = new Map(
-    physicalRehabilitationPages.map((page) => [page.path, page]),
-  );
   const therapeuticExercisesByPath = new Map([
     [therapeuticExercises.path, therapeuticExercises],
     [therapeuticExercisesSpanish.path, therapeuticExercisesSpanish],
@@ -25,11 +21,13 @@ export async function getStaticPaths() {
     "/es/atencion-primaria/",
     "/medical-weight-loss/",
     "/es/perdida-de-peso-medica/",
+    "/physical-rehabilitation/",
+    "/es/fisioterapia/",
   ]);
   const resolvedRichPages = (richpages as any[])
     .filter((page) => !migrated.has(page.path))
     .map(
-      (page) => therapeuticExercisesByPath.get(page.path) ?? physicalRehabilitationByPath.get(page.path) ?? page,
+      (page) => therapeuticExercisesByPath.get(page.path) ?? page,
     );
   const trim = (s: string) => s.replace(/^\/|\/$/g, "");
   const rich = resolvedRichPages.map((p) => ({

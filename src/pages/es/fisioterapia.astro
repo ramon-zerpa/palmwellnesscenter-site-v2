@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PhysicalRehabilitationPage from "../../components/pages/PhysicalRehabilitationPage.astro";
+
+const path = "/es/fisioterapia/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Rehabilitación Física en Tampa, FL | Palm Wellness Center"
+  description="Recupérese de lesiones, dolor o movilidad limitada con rehabilitación física personalizada en Tampa. Quiropráctica, ejercicios terapéuticos, masajes, ultrasonido y apoyo médico coordinado."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <PhysicalRehabilitationPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

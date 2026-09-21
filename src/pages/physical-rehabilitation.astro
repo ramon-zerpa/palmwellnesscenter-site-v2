@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import PhysicalRehabilitationPage from "../components/pages/PhysicalRehabilitationPage.astro";
+
+const path = "/physical-rehabilitation/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Physical Rehabilitation in Tampa, FL | Palm Wellness Center"
+  description="Recover from injury, pain, or limited mobility with personalized physical rehabilitation in Tampa. Chiropractic care, therapeutic exercises, massage, ultrasound, and coordinated medical support."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <PhysicalRehabilitationPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>
