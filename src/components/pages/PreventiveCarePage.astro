@@ -1,0 +1,763 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Preventive Care in Tampa",
+      title: "Preventive care that stays ahead of illness",
+      lead: "Annual wellness exams, screenings, and practical guidance that keep small findings from becoming bigger problems.",
+      chips: [
+        { icon: "stethoscope", label: "Annual wellness exams" },
+        { icon: "clock", label: "30-45 minute visits" },
+        { icon: "clipboard-check", label: "Screenings & lab review" },
+        { icon: "users", label: "Adults and families" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "Most insurance accepted · Medicare · Free transportation for eligible patients",
+      image: "/images/mature-woman-exercising-for-healthy-lifestyle.webp",
+      imageAlt: "A patient staying active as part of a preventive care plan at Palm Wellness Center in Tampa",
+      rail: [
+        { value: "30-45 min", label: "Wellness visit" },
+        { value: "3 panels", label: "Lab testing" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "What's included", href: "#exams" },
+      { label: "Your visit", href: "#visit" },
+      { label: "Screenings & labs", href: "#labs" },
+      { label: "Get started", href: "#start" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    intro: {
+      heading: "A plan for staying well, not just a visit when you are sick",
+      paras: [
+        "Many of the conditions we treat start quietly. Blood pressure creeps up, cholesterol drifts, blood sugar rises - often years before you feel anything. Preventive care is how you catch those changes while they are still easy to manage.",
+        "At Palm Wellness Center, preventive care means more than a quick checkup. Your provider reviews your history and risk factors, checks your numbers, orders the screenings that make sense for your age and health, and explains the results in language you can actually use. You leave with a plan, not a pamphlet.",
+      ],
+      compare: [
+        { tag: "Care that waits for symptoms", value: "Reactive", body: "You wait for something to hurt or feel wrong, then treat it." },
+        { tag: "Preventive care at Palm Wellness", value: "Proactive", body: "You track your risks and numbers over time, so small changes get caught early." },
+      ],
+    },
+    included: {
+      heading: "What preventive care includes",
+      lead: "Every visit is built around your age, history, and risk factors - not a generic checklist.",
+      items: [
+        { icon: "clipboard-check", title: "Annual wellness exam & physical", body: "A complete review of your health and history, not only the reason you came in." },
+        { icon: "search", title: "Screenings & risk review", body: "Age-appropriate screenings and a clear look at the risk factors that matter for you." },
+        { icon: "heart-pulse", title: "Blood pressure & heart health", body: "Regular readings and trend tracking that help protect your heart and blood vessels." },
+        { icon: "droplet", title: "Cholesterol & metabolic risk", body: "Lipid and metabolic results reviewed with you, with a plan for what to do next." },
+        { icon: "gauge", title: "Blood sugar & diabetes risk", body: "Early detection of blood sugar changes, plus nutrition and lifestyle guidance that fits your routine." },
+        { icon: "flask-conical", title: "Hormone testing & review", body: "Lab testing for men and women, with results explained and next steps discussed." },
+        { icon: "users", title: "Women's & men's health", body: "Routine care, contraception counseling, and concerns specific to your stage of life." },
+        { icon: "leaf", title: "Healthy-lifestyle counseling", body: "Practical support for nutrition, activity, sleep, and quitting smoking when you are ready." },
+      ],
+    },
+    approach: {
+      eyebrow: "Your Visit",
+      heading: "What happens at a preventive visit",
+      lead: "You get time to ask questions and understand your own health - not a rushed form and a handshake.",
+      steps: [
+        { title: "We review your history", body: "Your medical and family history, current medications, lifestyle, and any concern you want to cover." },
+        { title: "We check your numbers", body: "Blood pressure, weight, heart and lung exam, and the vitals that show how you are trending." },
+        { title: "We order and explain screenings", body: "Lab work or screenings based on your age and risk, with results explained in plain language." },
+        { title: "We build your plan", body: "Clear next steps: what to monitor, what to change, and when to come back." },
+      ],
+    },
+    labs: {
+      eyebrow: "Screenings & Labs",
+      heading: "Know your numbers, understand your results",
+      body: "Preventive care only works if you understand what your results mean. We coordinate your lab work, walk you through each value, and connect it to a plan you can follow - in person or by telemedicine.",
+      points: [
+        "Wellness, hormonal, and metabolic panels",
+        "Results reviewed with you during your visit",
+        "In-house lab work with transparent pricing",
+        "Referrals for screenings we do not perform in-house",
+      ],
+      cardLabel: "Preventive lab panels",
+      panels: [
+        { name: "Annual Preventive Assessment with Basic Panel", price: "$145" },
+        { name: "Complete Hormonal Profile", price: "$189" },
+        { name: "Comprehensive Metabolic Panel", price: "$250" },
+      ],
+      note: "Additional testing may be recommended based on your age and risk factors. Your provider will explain what is needed and why before anything is ordered.",
+    },
+    who: {
+      heading: "Who benefits most from preventive care",
+      lead: "You do not need to feel sick to have a reason to come in.",
+      points: [
+        "You have not had a wellness visit in a while",
+        "Your family has a history of heart disease, diabetes, or cancer",
+        "You are managing weight, blood pressure, cholesterol, or blood sugar",
+        "You want your numbers explained in plain language",
+        "You are starting or adjusting a medication",
+        "You want one provider who knows your history year after year",
+      ],
+      closing: "Preventive care is not about finding something wrong. It is about knowing where you stand, so you can make decisions with your provider instead of guessing.",
+      image: "/images/primary-care-membership.webp",
+      imageAlt: "A diverse group of patients and a clinician at Palm Wellness Center in Tampa",
+    },
+    compareTypes: {
+      heading: "Preventive care, an annual physical, or a sick visit?",
+      lead: "They can overlap, but they are not the same. Knowing which one you need saves you time and money.",
+      items: [
+        { icon: "shield-check", title: "Preventive care", body: "Ongoing screenings, risk monitoring, and guidance that keep you well over time. This is the widest of the three." },
+        { icon: "clipboard-check", title: "Annual physical exam", body: "A once-a-year checkup of your vitals, history, and basic health needs - one visit within a preventive plan." },
+        { icon: "activity", title: "Sick or walk-in visit", body: "Care for a problem you already have: a cold, a sprain, or a sudden symptom that needs attention today." },
+      ],
+    },
+    integrated: {
+      heading: "One team, one record",
+      lead: "Because your medical care lives in the same record as your rehabilitation and wellness services, your plan stays connected.",
+      items: [
+        { icon: "stethoscope", title: "Primary Care", body: "Your medical home for everyday health, preventive visits, and prescriptions.", href: "/primary-care/" },
+        { icon: "scale", title: "Medical Weight Loss", body: "Physician-supervised weight and metabolic care that supports long-term prevention.", href: "/medical-weight-loss/" },
+        { icon: "activity", title: "Physical Rehabilitation", body: "Movement and strength care for joint pain, recovery, and staying active.", href: "/physical-rehabilitation/" },
+        { icon: "drop", title: "IV Therapy & Injections", body: "Medically supervised infusions and nutrients prescribed in context.", href: "/iv-therapy/" },
+      ],
+      relatedLabel: "Related services",
+      related: [
+        { label: "Primary Care", href: "/primary-care/" },
+        { label: "Chronic Condition Management", href: "/chronic-condition-management/" },
+        { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
+        { label: "Telemedicine", href: "/telemedicine/" },
+        { label: "IV Therapy", href: "/iv-therapy/" },
+        { label: "Chiropractic Care", href: "/chiropractor/" },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered care. Our team follows established clinical standards, explains your results clearly, and keeps your care documented in one medical record.",
+        "Preventive visits are supervised by Dr. Arnaldo V. Orellana-Molina, MD, and delivered in extended visits at 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "A primary care provider listening to a patient and reviewing her preventive care plan",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Medical supervision",
+    },
+    steps: {
+      eyebrow: "How to Get Started",
+      heading: "How to get started",
+      items: [
+        { title: "Call or book online", body: "Call (813) 443-5370 or schedule online 24/7. Bring your medication list, your family history, and any recent lab results." },
+        { title: "Your first visit", body: "A full history review, a check of your key numbers, and the screenings that make sense for you." },
+        { title: "Your plan, in writing", body: "Clear next steps for what to monitor, what to change, and when to come back for follow-up." },
+      ],
+      note: "Medical services are provided under physician supervision in accordance with Florida state regulations.",
+    },
+    transport: {
+      title: "Need a ride? We've got you covered.",
+      body: "Palm Wellness Center offers free transportation to and from appointments for eligible patients across the Tampa Bay area - so keeping up with your wellness visits is never the reason you fall behind. Just ask when you call or request an appointment.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through coverage, scheduling, and what to expect on your first visit.",
+      items: [
+        { q: "What is preventive care?", a: "It is medical care focused on staying well: annual wellness visits, screenings, lab testing, risk monitoring, and guidance to prevent problems or catch them early." },
+        { q: "Do I need to be sick to book a preventive visit?", a: "No. Preventive visits exist for the opposite reason - to keep you well and to catch changes before they turn into symptoms." },
+        { q: "How is this different from an annual physical?", a: "An annual physical is one visit within a broader preventive plan. Preventive care also includes screenings, lab review, hormone testing, risk monitoring, and follow-up over time." },
+        { q: "How often should I have a preventive visit?", a: "Most adults benefit from one wellness visit a year. Your provider may recommend a different cadence based on your age, risk factors, and any condition you are managing." },
+        { q: "Which screenings do you offer?", a: "Wellness, hormonal, and metabolic lab panels are done in-house. When a screening such as a mammogram, colonoscopy, or skin check is recommended, we explain why and help you get it scheduled." },
+        { q: "How much do lab panels cost?", a: "The Annual Preventive Assessment with Basic Panel is $145, the Complete Hormonal Profile is $189, and the Comprehensive Metabolic Panel is $250. Your provider will only order what is clinically useful at your visit." },
+        { q: "Do you accept insurance and Medicare?", a: "We accept most major insurance plans, including Medicare. Call (813) 443-5370 to verify your specific coverage before your visit." },
+        { q: "Can I do a preventive follow-up by telemedicine?", a: "Yes - lab reviews, medication adjustments, and follow-ups can be handled by telemedicine throughout Florida. Some exams require an in-person visit; your provider will let you know." },
+        { q: "Do I need a membership?", a: "No. You can pay per visit, or join the Monthly Medical Membership ($99 to start, then $39/month) for extended visits and direct provider messaging." },
+      ],
+    },
+    area: {
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Located in the heart of Tampa at 1004 W Linebaugh Ave, we serve patients from across Hillsborough County and nearby communities.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "Free transportation is available for eligible patients throughout Tampa Bay, making your yearly wellness visit easy to keep.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Get ahead of your health this year",
+      lead: "Book a preventive visit and leave with a clear picture of your health - and a plan for the year ahead.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Atención Preventiva en Tampa",
+      title: "Atención preventiva que se adelanta a la enfermedad",
+      lead: "Exámenes anuales de bienestar, pruebas de detección y orientación práctica para que los hallazgos pequeños no se conviertan en problemas mayores.",
+      chips: [
+        { icon: "stethoscope", label: "Exámenes anuales de bienestar" },
+        { icon: "clock", label: "Consultas de 30 a 45 min" },
+        { icon: "clipboard-check", label: "Pruebas y revisión de laboratorio" },
+        { icon: "users", label: "Adultos y familias" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "Aceptamos la mayoría de seguros · Medicare · Transporte gratis para pacientes elegibles",
+      image: "/images/mature-woman-exercising-for-healthy-lifestyle.webp",
+      imageAlt: "Paciente manteniéndose activa como parte de su plan de atención preventiva en Palm Wellness Center en Tampa",
+      rail: [
+        { value: "30-45 min", label: "Visita de bienestar" },
+        { value: "3 paneles", label: "Laboratorio" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Qué incluye", href: "#exams" },
+      { label: "Tu visita", href: "#visit" },
+      { label: "Pruebas y labs", href: "#labs" },
+      { label: "Cómo comenzar", href: "#start" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    intro: {
+      heading: "Un plan para mantenerte bien, no solo una visita cuando ya estás enfermo",
+      paras: [
+        "Muchas de las condiciones que tratamos empiezan en silencio. La presión sube poco a poco, el colesterol se desvía, el azúcar en sangre aumenta, a menudo años antes de que sientas algo. La atención preventiva es la forma de detectar esos cambios cuando todavía son fáciles de manejar.",
+        "En Palm Wellness Center, la atención preventiva es más que un chequeo rápido. Tu proveedor revisa tu historial y tus factores de riesgo, mide tus números, ordena las pruebas que tienen sentido para tu edad y tu salud, y te explica los resultados en un lenguaje que puedes usar. Te vas con un plan, no con un folleto.",
+      ],
+      compare: [
+        { tag: "Atención que espera los síntomas", value: "Reactiva", body: "Esperas a que algo duela o se sienta mal, y entonces lo tratas." },
+        { tag: "Atención preventiva en Palm Wellness", value: "Proactiva", body: "Das seguimiento a tus riesgos y números en el tiempo, para detectar cambios pequeños a tiempo." },
+      ],
+    },
+    included: {
+      heading: "Qué incluye la atención preventiva",
+      lead: "Cada visita se construye alrededor de tu edad, tu historial y tus factores de riesgo, no de una lista genérica.",
+      items: [
+        { icon: "clipboard-check", title: "Examen anual de bienestar y físico", body: "Una revisión completa de tu salud y tu historial, no solo el motivo de la consulta." },
+        { icon: "search", title: "Pruebas de detección y riesgo", body: "Exámenes apropiados para tu edad y una mirada clara a los factores de riesgo que importan en tu caso." },
+        { icon: "heart-pulse", title: "Presión arterial y salud del corazón", body: "Mediciones regulares y seguimiento de tendencias que ayudan a proteger tu corazón y tus vasos sanguíneos." },
+        { icon: "droplet", title: "Colesterol y riesgo metabólico", body: "Resultados de lípidos y metabolismo revisados contigo, con un plan sobre qué hacer después." },
+        { icon: "gauge", title: "Azúcar en sangre y riesgo de diabetes", body: "Detección temprana de cambios en el azúcar, más orientación de nutrición y estilo de vida que encaja con tu rutina." },
+        { icon: "flask-conical", title: "Pruebas y revisión hormonal", body: "Laboratorios para hombres y mujeres, con resultados explicados y próximos pasos conversados." },
+        { icon: "users", title: "Salud de la mujer y del hombre", body: "Atención de rutina, consejería de anticoncepción y preocupaciones propias de tu etapa de vida." },
+        { icon: "leaf", title: "Consejería de estilo de vida", body: "Apoyo práctico en nutrición, actividad, sueño y dejar de fumar cuando estés listo." },
+      ],
+    },
+    approach: {
+      eyebrow: "Tu Visita",
+      heading: "Qué pasa en una visita preventiva",
+      lead: "Tienes tiempo para hacer preguntas y entender tu propia salud, no un formulario apresurado y un apretón de manos.",
+      steps: [
+        { title: "Revisamos tu historial", body: "Tu historial médico y familiar, medicamentos actuales, estilo de vida y cualquier preocupación que quieras cubrir." },
+        { title: "Revisamos tus números", body: "Presión arterial, peso, examen de corazón y pulmones, y los signos vitales que muestran cómo vas." },
+        { title: "Ordenamos y explicamos las pruebas", body: "Laboratorio o pruebas de detección según tu edad y riesgo, con resultados explicados en lenguaje claro." },
+        { title: "Creamos tu plan", body: "Próximos pasos claros: qué monitorear, qué cambiar y cuándo regresar." },
+      ],
+    },
+    labs: {
+      eyebrow: "Pruebas y Laboratorio",
+      heading: "Conoce tus números, entiende tus resultados",
+      body: "La atención preventiva solo funciona si entiendes qué significan tus resultados. Coordinamos tu laboratorio, te explicamos cada valor y lo conectamos con un plan que puedes seguir, en persona o por telemedicina.",
+      points: [
+        "Paneles de bienestar, hormonales y metabólicos",
+        "Resultados revisados contigo durante tu visita",
+        "Laboratorio en el mismo lugar con precios claros",
+        "Referencias para pruebas que no realizamos aquí",
+      ],
+      cardLabel: "Paneles preventivos de laboratorio",
+      panels: [
+        { name: "Evaluación Preventiva Anual con Panel Básico", price: "$145" },
+        { name: "Perfil Hormonal Completo", price: "$189" },
+        { name: "Panel Metabólico Completo", price: "$250" },
+      ],
+      note: "Puede recomendarse laboratorio adicional según tu edad y factores de riesgo. Tu proveedor explicará qué se necesita y por qué antes de ordenar cualquier prueba.",
+    },
+    who: {
+      heading: "Quién se beneficia más de la atención preventiva",
+      lead: "No necesitas sentirte enfermo para tener razones para venir.",
+      points: [
+        "Hace tiempo que no tienes una visita de bienestar",
+        "Tu familia tiene antecedentes de enfermedad del corazón, diabetes o cáncer",
+        "Estás manejando peso, presión, colesterol o azúcar en sangre",
+        "Quieres que te expliquen tus números en lenguaje claro",
+        "Estás comenzando o ajustando un medicamento",
+        "Quieres un proveedor que conozca tu historial año tras año",
+      ],
+      closing: "La atención preventiva no se trata de encontrar algo malo. Se trata de saber en dónde estás, para que decidas junto a tu proveedor en lugar de adivinar.",
+      image: "/images/primary-care-membership.webp",
+      imageAlt: "Un grupo diverso de pacientes y una clínica en Palm Wellness Center en Tampa",
+    },
+    compareTypes: {
+      heading: "¿Atención preventiva, examen físico anual o visita por enfermedad?",
+      lead: "Pueden parecerse, pero no son lo mismo. Saber cuál necesitas te ahorra tiempo y dinero.",
+      items: [
+        { icon: "shield-check", title: "Atención preventiva", body: "Pruebas continuas, monitoreo de riesgos y orientación para mantenerte bien con el tiempo. Es la más amplia de las tres." },
+        { icon: "clipboard-check", title: "Examen físico anual", body: "Un chequeo una vez al año de tus signos vitales, historial y necesidades básicas: una visita dentro de un plan preventivo." },
+        { icon: "activity", title: "Visita por enfermedad o sin cita", body: "Atención para un problema que ya tienes: un resfriado, un esguince o un síntoma repentino que necesita atención hoy." },
+      ],
+    },
+    integrated: {
+      heading: "Un equipo, un expediente",
+      lead: "Como tu atención médica vive en el mismo expediente que tus servicios de rehabilitación y bienestar, tu plan se mantiene conectado.",
+      items: [
+        { icon: "stethoscope", title: "Atención Primaria", body: "Tu hogar médico para la salud cotidiana, visitas preventivas y recetas.", href: "/es/atencion-primaria/" },
+        { icon: "scale", title: "Pérdida de Peso Médica", body: "Atención de peso y metabolismo supervisada por médicos que apoya la prevención a largo plazo.", href: "/es/perdida-de-peso-medica/" },
+        { icon: "activity", title: "Fisioterapia", body: "Cuidado de movimiento y fuerza para el dolor articular, la recuperación y mantenerte activo.", href: "/es/fisioterapia/" },
+        { icon: "drop", title: "Terapia IV e Inyecciones", body: "Infusiones y nutrientes supervisados médicamente, indicados en contexto.", href: "/es/terapia-iv/" },
+      ],
+      relatedLabel: "Servicios relacionados",
+      related: [
+        { label: "Atención Primaria", href: "/es/atencion-primaria/" },
+        { label: "Manejo de Enfermedades Crónicas", href: "/es/manejo-enfermedades-cronicas/" },
+        { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
+        { label: "Telemedicina", href: "/es/telemedicina/" },
+        { label: "Terapia IV", href: "/es/terapia-iv/" },
+        { label: "Quiropráctica", href: "/es/quiropractico/" },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center está dirigido por profesionales médicos y de rehabilitación con licencia, comprometidos con una atención segura y centrada en el paciente. Nuestro equipo sigue estándares clínicos establecidos, explica tus resultados con claridad y documenta tu atención en un solo expediente.",
+        "Las visitas preventivas están supervisadas por el Dr. Arnaldo V. Orellana-Molina, MD, y se brindan en consultas extendidas en 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "Proveedor de atención primaria escuchando a una paciente y revisando su plan de atención preventiva",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Supervisión médica",
+    },
+    steps: {
+      eyebrow: "Cómo Comenzar",
+      heading: "Cómo comenzar",
+      items: [
+        { title: "Llama o reserva en línea", body: "Llama al (813) 443-5370 o agenda en línea 24/7. Trae tu lista de medicamentos, tus antecedentes familiares y laboratorios recientes." },
+        { title: "Tu primera visita", body: "Revisión completa de tu historial, chequeo de tus números clave y las pruebas de detección que tienen sentido para ti." },
+        { title: "Tu plan, por escrito", body: "Próximos pasos claros: qué monitorear, qué cambiar y cuándo regresar al seguimiento." },
+      ],
+      note: "Los servicios médicos se proporcionan bajo supervisión médica de acuerdo con las regulaciones del estado de Florida.",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Lo tenemos cubierto.",
+      body: "Palm Wellness Center ofrece transporte gratuito de ida y vuelta a las citas para pacientes elegibles en toda el área de la Bahía de Tampa, para que mantener tus visitas de bienestar nunca sea la razón por la que te atrasas. Solo pregúntalo al llamar o solicitar una cita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará tu cobertura, cómo agendar y qué esperar en tu primera visita.",
+      items: [
+        { q: "¿Qué es la atención preventiva?", a: "Es atención médica enfocada en mantenerte bien: visitas anuales de bienestar, pruebas de detección, laboratorio, monitoreo de riesgos y orientación para prevenir problemas o detectarlos a tiempo." },
+        { q: "¿Tengo que estar enfermo para reservar una visita preventiva?", a: "No. Las visitas preventivas existen justamente por lo contrario: mantenerte bien y detectar cambios antes de que se conviertan en síntomas." },
+        { q: "¿En qué se diferencia de un examen físico anual?", a: "El examen físico anual es una visita dentro de un plan preventivo más amplio. La atención preventiva también incluye pruebas de detección, revisión de laboratorio, pruebas hormonales, monitoreo de riesgos y seguimiento en el tiempo." },
+        { q: "¿Cada cuánto debo tener una visita preventiva?", a: "La mayoría de los adultos se beneficia de una visita de bienestar al año. Tu proveedor puede recomendar otra frecuencia según tu edad, tus factores de riesgo y cualquier condición que manejes." },
+        { q: "¿Qué pruebas de detección ofrecen?", a: "Los paneles de bienestar, hormonales y metabólicos se hacen en el mismo lugar. Cuando se recomienda una prueba como mamografía, colonoscopía o revisión de la piel, te explicamos por qué y ayudamos a agendarla." },
+        { q: "¿Cuánto cuestan los paneles de laboratorio?", a: "La Evaluación Preventiva Anual con Panel Básico cuesta $145, el Perfil Hormonal Completo $189 y el Panel Metabólico Completo $250. Tu proveedor solo ordenará lo que sea clínicamente útil en tu visita." },
+        { q: "¿Aceptan seguros y Medicare?", a: "Aceptamos la mayoría de los seguros principales, incluido Medicare. Llama al (813) 443-5370 para verificar tu cobertura antes de tu visita." },
+        { q: "¿Puedo hacer un seguimiento preventivo por telemedicina?", a: "Sí: la revisión de laboratorios, los ajustes de medicamentos y los seguimientos pueden hacerse por telemedicina en toda Florida. Algunos exámenes requieren una visita presencial; tu proveedor te lo indicará." },
+        { q: "¿Necesito una membresía?", a: "No. Puedes pagar por visita o unirte a la Membresía Médica Mensual ($99 para comenzar y luego $39/mes) para consultas extendidas y mensajería directa con tu proveedor." },
+      ],
+    },
+    area: {
+      heading: "Sirviendo con orgullo a Tampa y sus vecindarios",
+      lead: "Ubicados en el corazón de Tampa en 1004 W Linebaugh Ave, atendemos a pacientes de todo el condado de Hillsborough y comunidades cercanas.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "El transporte gratuito está disponible para pacientes elegibles en toda la Bahía de Tampa, para que tu visita anual de bienestar sea fácil de mantener.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
+    },
+    cta: {
+      title: "Adelántate a tu salud este año",
+      lead: "Reserva una visita preventiva y vete con una idea clara de tu salud, y un plan para el año que viene.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const eyebrow = {
+  en: { exams: "What's Included", visit: "Your Visit", labs: "Screenings & Labs", why: "Who It's For", types: "Which Visit Do You Need?", integrated: "Integrated Wellness", steps: "How to Get Started", faq: "FAQ", area: "Service Area" },
+  es: { exams: "Qué Incluye", visit: "Tu Visita", labs: "Pruebas y Laboratorio", why: "Para Quién Es", types: "¿Qué Visita Necesitas?", integrated: "Bienestar Integrado", steps: "Cómo Comenzar", faq: "Preguntas", area: "Área de Servicio" },
+}[lang];
+
+const supervising = {
+  en: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides medical oversight that keeps your preventive care safe and guideline-aligned." },
+  es: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda supervisión médica que mantiene tu atención preventiva segura y alineada con las guías clínicas." },
+}[lang];
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+// Single hover language: a 2px lift plus ONE soft black shadow. It belongs to
+// things the user can act on, or to the single card that fronts an action —
+// never to both at once.
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="shield-check" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV — in flow after the hero; sticks flush to the bottom edge of the
+     sticky primary nav (header is 70px at lg, 64px below), so no gap appears. -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- INTRO -->
+<section class="bg-white">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.intro.heading}</h2>
+      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+    </div>
+    <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-1">
+      {content.intro.compare.map((c, i) => (
+        <div class={i === 1
+          ? `flex flex-col gap-2.5 rounded-lg bg-blue-deep p-7 ${hover}`
+          : `flex flex-col gap-2.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+          <p class={i === 1 ? "text-[11px] font-bold uppercase tracking-[0.1em] text-blue-tint" : "text-[11px] font-bold uppercase tracking-[0.1em] text-muted"}>{c.tag}</p>
+          <p class={i === 1 ? "font-titles text-[34px] font-bold leading-none text-white" : "font-titles text-[34px] font-bold leading-none text-ink"}>{c.value}</p>
+          <p class={i === 1 ? "text-[15px] leading-[1.55] text-blue-tint" : "text-[15px] leading-[1.55] text-body"}>{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section id="exams" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="shield-check" class="h-3.5 w-3.5" />{eyebrow.exams}</span>
+      <h2 class={h2Cls}>{content.included.heading}</h2>
+      <p class={leadCls}>{content.included.lead}</p>
+    </div>
+    <ul class="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {content.included.items.map((c) => (
+        <li class="flex flex-col gap-3.5 bg-white p-7">
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink sm:text-[19px]">{c.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-body">{c.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- YOUR VISIT (dark band) -->
+<section id="visit" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[800px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{eyebrow.visit}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.approach.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.approach.lead}</p>
+    </div>
+    <ol class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {content.approach.steps.map((s, i) => (
+        <li class="flex flex-col gap-3 border-t border-white/15 pt-6">
+          <span class="font-titles text-[15px] font-bold text-green-bright">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white">{s.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-blue-tint">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- SCREENINGS & LABS -->
+<section id="labs" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="clipboard-check" class="h-3.5 w-3.5" />{eyebrow.labs}</span>
+      <h2 class={h2Cls}>{content.labs.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body sm:text-[17px]">{content.labs.body}</p>
+      <ul class="grid gap-3.5 sm:grid-cols-2">
+        {content.labs.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+    </div>
+    <article class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-9 ${hover}`}>
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.labs.cardLabel}</p>
+      <ul class="flex flex-col">
+        {content.labs.panels.map((panel, i) => (
+          <li class={`flex items-baseline justify-between gap-4 py-3.5 ${i > 0 ? "border-t border-line" : ""}`}>
+            <span class="text-[14.5px] leading-[1.45] text-body">{panel.name}</span>
+            <span class="shrink-0 font-titles text-[18px] font-bold text-ink">{panel.price}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="border-t border-line pt-4 text-[13px] leading-[1.55] text-muted">{content.labs.note}</p>
+    </article>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR + IMAGE -->
+<section class="bg-bg-alt">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.who.image} width="560" height="460" alt={content.who.imageAlt} loading="lazy" decoding="async" class="h-[300px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[480px]" />
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}>{eyebrow.why}</span>
+      <h2 class={h2Cls}>{content.who.heading}</h2>
+      <p class={leadCls}>{content.who.lead}</p>
+      <ul class="grid gap-3.5 sm:grid-cols-2">
+        {content.who.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+      <div class={`rounded-md bg-white p-5 ${hover}`}>
+        <p class="text-[14.5px] leading-[1.55] text-body">{content.who.closing}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHICH VISIT DO YOU NEED? (3 types) -->
+<section class="bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[760px] flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.types}</span>
+      <h2 class={h2Cls}>{content.compareTypes.heading}</h2>
+      <p class={leadCls}>{content.compareTypes.lead}</p>
+    </div>
+    <ul class="grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-3">
+      {content.compareTypes.items.map((c) => (
+        <li class="flex flex-col gap-3.5 bg-white p-7 lg:p-8">
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-ink">{c.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-body">{c.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- INTEGRATED (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{eyebrow.integrated}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.integrated.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.integrated.lead}</p>
+    </div>
+    <div class="grid overflow-hidden rounded-lg border border-white/15 bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
+      {content.integrated.items.map((s, i) => (
+        <a href={s.href} class={`group flex flex-col gap-3.5 p-7 hover:bg-white/10 lg:p-8 ${hover} ${i > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white sm:text-[20px]">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-white">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+    <div class="flex flex-col gap-4 pt-9">
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.integrated.relatedLabel}</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.integrated.related.map((r) => (
+          <a href={r.href} class={`flex items-center justify-between gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-[14px] font-semibold text-white hover:bg-white/15 ${hover}`}>
+            {r.label}<Icon name="arrow" class="h-[15px] w-[15px] shrink-0" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+      <div class={`flex flex-col gap-1.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{content.trust.supervisorLabel}</p>
+        <p class="font-titles text-[18px] font-bold text-ink">{supervising.name}</p>
+        <p class="text-[13px] font-semibold leading-[1.4] text-blue">{supervising.cred}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{supervising.bio}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="start" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.steps}</span>
+      <h2 class={h2Cls}>{content.steps.heading}</h2>
+    </div>
+    <ol class="grid gap-5 md:grid-cols-3">
+      {content.steps.items.map((s, i) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[20px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="text-[13px] text-muted">{content.steps.note}</p>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.faq}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.area}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

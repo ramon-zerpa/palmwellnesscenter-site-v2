@@ -13,43 +13,6 @@ const consult = "Virtual visits anywhere in Florida";
 
 export const newPages: Record<string, SimpleContent> = {
   /* ---------------- PRIMARY CARE ---------------- */
-  "/preventive-care/": {
-    title: "Preventive Care & Wellness Exams in Tampa, FL | Palm Wellness Center",
-    desc: "Annual wellness visits, physicals, screenings, contraception counseling and hormone support in Tampa, FL. Same-day and next-day appointments. Call (813) 443-5370.",
-    eyebrow: "Primary Care in Tampa",
-    h1: "Preventive care that stays ahead of illness",
-    lead: "Annual wellness visits, screenings, and personalized guidance to keep small issues from becoming big ones.",
-    body: "We provide annual wellness visits, physicals, screenings, contraception counseling, and hormone support for men and women. Popular add-ons include an Annual Preventive Assessment with Basic Panel ($145), a Complete Hormonal Profile ($189), and a Comprehensive Metabolic Panel ($250).",
-    benefits: [
-      { icon: "stethoscope", title: "Annual wellness visits", body: "A complete look at your health, not just the reason you came in." },
-      { icon: "check", title: "Screenings and hormone support", body: "Labs and testing reviewed with you during the visit." },
-      { icon: "person", title: "Care that fits your life", body: "In person in Tampa or by telemedicine across Florida." },
-    ],
-    faq: [
-      { q: "What does an annual wellness visit include?", a: "A review of your medical history, risk factors, medications, and goals, plus age-appropriate screenings and preventive recommendations." },
-      { q: "Do I need to be sick to come in?", a: "No. Preventive visits are for staying well - catching issues early and keeping your care up to date." },
-      { q: "Is telehealth available for preventive care?", a: "Some preventive follow-ups can be done by telemedicine. Your provider will recommend an in-person visit when it is clinically needed." },
-    ],
-  },
-  "/es/atencion-preventiva/": {
-    title: "Atención Preventiva y Exámenes de Bienestar en Tampa, FL | Palm Wellness Center",
-    desc: "Visitas anuales de bienestar, físicos, exámenes, consejería de anticoncepción y apoyo hormonal en Tampa, FL. Citas el mismo día o al día siguiente. Llama al (813) 443-5370.",
-    eyebrow: "Atención Primaria en Tampa",
-    h1: "Atención preventiva que se adelanta a la enfermedad",
-    lead: "Visitas anuales de bienestar, exámenes y orientación personalizada para que lo pequeño no se vuelva grande.",
-    body: "Ofrecemos visitas anuales de bienestar, físicos, exámenes, consejería de anticoncepción y apoyo hormonal para hombres y mujeres. Complementos populares: Evaluación Preventiva Anual con Panel Básico ($145), Perfil Hormonal Completo ($189) y Panel Metabólico Completo ($250).",
-    benefits: [
-      { icon: "stethoscope", title: "Visitas anuales de bienestar", body: "Una mirada completa a tu salud, no solo el motivo de la consulta." },
-      { icon: "check", title: "Exámenes y apoyo hormonal", body: "Laboratorios y pruebas revisados contigo durante la visita." },
-      { icon: "person", title: "Atención que se adapta a tu vida", body: "En persona en Tampa o por telemedicina en toda Florida." },
-    ],
-    faq: [
-      { q: "¿Qué incluye una visita anual de bienestar?", a: "Revisión de tu historial, factores de riesgo, medicamentos y metas, más exámenes apropiados según tu edad y recomendaciones preventivas." },
-      { q: "¿Tengo que estar enfermo para ir?", a: "No. Las visitas preventivas son para mantenerte bien - detectar problemas a tiempo y mantener tu atención al día." },
-      { q: "¿Hay telemedicina para atención preventiva?", a: "Algunos seguimientos preventivos pueden hacerse por telemedicina. Tu proveedor recomendará una visita presencial cuando sea necesario." },
-    ],
-  },
-
   "/telemedicine/": {
     title: "Telemedicine Visits Across Florida | Palm Wellness Center",
     desc: "See your Palm Wellness provider online for follow-ups, medication management, lab reviews, and chronic care. Telemedicine available throughout Florida.",

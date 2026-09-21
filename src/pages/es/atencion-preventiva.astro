@@ -1,7 +1,23 @@
 ---
-import SimplePage from "../../components/SimplePage.astro";
-const lang = "es";
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import PreventiveCarePage from "../../components/pages/PreventiveCarePage.astro";
+
 const path = "/es/atencion-preventiva/";
 ---
 
-<SimplePage lang={lang} path={path} />
+<Layout
+  lang="es"
+  path={path}
+  title="Atención Preventiva y Exámenes de Bienestar en Tampa, FL | Palm Wellness Center"
+  description="Visitas anuales de bienestar, físicos, pruebas de detección y apoyo hormonal en Tampa, FL. Paneles de laboratorio en el mismo lugar y consultas extendidas. Llama al (813) 443-5370."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <PreventiveCarePage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>
