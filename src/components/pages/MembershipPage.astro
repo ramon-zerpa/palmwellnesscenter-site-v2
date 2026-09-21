@@ -1,0 +1,779 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Monthly Medical Membership",
+      title: "Primary care without the rush",
+      lead: "One simple membership for consistent, unhurried primary care - $99 to start, then $39/month.",
+      chips: [
+        { icon: "clock", label: "30-60 minute visits" },
+        { icon: "message-circle", label: "Direct provider messaging" },
+        { icon: "video", label: "Telemedicine included" },
+        { icon: "users", label: "One provider who knows you" },
+        { icon: "shield-check", label: "No long-term contract" },
+      ],
+      note: "$99 to start, then $39/month · Works alongside your insurance · Most insurance and Medicare accepted",
+      image: "/images/primary-care-membership.webp",
+      imageAlt: "Patients at Palm Wellness Center in Tampa, where the Monthly Medical Membership is offered",
+      rail: [
+        { value: "$99", label: "One-time start" },
+        { value: "$39/mo", label: "Ongoing membership" },
+        { value: "No contract", label: "Cancel anytime" },
+      ],
+    },
+    subnav: [
+      { label: "What's included", href: "#included" },
+      { label: "Compare", href: "#compare" },
+      { label: "Pricing", href: "#pricing" },
+      { label: "Get started", href: "#start" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    intro: {
+      heading: "A membership built around time, not paperwork",
+      paras: [
+        "Most primary care visits are squeezed into 10 or 15 minutes. That is enough time to address one problem, and rarely enough to understand the whole picture.",
+        "The Monthly Medical Membership changes what the visit looks like. You get extended appointments, a provider who knows your history, and a direct way to ask questions between visits - for a simple monthly fee that works alongside your insurance.",
+      ],
+      compare: [
+        { tag: "Insurance-based primary care", value: "10-15 min", body: "A rushed visit that treats the reason you came in and moves to the next patient." },
+        { tag: "Monthly Medical Membership", value: "30-60 min", body: "Extended visits that review your whole picture, not just one complaint." },
+      ],
+    },
+    included: {
+      heading: "What the membership includes",
+      lead: "It is designed around time and access - the two things a rushed visit cannot give you.",
+      items: [
+        { icon: "clock", title: "Extended visits", body: "30 to 60 minute appointments with time to listen, examine, and explain." },
+        { icon: "message-circle", title: "Direct provider messaging", body: "Send your provider a question between visits without booking another appointment." },
+        { icon: "video", title: "Telemedicine included", body: "Virtual visits for appropriate care anywhere in Florida, at no extra membership cost." },
+        { icon: "users", title: "One provider who knows you", body: "Continuity with a care team that follows your history year after year." },
+        { icon: "flask-conical", title: "Lab work coordinated", body: "Panels ordered, drawn in-house, and reviewed with you at your visit." },
+        { icon: "activity", title: "Coordinated with rehab", body: "Chiropractic, physical therapy, and wellness services under one medical record." },
+        { icon: "calendar-check", title: "Priority scheduling", body: "Same-day and next-day openings when available, so care happens when you need it." },
+        { icon: "shield-check", title: "Month-to-month", body: "No long-term contract. Cancel anytime and keep using insurance for covered care." },
+      ],
+    },
+    comparison: {
+      eyebrow: "Compare",
+      heading: "Membership vs. insurance-only care",
+      lead: "The membership does not replace your insurance. It changes what happens in the room.",
+      colA: "Monthly Medical Membership",
+      colB: "Insurance-only care",
+      rows: [
+        { ours: "Extended 30-60 minute visits", theirs: "Rushed 10-15 minute appointments" },
+        { ours: "Direct messaging with your provider", theirs: "Call the front desk and wait" },
+        { ours: "Same provider who knows your history", theirs: "Whoever is available that day" },
+        { ours: "One predictable monthly cost", theirs: "Copays, deductibles, and surprise bills" },
+        { ours: "Telemedicine visits included", theirs: "Often billed separately" },
+        { ours: "Works alongside your insurance", theirs: "Insurance required for most care" },
+      ],
+    },
+    pricing: {
+      eyebrow: "Pricing",
+      heading: "One membership, or pay as you go",
+      lead: "Choose the membership for continuity and access, or book single visits at transparent prices. Either way, the cost is explained before you are seen.",
+      planLabel: "Monthly Medical Membership",
+      price: "$99",
+      priceNote: "one-time to start",
+      priceMonthly: "$39",
+      priceMonthlyNote: "per month",
+      features: [
+        "Extended visits with your provider",
+        "Direct provider messaging between visits",
+        "Telemedicine visits included",
+        "Priority scheduling when you need care",
+        "Month-to-month - cancel anytime",
+        "Works with your insurance for covered services",
+      ],
+      planNote: "The membership is not insurance. It does not cover hospital care, specialists, or procedures. We still bill most major insurance plans for covered services.",
+      altLabel: "Prefer to pay as you go?",
+      altItems: [
+        { name: "Office Visit", detail: "45 minutes", price: "$39" },
+        { name: "New Patient Medical Visit", detail: "45 minutes", price: "$65" },
+        { name: "Follow-up Medical Visit", detail: "30 minutes", price: "$59" },
+        { name: "Telehealth Medical Visit", detail: "45 minutes", price: "$55" },
+        { name: "Telehealth Follow-up", detail: "30 minutes", price: "$45" },
+        { name: "Medical Weight Loss Program", detail: "60 minutes", price: "$299" },
+      ],
+      altNote: "Insurance billing is available when applicable. Lab panels, IV therapy, and injections are priced separately and always explained before they are ordered.",
+    },
+    who: {
+      eyebrow: "Who It's For",
+      heading: "Who the membership is for",
+      lead: "It works well for adults who want continuity, time, and direct access - with or without insurance.",
+      items: [
+        { icon: "user-check", title: "Self-employed or uninsured", body: "A predictable monthly cost for care you actually use, without relying on a high-deductible plan." },
+        { icon: "activity", title: "Managing a health condition", body: "More time per visit and direct access between appointments for blood pressure, diabetes, thyroid, or cholesterol." },
+        { icon: "shield-check", title: "Healthy and staying ahead", body: "A provider who knows your history and can act quickly when something changes." },
+      ],
+    },
+    integrated: {
+      heading: "One team, one record",
+      lead: "Your membership care lives in the same record as the rest of your services, so nothing gets lost between providers.",
+      items: [
+        { icon: "stethoscope", title: "Primary Care", body: "Your medical home for everyday health, preventive visits, and prescriptions.", href: "/primary-care/" },
+        { icon: "shield-check", title: "Preventive Care", body: "Screenings, wellness exams, and lab review that keep you ahead of illness.", href: "/preventive-care/" },
+        { icon: "clipboard-check", title: "Chronic Condition Management", body: "Ongoing support for long-term conditions, monitored visit by visit.", href: "/chronic-condition-management/" },
+        { icon: "video", title: "Telemedicine", body: "Follow-ups, medication management, and lab reviews from anywhere in Florida.", href: "/telemedicine/" },
+      ],
+      relatedLabel: "Related services",
+      related: [
+        { label: "Primary Care", href: "/primary-care/" },
+        { label: "Preventive Care", href: "/preventive-care/" },
+        { label: "Chronic Condition Management", href: "/chronic-condition-management/" },
+        { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
+        { label: "Telemedicine", href: "/telemedicine/" },
+        { label: "IV Therapy", href: "/iv-therapy/" },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered care. The membership is a way to structure primary care - not a substitute for clinical judgment or for your health plan.",
+        "The Monthly Medical Membership is provided at 1004 W Linebaugh Ave Ste A, Tampa, FL 33612 under the medical supervision of Dr. Arnaldo V. Orellana-Molina, MD.",
+      ],
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "A primary care provider listening to a patient during a membership visit at Palm Wellness Center",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Medical supervision",
+    },
+    steps: {
+      eyebrow: "How to Get Started",
+      heading: "How to get started",
+      items: [
+        { title: "Join the membership", body: "Call (813) 443-5370 or ask at your next visit. The $99 start fee covers onboarding and your first extended visit." },
+        { title: "Meet your provider", body: "Book your first visit - in person in Tampa or by telemedicine anywhere in Florida." },
+        { title: "Stay connected", body: "Message your provider between visits, keep your appointments, and use the membership as often as you need." },
+      ],
+      note: "The membership is month-to-month and can be cancelled anytime. It is not insurance and does not replace your health plan. Medical services are provided under physician supervision in accordance with Florida state regulations.",
+    },
+    transport: {
+      title: "Members ride free, too.",
+      body: "Free transportation to and from appointments is available for eligible patients across the Tampa Bay area - so the membership visits you paid for are visits you can actually keep.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through what the membership includes, what it does not, and how it works with your insurance.",
+      items: [
+        { q: "How much does the membership cost?", a: "The Monthly Medical Membership is $99 to start, then $39 per month. There is no long-term contract and you can cancel anytime." },
+        { q: "What does the membership include?", a: "Extended visits, direct messaging with your provider, telemedicine visits, and priority scheduling. It is designed around time and access, not discounts." },
+        { q: "Does the membership replace insurance?", a: "No. Membership is not insurance and does not cover hospital care, specialists, or procedures. We still accept most major insurance plans for covered services." },
+        { q: "Can I still use my insurance?", a: "Yes. Insurance can be billed for covered services, and the membership adds access and time on top. Many members keep both." },
+        { q: "Can I be seen without a membership?", a: "Yes. Single visits are available: Office Visit $39 (45 minutes), New Patient Medical Visit $65 (45 minutes), and Follow-up Medical Visit $59 (30 minutes)." },
+        { q: "Does the membership cover labs, IV therapy, or weight loss?", a: "No. Lab panels, IV therapy, injections, and the Medical Weight Loss Program are priced separately. Each one is explained before it is ordered or scheduled." },
+        { q: "Is there a minimum commitment?", a: "No. The membership is month-to-month with no long-term contract." },
+        { q: "Do you accept Medicare?", a: "We accept most major insurance plans, including Medicare. Call (813) 443-5370 to verify your specific coverage." },
+        { q: "Can I use the membership by telemedicine?", a: "Yes. Telemedicine visits are included for appropriate care anywhere in Florida, and in-person visits are available at our Tampa office." },
+      ],
+    },
+    area: {
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Located in the heart of Tampa at 1004 W Linebaugh Ave, we serve members from across Hillsborough County and nearby communities.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "Membership visits can be in person at our Tampa office or by telemedicine anywhere in Florida, so your care travels with you.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Primary care that has time for you",
+      lead: "Join the Monthly Medical Membership and keep a provider who knows your history.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Membresía Médica Mensual",
+      title: "Atención primaria sin prisas",
+      lead: "Una membresía simple para atención primaria constante y sin prisas - $99 para comenzar y luego $39/mes.",
+      chips: [
+        { icon: "clock", label: "Consultas de 30 a 60 min" },
+        { icon: "message-circle", label: "Mensajería directa" },
+        { icon: "video", label: "Telemedicina incluida" },
+        { icon: "users", label: "Un proveedor que te conoce" },
+        { icon: "shield-check", label: "Sin contrato a largo plazo" },
+      ],
+      note: "$99 para comenzar y luego $39/mes · Funciona junto a tu seguro · Aceptamos la mayoría de seguros y Medicare",
+      image: "/images/primary-care-membership.webp",
+      imageAlt: "Pacientes en Palm Wellness Center en Tampa, donde se ofrece la Membresía Médica Mensual",
+      rail: [
+        { value: "$99", label: "Pago inicial único" },
+        { value: "$39/mes", label: "Membresía mensual" },
+        { value: "Sin contrato", label: "Cancela cuando quieras" },
+      ],
+    },
+    subnav: [
+      { label: "Qué incluye", href: "#included" },
+      { label: "Comparar", href: "#compare" },
+      { label: "Precios", href: "#pricing" },
+      { label: "Cómo comenzar", href: "#start" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    intro: {
+      heading: "Una membresía construida alrededor del tiempo, no del papeleo",
+      paras: [
+        "La mayoría de las consultas de atención primaria se comprimen en 10 o 15 minutos. Es tiempo suficiente para un problema, y rara vez para entender el panorama completo.",
+        "La Membresía Médica Mensual cambia lo que es la consulta. Tienes citas extendidas, un proveedor que conoce tu historial y una forma directa de hacer preguntas entre visitas, por un pago mensual simple que funciona junto a tu seguro.",
+      ],
+      compare: [
+        { tag: "Atención primaria con seguro", value: "10-15 min", body: "Una consulta apresurada que trata el motivo de tu visita y pasa al siguiente paciente." },
+        { tag: "Membresía Médica Mensual", value: "30-60 min", body: "Consultas extendidas que revisan tu panorama completo, no solo una molestia." },
+      ],
+    },
+    included: {
+      heading: "Qué incluye la membresía",
+      lead: "Está diseñada alrededor del tiempo y el acceso: las dos cosas que una consulta apresurada no puede dar.",
+      items: [
+        { icon: "clock", title: "Consultas extendidas", body: "Citas de 30 a 60 minutos con tiempo para escuchar, examinar y explicar." },
+        { icon: "message-circle", title: "Mensajería directa", body: "Envía una pregunta a tu proveedor entre visitas sin agendar otra cita." },
+        { icon: "video", title: "Telemedicina incluida", body: "Visitas virtuales para atención apropiada en toda Florida, sin costo extra de membresía." },
+        { icon: "users", title: "Un proveedor que te conoce", body: "Continuidad con un equipo que sigue tu historial año tras año." },
+        { icon: "flask-conical", title: "Laboratorio coordinado", body: "Paneles ordenados, tomados en el mismo lugar y revisados contigo en tu visita." },
+        { icon: "activity", title: "Coordinado con rehabilitación", body: "Quiropráctica, fisioterapia y bienestar bajo un mismo expediente médico." },
+        { icon: "calendar-check", title: "Prioridad al agendar", body: "Espacios el mismo día o al día siguiente cuando están disponibles, para atenderte cuando lo necesitas." },
+        { icon: "shield-check", title: "Mes a mes", body: "Sin contrato a largo plazo. Cancela cuando quieras y sigue usando tu seguro para servicios cubiertos." },
+      ],
+    },
+    comparison: {
+      eyebrow: "Comparar",
+      heading: "Membresía vs. atención solo con seguro",
+      lead: "La membresía no reemplaza tu seguro. Cambia lo que pasa en la consulta.",
+      colA: "Membresía Médica Mensual",
+      colB: "Atención solo con seguro",
+      rows: [
+        { ours: "Consultas extendidas de 30 a 60 minutos", theirs: "Citas apresuradas de 10 a 15 minutos" },
+        { ours: "Mensajería directa con tu proveedor", theirs: "Llamar a recepción y esperar" },
+        { ours: "El mismo proveedor que conoce tu historial", theirs: "Quien esté disponible ese día" },
+        { ours: "Un costo mensual predecible", theirs: "Copagos, deducibles y facturas sorpresa" },
+        { ours: "Visitas de telemedicina incluidas", theirs: "A menudo se cobran aparte" },
+        { ours: "Funciona junto a tu seguro", theirs: "El seguro es obligatorio para casi todo" },
+      ],
+    },
+    pricing: {
+      eyebrow: "Precios",
+      heading: "Una membresía, o pago por visita",
+      lead: "Elige la membresía por continuidad y acceso, o reserva visitas individuales a precios transparentes. En cualquier caso, el costo se explica antes de atenderte.",
+      planLabel: "Membresía Médica Mensual",
+      price: "$99",
+      priceNote: "pago inicial único",
+      priceMonthly: "$39",
+      priceMonthlyNote: "al mes",
+      features: [
+        "Consultas extendidas con tu proveedor",
+        "Mensajería directa entre visitas",
+        "Visitas de telemedicina incluidas",
+        "Prioridad al agendar cuando necesitas atención",
+        "Mes a mes - cancela cuando quieras",
+        "Funciona con tu seguro para servicios cubiertos",
+      ],
+      planNote: "La membresía no es un seguro. No cubre hospitalización, especialistas ni procedimientos. Seguimos facturando a la mayoría de los seguros para servicios cubiertos.",
+      altLabel: "¿Prefieres pagar por visita?",
+      altItems: [
+        { name: "Visita de Oficina", detail: "45 minutos", price: "$39" },
+        { name: "Visita de Paciente Nuevo", detail: "45 minutos", price: "$65" },
+        { name: "Visita de Seguimiento", detail: "30 minutos", price: "$59" },
+        { name: "Visita Médica por Telemedicina", detail: "45 minutos", price: "$55" },
+        { name: "Seguimiento por Telemedicina", detail: "30 minutos", price: "$45" },
+        { name: "Programa de Pérdida de Peso Médica", detail: "60 minutos", price: "$299" },
+      ],
+      altNote: "La facturación al seguro está disponible cuando aplica. Los paneles de laboratorio, la terapia IV y las inyecciones se cobran aparte y siempre se explican antes de ordenarlos.",
+    },
+    who: {
+      eyebrow: "Para Quién Es",
+      heading: "Para quién es la membresía",
+      lead: "Funciona bien para adultos que buscan continuidad, tiempo y acceso directo, con o sin seguro.",
+      items: [
+        { icon: "user-check", title: "Trabajas por tu cuenta o sin seguro", body: "Un costo mensual predecible para la atención que de verdad usas, sin depender de un plan de deducible alto." },
+        { icon: "activity", title: "Manejas una condición de salud", body: "Más tiempo por consulta y acceso directo entre citas para presión, diabetes, tiroides o colesterol." },
+        { icon: "shield-check", title: "Estás sano y quieres adelantarte", body: "Un proveedor que conoce tu historial y puede actuar rápido cuando algo cambia." },
+      ],
+    },
+    integrated: {
+      heading: "Un equipo, un expediente",
+      lead: "Tu atención de membresía vive en el mismo expediente que el resto de tus servicios, para que nada se pierda entre proveedores.",
+      items: [
+        { icon: "stethoscope", title: "Atención Primaria", body: "Tu hogar médico para la salud cotidiana, visitas preventivas y recetas.", href: "/es/atencion-primaria/" },
+        { icon: "shield-check", title: "Atención Preventiva", body: "Pruebas de detección, exámenes de bienestar y revisión de laboratorio para adelantarte a la enfermedad.", href: "/es/atencion-preventiva/" },
+        { icon: "clipboard-check", title: "Manejo de Enfermedades Crónicas", body: "Apoyo continuo para condiciones de largo plazo, monitoreadas visita a visita.", href: "/es/manejo-enfermedades-cronicas/" },
+        { icon: "video", title: "Telemedicina", body: "Seguimientos, manejo de medicamentos y revisión de laboratorios desde cualquier parte de Florida.", href: "/es/telemedicina/" },
+      ],
+      relatedLabel: "Servicios relacionados",
+      related: [
+        { label: "Atención Primaria", href: "/es/atencion-primaria/" },
+        { label: "Atención Preventiva", href: "/es/atencion-preventiva/" },
+        { label: "Manejo de Enfermedades Crónicas", href: "/es/manejo-enfermedades-cronicas/" },
+        { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
+        { label: "Telemedicina", href: "/es/telemedicina/" },
+        { label: "Terapia IV", href: "/es/terapia-iv/" },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center está dirigido por profesionales médicos y de rehabilitación con licencia, comprometidos con una atención segura y centrada en el paciente. La membresía es una forma de organizar la atención primaria, no un sustituto del criterio clínico ni de tu plan de salud.",
+        "La Membresía Médica Mensual se ofrece en 1004 W Linebaugh Ave Ste A, Tampa, FL 33612, bajo la supervisión médica del Dr. Arnaldo V. Orellana-Molina, MD.",
+      ],
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "Proveedor de atención primaria escuchando a una paciente durante una visita de membresía en Palm Wellness Center",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Supervisión médica",
+    },
+    steps: {
+      eyebrow: "Cómo Comenzar",
+      heading: "Cómo comenzar",
+      items: [
+        { title: "Únete a la membresía", body: "Llama al (813) 443-5370 o pregúntale a tu proveedor en tu próxima visita. El pago inicial de $99 cubre el registro y tu primera consulta extendida." },
+        { title: "Conoce a tu proveedor", body: "Agenda tu primera visita, en persona en Tampa o por telemedicina en toda Florida." },
+        { title: "Mantente en contacto", body: "Escribe a tu proveedor entre visitas, asiste a tus citas y usa la membresía tanto como necesites." },
+      ],
+      note: "La membresía es mes a mes y puede cancelarse en cualquier momento. No es un seguro y no reemplaza tu plan de salud. Los servicios médicos se proporcionan bajo supervisión médica de acuerdo con las regulaciones del estado de Florida.",
+    },
+    transport: {
+      title: "Los miembros también viajan gratis.",
+      body: "El transporte gratuito de ida y vuelta a las citas está disponible para pacientes elegibles en toda el área de la Bahía de Tampa, para que las visitas de tu membresía sean visitas que puedes cumplir.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará qué incluye la membresía, qué no incluye y cómo funciona con tu seguro.",
+      items: [
+        { q: "¿Cuánto cuesta la membresía?", a: "La Membresía Médica Mensual cuesta $99 para comenzar y luego $39 al mes. No hay contrato a largo plazo y puedes cancelarla en cualquier momento." },
+        { q: "¿Qué incluye la membresía?", a: "Consultas extendidas, mensajería directa con tu proveedor, visitas de telemedicina y prioridad al agendar. Está diseñada alrededor del tiempo y el acceso, no de descuentos." },
+        { q: "¿La membresía reemplaza el seguro?", a: "No. La membresía no es un seguro y no cubre hospitalización, especialistas ni procedimientos. Seguimos aceptando la mayoría de los seguros para servicios cubiertos." },
+        { q: "¿Puedo seguir usando mi seguro?", a: "Sí. Podemos facturar tu seguro para servicios cubiertos y la membresía agrega acceso y tiempo. Muchos miembros mantienen ambos." },
+        { q: "¿Puedo atenderme sin membresía?", a: "Sí. Hay visitas individuales: Visita de Oficina $39 (45 minutos), visita de paciente nuevo $65 (45 minutos) y visita de seguimiento $59 (30 minutos)." },
+        { q: "¿La membresía cubre laboratorios, terapia IV o pérdida de peso?", a: "No. Los paneles de laboratorio, la terapia IV, las inyecciones y el Programa de Pérdida de Peso Médica se cobran aparte. Cada uno se explica antes de ordenarlo o agendarlo." },
+        { q: "¿Hay un compromiso mínimo?", a: "No. La membresía es mes a mes, sin contrato a largo plazo." },
+        { q: "¿Aceptan Medicare?", a: "Aceptamos la mayoría de los seguros principales, incluido Medicare. Llama al (813) 443-5370 para verificar tu cobertura." },
+        { q: "¿Puedo usar la membresía por telemedicina?", a: "Sí. Las visitas de telemedicina están incluidas para atención apropiada en toda Florida, y hay visitas presenciales en nuestra oficina de Tampa." },
+      ],
+    },
+    area: {
+      heading: "Sirviendo con orgullo a Tampa y sus vecindarios",
+      lead: "Ubicados en el corazón de Tampa en 1004 W Linebaugh Ave, atendemos a miembros de todo el condado de Hillsborough y comunidades cercanas.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "Las visitas de la membresía pueden ser presenciales en nuestra oficina de Tampa o por telemedicina en cualquier parte de Florida, para que tu atención viaje contigo.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
+    },
+    cta: {
+      title: "Atención primaria con tiempo para ti",
+      lead: "Únete a la Membresía Médica Mensual y mantén a un proveedor que conoce tu historial.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const eyebrow = {
+  en: { included: "What's Included", compare: "Compare", pricing: "Pricing", who: "Who It's For", integrated: "Integrated Wellness", steps: "How to Get Started", faq: "FAQ", area: "Service Area" },
+  es: { included: "Qué Incluye", compare: "Comparar", pricing: "Precios", who: "Para Quién Es", integrated: "Bienestar Integrado", steps: "Cómo Comenzar", faq: "Preguntas", area: "Área de Servicio" },
+}[lang];
+
+const supervising = {
+  en: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides medical oversight that keeps your membership care safe and guideline-aligned." },
+  es: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda supervisión médica que mantiene tu atención de membresía segura y alineada con las guías clínicas." },
+}[lang];
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+// Single hover language: a 2px lift plus ONE soft black shadow. It belongs to
+// things the user can act on, or to the single card that fronts an action —
+// never to both at once.
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="badge-check" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV — in flow after the hero; sticks flush to the bottom edge of the
+     sticky primary nav (header is 70px at lg, 64px below), so no gap appears. -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- INTRO -->
+<section class="bg-white">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.intro.heading}</h2>
+      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+    </div>
+    <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-1">
+      {content.intro.compare.map((c, i) => (
+        <div class={i === 1
+          ? `flex flex-col gap-2.5 rounded-lg bg-blue-deep p-7 ${hover}`
+          : `flex flex-col gap-2.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+          <p class={i === 1 ? "text-[11px] font-bold uppercase tracking-[0.1em] text-blue-tint" : "text-[11px] font-bold uppercase tracking-[0.1em] text-muted"}>{c.tag}</p>
+          <p class={i === 1 ? "font-titles text-[34px] font-bold leading-none text-white" : "font-titles text-[34px] font-bold leading-none text-ink"}>{c.value}</p>
+          <p class={i === 1 ? "text-[15px] leading-[1.55] text-blue-tint" : "text-[15px] leading-[1.55] text-body"}>{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INCLUDED -->
+<section id="included" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="badge-check" class="h-3.5 w-3.5" />{eyebrow.included}</span>
+      <h2 class={h2Cls}>{content.included.heading}</h2>
+      <p class={leadCls}>{content.included.lead}</p>
+    </div>
+    <ul class="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {content.included.items.map((c) => (
+        <li class="flex flex-col gap-3.5 bg-white p-7">
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink sm:text-[19px]">{c.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-body">{c.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- COMPARISON (dark band) -->
+<section id="compare" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{eyebrow.compare}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.comparison.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.comparison.lead}</p>
+    </div>
+    <div class="grid gap-px overflow-hidden rounded-lg border border-white/15 bg-white/15 lg:grid-cols-2">
+      <div class="flex flex-col bg-blue-deep">
+        <p class="flex items-center gap-2.5 border-b border-white/15 px-6 py-5 text-[13px] font-bold uppercase tracking-[0.1em] text-white">
+          <Icon name="badge-check" class="h-4 w-4 text-green-bright" />{content.comparison.colA}
+        </p>
+        <ul class="flex flex-col">
+          {content.comparison.rows.map((r) => (
+            <li class="flex items-start gap-2.5 border-t border-white/10 px-6 py-5 text-[15px] leading-[1.5] text-white first:border-t-0">
+              <Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-bright" />{r.ours}
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="flex flex-col bg-white/5">
+        <p class="border-b border-white/15 px-6 py-5 text-[13px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.comparison.colB}</p>
+        <ul class="flex flex-col">
+          {content.comparison.rows.map((r) => (
+            <li class="flex items-start gap-2.5 border-t border-white/10 px-6 py-5 text-[15px] leading-[1.5] text-blue-tint first:border-t-0">
+              <Icon name="x" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-blue-tint/60" />{r.theirs}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="credit-card" class="h-3.5 w-3.5" />{eyebrow.pricing}</span>
+      <h2 class={h2Cls}>{content.pricing.heading}</h2>
+      <p class={leadCls}>{content.pricing.lead}</p>
+    </div>
+    <div class="grid items-start gap-6 lg:grid-cols-2">
+      <article class={`flex flex-col gap-5 rounded-lg bg-blue-deep p-8 lg:p-10 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.pricing.planLabel}</p>
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span class="font-titles text-[46px] font-bold leading-none text-white">{content.pricing.price}</span>
+          <span class="text-[15px] text-blue-tint">{content.pricing.priceNote}</span>
+        </div>
+        <div class="flex flex-wrap items-baseline gap-x-2 border-t border-white/15 pt-5">
+          <span class="font-titles text-[30px] font-bold leading-none text-white">{content.pricing.priceMonthly}</span>
+          <span class="text-[15px] text-blue-tint">{content.pricing.priceMonthlyNote}</span>
+        </div>
+        <ul class="flex flex-col gap-3">
+          {content.pricing.features.map((f) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-white">
+              <Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-bright" />{f}
+            </li>
+          ))}
+        </ul>
+        <p class="border-t border-white/15 pt-4 text-[13px] leading-[1.55] text-blue-tint">{content.pricing.planNote}</p>
+      </article>
+      <article class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-9 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.pricing.altLabel}</p>
+        <ul class="flex flex-col">
+          {content.pricing.altItems.map((item, i) => (
+            <li class={`flex items-center justify-between gap-4 py-4 ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="flex flex-col gap-0.5">
+                <span class="text-[15px] leading-[1.4] text-ink">{item.name}</span>
+                <span class="text-[12.5px] text-muted">{item.detail}</span>
+              </span>
+              <span class="shrink-0 font-titles text-[20px] font-bold text-ink">{item.price}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="border-t border-line pt-4 text-[13px] leading-[1.55] text-muted">{content.pricing.altNote}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section class="bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[760px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="user-check" class="h-3.5 w-3.5" />{eyebrow.who}</span>
+      <h2 class={h2Cls}>{content.who.heading}</h2>
+      <p class={leadCls}>{content.who.lead}</p>
+    </div>
+    <ul class="grid gap-px overflow-hidden rounded-lg border border-line bg-line md:grid-cols-3">
+      {content.who.items.map((c) => (
+        <li class="flex flex-col gap-3.5 bg-white p-7 lg:p-8">
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-ink">{c.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-body">{c.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- INTEGRATED (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{eyebrow.integrated}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.integrated.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.integrated.lead}</p>
+    </div>
+    <div class="grid overflow-hidden rounded-lg border border-white/15 bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
+      {content.integrated.items.map((s, i) => (
+        <a href={s.href} class={`group flex flex-col gap-3.5 p-7 hover:bg-white/10 lg:p-8 ${hover} ${i > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white sm:text-[20px]">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-white">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+    <div class="flex flex-col gap-4 pt-9">
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.integrated.relatedLabel}</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.integrated.related.map((r) => (
+          <a href={r.href} class={`flex items-center justify-between gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-[14px] font-semibold text-white hover:bg-white/15 ${hover}`}>
+            {r.label}<Icon name="arrow" class="h-[15px] w-[15px] shrink-0" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+      <div class={`flex flex-col gap-1.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{content.trust.supervisorLabel}</p>
+        <p class="font-titles text-[18px] font-bold text-ink">{supervising.name}</p>
+        <p class="text-[13px] font-semibold leading-[1.4] text-blue">{supervising.cred}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{supervising.bio}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="start" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.steps}</span>
+      <h2 class={h2Cls}>{content.steps.heading}</h2>
+    </div>
+    <ol class="grid gap-5 md:grid-cols-3">
+      {content.steps.items.map((s, i) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[20px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="text-[13px] text-muted">{content.steps.note}</p>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.faq}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.area}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

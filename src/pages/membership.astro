@@ -1,7 +1,23 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
-const lang = "en";
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import MembershipPage from "../components/pages/MembershipPage.astro";
+
 const path = "/membership/";
 ---
 
-<SimplePage lang={lang} path={path} />
+<Layout
+  lang="en"
+  path={path}
+  title="Primary Care Membership in Tampa | Palm Wellness Center"
+  description="Monthly Medical Membership: $99 to start, then $39/month for extended primary care. Direct provider messaging, telemedicine included, no long-term contract. Works alongside your insurance."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <MembershipPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

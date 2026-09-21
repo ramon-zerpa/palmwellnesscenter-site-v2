@@ -1,7 +1,23 @@
 ---
-import SimplePage from "../../components/SimplePage.astro";
-const lang = "es";
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import MembershipPage from "../../components/pages/MembershipPage.astro";
+
 const path = "/es/membresia/";
 ---
 
-<SimplePage lang={lang} path={path} />
+<Layout
+  lang="es"
+  path={path}
+  title="Membresía de Atención Primaria en Tampa | Palm Wellness Center"
+  description="Membresía Médica Mensual: $99 para comenzar y luego $39/mes para atención primaria extendida. Mensajería directa, telemedicina incluida y sin contrato a largo plazo. Funciona junto a tu seguro."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <MembershipPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>
