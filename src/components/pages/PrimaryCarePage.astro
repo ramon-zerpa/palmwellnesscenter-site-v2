@@ -19,8 +19,8 @@ const content = {
         { icon: "video", label: "Telemedicine in Florida" },
       ],
       note: "Most insurance accepted · Medicare · Free transportation for eligible patients",
-      image: "/images/comprehensive-primary-care-that-works-with-your-body.webp",
-      imageAlt: "A primary care provider seeing a patient at Palm Wellness Center in Tampa",
+      image: "/images/primary-care-hero-female-provider.webp",
+      imageAlt: "A female primary care provider reviewing a patient chart at Palm Wellness Center in Tampa",
       rail: [
         { value: "60 min", label: "First visit" },
         { value: "30-45 min", label: "Follow-ups" },
@@ -132,8 +132,8 @@ const content = {
         "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered primary care. Our team follows established clinical standards and prioritizes clear communication, thoughtful treatment planning, and continuity of care.",
         "Patients can be seen in person or through secure telehealth visits for select appointments.",
       ],
-      image: "/images/primary-care-vs-urgent-care-inner-img-1.webp",
-      imageAlt: "A provider reviewing care options with a patient",
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "A primary care provider listening to a patient and reviewing her care plan",
       hoursLabel: "Hours",
       hours: [
         { day: "Monday - Friday", time: "10 AM - 7 PM" },
@@ -219,8 +219,8 @@ const content = {
         { icon: "video", label: "Telemedicina en Florida" },
       ],
       note: "Aceptamos la mayoría de seguros · Medicare · Transporte gratis para pacientes elegibles",
-      image: "/images/comprehensive-primary-care-that-works-with-your-body.webp",
-      imageAlt: "Proveedor de atención primaria atendiendo a un paciente en Palm Wellness Center en Tampa",
+      image: "/images/primary-care-hero-female-provider.webp",
+      imageAlt: "Médica de atención primaria revisando el historial de un paciente en Palm Wellness Center en Tampa",
       rail: [
         { value: "60 min", label: "Primera visita" },
         { value: "30-45 min", label: "Seguimientos" },
@@ -332,8 +332,8 @@ const content = {
         "Palm Wellness Center está dirigido por profesionales médicos y de rehabilitación con licencia, comprometidos con una atención primaria segura y centrada en el paciente. Nuestro equipo sigue los estándares clínicos establecidos y prioriza la comunicación clara y la continuidad de la atención.",
         "Los pacientes pueden ser atendidos en persona o por telesalud segura para citas selectas.",
       ],
-      image: "/images/primary-care-vs-urgent-care-inner-img-1.webp",
-      imageAlt: "Proveedor revisando opciones de atención con un paciente",
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "Médica de atención primaria escuchando a una paciente y revisando su plan de atención",
       hoursLabel: "Horario",
       hours: [
         { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
@@ -460,7 +460,7 @@ const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] bor
       </div>
       <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
         <div class="hero-media">
-          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img" />
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-top-right" />
           <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
             <Icon name="heart" solid class="h-5 w-5 lg:h-6 lg:w-6" />
           </span>
@@ -636,7 +636,7 @@ const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] bor
     <div class="flex flex-col gap-4">
       <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
       {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
-      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover lg:h-[300px]" />
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
     </div>
     <div class="flex flex-col gap-5">
       <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
