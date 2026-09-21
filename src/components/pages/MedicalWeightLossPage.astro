@@ -2,6 +2,7 @@
 import type { Lang } from "../../i18n/ui";
 import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
 import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -12,8 +13,19 @@ const content = {
       eyebrow: "Medical Weight Loss",
       title: "Your medical weight loss provider in Tampa",
       lead: "Medically supervised weight loss, metabolic health support, and sustainable lifestyle change - not quick fixes.",
-      badges: ["Led by a primary care provider", "GLP-1 options when appropriate", "Nutrition & movement coaching", "Integrated with rehab", "Bilingual EN/ES"],
+      chips: [
+        { icon: "stethoscope", label: "Led by a primary care provider" },
+        { icon: "pill", label: "GLP-1 options when appropriate" },
+        { icon: "activity", label: "Nutrition & movement coaching" },
+        { icon: "spine", label: "Integrated with rehab" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
       note: "Physician-supervised · Lab monitoring included · Medication costs billed separately by the pharmacy",
+      rail: [
+        { value: "$299", label: "Program visit" },
+        { value: "60 min", label: "Initial visit" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
       image: "/images/medical-weight-loss-program.webp",
       imageAlt: "Medical weight loss consultation at Palm Wellness Center in Tampa",
     },
@@ -97,11 +109,13 @@ const content = {
         { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
         { day: "Sunday", time: "Closed" },
       ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
     },
     transport: {
       title: "Need a ride? We've got you covered.",
       body: "Free transportation to and from appointments for eligible patients across the Tampa Bay area - so attending your weight loss visits and follow-ups is never the reason you miss care. Just ask when you call or request an appointment.",
-      image: "/images/car-transportation-assistance.webp",
+      image: "/images/patient-transportation-assistance.webp",
       imageAlt: "Courtesy transportation for patients in Tampa Bay",
     },
     choose: {
@@ -139,6 +153,7 @@ const content = {
     },
     faq: {
       heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will explain the program, the medication options, and what to expect at your first visit.",
       items: [
         { q: "Do I need a referral to start the program?", a: "No referral is required. If you need coordination with your existing providers or specialists, our team can help facilitate communication." },
         { q: "What should I bring to my first appointment?", a: "Please bring a valid ID, current medication list, and any relevant medical records from previous providers. If you have recent lab work, we can review those results during your visit." },
@@ -157,6 +172,7 @@ const content = {
       lead: "Located in the heart of Tampa at 1004 W Linebaugh Ave, we serve weight loss patients from across Hillsborough County and nearby communities.",
       places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
       note: "Free transportation is available for eligible patients throughout Tampa Bay, making it easier to attend your visits, follow-ups, and related wellness services.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
     },
     related: {
       heading: "Related services",
@@ -173,15 +189,26 @@ const content = {
       title: "Ready for the next step in your weight loss plan?",
       lead: "Stay supported beyond the first visit with ongoing medical guidance, accountability, and adjustments tailored to your progress.",
     },
-    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more about" },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
   },
   es: {
     hero: {
       eyebrow: "Pérdida de Peso Médica",
       title: "Tu proveedor de pérdida de peso médica en Tampa",
       lead: "Pérdida de peso supervisada médicamente, apoyo a la salud metabólica y cambio de estilo de vida sostenible - no soluciones rápidas.",
-      badges: ["Dirigido por un proveedor de atención primaria", "Opciones GLP-1 cuando corresponde", "Guía de nutrición y movimiento", "Integrado con rehabilitación", "Bilingüe EN/ES"],
+      chips: [
+        { icon: "stethoscope", label: "Dirigido por un proveedor de atención primaria" },
+        { icon: "pill", label: "Opciones GLP-1 cuando corresponde" },
+        { icon: "activity", label: "Guía de nutrición y movimiento" },
+        { icon: "spine", label: "Integrado con rehabilitación" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
       note: "Supervisado por médicos · Monitoreo de laboratorio incluido · Medicamentos facturados por separado en la farmacia",
+      rail: [
+        { value: "$299", label: "Consulta del programa" },
+        { value: "60 min", label: "Consulta inicial" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
       image: "/images/medical-weight-loss-program.webp",
       imageAlt: "Consulta de pérdida de peso médica en Palm Wellness Center en Tampa",
     },
@@ -265,11 +292,13 @@ const content = {
         { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
         { day: "Domingo", time: "Cerrado" },
       ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
     },
     transport: {
       title: "¿Necesitas transporte? Lo tenemos cubierto.",
       body: "Transporte gratuito de ida y vuelta a las citas para pacientes elegibles en toda la Bahía de Tampa - para que asistir a tus visitas de pérdida de peso y seguimientos nunca sea la razón para faltar. Solo pregúntalo al llamar o solicitar una cita.",
-      image: "/images/car-transportation-assistance.webp",
+      image: "/images/patient-transportation-assistance.webp",
       imageAlt: "Transporte de cortesía para pacientes en Tampa Bay",
     },
     choose: {
@@ -307,6 +336,7 @@ const content = {
     },
     faq: {
       heading: "Preguntas frecuentes",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará el programa, las opciones de medicamentos y qué esperar en tu primera visita.",
       items: [
         { q: "¿Necesito una referencia para comenzar el programa?", a: "No se requiere referencia. Si necesitas coordinación con tus proveedores o especialistas actuales, nuestro equipo puede ayudar a facilitar la comunicación." },
         { q: "¿Qué debo traer a mi primera cita?", a: "Trae una identificación válida, lista de medicamentos actuales y cualquier historial médico relevante. Si tienes laboratorios recientes, podemos revisarlos durante tu visita." },
@@ -325,6 +355,7 @@ const content = {
       lead: "Ubicados en el corazón de Tampa en 1004 W Linebaugh Ave, atendemos a pacientes de pérdida de peso médica de todo el condado de Hillsborough y comunidades cercanas.",
       places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
       note: "El transporte gratuito está disponible para pacientes elegibles en toda el área de Tampa Bay, lo que facilita asistir a tus visitas, seguimientos y servicios de bienestar relacionados.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
     },
     related: {
       heading: "Servicios relacionados",
@@ -341,7 +372,7 @@ const content = {
       title: "¿Listo para el siguiente paso en tu plan de pérdida de peso?",
       lead: "Mantente acompañado más allá de la primera visita con orientación médica continua, responsabilidad y ajustes adaptados a tu progreso.",
     },
-    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más sobre" },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
   },
 }[lang];
 
@@ -406,137 +437,155 @@ const supervising = {
 const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
 
 const eyebrow = {
-  en: { services: "Our Services", integrated: "Integrated Wellness", steps: "How to Get Started", faq: "FAQ", area: "Service Area" },
-  es: { services: "Nuestros Servicios", integrated: "Bienestar Integrado", steps: "Cómo Comenzar", faq: "Preguntas", area: "Área de Servicio" },
+  en: { services: "Our Services", safety: "Safety Information", program: "Program & Cost", integrated: "Integrated Wellness", choose: "Why Patients Choose", team: "Our Care Team", steps: "How to Get Started", faq: "FAQ", area: "Service Area" },
+  es: { services: "Nuestros Servicios", safety: "Información de Seguridad", program: "Programa y Costo", integrated: "Bienestar Integrado", choose: "Por Qué Elegirnos", team: "Nuestro Equipo", steps: "Cómo Comenzar", faq: "Preguntas", area: "Área de Servicio" },
 }[lang];
+
+// Single hover language: a 2px lift plus ONE soft black shadow. It belongs to
+// things the user can act on, or to the single card that fronts an action —
+// never to both at once.
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
 
 const media = {
   intro: "/images/how-medical-weight-loss-fits-into-primary-care-ft-img.webp",
   services: "/images/how-medical-weight-loss-fits-into-primary-care-inner-img-1.webp",
   safety: "/images/how-medical-weight-loss-fits-into-primary-care-inner-img-2.webp",
   program: "/images/why-patients-choose-medical-weight-loss.webp",
-  integrated: [
-    "/images/our-primary-care-services.webp",
-    "/images/doctor-helping-patient-with-physical-therapy.webp",
-    "/images/chiropractor-helping-his-patient.webp",
-    "/images/placeholders/iv-therapy.svg",
-  ],
-  trust: "/images/why-choose-palm-wellness-center-in-tampa.webp",
-  choose: "/images/medical-weight-loss-program.webp",
-  team: "/images/placeholders/care-team.svg",
-  area: "/images/things-to-do-in-tampa-min.webp",
+  trust: "/images/professional-compassionate-primary-care.webp",
 };
 ---
 
-<!-- HERO (text left / image right) -->
-<section class="bg-bg-alt">
-  <div class="shell grid items-center gap-10 py-14 lg:grid-cols-2 lg:py-20">
-    <div class="flex flex-col items-start gap-5">
-      <span class="inline-flex rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{content.hero.eyebrow}</span>
-      <h1 class="text-4xl leading-[1.08] text-ink sm:text-5xl">{content.hero.title}</h1>
-      <p class="max-w-xl text-[18px] leading-relaxed text-body">{content.hero.lead}</p>
-      <ul class="flex flex-wrap gap-x-5 gap-y-2">
-        {content.hero.badges.map((b) => (
-          <li class="flex items-center gap-2 text-[13.5px] font-semibold text-ink">
-            <Icon name="check" class="h-4 w-4 shrink-0 text-green-dark" />{b}
-          </li>
-        ))}
-      </ul>
-      <div class="flex flex-wrap gap-3">
-        <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
-          <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
-        </a>
-        <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue transition-colors hover:bg-blue-pale">
-          <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
-        </a>
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="scale" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
       </div>
-      <p class="text-[13px] text-muted">{content.hero.note}</p>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
     </div>
-    <div>
-      <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="h-[460px] w-full rounded-lg object-cover" />
-    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
   </div>
 </section>
 
-<!-- ANCHOR NAV -->
-<nav class="border-b border-line bg-white lg:sticky lg:top-[78px] lg:z-40" aria-label="On this page">
-  <div class="shell flex gap-6 overflow-x-auto py-3.5">
-    {subnav.map((s) => (
-      <a href={s.href} class="whitespace-nowrap py-1 text-[14px] font-semibold text-body transition-colors hover:text-blue">{s.label}</a>
-    ))}
-  </div>
-</nav>
+<!-- ANCHOR NAV — in flow after the hero; sticks flush to the bottom edge of the
+     sticky primary nav (header is 70px at lg, 64px below), so no gap appears. -->
+<AnchorNav label={l.onThisPage} items={subnav} />
 
 <!-- INTRO -->
 <section class="bg-white">
-  <div class="shell grid gap-10 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
     <div class="flex flex-col gap-5">
-      <h2 class="text-3xl leading-tight text-ink sm:text-[2.3rem]">{content.intro.heading}</h2>
-      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[17px] leading-relaxed text-body">{p}</p>)}
+      <h2 class={h2Cls}>{content.intro.heading}</h2>
+      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
     </div>
     <div class="flex flex-col gap-5">
-      <img src={media.intro} width="560" height="340" alt={content.intro.heading} loading="lazy" decoding="async" class="h-[340px] w-full rounded-lg object-cover" />
+      <img src={media.intro} width="560" height="340" alt={content.intro.heading} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover lg:h-[320px]" />
       <aside class="flex items-start gap-4 rounded-lg border border-line bg-bg-alt p-7">
         <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="activity" class="h-6 w-6" /></span>
-        <p class="text-[16px] font-medium leading-relaxed text-ink">{content.intro.highlight}</p>
+        <p class="text-[16px] font-medium leading-[1.55] text-ink">{content.intro.highlight}</p>
       </aside>
     </div>
   </div>
 </section>
 
 <!-- QUICK: COST + CANDIDACY -->
-<section class="scroll-mt-24 bg-bg-alt">
-  <div class="shell grid gap-8 py-16 lg:grid-cols-2 lg:gap-12">
-    <div class="flex flex-col gap-4 rounded-lg border border-line bg-white p-8">
-      <span class="text-[12px] font-bold uppercase tracking-wide text-blue-deep">{quick.eyebrow}</span>
-      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{quick.title}</h2>
-      <div class="flex items-end gap-3 border-t border-line pt-5">
-        <strong class="text-[40px] leading-none text-blue-deep">{quick.cost}</strong>
-        <span class="pb-1.5 text-[15px] text-body">{quick.costLabel}</span>
-      </div>
-      <p class="text-[14px] leading-relaxed text-body">{quick.costNote}</p>
-      <a href={APPOINTMENT_URL} {...bookAttrs} class="mt-auto inline-flex w-fit items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
-        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
-      </a>
-    </div>
+<section class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
     <div class="flex flex-col gap-4">
-      <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="badge-check" class="h-6 w-6" /></span>
-      <h3 class="text-[22px] text-ink">{quick.candidacyTitle}</h3>
-      <ul class="flex flex-col gap-3">
+      <span class={eyebrowCls}><Icon name="badge-check" class="h-3.5 w-3.5" />{quick.eyebrow}</span>
+      <h2 class={h2Cls}>{quick.title}</h2>
+      <p class={leadCls}>{quick.costNote}</p>
+      <aside class="mt-1 flex items-start gap-4 rounded-lg border border-line bg-white p-7">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="activity" class="h-6 w-6" /></span>
+        <p class="text-[15.5px] leading-[1.55] text-body">{quick.disclaimer}</p>
+      </aside>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg bg-blue-deep p-7 lg:p-9 ${hover}`}>
+      <div class="flex flex-col gap-1.5">
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue-tint">{quick.eyebrow}</p>
+        <p class="flex flex-wrap items-end gap-2.5">
+          <strong class="font-titles text-[44px] font-bold leading-none text-white lg:text-[52px]">{quick.cost}</strong>
+          <span class="pb-1 text-[15px] text-blue-tint">{quick.costLabel}</span>
+        </p>
+      </div>
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{quick.candidacyTitle}</p>
+      <ul class="flex flex-col gap-3 text-[14.5px]">
         {quick.candidacy.map((c) => (
-          <li class="flex items-start gap-2.5 text-[15px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{c}</li>
+          <li class="flex items-start gap-2.5 text-blue-tint"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{c}</li>
         ))}
       </ul>
-      <p class="text-[13.5px] leading-relaxed text-muted">{quick.disclaimer}</p>
+      <a href={APPOINTMENT_URL} {...bookAttrs} class="mt-auto inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3.5 text-[15px] font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
     </div>
   </div>
 </section>
 
 <!-- SERVICES (accordion) -->
-<section class="scroll-mt-24 bg-bg-alt" id="services">
-  <div class="shell grid gap-10 py-16 lg:grid-cols-[0.7fr_1.3fr] lg:gap-16">
-    <div class="flex flex-col gap-4 lg:sticky lg:top-32 lg:self-start">
-      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.services}</span>
-      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.services.heading}</h2>
-      <p class="max-w-[40ch] text-[16px] leading-relaxed text-body">{content.services.lead}</p>
-      <img src={media.services} width="440" height="340" alt={content.services.heading} loading="lazy" decoding="async" class="h-[340px] w-full rounded-lg object-cover" />
+<section class="scroll-mt-24 lg:scroll-mt-[184px] bg-white" id="services">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-[18px]">
+      <span class={eyebrowCls}>{eyebrow.services}</span>
+      <h2 class={h2Cls}>{content.services.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-body">{content.services.lead}</p>
+      <img src={media.services} width="480" height="360" alt={content.services.heading} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover lg:h-[300px]" />
     </div>
     <div class="flex flex-col">
       {content.services.items.map((s) => (
         <details class="group border-t border-line py-6" open={false}>
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4">
+          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
             <span class="flex items-center gap-4">
-              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
-              <span class="text-[20px] font-semibold text-ink">{s.title}</span>
+              <span class="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-bg-alt text-blue-deep"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+              <span class="font-titles text-[19px] leading-[1.25] text-ink sm:text-[20px]">{s.title}</span>
             </span>
             <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
           </summary>
-          <div class="flex flex-col gap-4 pt-4 pl-0 lg:pl-[60px]">
-            <p class="max-w-[62ch] text-[15px] leading-relaxed text-body">{s.body}</p>
+          <div class="flex flex-col gap-4 pt-4 lg:pl-[64px]">
+            <p class="max-w-[62ch] text-[15px] leading-[1.6] text-body">{s.body}</p>
             {s.bullets.length > 0 && (
               <ul class="flex flex-col gap-2.5">
                 {s.bullets.map((b) => (
-                  <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{b}</li>
+                  <li class="flex items-start gap-2.5 text-[14.5px] leading-[1.55] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{b}</li>
                 ))}
               </ul>
             )}
@@ -548,147 +597,166 @@ const media = {
 </section>
 
 <!-- SAFETY -->
-<section class="scroll-mt-24 bg-white" id="safety">
-  <div class="shell py-16">
-    <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-stretch lg:gap-12">
-      <img src={media.safety} width="480" height="460" alt={content.safety.heading} loading="lazy" decoding="async" class="h-[520px] w-full rounded-lg object-cover" />
-      <div class="flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-8 lg:p-10">
-        <div class="flex items-center gap-3">
-          <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue text-white"><Icon name="shield" class="h-6 w-6" /></span>
-          <h2 class="text-[24px] text-ink">{content.safety.heading}</h2>
+<section class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt" id="safety">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:items-start lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="shield" class="h-3.5 w-3.5" />{eyebrow.safety}</span>
+      <h2 class={h2Cls}>{content.safety.heading}</h2>
+      <p class={leadCls}>{content.safety.lead}</p>
+      <img src={media.safety} width="480" height="460" alt={content.safety.heading} loading="lazy" decoding="async" class="mt-2 h-[300px] w-full rounded-lg object-cover lg:h-[380px]" />
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-white p-7 lg:p-9 ${hover}`}>
+      <div class="grid gap-8 md:grid-cols-2">
+        <div class="flex flex-col gap-3">
+          <h3 class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.safety.commonTitle}</h3>
+          <ul class="flex flex-col gap-2.5">
+            {content.safety.common.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] leading-[1.55] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{c}</li>)}
+          </ul>
         </div>
-        <p class="max-w-[80ch] text-[15.5px] leading-relaxed text-body">{content.safety.lead}</p>
-        <div class="grid gap-8 border-t border-line pt-6 md:grid-cols-2">
-          <div class="flex flex-col gap-3">
-            <h3 class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{content.safety.commonTitle}</h3>
-            <ul class="flex flex-col gap-2.5">
-              {content.safety.common.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{c}</li>)}
-            </ul>
-          </div>
-          <div class="flex flex-col gap-3">
-            <h3 class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{content.safety.seriousTitle}</h3>
-            <ul class="flex flex-col gap-2.5">
-              {content.safety.serious.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] text-ink"><Icon name="alert" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-blue-deep" />{c}</li>)}
-            </ul>
-          </div>
+        <div class="flex flex-col gap-3">
+          <h3 class="text-[13px] font-bold uppercase tracking-[0.1em] text-danger">{content.safety.seriousTitle}</h3>
+          <ul class="flex flex-col gap-2.5">
+            {content.safety.serious.map((c) => <li class="flex items-start gap-2.5 text-[14.5px] leading-[1.55] text-ink"><Icon name="alert" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-danger" />{c}</li>)}
+          </ul>
         </div>
-        <p class="text-[13.5px] leading-relaxed text-muted">{content.safety.note}</p>
       </div>
+      <p class="border-t border-line pt-5 text-[13px] leading-[1.55] text-muted">{content.safety.note}</p>
     </div>
   </div>
 </section>
 
 <!-- PROGRAM -->
-<section class="scroll-mt-24 bg-bg-alt" id="program">
-  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-2">
+<section class="scroll-mt-24 lg:scroll-mt-[184px] bg-white" id="program">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-20">
     <div class="flex flex-col gap-5">
-      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.program.heading}</h2>
-      <p class="max-w-[62ch] text-[17px] leading-relaxed text-body">{content.program.body}</p>
-      <p class="max-w-[62ch] text-[13.5px] leading-relaxed text-muted">{content.program.note}</p>
-      <img src={media.program} width="560" height="320" alt={content.program.heading} loading="lazy" decoding="async" class="mt-1 h-[320px] w-full rounded-lg object-cover" />
+      <span class={eyebrowCls}>{eyebrow.program}</span>
+      <h2 class={h2Cls}>{content.program.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body sm:text-[17px]">{content.program.body}</p>
+      <p class="max-w-[62ch] text-[13px] leading-[1.55] text-muted">{content.program.note}</p>
+      <img src={media.program} width="560" height="320" alt={content.program.heading} loading="lazy" decoding="async" class="mt-2 h-[260px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
     </div>
-    <article class="flex flex-col gap-6 rounded-lg bg-blue-deep p-8 text-blue-tint">
-      <p class="flex items-end gap-2">
-        <strong class="text-[46px] leading-none text-white">{content.program.price}</strong>
-        <span class="pb-1.5 text-[15px]">{content.program.cadence}</span>
+    <article class={`flex flex-col gap-5 rounded-lg bg-blue-deep p-7 lg:p-9 ${hover}`}>
+      <p class="flex flex-wrap items-end gap-2.5">
+        <strong class="font-titles text-[44px] font-bold leading-none text-white lg:text-[52px]">{content.program.price}</strong>
+        <span class="pb-1 text-[15px] text-blue-tint">{content.program.cadence}</span>
       </p>
       <ul class="flex flex-col gap-3 text-[14.5px]">
         {content.program.benefits.map((b) => (
-          <li class="flex items-start gap-2.5"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{b}</li>
+          <li class="flex items-start gap-2.5 text-blue-tint"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{b}</li>
         ))}
       </ul>
-      <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3 text-[15px] font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class="mt-auto inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3.5 text-[15px] font-bold text-blue-deep transition-colors hover:bg-blue-pale">
         <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
       </a>
     </article>
   </div>
 </section>
 
-<!-- INTEGRATED (4-up) -->
-<section class="bg-white">
-  <div class="shell flex flex-col gap-10 py-16">
+<!-- INTEGRATED (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
     <div class="flex max-w-[720px] flex-col gap-4">
-      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.integrated}</span>
-      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.integrated.heading}</h2>
-      <p class="text-[17px] leading-relaxed text-body">{content.integrated.lead}</p>
+      <span class={eyebrowDarkCls}>{eyebrow.integrated}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.integrated.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.integrated.lead}</p>
     </div>
-    <div class="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid overflow-hidden rounded-lg border border-white/15 bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
       {content.integrated.items.map((s, i) => (
-        <a href={s.href} class="group flex flex-col bg-white transition-colors hover:bg-bg-alt">
-          <img src={media.integrated[i]} alt={s.title} width="400" height="170" loading="lazy" decoding="async" class="h-[170px] w-full object-cover" />
-          <span class="flex flex-1 flex-col gap-3 p-6">
-            <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-6 w-6" /></span>
-            <h3 class="text-[17px] text-ink">{s.title}</h3>
-            <p class="text-[14px] leading-relaxed text-body">{s.body}</p>
-            <span class="mt-auto inline-flex items-center gap-1.5 pt-1 text-[13.5px] font-bold text-blue group-hover:text-blue-deep">{l.learn} <Icon name="arrow" class="h-4 w-4" /></span>
-          </span>
+        <a href={s.href} class={`group flex flex-col gap-3.5 p-7 hover:bg-white/10 lg:p-8 ${hover} ${i > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white sm:text-[20px]">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-white">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
         </a>
       ))}
+    </div>
+    <div class="flex flex-col gap-4 pt-9">
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.related.heading}</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.related.links.map((r) => (
+          <a href={r.href} class={`flex items-center justify-between gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-[14px] font-semibold text-white hover:bg-white/15 ${hover}`}>
+            {r.label}<Icon name="arrow" class="h-[15px] w-[15px] shrink-0" />
+          </a>
+        ))}
+      </div>
     </div>
   </div>
 </section>
 
-<!-- INTEGRATED CARE NOTE -->
-<section class="bg-bg-alt">
-  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-2">
-    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[420px] w-full rounded-lg object-cover" />
-    <div class="flex flex-col gap-4">
-      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.why.heading}</h2>
-      <p class="max-w-[62ch] text-[16px] leading-relaxed text-body">{content.why.closing}</p>
+<!-- WHY INTEGRATED -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[300px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[480px]" />
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.why.heading}</h2>
+      <p class={leadCls}>{content.why.lead}</p>
+      <ul class="grid gap-3.5 sm:grid-cols-2">
+        {content.why.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+      <div class={`rounded-md bg-bg-alt p-5 ${hover}`}>
+        <p class="text-[14.5px] leading-[1.55] text-body">{content.why.closing}</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- TRUST + HOURS -->
-<section class="bg-white">
-  <div class="shell grid gap-10 py-16 lg:grid-cols-[1.3fr_0.7fr] lg:gap-14">
-    <div class="flex flex-col gap-5">
-      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.trust.heading}</h2>
-      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
-      <img src={media.trust} width="560" height="320" alt={content.trust.heading} loading="lazy" decoding="async" class="mt-1 h-[320px] w-full rounded-lg object-cover" />
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={media.trust} width="560" height="320" alt={content.trust.heading} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
     </div>
-    <div class="flex h-fit flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7">
-      <p class="flex items-center gap-2 text-[13px] font-bold uppercase tracking-wide text-blue-deep">
-        <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
-      </p>
-      <ul class="flex flex-col divide-y divide-line">
-        {content.trust.hours.map((h) => (
-          <li class="flex items-center justify-between gap-4 py-3 text-[15px]">
-            <span class="text-body">{h.day}</span>
-            <span class="font-semibold text-ink">{h.time}</span>
-          </li>
-        ))}
-      </ul>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- TRANSPORT -->
-<section class="bg-bg-alt">
-  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-2">
-    <div class="flex flex-col gap-4">
-      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.transport.title}</h2>
-      <p class="max-w-[62ch] text-[16px] leading-relaxed text-body">{content.transport.body}</p>
-      <a href={PHONE_TEL} class="inline-flex w-fit items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white transition-colors hover:bg-blue-deep">
-        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
-      </a>
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
     </div>
-    <img src={content.transport.image} width="560" height="360" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[380px] w-full rounded-lg object-cover" />
   </div>
 </section>
 
-<!-- WHY PATIENTS CHOOSE -->
-<section class="bg-white">
-  <div class="shell grid gap-10 py-16 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-    <div class="flex flex-col gap-5">
-      <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.choose.heading}</h2>
-      <p class="max-w-[46ch] text-[16px] leading-relaxed text-body">{content.choose.lead}</p>
-      <img src={media.choose} width="480" height="300" alt={content.choose.heading} loading="lazy" decoding="async" class="h-[300px] w-full rounded-lg object-cover" />
+<!-- WHY PATIENTS CHOOSE (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[800px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{eyebrow.choose}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.choose.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.choose.lead}</p>
     </div>
-    <ul class="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+    <ul class="grid gap-x-12 gap-y-5 sm:grid-cols-2 lg:grid-cols-3">
       {content.choose.items.map((it) => (
-        <li class="flex items-start gap-3 text-[15.5px] text-ink">
-          <Icon name="badge-check" class="mt-0.5 h-5 w-5 shrink-0 text-blue" />{it}
+        <li class="flex items-start gap-3 text-[15px] leading-[1.55] text-blue-tint">
+          <Icon name="badge-check" class="mt-0.5 h-[20px] w-[20px] shrink-0 text-green-bright" />{it}
         </li>
       ))}
     </ul>
@@ -696,38 +764,47 @@ const media = {
 </section>
 
 <!-- TEAM -->
-<section class="scroll-mt-24 bg-bg-alt" id="team">
-  <div class="shell grid gap-10 py-16 lg:grid-cols-[0.6fr_1.4fr] lg:gap-14">
-    <div class="flex flex-col items-start gap-4">
-      <img src={media.team} width="280" height="220" alt={content.team.name} loading="lazy" decoding="async" class="h-[220px] w-full max-w-[280px] rounded-lg object-cover" />
-      <div>
-        <h2 class="text-[24px] text-ink">{content.team.name}</h2>
-        <p class="mt-1 text-[14px] font-semibold text-blue">{content.team.cred}</p>
-      </div>
-    </div>
+<section id="team" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[1fr_520px] lg:gap-16 lg:py-20">
     <div class="flex flex-col gap-5">
-      <h3 class="text-[13px] font-bold uppercase tracking-wide text-muted">{content.team.heading}</h3>
-      {content.team.bio.map((p) => <p class="max-w-[68ch] text-[16px] leading-relaxed text-body">{p}</p>)}
-      <blockquote class="border-t border-line pt-6 text-[19px] font-medium leading-relaxed text-blue-deep">"{content.team.quote}"</blockquote>
-      <div class="flex flex-col gap-1.5 border-t border-line pt-5">
-        <p class="text-[19px] font-bold text-ink">{supervising.name}</p>
-        <p class="text-[13px] font-semibold text-blue">{supervising.cred}</p>
-        <p class="text-[15px] leading-relaxed text-body">{supervising.bio}</p>
+      <span class={eyebrowCls}>{eyebrow.team}</span>
+      <h2 class={h2Cls}>{content.team.heading}</h2>
+      <blockquote class="flex items-start gap-3.5">
+        <Icon name="quote" class="mt-1 h-7 w-7 shrink-0 text-blue-tint" />
+        <p class="font-titles text-[20px] font-bold leading-[1.4] text-blue-deep sm:text-[24px]">{content.team.quote}</p>
+      </blockquote>
+    </div>
+    <div class={`flex flex-col gap-5 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <div class="flex items-center gap-4">
+        <span class="grid h-[74px] w-[74px] shrink-0 place-items-center rounded-full bg-blue-deep font-titles text-[26px] font-bold text-white">LM</span>
+        <div class="flex flex-col gap-1">
+          <h3 class="font-titles text-[20px] font-bold leading-[1.2] text-ink sm:text-[22px]">{content.team.name}</h3>
+          <p class="text-[13px] font-semibold leading-[1.4] text-blue">{content.team.cred}</p>
+        </div>
+      </div>
+      {content.team.bio.map((p) => <p class="text-[15px] leading-[1.6] text-body">{p}</p>)}
+      <div class="flex flex-col gap-1.5 border-l-[3px] border-blue-tint pl-5">
+        <p class="font-titles text-[18px] font-bold text-ink">{supervising.name}</p>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{supervising.cred}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{supervising.bio}</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- STEPS -->
-<section class="scroll-mt-24 bg-white" id="start">
-  <div class="shell flex flex-col gap-10 py-16">
-    <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.steps.heading}</h2>
-    <ol class="grid gap-6 md:grid-cols-3">
+<section id="start" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.steps}</span>
+      <h2 class={h2Cls}>{content.steps.heading}</h2>
+    </div>
+    <ol class="grid gap-5 md:grid-cols-3">
       {content.steps.items.map((s, i) => (
-        <li class="flex flex-col gap-3 rounded-lg border border-line bg-bg-alt p-7">
-          <span class="text-[13px] font-bold uppercase tracking-wide text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
-          <h3 class="text-[20px] text-ink">{s.title}</h3>
-          <p class="text-[15px] leading-relaxed text-body">{s.body}</p>
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[20px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{s.body}</p>
         </li>
       ))}
     </ol>
@@ -735,63 +812,55 @@ const media = {
   </div>
 </section>
 
-<!-- FAQ (2 cols) -->
-<section class="scroll-mt-24 bg-bg-alt" id="faq">
-  <div class="shell flex flex-col gap-10 py-16">
-    <h2 class="text-3xl text-ink sm:text-[2.1rem]">{content.faq.heading}</h2>
-    <div class="grid gap-x-14 gap-y-1 md:grid-cols-2">
-      {content.faq.items.map((item) => (
-        <details class="group border-t border-line py-5">
-          <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-[16px] font-semibold text-ink">
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.faq}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-bg-alt [&::-webkit-details-marker]:hidden">
             <span>{item.q}</span>
             <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
           </summary>
-          <p class="pt-3 text-[14.5px] leading-relaxed text-body">{item.a}</p>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
         </details>
       ))}
     </div>
   </div>
 </section>
 
-<!-- AREA -->
-<section class="bg-white">
-  <div class="shell grid gap-10 py-16 lg:grid-cols-2 lg:gap-14">
+<!-- SERVICE AREA -->
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
     <div class="flex flex-col gap-4">
-      <span class="w-fit rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-wide text-blue-deep">{eyebrow.area}</span>
-      <h2 class="text-3xl text-ink sm:text-[2rem]">{content.area.heading}</h2>
-      <p class="max-w-[60ch] text-[16px] leading-relaxed text-body">{content.area.lead}</p>
-      <p class="max-w-[60ch] text-[15px] leading-relaxed text-body">{content.area.note}</p>
+      <span class={eyebrowCls}>{eyebrow.area}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
     </div>
-    <div class="flex flex-col gap-5">
-      <ul class="flex flex-wrap content-start gap-3">
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
         {content.area.places.map((p) => (
-          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[15px] font-medium text-ink">
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[14px] font-semibold text-ink">
             <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
           </li>
         ))}
       </ul>
-      <img src={media.area} width="560" height="260" alt={content.area.heading} loading="lazy" decoding="async" class="h-[260px] w-full rounded-lg object-cover" />
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- RELATED -->
-<section class="bg-bg-alt">
-  <div class="shell flex flex-col items-center gap-8 py-14">
-    <h2 class="text-[22px] text-ink">{content.related.heading}</h2>
-    <ul class="flex flex-wrap justify-center gap-3">
-      {content.related.links.map((lk) => (
-        <li>
-          <a href={lk.href} class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[15px] font-semibold text-blue transition-colors hover:bg-blue-pale hover:text-blue-deep">
-            {lk.label} <Icon name="arrow" class="h-4 w-4" />
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-</section>
-
-<div class="bg-bg-alt">
+<!-- BACK TO TOP -->
+<div class="bg-white">
   <div class="shell flex justify-end py-6">
     <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
       <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
@@ -801,14 +870,14 @@ const media = {
 
 <!-- FINAL CTA -->
 <section class="bg-blue-deep">
-  <div class="shell flex flex-col items-center gap-4 py-16 text-center">
-    <h2 class="max-w-[820px] text-3xl text-white sm:text-[2.1rem]">{content.cta.title}</h2>
-    <p class="max-w-[640px] text-[17px] leading-relaxed text-blue-tint">{content.cta.lead}</p>
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
     <div class="mt-2 flex flex-wrap justify-center gap-3">
-      <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
         <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
       </a>
-      <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white transition-colors hover:bg-white/10">
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
         <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
       </a>
     </div>
