@@ -1,7 +1,23 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
-const lang = "en";
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import TelemedicinePage from "../components/pages/TelemedicinePage.astro";
+
 const path = "/telemedicine/";
 ---
 
-<SimplePage lang={lang} path={path} />
+<Layout
+  lang="en"
+  path={path}
+  title="Telemedicine Visits Across Florida | Palm Wellness Center"
+  description="See your Palm Wellness provider online for follow-ups, medication management, lab reviews, and chronic care anywhere in Florida. Visits $55, follow-ups $45. Call (813) 443-5370."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <TelemedicinePage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

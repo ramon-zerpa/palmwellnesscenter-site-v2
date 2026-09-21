@@ -1,0 +1,732 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Telemedicine in Florida",
+      title: "Telemedicine, wherever you are in Florida",
+      lead: "See your Palm Wellness provider online for follow-ups, medication management, lab reviews, and ongoing care - no drive required.",
+      chips: [
+        { icon: "video", label: "Secure video visits" },
+        { icon: "stethoscope", label: "Same provider, same record" },
+        { icon: "pill", label: "Prescriptions & refills" },
+        { icon: "flask-conical", label: "Lab results explained" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "Available throughout Florida · $55 medical visit · $45 follow-up · Most insurance accepted",
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "A Palm Wellness Center provider talking with a patient during an online visit in Florida",
+      rail: [
+        { value: "$55", label: "Medical visit (45 min)" },
+        { value: "$45", label: "Follow-up (30 min)" },
+        { value: "Florida", label: "Statewide coverage" },
+      ],
+    },
+    subnav: [
+      { label: "What we treat", href: "#treat" },
+      { label: "How it works", href: "#how" },
+      { label: "Pricing", href: "#pricing" },
+      { label: "Get started", href: "#start" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    intro: {
+      heading: "Your provider, without the drive",
+      paras: [
+        "Some visits do not need a waiting room. Follow-ups, medication adjustments, lab reviews, and ongoing care can often be handled in a secure video visit with the same provider you see in our Tampa office.",
+        "Telemedicine at Palm Wellness Center is not a separate service with a stranger on the other end. It is your care team, working from the same medical record, with the same plan - available anywhere in Florida.",
+      ],
+      compare: [
+        { tag: "In-person only", value: "Drive + wait", body: "Travel time, parking, and a waiting room before you even see your provider." },
+        { tag: "Telemedicine at Palm Wellness", value: "From anywhere", body: "Joined from home, work, or wherever you are in Florida - same provider, same record." },
+      ],
+    },
+    treat: {
+      heading: "What can be handled online",
+      lead: "Telemedicine works well for many of the visits people put off because of the drive.",
+      items: [
+        { icon: "clipboard-check", title: "Follow-ups & check-ins", body: "Review how you are doing after a plan, a lab result, or a medication change." },
+        { icon: "pill", title: "Medication management", body: "Refills, dose adjustments, and side-effect questions handled during your visit." },
+        { icon: "flask-conical", title: "Lab & test results", body: "Your results explained in plain language, with clear next steps." },
+        { icon: "heart-pulse", title: "Chronic condition care", body: "Ongoing support for blood pressure, diabetes, cholesterol, thyroid, and asthma." },
+        { icon: "message-circle", title: "Minor illness questions", body: "Colds, coughs, rashes, and other non-emergency concerns that do not need a hands-on exam." },
+        { icon: "users", title: "Wellness guidance", body: "Nutrition, activity, sleep, and prevention questions in a focused visit." },
+        { icon: "languages", title: "Bilingual visits", body: "Meet with your provider in English or Spanish, whichever you prefer." },
+        { icon: "shield-check", title: "Second opinions", body: "A clear explanation of a diagnosis or plan you received somewhere else." },
+      ],
+      disclaimerTitle: "Telemedicine is not for emergencies.",
+      disclaimerBody: "Chest pain, trouble breathing, deep wounds, severe pain, sudden weakness, or any life-threatening symptom needs emergency care - call 911 or go to the nearest ER. When a visit needs a physical exam or a lab draw, we will schedule it at our Tampa office.",
+    },
+    approach: {
+      eyebrow: "How It Works",
+      heading: "How a telemedicine visit works",
+      lead: "Four steps from booking to a plan you can follow.",
+      steps: [
+        { title: "Pick a time", body: "Book online 24/7 or call (813) 443-5370 and choose a telemedicine visit." },
+        { title: "Get your secure link", body: "We send a link by email or text before your appointment. Join from your phone, tablet, or computer." },
+        { title: "Meet your provider", body: "A 45-minute medical visit or a 30-minute follow-up with the same team you see in person." },
+        { title: "Leave with your plan", body: "Prescriptions go to your pharmacy, and any lab work or in-person exam is scheduled for you." },
+      ],
+    },
+    prep: {
+      heading: "Before your visit",
+      lead: "A few minutes of preparation makes the visit smoother - and helps your provider use the time well.",
+      items: [
+        "Find a quiet, private spot with a steady connection.",
+        "Write down your symptoms, questions, and current medications.",
+        "Log in a few minutes early to test your camera and microphone.",
+        "Have your ID and insurance card nearby.",
+      ],
+      note: "If something does not work, call us and we will help you get connected or reschedule your visit.",
+    },
+    pricing: {
+      eyebrow: "Pricing & Coverage",
+      heading: "Clear pricing, no surprises",
+      body: "Telemedicine at Palm Wellness Center costs the same whether you pay out of pocket or use insurance. You will know the cost before your visit, not after.",
+      points: [
+        "Transparent self-pay pricing",
+        "Most major insurance and Medicare accepted",
+        "Same provider and record as in-person care",
+        "Membership includes direct provider messaging",
+      ],
+      cardLabel: "Telehealth visits",
+      panels: [
+        { name: "Telehealth Medical Visit", detail: "45 minutes", price: "$55" },
+        { name: "Telehealth Follow-up Visit", detail: "30 minutes", price: "$45" },
+      ],
+      note: "A Monthly Medical Membership ($99 to start, then $39/month) includes extended visits and direct provider messaging. Lab work and any in-person exam are separate and always explained before they are ordered.",
+    },
+    integrated: {
+      heading: "One team, one record",
+      lead: "A telemedicine visit stays connected to everything else we do for you.",
+      items: [
+        { icon: "stethoscope", title: "Primary Care", body: "Your medical home for everyday health, preventive visits, and prescriptions.", href: "/primary-care/" },
+        { icon: "clipboard-check", title: "Chronic Condition Management", body: "Ongoing support for long-term conditions, monitored visit by visit.", href: "/chronic-condition-management/" },
+        { icon: "shield-check", title: "Preventive Care", body: "Screenings, wellness exams, and lab review that keep you ahead of illness.", href: "/preventive-care/" },
+        { icon: "scale", title: "Medical Weight Loss", body: "Physician-supervised weight and metabolic care you can follow online.", href: "/medical-weight-loss/" },
+      ],
+      relatedLabel: "Related services",
+      related: [
+        { label: "Primary Care", href: "/primary-care/" },
+        { label: "Chronic Condition Management", href: "/chronic-condition-management/" },
+        { label: "Preventive Care", href: "/preventive-care/" },
+        { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
+        { label: "IV Therapy", href: "/iv-therapy/" },
+        { label: "Membership", href: "/membership/" },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered care. Telemedicine visits follow the same clinical standards as in-person care and stay documented in one medical record.",
+        "Telemedicine is supervised by Dr. Arnaldo V. Orellana-Molina, MD, and available to patients located anywhere in Florida at the time of the visit.",
+      ],
+      image: "/images/primary-care-hero-female-provider.webp",
+      imageAlt: "A licensed provider at Palm Wellness Center holding a tablet during a virtual care visit",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Medical supervision",
+    },
+    steps: {
+      eyebrow: "How to Get Started",
+      heading: "How to get started",
+      items: [
+        { title: "Book your visit", body: "Call (813) 443-5370 or schedule online 24/7 and choose a telemedicine appointment." },
+        { title: "Check what you need", body: "A quiet space, a steady connection, your medication list, and any recent lab results." },
+        { title: "Connect and follow up", body: "Meet your provider by secure video, then keep the plan moving with in-person care or labs when needed." },
+      ],
+      note: "Telemedicine is available to patients physically located in Florida at the time of the visit. Medical services are provided under physician supervision in accordance with Florida state regulations.",
+    },
+    transport: {
+      title: "Prefer to be seen in person? We can help with the ride.",
+      body: "Not every visit works over video - and when an in-person exam is needed, Palm Wellness Center offers free transportation to and from appointments for eligible patients across the Tampa Bay area.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through coverage, scheduling, and what to expect on your visit.",
+      items: [
+        { q: "Who can use telemedicine?", a: "Patients physically located anywhere in Florida at the time of the visit. You do not need to live in Tampa, but you do need to be in Florida for the appointment." },
+        { q: "What can be handled by telemedicine?", a: "Follow-ups, medication management and refills, lab and test reviews, chronic condition monitoring, wellness guidance, minor illness questions, and second opinions." },
+        { q: "When is an in-person visit required?", a: "When your provider needs a physical exam, a hands-on test, imaging, or a lab draw. We will explain why and schedule it at our Tampa office." },
+        { q: "What do I need for a video visit?", a: "A phone, tablet, or computer with a camera, a steady internet connection, and a quiet private space. We send a secure link before your appointment." },
+        { q: "Do you prescribe medication through telemedicine?", a: "Yes, when it is clinically appropriate. Prescriptions are sent electronically to the pharmacy you choose. Some controlled substances may require an in-person visit under Florida rules." },
+        { q: "Do you accept insurance for telemedicine?", a: "We accept most major insurance plans, including Medicare. Coverage for virtual visits varies by plan - call (813) 443-5370 and we will verify your benefits." },
+        { q: "How much does a telemedicine visit cost?", a: "A Telehealth Medical Visit is $55 (45 minutes) and a Telehealth Follow-up is $45 (30 minutes) for self-pay patients." },
+        { q: "Can I keep my same provider?", a: "Yes. Telemedicine visits are with the same team you see in person, and everything is documented in the same medical record." },
+        { q: "Do I need a membership?", a: "No. You can pay per visit, or join the Monthly Medical Membership ($99 to start, then $39/month) for extended visits and direct provider messaging." },
+      ],
+    },
+    area: {
+      heading: "Telemedicine across Florida",
+      lead: "As long as you are located in Florida at the time of your appointment, you can be seen by a Palm Wellness provider - from Miami to Pensacola.",
+      places: ["Tampa", "Brandon", "Riverview", "St. Petersburg", "Lakeland", "Sarasota", "Orlando", "Miami", "Jacksonville", "Tallahassee"],
+      note: "For patients in Tampa, telemedicine can also be combined with in-person visits, lab work, and our rehabilitation services under one record.",
+      contactNote: "Video visits available anywhere in Florida - ask when you book.",
+    },
+    cta: {
+      title: "See your provider without the drive",
+      lead: "Book a telemedicine visit and get the same care, from wherever you are in Florida.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Telemedicina en Florida",
+      title: "Telemedicina, donde estés en Florida",
+      lead: "Consulta a tu proveedor de Palm Wellness en línea para seguimientos, manejo de medicamentos, revisión de laboratorios y atención continua, sin conducir.",
+      chips: [
+        { icon: "video", label: "Videollamadas seguras" },
+        { icon: "stethoscope", label: "El mismo proveedor y expediente" },
+        { icon: "pill", label: "Recetas y renovaciones" },
+        { icon: "flask-conical", label: "Resultados explicados" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "Disponible en toda Florida · Visita médica $55 · Seguimiento $45 · Aceptamos la mayoría de seguros",
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "Proveedor de Palm Wellness Center conversando con una paciente durante una visita en línea en Florida",
+      rail: [
+        { value: "$55", label: "Visita médica (45 min)" },
+        { value: "$45", label: "Seguimiento (30 min)" },
+        { value: "Florida", label: "Cobertura estatal" },
+      ],
+    },
+    subnav: [
+      { label: "Qué tratamos", href: "#treat" },
+      { label: "Cómo funciona", href: "#how" },
+      { label: "Precios", href: "#pricing" },
+      { label: "Cómo comenzar", href: "#start" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    intro: {
+      heading: "Tu proveedor, sin el viaje",
+      paras: [
+        "Algunas visitas no necesitan una sala de espera. Los seguimientos, los ajustes de medicamentos, la revisión de laboratorios y la atención continua suelen poder hacerse en una videollamada segura con el mismo proveedor que ves en nuestra oficina de Tampa.",
+        "La telemedicina en Palm Wellness Center no es un servicio aparte con un desconocido al otro lado. Es tu equipo de atención, trabajando desde el mismo expediente médico y con el mismo plan, disponible en cualquier parte de Florida.",
+      ],
+      compare: [
+        { tag: "Solo en persona", value: "Viaje + espera", body: "Tiempo de traslado, estacionamiento y sala de espera antes de ver a tu proveedor." },
+        { tag: "Telemedicina en Palm Wellness", value: "Desde donde estés", body: "Te conectas desde casa, el trabajo o donde estés en Florida: mismo proveedor, mismo expediente." },
+      ],
+    },
+    treat: {
+      heading: "Qué se puede manejar en línea",
+      lead: "La telemedicina funciona bien para muchas de las visitas que la gente posterga por el viaje.",
+      items: [
+        { icon: "clipboard-check", title: "Seguimientos y controles", body: "Revisamos cómo vas después de un plan, un resultado de laboratorio o un cambio de medicamento." },
+        { icon: "pill", title: "Manejo de medicamentos", body: "Renovaciones, ajustes de dosis y dudas sobre efectos secundarios durante tu visita." },
+        { icon: "flask-conical", title: "Resultados de laboratorio", body: "Tus resultados explicados en lenguaje claro, con próximos pasos definidos." },
+        { icon: "heart-pulse", title: "Atención de condiciones crónicas", body: "Apoyo continuo para presión, diabetes, colesterol, tiroides y asma." },
+        { icon: "message-circle", title: "Consultas por enfermedad menor", body: "Resfriados, tos, erupciones y otras molestias no urgentes que no requieren examen físico." },
+        { icon: "users", title: "Orientación de bienestar", body: "Preguntas de nutrición, actividad, sueño y prevención en una visita enfocada." },
+        { icon: "languages", title: "Visitas bilingües", body: "Consulta con tu proveedor en inglés o español, como prefieras." },
+        { icon: "shield-check", title: "Segundas opiniones", body: "Una explicación clara de un diagnóstico o plan que recibiste en otro lugar." },
+      ],
+      disclaimerTitle: "La telemedicina no es para emergencias.",
+      disclaimerBody: "Dolor en el pecho, dificultad para respirar, heridas profundas, dolor intenso, debilidad repentina o cualquier síntoma que ponga en riesgo la vida requiere atención de emergencia: llama al 911 o acude a la sala de emergencias más cercana. Cuando una visita necesita examen físico o toma de laboratorio, la agendamos en nuestra oficina de Tampa.",
+    },
+    approach: {
+      eyebrow: "Cómo Funciona",
+      heading: "Cómo funciona una visita de telemedicina",
+      lead: "Cuatro pasos desde la reserva hasta un plan que puedes seguir.",
+      steps: [
+        { title: "Elige un horario", body: "Reserva en línea 24/7 o llama al (813) 443-5370 y elige una visita de telemedicina." },
+        { title: "Recibe tu enlace seguro", body: "Te enviamos un enlace por correo o mensaje antes de tu cita. Conéctate desde tu teléfono, tablet o computadora." },
+        { title: "Consulta con tu proveedor", body: "Una visita médica de 45 minutos o un seguimiento de 30 minutos con el mismo equipo que ves en persona." },
+        { title: "Vete con tu plan", body: "Las recetas van a tu farmacia y agendamos por ti cualquier laboratorio o examen presencial." },
+      ],
+    },
+    prep: {
+      heading: "Antes de tu visita",
+      lead: "Unos minutos de preparación hacen la visita más fluida y ayudan a tu proveedor a aprovechar el tiempo.",
+      items: [
+        "Busca un lugar tranquilo y privado con buena conexión.",
+        "Anota tus síntomas, tus preguntas y tus medicamentos actuales.",
+        "Conéctate unos minutos antes para probar cámara y micrófono.",
+        "Ten a mano tu identificación y tu tarjeta del seguro.",
+      ],
+      note: "Si algo no funciona, llámanos y te ayudamos a conectarte o reprogramamos tu visita.",
+    },
+    pricing: {
+      eyebrow: "Precios y Cobertura",
+      heading: "Precios claros, sin sorpresas",
+      body: "La telemedicina en Palm Wellness Center cuesta lo mismo si pagas de tu bolsillo o si usas tu seguro. Sabrás el costo antes de tu visita, no después.",
+      points: [
+        "Precios transparentes para pago directo",
+        "Aceptamos la mayoría de seguros y Medicare",
+        "El mismo proveedor y expediente que la atención presencial",
+        "La membresía incluye mensajería directa con tu proveedor",
+      ],
+      cardLabel: "Visitas por telemedicina",
+      panels: [
+        { name: "Visita Médica por Telemedicina", detail: "45 minutos", price: "$55" },
+        { name: "Seguimiento por Telemedicina", detail: "30 minutos", price: "$45" },
+      ],
+      note: "La Membresía Médica Mensual ($99 para comenzar y luego $39/mes) incluye consultas extendidas y mensajería directa con tu proveedor. El laboratorio y cualquier examen presencial son aparte y siempre se explican antes de ordenarlos.",
+    },
+    integrated: {
+      heading: "Un equipo, un expediente",
+      lead: "Una visita de telemedicina se mantiene conectada a todo lo demás que hacemos por ti.",
+      items: [
+        { icon: "stethoscope", title: "Atención Primaria", body: "Tu hogar médico para la salud cotidiana, visitas preventivas y recetas.", href: "/es/atencion-primaria/" },
+        { icon: "clipboard-check", title: "Manejo de Enfermedades Crónicas", body: "Apoyo continuo para condiciones de largo plazo, monitoreadas visita a visita.", href: "/es/manejo-enfermedades-cronicas/" },
+        { icon: "shield-check", title: "Atención Preventiva", body: "Pruebas de detección, exámenes de bienestar y revisión de laboratorio para adelantarte a la enfermedad.", href: "/es/atencion-preventiva/" },
+        { icon: "scale", title: "Pérdida de Peso Médica", body: "Atención de peso y metabolismo supervisada por médicos que puedes seguir en línea.", href: "/es/perdida-de-peso-medica/" },
+      ],
+      relatedLabel: "Servicios relacionados",
+      related: [
+        { label: "Atención Primaria", href: "/es/atencion-primaria/" },
+        { label: "Manejo de Enfermedades Crónicas", href: "/es/manejo-enfermedades-cronicas/" },
+        { label: "Atención Preventiva", href: "/es/atencion-preventiva/" },
+        { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
+        { label: "Terapia IV", href: "/es/terapia-iv/" },
+        { label: "Membresía", href: "/es/membresia/" },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center está dirigido por profesionales médicos y de rehabilitación con licencia, comprometidos con una atención segura y centrada en el paciente. Las visitas de telemedicina siguen los mismos estándares clínicos que la atención presencial y quedan documentadas en un solo expediente.",
+        "La telemedicina está supervisada por el Dr. Arnaldo V. Orellana-Molina, MD, y está disponible para pacientes que se encuentren en cualquier parte de Florida al momento de la visita.",
+      ],
+      image: "/images/primary-care-hero-female-provider.webp",
+      imageAlt: "Proveedor con licencia de Palm Wellness Center con una tablet durante una visita de atención virtual",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Supervisión médica",
+    },
+    steps: {
+      eyebrow: "Cómo Comenzar",
+      heading: "Cómo comenzar",
+      items: [
+        { title: "Reserva tu visita", body: "Llama al (813) 443-5370 o agenda en línea 24/7 y elige una cita de telemedicina." },
+        { title: "Revisa lo que necesitas", body: "Un espacio tranquilo, buena conexión, tu lista de medicamentos y laboratorios recientes." },
+        { title: "Conéctate y da seguimiento", body: "Consulta por video seguro y mantén el plan en marcha con atención presencial o laboratorio cuando se necesite." },
+      ],
+      note: "La telemedicina está disponible para pacientes que se encuentren físicamente en Florida al momento de la visita. Los servicios médicos se proporcionan bajo supervisión médica de acuerdo con las regulaciones del estado de Florida.",
+    },
+    transport: {
+      title: "¿Prefieres que te veamos en persona? Podemos ayudarte con el transporte.",
+      body: "No toda visita funciona por video, y cuando se necesita un examen presencial, Palm Wellness Center ofrece transporte gratuito de ida y vuelta a las citas para pacientes elegibles en toda el área de la Bahía de Tampa.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará tu cobertura, cómo agendar y qué esperar en tu visita.",
+      items: [
+        { q: "¿Quién puede usar la telemedicina?", a: "Pacientes que se encuentren físicamente en cualquier parte de Florida al momento de la visita. No necesitas vivir en Tampa, pero sí estar en Florida para la cita." },
+        { q: "¿Qué se puede manejar por telemedicina?", a: "Seguimientos, manejo y renovación de medicamentos, revisión de laboratorios y pruebas, control de condiciones crónicas, orientación de bienestar, consultas por enfermedad menor y segundas opiniones." },
+        { q: "¿Cuándo se requiere una visita presencial?", a: "Cuando tu proveedor necesita un examen físico, una prueba manual, imágenes o una toma de laboratorio. Te explicamos por qué y lo agendamos en nuestra oficina de Tampa." },
+        { q: "¿Qué necesito para una videollamada?", a: "Un teléfono, tablet o computadora con cámara, buena conexión a internet y un espacio tranquilo y privado. Te enviamos un enlace seguro antes de tu cita." },
+        { q: "¿Recetan medicamentos por telemedicina?", a: "Sí, cuando es clínicamente apropiado. Las recetas se envían electrónicamente a la farmacia que elijas. Algunos medicamentos controlados pueden requerir visita presencial según las reglas de Florida." },
+        { q: "¿Aceptan seguros para telemedicina?", a: "Aceptamos la mayoría de los seguros principales, incluido Medicare. La cobertura de visitas virtuales varía según el plan: llama al (813) 443-5370 y verificamos tus beneficios." },
+        { q: "¿Cuánto cuesta una visita de telemedicina?", a: "La Visita Médica por Telemedicina cuesta $55 (45 minutos) y el Seguimiento por Telemedicina $45 (30 minutos) para pacientes de pago directo." },
+        { q: "¿Puedo mantener al mismo proveedor?", a: "Sí. Las visitas de telemedicina son con el mismo equipo que ves en persona y todo se documenta en el mismo expediente médico." },
+        { q: "¿Necesito una membresía?", a: "No. Puedes pagar por visita o unirte a la Membresía Médica Mensual ($99 para comenzar y luego $39/mes) para consultas extendidas y mensajería directa con tu proveedor." },
+      ],
+    },
+    area: {
+      heading: "Telemedicina en toda Florida",
+      lead: "Siempre que te encuentres en Florida al momento de tu cita, un proveedor de Palm Wellness puede atenderte, desde Miami hasta Pensacola.",
+      places: ["Tampa", "Brandon", "Riverview", "St. Petersburg", "Lakeland", "Sarasota", "Orlando", "Miami", "Jacksonville", "Tallahassee"],
+      note: "Para pacientes en Tampa, la telemedicina también puede combinarse con visitas presenciales, laboratorios y nuestros servicios de rehabilitación bajo un mismo expediente.",
+      contactNote: "Videollamadas disponibles en cualquier parte de Florida - pregúntalo al reservar.",
+    },
+    cta: {
+      title: "Consulta a tu proveedor sin el viaje",
+      lead: "Reserva una visita de telemedicina y recibe la misma atención, donde estés en Florida.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const eyebrow = {
+  en: { treat: "What We Treat", how: "How It Works", prep: "Before Your Visit", pricing: "Pricing & Coverage", integrated: "Integrated Wellness", steps: "How to Get Started", faq: "FAQ", area: "Where It Works" },
+  es: { treat: "Qué Tratamos", how: "Cómo Funciona", prep: "Antes de tu Visita", pricing: "Precios y Cobertura", integrated: "Bienestar Integrado", steps: "Cómo Comenzar", faq: "Preguntas", area: "Dónde Funciona" },
+}[lang];
+
+const supervising = {
+  en: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides medical oversight that keeps your telemedicine care safe and guideline-aligned." },
+  es: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda supervisión médica que mantiene tu atención por telemedicina segura y alineada con las guías clínicas." },
+}[lang];
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+// Single hover language: a 2px lift plus ONE soft black shadow. It belongs to
+// things the user can act on, or to the single card that fronts an action —
+// never to both at once.
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="video" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV — in flow after the hero; sticks flush to the bottom edge of the
+     sticky primary nav (header is 70px at lg, 64px below), so no gap appears. -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- INTRO -->
+<section class="bg-white">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.intro.heading}</h2>
+      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+    </div>
+    <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-1">
+      {content.intro.compare.map((c, i) => (
+        <div class={i === 1
+          ? `flex flex-col gap-2.5 rounded-lg bg-blue-deep p-7 ${hover}`
+          : `flex flex-col gap-2.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+          <p class={i === 1 ? "text-[11px] font-bold uppercase tracking-[0.1em] text-blue-tint" : "text-[11px] font-bold uppercase tracking-[0.1em] text-muted"}>{c.tag}</p>
+          <p class={i === 1 ? "font-titles text-[30px] font-bold leading-none text-white" : "font-titles text-[30px] font-bold leading-none text-ink"}>{c.value}</p>
+          <p class={i === 1 ? "text-[15px] leading-[1.55] text-blue-tint" : "text-[15px] leading-[1.55] text-body"}>{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHAT WE TREAT -->
+<section id="treat" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="video" class="h-3.5 w-3.5" />{eyebrow.treat}</span>
+      <h2 class={h2Cls}>{content.treat.heading}</h2>
+      <p class={leadCls}>{content.treat.lead}</p>
+    </div>
+    <ul class="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {content.treat.items.map((c) => (
+        <li class="flex flex-col gap-3.5 bg-white p-7">
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink sm:text-[19px]">{c.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-body">{c.body}</p>
+        </li>
+      ))}
+    </ul>
+    <div class="flex items-start gap-4 rounded-lg border border-danger/25 bg-white p-6 lg:p-7">
+      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-danger/10 text-danger"><Icon name="triangle-alert" class="h-[22px] w-[22px]" /></span>
+      <div class="flex flex-col gap-1.5">
+        <p class="font-titles text-[17px] font-bold text-ink">{content.treat.disclaimerTitle}</p>
+        <p class="max-w-[80ch] text-[14.5px] leading-[1.55] text-body">{content.treat.disclaimerBody}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS (dark band) -->
+<section id="how" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[800px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{eyebrow.how}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.approach.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.approach.lead}</p>
+    </div>
+    <ol class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {content.approach.steps.map((s, i) => (
+        <li class="flex flex-col gap-3 border-t border-white/15 pt-6">
+          <span class="font-titles text-[15px] font-bold text-green-bright">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white">{s.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-blue-tint">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- BEFORE YOUR VISIT -->
+<section class="bg-white">
+  <div class="shell grid items-start gap-12 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="monitor-smartphone" class="h-3.5 w-3.5" />{eyebrow.prep}</span>
+      <h2 class={h2Cls}>{content.prep.heading}</h2>
+      <p class={leadCls}>{content.prep.lead}</p>
+      <div class={`flex items-center gap-3 rounded-md bg-bg-alt p-5 ${hover}`}>
+        <Icon name="headset" class="h-5 w-5 shrink-0 text-blue" />
+        <p class="text-[14px] font-semibold text-body">{content.prep.note}</p>
+      </div>
+    </div>
+    <ol class="flex flex-col gap-px overflow-hidden rounded-lg border border-line bg-line">
+      {content.prep.items.map((item, i) => (
+        <li class="flex items-start gap-4 bg-white p-6">
+          <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-blue-pale font-titles text-[13px] font-bold text-blue-deep">{i + 1}</span>
+          <p class="text-[15px] leading-[1.55] text-ink">{item}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="credit-card" class="h-3.5 w-3.5" />{eyebrow.pricing}</span>
+      <h2 class={h2Cls}>{content.pricing.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body sm:text-[17px]">{content.pricing.body}</p>
+      <ul class="grid gap-3.5 sm:grid-cols-2">
+        {content.pricing.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+    </div>
+    <article class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-9 ${hover}`}>
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.pricing.cardLabel}</p>
+      <ul class="flex flex-col">
+        {content.pricing.panels.map((panel, i) => (
+          <li class={`flex items-center justify-between gap-4 py-4 ${i > 0 ? "border-t border-line" : ""}`}>
+            <span class="flex flex-col gap-0.5">
+              <span class="text-[15px] leading-[1.4] text-ink">{panel.name}</span>
+              <span class="text-[12.5px] text-muted">{panel.detail}</span>
+            </span>
+            <span class="shrink-0 font-titles text-[22px] font-bold text-blue-deep">{panel.price}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="border-t border-line pt-4 text-[13px] leading-[1.55] text-muted">{content.pricing.note}</p>
+    </article>
+  </div>
+</section>
+
+<!-- INTEGRATED (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{eyebrow.integrated}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.integrated.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.integrated.lead}</p>
+    </div>
+    <div class="grid overflow-hidden rounded-lg border border-white/15 bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
+      {content.integrated.items.map((s, i) => (
+        <a href={s.href} class={`group flex flex-col gap-3.5 p-7 hover:bg-white/10 lg:p-8 ${hover} ${i > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white sm:text-[20px]">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-white">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+    <div class="flex flex-col gap-4 pt-9">
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.integrated.relatedLabel}</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.integrated.related.map((r) => (
+          <a href={r.href} class={`flex items-center justify-between gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-[14px] font-semibold text-white hover:bg-white/15 ${hover}`}>
+            {r.label}<Icon name="arrow" class="h-[15px] w-[15px] shrink-0" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+      <div class={`flex flex-col gap-1.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{content.trust.supervisorLabel}</p>
+        <p class="font-titles text-[18px] font-bold text-ink">{supervising.name}</p>
+        <p class="text-[13px] font-semibold leading-[1.4] text-blue">{supervising.cred}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{supervising.bio}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="start" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.steps}</span>
+      <h2 class={h2Cls}>{content.steps.heading}</h2>
+    </div>
+    <ol class="grid gap-5 md:grid-cols-3">
+      {content.steps.items.map((s, i) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[20px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="text-[13px] text-muted">{content.steps.note}</p>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.faq}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.area}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="video" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

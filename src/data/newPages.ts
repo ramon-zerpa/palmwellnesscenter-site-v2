@@ -13,43 +13,6 @@ const consult = "Virtual visits anywhere in Florida";
 
 export const newPages: Record<string, SimpleContent> = {
   /* ---------------- PRIMARY CARE ---------------- */
-  "/telemedicine/": {
-    title: "Telemedicine Visits Across Florida | Palm Wellness Center",
-    desc: "See your Palm Wellness provider online for follow-ups, medication management, lab reviews, and chronic care. Telemedicine available throughout Florida.",
-    eyebrow: "Primary Care in Tampa",
-    h1: "Telemedicine, wherever you are in Florida",
-    lead: "Connect with your provider online for follow-ups, medications, and chronic care - no drive required.",
-    body: "Telemedicine visits are available throughout Florida for follow-ups, medication management, lab review, chronic condition monitoring, and select minor illness evaluations. A Telehealth Medical Visit is $55 (45 min); a Telehealth Follow-up is $45 (30 min).",
-    benefits: [
-      { icon: "stethoscope", title: "Secure video visits", body: "Connect from home, work, or anywhere in Florida." },
-      { icon: "check", title: "Prescriptions and lab reviews", body: "Refills handled and results explained during your visit." },
-      { icon: "person", title: "Same team, same record", body: "Your telemedicine visit stays connected to your in-person care." },
-    ],
-    faq: [
-      { q: "Is telemedicine available statewide?", a: "Yes - telemedicine visits are available throughout Florida for appropriate follow-ups and chronic care." },
-      { q: "What can be handled by telemedicine?", a: "Medication management, lab review, chronic condition monitoring, follow-ups, and some minor illness evaluations." },
-      { q: "When is an in-person visit required?", a: "When a physical exam or in-person test is necessary, your provider will let you know and help you schedule." },
-    ],
-  },
-  "/es/telemedicina/": {
-    title: "Telemedicina en Toda Florida | Palm Wellness Center",
-    desc: "Consulta a tu proveedor de Palm Wellness en línea para seguimientos, manejo de medicamentos, revisión de laboratorios y enfermedades crónicas. Telemedicina en toda Florida.",
-    eyebrow: "Atención Primaria en Tampa",
-    h1: "Telemedicina, donde estés en Florida",
-    lead: "Conéctate con tu proveedor en línea para seguimientos, medicamentos y atención crónica - sin conducir.",
-    body: "Las visitas de telemedicina están disponibles en toda Florida para seguimientos, manejo de medicamentos, revisión de laboratorios, control de enfermedades crónicas y algunas evaluaciones de enfermedades menores. La visita médica por telemedicina cuesta $55 (45 min) y el seguimiento $45 (30 min).",
-    benefits: [
-      { icon: "stethoscope", title: "Videollamadas seguras", body: "Conéctate desde casa, el trabajo o donde estés en Florida." },
-      { icon: "check", title: "Recetas y laboratorios", body: "Refills y resultados explicados durante tu visita." },
-      { icon: "person", title: "El mismo equipo y expediente", body: "Tu visita por telemedicina sigue conectada a tu atención presencial." },
-    ],
-    faq: [
-      { q: "¿La telemedicina está disponible en todo el estado?", a: "Sí - las visitas de telemedicina están disponibles en toda Florida para seguimientos y atención crónica apropiada." },
-      { q: "¿Qué se puede manejar por telemedicina?", a: "Manejo de medicamentos, revisión de laboratorios, control de enfermedades crónicas, seguimientos y algunas enfermedades menores." },
-      { q: "¿Cuándo se requiere visita presencial?", a: "Cuando se necesita un examen físico o una prueba presencial, tu proveedor te lo indicará y te ayudará a agendar." },
-    ],
-  },
-
   "/membership/": {
     title: "Primary Care Membership in Tampa | Palm Wellness Center",
     desc: "Monthly Medical Membership: $99 initial + $39/month for extended primary care. Single visits from $39. Most insurance accepted.",
