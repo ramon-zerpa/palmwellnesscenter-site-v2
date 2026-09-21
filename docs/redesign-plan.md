@@ -21,7 +21,10 @@ images and content decisions.
    new patient $65, telehealth $55, IV Therapy is **live** (not "coming soon").
 3. Migrating a "rich" page = create a dedicated Astro page and add its path to the `migrated`
    `Set` in `getStaticPaths()` of `src/pages/[...slug].astro`. **Do not delete the entry from
-   `richpages.json`**: it stays as a historical record and the catch-all filters it out.
+   `richpages.json`**: it stays as a historical record and the catch-all filters it out. This step
+   **only applies to paths that exist in `richpages.json`** (today: `/primary-care/`,
+   `/medical-weight-loss/` + ES). Pages that were never in the JSON (the Primary Care children)
+   need no `migrated` entry: their explicit route is the only one that exists.
 4. Bilingual: every group ships EN + ES.
 5. One H1; keep title/meta/canonical/hreflang intact; images keep alt + dimensions.
 6. Build must stay green and page count stable (no lost routes) after each group.
@@ -44,7 +47,7 @@ flow), with pricing corrected to Optantra truth.
 | # | Group | Pages (EN) | ES |
 |---|-------|-----------|-----|
 | 1 | Flagship hubs | `/primary-care/`, `/medical-weight-loss/` | `/es/atencion-primaria/`, `/es/perdida-de-peso-medica/` |
-| 2 | Rehab hub + IV | `/physical-rehabilitation/`, `/iv-therapy/` | `/es/fisioterapia/`, `/es/terapia-iv/` |
+| 2 | Rehab hub + IV | `/physical-rehabilitation/`, `/iv-therapy/` (✅ IV done) | `/es/fisioterapia/`, `/es/terapia-iv/` (✅) |
 | 3 | Core rehab | `/chiropractor/`, `/massage-therapy/` | `/es/quiropractico/`, `/es/terapia-de-masajes/` |
 | 4 | Therapy | `/therapeutic-exercises/`, `/therapeutic-ultrasound-treatment/` | `/es/ejercicios-terapeuticos/`, `/es/tratamiento-de-ultrasonido-terapeutico/` |
 | 5 | Auto accident I | `/car-accident-rehabilitation/`, `/auto-accident-injury-clinic/` | `/es/rehabilitacion-de-accidentes-automovilisticos/`, `/es/clinica-de-lesiones-por-accidentes-de-auto/` |
@@ -54,7 +57,7 @@ flow), with pricing corrected to Optantra truth.
 | 9 | About + Contact | `/about-us/`, `/contact/` | `/es/acerca-de-nosotros/`, `/es/contacto/` |
 | 10 | Blog + misc | `/news-blog/` (+ post template), `/business-profiles/` | `/es/blog-de-noticias/` |
 | 11 | Legal | `/hipaa-policy/`, `/privacy-policy/` | `/es/politica-de-hipaa/`, `/es/politica-de-privacidad/` |
-| 12 | New pages upgrade | `/primary-care/membership/`, `/primary-care/chronic-condition-management/` then `/primary-care/preventive-care/`, `/primary-care/telemedicine/` | ES mirrors |
+| 12 | New pages upgrade | ✅ done — `/chronic-condition-management/`, `/preventive-care/`, `/telemedicine/`, `/membership/` (flattened to top level, not nested) | ES mirrors ✅ |
 
 ## Per-group workflow
 
@@ -70,5 +73,21 @@ flow), with pricing corrected to Optantra truth.
 
 - [x] Homepage — approved visual reference, EN + ES
 - [x] Group 1 — `/primary-care/` + `/medical-weight-loss/` (bespoke EN/ES components)
-- [ ] Group 2 — `/physical-rehabilitation/` + `/iv-therapy/` (next)
+- [x] Primary Care family closed — `/iv-therapy/`, `/chronic-condition-management/`,
+      `/preventive-care/`, `/telemedicine/`, `/membership/` (+ ES), built one page at a time in
+      the approved language, each with its own component under `src/components/pages/`.
+      The 4 nested children were flattened to top level (new URLs, so no redirects were needed).
+- [ ] Group 2 — `/physical-rehabilitation/` + `/es/fisioterapia/` still on the legacy body
+      (IV Therapy, the other half of the group, is already redesigned)
 - [ ] Groups 3–12
+
+**Per-page workflow actually used for the Primary Care family** (repeat for the next groups):
+
+1. Research two direct Tampa competitors for that service (structure and intent, never copy).
+2. Read the legacy content for the page + `docs/optimantra-services.md` for prices.
+3. Build the bespoke EN component in the approved language (hero + `AnchorNav` + 11–13 sections,
+   alternating light and `blue-deep` bands, FAQ, transport, final CTA).
+4. Wrap EN/ES routes as ~23-line files (`Layout` → `TopBar` → `Header` → `main` → `Footer`).
+5. `npm run build` → **273 pages**; audit EN/ES at 360·412·768·1024·1440 with `tools/qa/cdp-pc.ps1`
+   (overflow, H1, image dimensions, clipped text, anchor clicks); review screenshots.
+6. Commit + push (Vercel deploys), then verify the live pages over HTTP.

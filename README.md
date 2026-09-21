@@ -75,17 +75,18 @@ src/
     Icon.astro          renderiza Lucide; FaIcon.astro delega en él
     AnchorNav.astro     nav de anclas de página (sin hash en la URL)
     HomePage.astro      homepage
-    pages/              páginas rediseñadas a medida (PrimaryCarePage, MedicalWeightLossPage)
+    pages/              páginas rediseñadas a medida (PrimaryCarePage, MedicalWeightLossPage,
+                        IvTherapyPage, ChronicConditionManagementPage, PreventiveCarePage,
+                        TelemedicinePage, MembershipPage)
     RichPage.astro      renderizador del cuerpo heredado (richpages.json)
     RichSection.astro   primitivas del cuerpo heredado
-    BlogIndex.astro, BlogPost.astro, ContactPage.astro, SimplePage.astro, ContactForm.astro
+    BlogIndex.astro, BlogPost.astro, ContactPage.astro, ContactForm.astro
   layouts/
     Layout.astro        <head>, meta, hreflang, JSON-LD
   data/
     richpages.json         41 páginas heredadas (contenido en bloques)
     home.ts                contenido de la homepage
-    newPages.ts            contenido de páginas simples nuevas
-    physicalRehabilitation.ts, therapeuticExercises.ts   sustituciones de contenido
+    physicalRehabilitation.ts, therapeuticExercises.ts   sustituciones de contenido heredado
     blogArchive.ts         paginación del blog (6 por página)
   i18n/
     ui.ts                  nav + diccionario de cadenas
@@ -115,7 +116,10 @@ Hay tres vías de render:
 
 **Migrar una página al diseño nuevo no borra su entrada del JSON.** Se añade la ruta al `Set`
 `migrated` dentro de `getStaticPaths()` de `[...slug].astro`; así el contenido viejo queda como
-archivo histórico y el catch-all lo ignora. Los detalles están en `AGENTS.md` § 4.1.
+archivo histórico y el catch-all lo ignora. El `Set` **solo hace falta para rutas que existen en
+`richpages.json`**: las páginas nuevas que nunca estuvieron ahí (IV Therapy, manejo crónico,
+preventiva, telemedicina, membresía) solo necesitan su ruta explícita. Los detalles están en
+`AGENTS.md` § 4.1.
 
 ## Cómo funciona el i18n
 
@@ -123,6 +127,9 @@ archivo histórico y el catch-all lo ignora. Los detalles están en `AGENTS.md` 
   (`/es/atencion-primaria/`). Sin prefijo para el idioma por defecto.
 - El nav y las cadenas salen de `src/i18n/ui.ts`; las rutas compartidas y el enlace de reserva
   (`APPOINTMENT_URL`, OptiMantra V2) de `src/i18n/utils.ts`.
+- **`APPOINTMENT_URL` es la única fuente del link de reserva: impórtala, nunca la copies.** Si hay
+  que cambiarla, se cambia solo ahí; los datos que no admiten `import` (`richpages.json`,
+  markdown) se editan aparte y luego se verifica que no queda el valor viejo en `src` ni en `dist`.
 - El mapa hreflang EN↔ES está en `src/i18n/altmap.ts`. **Al añadir una página, añade su par
   ahí**, o el switcher de idioma y los `<link rel="alternate">` no la encontrarán.
 
@@ -202,6 +209,7 @@ commit.
 | Archivo | Contenido |
 |---|---|
 | [`AGENTS.md`](./AGENTS.md) | memoria operativa: reglas, gotchas, estado, bugs conocidos |
+| [`docs/SESSION-HANDOFF.md`](./docs/SESSION-HANDOFF.md) | **brief de arranque** para pegar en un chat nuevo |
 | [`docs/PROJECT-HANDOFF.md`](./docs/PROJECT-HANDOFF.md) | relevo de sesión: decisiones aprobadas, imágenes, metadatos, QA y siguiente fase |
 | `docs/redesign-plan.md` | los 12 grupos de migración de páginas |
 | `docs/optimantra-services.md` | precios y servicios reales |

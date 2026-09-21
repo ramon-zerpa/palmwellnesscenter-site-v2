@@ -110,6 +110,13 @@ Se añade la ruta al `Set` llamado `migrated` dentro de `getStaticPaths()` de `[
 Así la entrada vieja queda como archivo histórico y el catch-all la ignora. Migradas hoy:
 `/primary-care/`, `/es/atencion-primaria/`, `/medical-weight-loss/`, `/es/perdida-de-peso-medica/`.
 
+Ojo: **el `Set` `migrated` solo hace falta para rutas que existen en `richpages.json`.** Las otras
+cinco páginas del grupo de Atención Primaria (`/iv-therapy/`, `/chronic-condition-management/`,
+`/preventive-care/`, `/telemedicine/`, `/membership/` y sus espejos ES) **nunca estuvieron en el
+JSON**: venían de `src/data/newPages.ts` con el componente genérico `SimplePage.astro`, y ambos se
+borraron al cerrar el grupo. Por eso no aparecen en `migrated` y **no es un olvido**: al no haber
+entrada en el JSON, la ruta explícita es la única que existe.
+
 El catch-all también hace de **capa de sustitución de contenido**: si existe un archivo en
 `src/data/` para esa ruta (`physicalRehabilitation.ts`, `therapeuticExercises.ts`), usa ese en
 lugar del JSON heredado.
@@ -121,6 +128,8 @@ lugar del JSON heredado.
 - `src/i18n/ui.ts` → `nav` (menú + desplegables) y `translations` (diccionario de cadenas).
 - `src/i18n/utils.ts` → `useTranslations(lang)`, `routes` (destinos compartidos), `getAltUrl()`,
   **`APPOINTMENT_URL`** (OptiMantra V2, compartido por ambos idiomas), `PHONE_TEL`, `SOCIAL`.
+- **`APPOINTMENT_URL` es la única fuente del link de reserva.** No copies la URL en componentes ni
+  en datos: **impórtala**. Duplicarla ya costó caro una vez (ver § 6).
 - `src/i18n/altmap.ts` → mapa hreflang EN↔ES derivado del sitio viejo. Es la fuente del
   switcher de idioma y de los `<link rel="alternate">`. **Si añades una página, añade su par aquí.**
 
@@ -169,7 +178,9 @@ Dos cosas de `global.css` que parecen detalles y no lo son:
 
 ### 4.6 De dónde sale el contenido
 
-Precios y servicios: **`docs/optimantra-services.md` es la verdad** (seguro médico real). Si el
+Precios y servicios: **`docs/optimantra-services.md` es la verdad** (seguro médico real). Es una
+captura del portal de pacientes de OptiMantra del cliente (`servicesallV2`, 2026-09-19); el portal
+solo expone el catálogo dentro del flujo de paciente, así que ese archivo es la referencia. Si el
 texto heredado contradice ese archivo, gana el archivo. Los números que más se equivocan en el
 contenido viejo: membresía **$99 inicial + $39/mes**, oficina $39, paciente nuevo $65,
 telehealth $55, **IV Therapy está ACTIVO** (el sitio viejo dice "coming soon").
@@ -226,6 +237,22 @@ Con 6 items de primer nivel no se puede bajar el breakpoint del menú.
 tiene que dar 0 *y* no debe haber elementos con `getBoundingClientRect().right > innerWidth`
 (ignorando los que están dentro de un scroller). El harness ya lo comprueba.
 
+**El link de reserva se rompe en cuanto lo copias.** En septiembre de 2026 el `lid` de
+`APPOINTMENT_URL` estaba corrupto (decodificaba a un base64 inválido: llevaba un `.`) y, además, la
+misma URL estaba **hardcodeada en 5 puntos del código y en 82 enlaces del contenido heredado**
+(`richpages.json` y 2 posts del blog) apuntando al endpoint viejo V1
+(`/optimus/patient/patientaccess/servicesall`). Resultado: el botón de reserva abría el scheduler
+en unas páginas y no en otras. **Impórtala siempre.** Si hay que cambiarla, se cambia en
+`src/i18n/utils.ts` y en ningún sitio más; si además hay que tocarla en datos que no admiten
+`import` (`richpages.json`, markdown), hazlo y verifica con `Select-String` que no queda ninguna
+aparición del valor viejo **ni en `src` ni en `dist`**.
+
+**Cuidado con las imágenes que en realidad son "gráficos con texto".**
+`osteoporosis-prevention-management-man-knee-pain.webp` (entre otras) lleva un titular impreso y
+una banda de marca; al recortarla a una caja de hero o de sección el texto se corta y parece un
+error de maquetación. Antes de aprobar un asset, **ábrelo y míralo**: si trae texto incrustado, no
+sirve como fotografía de sección.
+
 **Pencil (MCP):** `TakeScreenshot` devuelve **vacío si se pide en el mismo `execute` que una
 mutación** — captura siempre en una llamada aparte. Y `pencil_browser` falla de forma
 intermitente con `MCP error -32603: A capture is already running`; cuando pasa, usa el harness CDP.
@@ -260,41 +287,54 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 
 **Hecho**
 
-- Homepage, `/primary-care/` y `/medical-weight-loss/` rediseñados a medida, EN+ES. El cliente
-  aprobó el lenguaje visual actual de Homepage y Primary Care; son la referencia para las páginas
-  nuevas, manteniendo contenido y fotografía propios por página.
-- Header, TopBar y Footer nuevos, con el contenedor único de 1200px. El header y footer actuales
-  son el estándar global ya aprobado.
-- Familia única de iconos (Lucide), extracción de `AnchorNav`, sistema de hover y primitivas de
-  movimiento del hero, todo reutilizable.
+- **Grupo de Atención Primaria cerrado, EN+ES.** Páginas a medida sobre la referencia visual
+  aprobada (Homepage + Primary Care): Homepage, `/primary-care/`, `/medical-weight-loss/`,
+  `/iv-therapy/`, `/chronic-condition-management/`, `/preventive-care/`, `/telemedicine/` y
+  `/membership/`, con sus espejos ES. Cada una mantiene contenido y fotografía propios; no son un
+  template genérico.
+- Los hijos de Atención Primaria que vivían anidados bajo `/primary-care/` se **aplanaron a primer
+  nivel** (`/membership/`, `/preventive-care/`, `/telemedicine/`, `/chronic-condition-management/`
+  + ES). Son rutas **nuevas** (no estaban en el sitemap heredado), así que **no hicieron falta
+  redirects** (commits `459c815`, `c81fa38`). `/iv-therapy/` siempre fue de primer nivel.
+- **Link de reserva corregido en las 88 apariciones del sitio** (`ec9d1bc`): `lid` corregido en
+  `APPOINTMENT_URL`, 5 copias hardcodeadas eliminadas (ahora se importa la constante) y 82 enlaces
+  heredados migrados del endpoint V1 al canónico. Verificado en producción (273/273 páginas con el
+  link bueno, 0 con el viejo).
+- **`src/components/SimplePage.astro` y `src/data/newPages.ts` eliminados**: al cerrar el grupo
+  ninguna ruta los importaba. Nadie debe recrearlos.
+- Header, TopBar y Footer nuevos, con el contenedor único de 1200px; familia única de iconos
+  (Lucide), `AnchorNav`, sistema de hover y primitivas de movimiento del hero, todo reutilizable.
 - Héroes con imagen a la derecha: entrada completa por desplazamiento de derecha a izquierda (no
   wipe), sombra, leve deriva, corazón pulsante y línea vital dinámica. Para cada nueva foto,
   verifica el `object-position` en el contenedor real; no asumas `center`.
-- Homepage y Primary Care verificados en EN/ES a 360 y 1440px: sin overflow, sin texto recortado
-  ni imágenes sin dimensiones. El build sigue produciendo 273 páginas.
+- Todas las páginas del grupo auditadas en EN/ES a 360·412·768·1024·1440: sin overflow, 1 H1, sin
+  texto recortado y sin imágenes sin dimensiones. El build sigue produciendo **273 páginas**.
 - Pencil: frame **`EnF3Q` (Primary Care Desktop)** construido y aprobado por el cliente.
-- `AGENTS.md`, `README.md` y el harness CDP versionado en `tools/qa/`.
+- `AGENTS.md`, `README.md`, `docs/` y el harness CDP versionado en `tools/qa/`.
 - Preview **no indexable**: `robots.txt` con `Disallow: /` + header `X-Robots-Tag` (ver § 9).
-- Último commit funcional publicado: `b42a682 Refresh care imagery and homepage metadata`.
-  Consulta `docs/PROJECT-HANDOFF.md` para el estado preciso, decisiones recientes y siguientes
-  pasos antes de tocar código.
+- Último commit funcional publicado: `ec9d1bc Fix the appointment booking link everywhere`.
+  Consulta `docs/PROJECT-HANDOFF.md` (estado canónico) y `docs/SESSION-HANDOFF.md` (brief de
+  arranque de sesión) antes de tocar código.
 
 **Siguiente**
 
-1. **Grupo 2:** `/physical-rehabilitation/` + `/iv-therapy/` y sus espejos ES. Diseñar primero
-   su desktop en Pencil si se va a utilizar como referencia visual, y construir componentes
-   propios siguiendo el estándar de Homepage/Primary Care.
+1. **Grupo 2 (parcial):** el hub `/physical-rehabilitation/` (+ `/es/fisioterapia/`) todavía usa el
+   cuerpo heredado. `/iv-therapy/` de ese mismo grupo ya está rediseñada. Diseñar el desktop en
+   Pencil si se va a usar como referencia visual y construir su componente propio
+   (`PhysicalRehabilitationPage.astro`) siguiendo el estándar de Homepage/Primary Care.
 2. Grupos 3-12 de `docs/redesign-plan.md` (rehabilitación, accidentes, legal, blog…).
 
 **Pendiente / bloqueado**
 
-- `public/images/placeholders/{iv-therapy,telemedicine,care-team,general}.svg` siguen siendo
-  placeholders para páginas interiores todavía no rediseñadas. Las imágenes nuevas de Homepage y
-  Primary Care ya son WebP optimizados; no hace falta sustituirlas.
+- No existe fotografía propia de IV Therapy, telemedicina, manejo crónico ni preventiva: esas
+  páginas reutilizan fotos aprobadas. Cuando el cliente entregue fotos nuevas, se sustituyen.
+  `public/images/placeholders/{iv-therapy,telemedicine,care-team,general}.svg` quedan como
+  marcador de esas carencias.
 - El logo es `public/images/logo.webp`, 120×60 y de baja resolución. El cliente debe entregar
   SVG o 2×. Es inmutable: no lo rediseñes.
-- Las páginas del interior aún usan el cuerpo heredado (`RichPage`/`RichSection`): ya heredan
-  header/footer e iconos nuevos, pero su contenido no está en el lenguaje visual nuevo.
+- Las páginas de rehabilitación y el resto del interior aún usan el cuerpo heredado
+  (`RichPage`/`RichSection`): ya heredan header/footer e iconos nuevos, pero su contenido no está
+  en el lenguaje visual nuevo.
 - **El frame `EnF3Q` y el código divergen en 2 puntos**: Pencil todavía muestra el separador del
   bloque de Related Services (eliminado en código) y el orden viejo del nav de anclas. El código
   aprobado prevalece; sincronizar Pencil si se vuelve a editar ese frame.
@@ -417,6 +457,9 @@ para no añadir esa fricción. Consecuencia aceptada: cualquiera con el enlace p
 
 - No toques `legacy/` (solo lectura) ni `seo/sitemap-baseline.xml`.
 - No cambies una URL existente ni añadas un 301 sin aprobación.
+- No copies `APPOINTMENT_URL`: impórtala siempre desde `src/i18n/utils.ts` (§ 6).
+- No recrees `SimplePage.astro` ni `src/data/newPages.ts`: se eliminaron al cerrar el grupo de
+  Atención Primaria y todas sus rutas ya tienen página propia.
 - No reescribas el logo, el NAP, las licencias ni los profesionales.
 - No añadas un segundo contenedor ni un ancho distinto de `.shell`.
 - No añadas breakpoints fuera de los 4 declarados.
@@ -433,6 +476,7 @@ para no añadir esa fricción. Consecuencia aceptada: cualquiera con el enlace p
 | Archivo | Contenido |
 |---|---|
 | `README.md` | visión general, stack, cómo arrancar |
+| `docs/SESSION-HANDOFF.md` | **brief de arranque**: estado, próximo paso, comandos y trampas para pegar en un chat nuevo |
 | `docs/redesign-plan.md` | los 12 grupos de migración |
 | `docs/PROJECT-HANDOFF.md` | estado aprobado, decisiones recientes, QA y próxima fase |
 | `docs/optimantra-services.md` | precios y servicios reales: la verdad del negocio |

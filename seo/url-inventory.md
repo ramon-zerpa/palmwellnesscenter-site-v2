@@ -290,15 +290,25 @@ Total URLs indexadas: 262  |  EN: 132  |  ES: 130
 | `/es/quiropractico-para-accidente-de-auto/` | Servicio relacionado | Conservar |
 | `/es/tratamiento-de-accidentes-de-auto/` | Servicio relacionado | Conservar |
 
-## URLs nuevas propuestas (sin riesgo SEO)
+## URLs nuevas (estado real, 2026-09-21)
 
-| Ruta nueva (EN) | Ruta nueva (ES) | Proposito |
+Todas son rutas **nuevas**: no existían en el sitemap heredado (262 URLs), así que no requieren
+301 ni afectan a ninguna URL indexada. Estado verificado en producción.
+
+| Ruta nueva (EN) | Ruta nueva (ES) | Estado |
 |---|---|---|
-| /locations/ | /es/ubicaciones/ | Hub de areas de servicio |
-| /locations/north-tampa/ | /es/ubicaciones/north-tampa/ | Barrio sede (Linebaugh/USF) |
-| /primary-care/membership/ | /es/atencion-primaria/membresia/ | Membresia primary care |
-| /primary-care/chronic-condition-management/ | /es/atencion-primaria/manejo-enfermedades-cronicas/ | Condiciones cronicas |
-| /primary-care/preventive-care/ | /es/atencion-primaria/atencion-preventiva/ | Preventivo/examenes |
-| /primary-care/telemedicine/ | /es/atencion-primaria/telemedicina/ | Telemedicina FL |
-| /iv-therapy/ | /es/terapia-iv/ | IV therapy (coming soon) |
+| /iv-therapy/ | /es/terapia-iv/ | Publicada (V2 live, no "coming soon") |
+| /chronic-condition-management/ | /es/manejo-enfermedades-cronicas/ | Publicada |
+| /preventive-care/ | /es/atencion-preventiva/ | Publicada |
+| /telemedicine/ | /es/telemedicina/ | Publicada |
+| /membership/ | /es/membresia/ | Publicada |
+
+Notas:
+
+- Las cuatro rutas de servicio de la familia de Atención Primaria se publicaron **a primer nivel**.
+  Se evaluó anidarlas bajo `/primary-care/` (`/primary-care/membership/`…) y se **descartó**: al no
+  existir antes, aplanarlas no rompe ninguna URL ni exige redirects.
+- `/locations/` y `/locations/north-tampa/` estaban propuestas aquí y **se retiraron por decisión
+  del cliente**. No recrearlas.
+- Las rutas heredadas que siguen intactas están listadas arriba; ninguna nueva las sustituye.
 
