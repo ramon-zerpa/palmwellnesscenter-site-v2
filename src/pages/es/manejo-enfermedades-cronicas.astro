@@ -1,7 +1,23 @@
 ---
-import SimplePage from "../../components/SimplePage.astro";
-const lang = "es";
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import ChronicConditionManagementPage from "../../components/pages/ChronicConditionManagementPage.astro";
+
 const path = "/es/manejo-enfermedades-cronicas/";
 ---
 
-<SimplePage lang={lang} path={path} />
+<Layout
+  lang="es"
+  path={path}
+  title="Manejo de Enfermedades Crónicas en Tampa, FL | Palm Wellness Center"
+  description="Manejo continuo de presión alta, diabetes tipo 2, colesterol, tiroides, asma y artritis en Tampa. Consultas extendidas, monitoreo de laboratorio y atención coordinada."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <ChronicConditionManagementPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

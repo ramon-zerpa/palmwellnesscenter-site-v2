@@ -1,7 +1,23 @@
 ---
-import SimplePage from "../components/SimplePage.astro";
-const lang = "en";
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ChronicConditionManagementPage from "../components/pages/ChronicConditionManagementPage.astro";
+
 const path = "/chronic-condition-management/";
 ---
 
-<SimplePage lang={lang} path={path} />
+<Layout
+  lang="en"
+  path={path}
+  title="Chronic Condition Management in Tampa, FL | Palm Wellness Center"
+  description="Ongoing management for high blood pressure, type 2 diabetes, high cholesterol, thyroid disorders, asthma, arthritis, and more in Tampa. Extended visits, lab monitoring, and coordinated care."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <ChronicConditionManagementPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

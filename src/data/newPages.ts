@@ -13,43 +13,6 @@ const consult = "Virtual visits anywhere in Florida";
 
 export const newPages: Record<string, SimpleContent> = {
   /* ---------------- PRIMARY CARE ---------------- */
-  "/chronic-condition-management/": {
-    title: "Chronic Condition Management in Tampa, FL | Palm Wellness Center",
-    desc: "Ongoing management for high blood pressure, diabetes, cholesterol, thyroid, asthma and arthritis in Tampa. Extended visits and coordinated care. Call (813) 443-5370.",
-    eyebrow: "Primary Care in Tampa",
-    h1: "Chronic condition management that stays on track",
-    lead: "Long-term support for the conditions that need regular attention - with extended visits and a plan you can actually follow.",
-    body: "We manage high blood pressure, type 2 diabetes, high cholesterol, thyroid disorders, asthma, COPD, arthritis, and chronic joint pain. Your provider coordinates medication, labs, and lifestyle changes, and works with our rehabilitation team when movement is part of the plan.",
-    benefits: [
-      { icon: "stethoscope", title: "One provider who knows your history", body: "Continuity across visits, prescriptions, and lab reviews." },
-      { icon: "check", title: "Medication and lab monitoring", body: "Regular checks so treatment is adjusted as you improve." },
-      { icon: "person", title: "Coordinated with rehabilitation", body: "Medical and movement care share one plan, one record, one team." },
-    ],
-    faq: [
-      { q: "Do you accept Medicare and major insurance?", a: "We accept most major insurance plans, including Medicare. Call (813) 443-5370 to verify your specific coverage." },
-      { q: "How often will I be seen?", a: "Follow-ups are typically every 1-3 months depending on your condition and how well it is controlled." },
-      { q: "Can I manage my condition by telemedicine?", a: "Yes - follow-ups, medication management, and lab reviews can be handled by telemedicine throughout Florida when clinically appropriate." },
-    ],
-  },
-  "/es/manejo-enfermedades-cronicas/": {
-    title: "Manejo de Enfermedades Crónicas en Tampa, FL | Palm Wellness Center",
-    desc: "Manejo continuo de presión alta, diabetes, colesterol, tiroides, asma y artritis en Tampa. Consultas extendidas y atención coordinada. Llama al (813) 443-5370.",
-    eyebrow: "Atención Primaria en Tampa",
-    h1: "Manejo de enfermedades crónicas que no se pierde",
-    lead: "Apoyo a largo plazo para las condiciones que requieren atención regular - con consultas extendidas y un plan que puedes seguir.",
-    body: "Manejamos presión alta, diabetes tipo 2, colesterol alto, trastornos de tiroides, asma, EPOC, artritis y dolor articular crónico. Tu proveedor coordina medicamentos, laboratorios y cambios de estilo de vida, y trabaja con nuestro equipo de rehabilitación cuando el movimiento es parte del plan.",
-    benefits: [
-      { icon: "stethoscope", title: "Un proveedor que conoce tu historial", body: "Continuidad entre visitas, recetas y revisión de laboratorios." },
-      { icon: "check", title: "Seguimiento de medicamentos y labs", body: "Controles regulares para ajustar el tratamiento según avanzas." },
-      { icon: "person", title: "Coordinado con rehabilitación", body: "Atención médica y movimiento comparten un plan, un expediente y un equipo." },
-    ],
-    faq: [
-      { q: "¿Aceptan Medicare y seguros principales?", a: "Aceptamos la mayoría de los seguros principales, incluido Medicare. Llama al (813) 443-5370 para verificar tu cobertura." },
-      { q: "¿Cada cuánto me verán?", a: "Los seguimientos suelen ser cada 1 a 3 meses según tu condición y qué tan controlada esté." },
-      { q: "¿Puedo manejar mi condición por telemedicina?", a: "Sí - seguimientos, manejo de medicamentos y revisión de laboratorios pueden hacerse por telemedicina en toda Florida cuando sea clínicamente apropiado." },
-    ],
-  },
-
   "/preventive-care/": {
     title: "Preventive Care & Wellness Exams in Tampa, FL | Palm Wellness Center",
     desc: "Annual wellness visits, physicals, screenings, contraception counseling and hormone support in Tampa, FL. Same-day and next-day appointments. Call (813) 443-5370.",

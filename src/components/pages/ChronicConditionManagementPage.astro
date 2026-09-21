@@ -1,0 +1,725 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Chronic Condition Care in Tampa",
+      title: "Chronic condition management that stays on track",
+      lead: "Long-term support for the conditions that need regular attention - with extended visits, lab monitoring, and a plan you can actually follow.",
+      chips: [
+        { icon: "stethoscope", label: "One provider who knows you" },
+        { icon: "clock", label: "30-60 minute visits" },
+        { icon: "clipboard", label: "Lab & medication monitoring" },
+        { icon: "activity", label: "Coordinated with rehab" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "Most insurance accepted · Medicare · Free transportation for eligible patients",
+      image: "/images/comprehensive-primary-care-that-works-with-your-body.webp",
+      imageAlt: "A physician reviewing a patient's health record during a chronic care visit at Palm Wellness Center in Tampa",
+      rail: [
+        { value: "60 min", label: "First visit" },
+        { value: "30-45 min", label: "Follow-ups" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "Conditions", href: "#conditions" },
+      { label: "Our approach", href: "#approach" },
+      { label: "Labs & medication", href: "#labs" },
+      { label: "Get started", href: "#start" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    intro: {
+      heading: "Care that manages the condition, not just the number",
+      paras: [
+        "Chronic conditions rarely stay still. Blood pressure drifts, blood sugar creeps up, thyroid levels shift with stress and sleep. Managing them well means tracking those changes over time - not refilling a prescription and hoping for the best.",
+        "At Palm Wellness Center, chronic condition management is an ongoing relationship. Your provider reviews your labs, medications, symptoms, and goals at every visit, adjusts the plan as your body responds, and coordinates with our rehabilitation and wellness team when movement, weight, or recovery is part of the picture.",
+      ],
+      compare: [
+        { tag: "Typical clinic visit", value: "10-15 min", body: "Rushed appointments that treat the number instead of the person managing it." },
+        { tag: "At Palm Wellness", value: "30-60 min", body: "Extended visits that review your labs, medications, symptoms, and goals together." },
+      ],
+    },
+    conditions: {
+      heading: "Conditions we manage",
+      lead: "We support adults managing one long-term condition or several at the same time.",
+      items: [
+        { icon: "heart-pulse", title: "High blood pressure", body: "Regular monitoring, medication review, and lifestyle guidance to protect your heart and blood vessels." },
+        { icon: "droplet", title: "Type 2 diabetes", body: "Blood sugar trends, medication management, and nutrition guidance that fits your daily routine." },
+        { icon: "activity", title: "High cholesterol", body: "Tracking lipid results and risk factors, and knowing when medication or lifestyle changes are needed." },
+        { icon: "gauge", title: "Thyroid disorders", body: "Lab testing and treatment for hypothyroidism, hyperthyroidism, and related fatigue or weight changes." },
+        { icon: "wind", title: "Asthma & COPD", body: "Review of symptoms, triggers, and medications to reduce flare-ups and protect your breathing." },
+        { icon: "spine", title: "Arthritis & joint pain", body: "Support for pain, stiffness, and mobility - coordinated with chiropractic and physical therapy when helpful." },
+        { icon: "heart", title: "Heart-related risk", body: "Monitoring of blood pressure, cholesterol, and symptoms, with specialist referrals when needed." },
+        { icon: "clipboard", title: "Multiple conditions", body: "One coordinated plan when you are managing more than one diagnosis at the same time." },
+      ],
+    },
+    approach: {
+      eyebrow: "Our Approach",
+      heading: "What ongoing care looks like",
+      lead: "Every visit builds on the last one, so you are never starting from scratch or repeating your whole story.",
+      steps: [
+        { title: "We review your history", body: "Your conditions, medications, past lab results, symptoms, family history, and what matters to you." },
+        { title: "We check your numbers", body: "Blood pressure, weight, blood sugar, cholesterol, thyroid, and the lab trends behind them." },
+        { title: "We build or adjust your plan", body: "Medication review, lifestyle guidance, lab orders, and referrals when they are needed." },
+        { title: "We schedule your follow-up", body: "A realistic cadence based on how your condition is trending, not a rigid timeline." },
+      ],
+    },
+    labs: {
+      eyebrow: "Labs & Medication",
+      heading: "Your numbers, reviewed together",
+      body: "Chronic conditions change slowly, and so do the numbers behind them. We coordinate your lab work, explain the results in plain language, and adjust medications as your body responds - in person or by telemedicine.",
+      points: [
+        "Blood pressure, cholesterol, diabetes, and thyroid panels",
+        "Results reviewed with you during your visit",
+        "Prescription renewals and medication safety checks",
+        "Coordination with local pharmacies and specialists",
+      ],
+      cardLabel: "Common lab panels",
+      panels: [
+        { name: "Annual Preventive Assessment with Basic Panel", price: "$145" },
+        { name: "Complete Hormonal Profile", price: "$189" },
+        { name: "Comprehensive Metabolic Panel", price: "$250" },
+      ],
+      note: "Additional lab work may be ordered based on your condition. Your provider will explain what is needed and why before anything is ordered.",
+    },
+    why: {
+      heading: "Why regular follow-up matters",
+      lead: "Long-term conditions rarely stay still. Regular visits catch small changes before they become bigger problems.",
+      points: [
+        "Stay current with lab work and screenings",
+        "Understand what each medication is doing",
+        "Track symptoms and warning signs early",
+        "Reduce avoidable complications",
+        "Coordinate care with specialists when needed",
+        "Adjust the plan as your body changes",
+      ],
+      closing: "The goal is not to overwhelm you with numbers. It is to make your care easier to follow, so your condition fits your life - not the other way around.",
+      image: "/images/mature-woman-exercising-for-healthy-lifestyle.webp",
+      imageAlt: "A patient living well and staying active while managing a chronic condition",
+    },
+    integrated: {
+      heading: "One team, one record",
+      lead: "Because your medical care lives in the same record as your rehabilitation and wellness services, your plan stays connected.",
+      items: [
+        { icon: "stethoscope", title: "Primary Care", body: "Your medical home for everyday health, preventive visits, and prescriptions.", href: "/primary-care/" },
+        { icon: "scale", title: "Medical Weight Loss", body: "Physician-supervised weight and metabolic care that supports chronic conditions.", href: "/medical-weight-loss/" },
+        { icon: "activity", title: "Physical Rehabilitation", body: "Movement and strength care for arthritis, joint pain, and recovery.", href: "/physical-rehabilitation/" },
+        { icon: "drop", title: "IV Therapy & Injections", body: "Medically supervised infusions and nutrients prescribed in context.", href: "/iv-therapy/" },
+      ],
+      relatedLabel: "Related services",
+      related: [
+        { label: "Primary Care", href: "/primary-care/" },
+        { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
+        { label: "Physical Rehabilitation", href: "/physical-rehabilitation/" },
+        { label: "Chiropractic Care", href: "/chiropractor/" },
+        { label: "IV Therapy", href: "/iv-therapy/" },
+        { label: "Telemedicine", href: "/telemedicine/" },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered care. Our team follows established clinical standards, explains your results clearly, and keeps your care documented in one medical record.",
+        "Chronic care is supervised by Dr. Arnaldo V. Orellana-Molina, MD, and delivered in extended visits at 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "A primary care provider listening to a patient and reviewing her care plan",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Medical supervision",
+    },
+    steps: {
+      eyebrow: "How to Get Started",
+      heading: "How to get started",
+      items: [
+        { title: "Call or book online", body: "Call (813) 443-5370 or schedule online 24/7. Bring your medication list and any recent lab results." },
+        { title: "Your first visit", body: "A full history review, a check of your key numbers, and a personalized care plan you understand." },
+        { title: "Ongoing partnership", body: "Regular follow-ups, medication management, lab monitoring, and coordination with rehab or wellness when helpful." },
+      ],
+      note: "Medical services are provided under physician supervision in accordance with Florida state regulations.",
+    },
+    transport: {
+      title: "Need a ride? We've got you covered.",
+      body: "Palm Wellness Center offers free transportation to and from appointments for eligible patients across the Tampa Bay area - so keeping up with your follow-up visits is never the reason you fall behind. Just ask when you call or request an appointment.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through coverage, scheduling, and what to expect on your first visit.",
+      items: [
+        { q: "What is chronic condition management?", a: "It is ongoing medical care for long-term conditions that need regular attention. That can include follow-up visits, medication review, lab monitoring, care planning, and coordination with other providers." },
+        { q: "Which conditions do you manage?", a: "High blood pressure, type 2 diabetes, high cholesterol, thyroid disorders, asthma, COPD, arthritis, chronic joint pain, and patients managing more than one condition at the same time." },
+        { q: "Do I need a referral?", a: "Often, no referral is required. Some insurance and Medicare plans may request one from your existing provider. Our team can verify your coverage and help coordinate any needed referrals." },
+        { q: "How often will I be seen?", a: "It depends on how your condition is trending. Follow-ups are typically every 1 to 3 months, and sooner when something needs closer attention." },
+        { q: "Can I manage my condition by telemedicine?", a: "Yes - follow-ups, medication management, and lab reviews can be handled by telemedicine throughout Florida. Some visits require an in-person exam; your provider will let you know." },
+        { q: "Do you accept Medicare and major insurance?", a: "We accept most major insurance plans, including Medicare. Call (813) 443-5370 to verify your specific coverage before your visit." },
+        { q: "How long are appointments?", a: "Initial visits are typically up to 60 minutes; follow-ups are 30 to 45 minutes. The extra time lets your provider review your results and adjust your plan with you." },
+        { q: "Do I need a membership?", a: "No. You can pay per visit, or join the Monthly Medical Membership ($99 to start, then $39/month) for extended visits and direct provider messaging." },
+        { q: "Can you coordinate with my specialists or rehab?", a: "Yes. Because we share one record across primary care and rehabilitation, your care team can coordinate treatment plans, referrals, and progress." },
+      ],
+    },
+    area: {
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Located in the heart of Tampa at 1004 W Linebaugh Ave, we serve patients from across Hillsborough County and nearby communities.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "Free transportation is available for eligible patients throughout Tampa Bay, making regular follow-up easy to keep.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Take control of your condition",
+      lead: "Book a visit and build a plan that keeps your numbers - and your life - on track.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Enfermedades Crónicas en Tampa",
+      title: "Manejo de enfermedades crónicas que no se pierde",
+      lead: "Apoyo a largo plazo para las condiciones que requieren atención regular - con consultas extendidas, monitoreo de laboratorio y un plan que puedes seguir.",
+      chips: [
+        { icon: "stethoscope", label: "Un proveedor que te conoce" },
+        { icon: "clock", label: "Consultas de 30 a 60 min" },
+        { icon: "clipboard", label: "Monitoreo de labs y medicamentos" },
+        { icon: "activity", label: "Coordinado con rehabilitación" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "Aceptamos la mayoría de seguros · Medicare · Transporte gratis para pacientes elegibles",
+      image: "/images/comprehensive-primary-care-that-works-with-your-body.webp",
+      imageAlt: "Médico revisando el expediente de un paciente durante una consulta de manejo crónico en Palm Wellness Center en Tampa",
+      rail: [
+        { value: "60 min", label: "Primera visita" },
+        { value: "30-45 min", label: "Seguimientos" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Condiciones", href: "#conditions" },
+      { label: "Nuestro enfoque", href: "#approach" },
+      { label: "Labs y medicamentos", href: "#labs" },
+      { label: "Cómo comenzar", href: "#start" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    intro: {
+      heading: "Atención que maneja la condición, no solo el número",
+      paras: [
+        "Las enfermedades crónicas rara vez se quedan quietas. La presión sube, el azúcar se eleva poco a poco, la tiroides cambia con el estrés y el sueño. Manejarlas bien significa seguir esos cambios en el tiempo, no renovar una receta y esperar que todo salga bien.",
+        "En Palm Wellness Center, el manejo de enfermedades crónicas es una relación continua. Tu proveedor revisa tus laboratorios, medicamentos, síntomas y metas en cada visita, ajusta el plan según responde tu cuerpo y se coordina con nuestro equipo de rehabilitación y bienestar cuando el movimiento, el peso o la recuperación son parte del plan.",
+      ],
+      compare: [
+        { tag: "Consulta típica", value: "10-15 min", body: "Citas apresuradas que tratan el número en lugar de la persona que lo maneja." },
+        { tag: "En Palm Wellness", value: "30-60 min", body: "Consultas extendidas que revisan tus laboratorios, medicamentos, síntomas y metas juntos." },
+      ],
+    },
+    conditions: {
+      heading: "Condiciones que manejamos",
+      lead: "Apoyamos a adultos que manejan una condición de largo plazo o varias al mismo tiempo.",
+      items: [
+        { icon: "heart-pulse", title: "Presión arterial alta", body: "Monitoreo regular, revisión de medicamentos y guía de estilo de vida para proteger tu corazón y tus vasos sanguíneos." },
+        { icon: "droplet", title: "Diabetes tipo 2", body: "Tendencias de azúcar en sangre, manejo de medicamentos y orientación nutricional que encaja con tu rutina." },
+        { icon: "activity", title: "Colesterol alto", body: "Seguimiento de lípidos y factores de riesgo, y cuándo se necesitan medicamentos o cambios de estilo de vida." },
+        { icon: "gauge", title: "Trastornos de tiroides", body: "Pruebas y tratamiento para hipotiroidismo, hipertiroidismo y la fatiga o cambios de peso asociados." },
+        { icon: "wind", title: "Asma y EPOC", body: "Revisión de síntomas, desencadenantes y medicamentos para reducir crisis y proteger tu respiración." },
+        { icon: "spine", title: "Artritis y dolor articular", body: "Apoyo para el dolor, la rigidez y la movilidad - coordinado con quiropráctica y fisioterapia cuando ayuda." },
+        { icon: "heart", title: "Riesgo cardiovascular", body: "Monitoreo de presión, colesterol y síntomas, con referencias a especialistas cuando se necesitan." },
+        { icon: "clipboard", title: "Varias condiciones", body: "Un solo plan coordinado cuando manejas más de un diagnóstico al mismo tiempo." },
+      ],
+    },
+    approach: {
+      eyebrow: "Nuestro Enfoque",
+      heading: "Cómo se ve la atención continua",
+      lead: "Cada visita se apoya en la anterior, para que nunca empieces de cero ni repitas toda tu historia.",
+      steps: [
+        { title: "Revisamos tu historial", body: "Tus condiciones, medicamentos, laboratorios previos, síntomas, antecedentes familiares y lo que te importa." },
+        { title: "Revisamos tus números", body: "Presión arterial, peso, azúcar en sangre, colesterol, tiroides y las tendencias detrás de ellos." },
+        { title: "Creamos o ajustamos tu plan", body: "Revisión de medicamentos, guía de estilo de vida, órdenes de laboratorio y referencias cuando se necesitan." },
+        { title: "Programamos tu seguimiento", body: "Una frecuencia realista según cómo va tu condición, no un calendario rígido." },
+      ],
+    },
+    labs: {
+      eyebrow: "Labs y Medicamentos",
+      heading: "Tus números, revisados juntos",
+      body: "Las enfermedades crónicas cambian despacio, y los números detrás de ellas también. Coordinamos tus laboratorios, explicamos los resultados en lenguaje claro y ajustamos los medicamentos según responde tu cuerpo - en persona o por telemedicina.",
+      points: [
+        "Paneles de presión, colesterol, diabetes y tiroides",
+        "Resultados revisados contigo durante tu consulta",
+        "Renovación de recetas y control de seguridad de medicamentos",
+        "Coordinación con farmacias locales y especialistas",
+      ],
+      cardLabel: "Paneles de laboratorio comunes",
+      panels: [
+        { name: "Evaluación Preventiva Anual con Panel Básico", price: "$145" },
+        { name: "Perfil Hormonal Completo", price: "$189" },
+        { name: "Panel Metabólico Completo", price: "$250" },
+      ],
+      note: "Puede ordenarse laboratorio adicional según tu condición. Tu proveedor explicará qué se necesita y por qué antes de ordenar cualquier prueba.",
+    },
+    why: {
+      heading: "Por qué importa el seguimiento regular",
+      lead: "Las condiciones de largo plazo rara vez se quedan quietas. Las visitas regulares detectan cambios pequeños antes de que se vuelvan problemas mayores.",
+      points: [
+        "Mantener al día tus laboratorios y exámenes",
+        "Entender qué hace cada medicamento",
+        "Detectar síntomas y señales de alerta a tiempo",
+        "Reducir complicaciones evitables",
+        "Coordinar la atención con especialistas cuando se necesita",
+        "Ajustar el plan según cambia tu cuerpo",
+      ],
+      closing: "El objetivo no es abrumarte con números. Es hacer tu atención más fácil de seguir, para que la condición se adapte a tu vida, y no al revés.",
+      image: "/images/mature-woman-exercising-for-healthy-lifestyle.webp",
+      imageAlt: "Paciente viviendo bien y manteniéndose activa mientras maneja una condición crónica",
+    },
+    integrated: {
+      heading: "Un equipo, un expediente",
+      lead: "Como tu atención médica vive en el mismo expediente que tus servicios de rehabilitación y bienestar, tu plan se mantiene conectado.",
+      items: [
+        { icon: "stethoscope", title: "Atención Primaria", body: "Tu hogar médico para la salud cotidiana, visitas preventivas y recetas.", href: "/es/atencion-primaria/" },
+        { icon: "scale", title: "Pérdida de Peso Médica", body: "Atención de peso y metabolismo supervisada por médicos que apoya tus condiciones crónicas.", href: "/es/perdida-de-peso-medica/" },
+        { icon: "activity", title: "Fisioterapia", body: "Cuidado de movimiento y fuerza para artritis, dolor articular y recuperación.", href: "/es/fisioterapia/" },
+        { icon: "drop", title: "Terapia IV e Inyecciones", body: "Infusiones y nutrientes supervisados médicamente, indicados en contexto.", href: "/es/terapia-iv/" },
+      ],
+      relatedLabel: "Servicios relacionados",
+      related: [
+        { label: "Atención Primaria", href: "/es/atencion-primaria/" },
+        { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
+        { label: "Fisioterapia", href: "/es/fisioterapia/" },
+        { label: "Quiropráctica", href: "/es/quiropractico/" },
+        { label: "Terapia IV", href: "/es/terapia-iv/" },
+        { label: "Telemedicina", href: "/es/telemedicina/" },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center está dirigido por profesionales médicos y de rehabilitación con licencia, comprometidos con una atención segura y centrada en el paciente. Nuestro equipo sigue estándares clínicos establecidos, explica tus resultados con claridad y documenta tu atención en un solo expediente.",
+        "La atención crónica está supervisada por el Dr. Arnaldo V. Orellana-Molina, MD, y se brinda en consultas extendidas en 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "Proveedor de atención primaria escuchando a una paciente y revisando su plan de atención",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Supervisión médica",
+    },
+    steps: {
+      eyebrow: "Cómo Comenzar",
+      heading: "Cómo comenzar",
+      items: [
+        { title: "Llama o reserva en línea", body: "Llama al (813) 443-5370 o agenda en línea 24/7. Trae tu lista de medicamentos y laboratorios recientes." },
+        { title: "Tu primera visita", body: "Revisión completa de tu historial, chequeo de tus números clave y un plan de atención personalizado que entiendas." },
+        { title: "Acompañamiento continuo", body: "Seguimientos regulares, manejo de medicamentos, monitoreo de laboratorio y coordinación con rehabilitación cuando ayuda." },
+      ],
+      note: "Los servicios médicos se proporcionan bajo supervisión médica de acuerdo con las regulaciones del estado de Florida.",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Lo tenemos cubierto.",
+      body: "Palm Wellness Center ofrece transporte gratuito de ida y vuelta a las citas para pacientes elegibles en toda el área de la Bahía de Tampa - para que mantener tus seguimientos nunca sea la razón por la que te atrasas. Solo pregúntalo al llamar o solicitar una cita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará tu cobertura, cómo agendar y qué esperar en tu primera visita.",
+      items: [
+        { q: "¿Qué es el manejo de enfermedades crónicas?", a: "Es atención médica continua para condiciones de largo plazo que requieren atención regular. Puede incluir seguimientos, revisión de medicamentos, monitoreo de laboratorio, planificación y coordinación con otros proveedores." },
+        { q: "¿Qué condiciones manejan?", a: "Presión arterial alta, diabetes tipo 2, colesterol alto, trastornos de tiroides, asma, EPOC, artritis, dolor articular crónico y pacientes que manejan más de una condición a la vez." },
+        { q: "¿Necesito una referencia?", a: "Por lo general, no se requiere referencia. Algunos planes de seguro y Medicare pueden solicitarla a tu proveedor actual. Nuestro equipo puede verificar tu cobertura y ayudar a coordinar las referencias necesarias." },
+        { q: "¿Cada cuánto me verán?", a: "Depende de cómo va tu condición. Los seguimientos suelen ser cada 1 a 3 meses, y más seguido cuando algo necesita atención más cercana." },
+        { q: "¿Puedo manejar mi condición por telemedicina?", a: "Sí - seguimientos, manejo de medicamentos y revisión de laboratorios pueden hacerse por telemedicina en toda Florida. Algunas visitas requieren examen en persona; tu proveedor te lo indicará." },
+        { q: "¿Aceptan Medicare y seguros principales?", a: "Aceptamos la mayoría de los seguros principales, incluido Medicare. Llama al (813) 443-5370 para verificar tu cobertura antes de tu visita." },
+        { q: "¿Cuánto duran las consultas?", a: "Las visitas iniciales suelen durar hasta 60 minutos; los seguimientos de 30 a 45 minutos. El tiempo extra permite revisar tus resultados y ajustar el plan contigo." },
+        { q: "¿Necesito una membresía?", a: "No. Puedes pagar por visita o unirte a la Membresía Médica Mensual ($99 para comenzar y luego $39/mes) para consultas extendidas y mensajería directa con tu proveedor." },
+        { q: "¿Pueden coordinarse con mis especialistas o rehabilitación?", a: "Sí. Como compartimos un solo expediente entre atención primaria y rehabilitación, tu equipo puede coordinar planes, referencias y progreso." },
+      ],
+    },
+    area: {
+      heading: "Sirviendo con orgullo a Tampa y sus vecindarios",
+      lead: "Ubicados en el corazón de Tampa en 1004 W Linebaugh Ave, atendemos a pacientes de todo el condado de Hillsborough y comunidades cercanas.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "El transporte gratuito está disponible para pacientes elegibles en toda la Bahía de Tampa, para que mantener tus seguimientos sea fácil.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
+    },
+    cta: {
+      title: "Toma el control de tu condición",
+      lead: "Reserva una visita y crea un plan que mantenga tus números - y tu vida - en orden.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const eyebrow = {
+  en: { conditions: "Conditions We Manage", approach: "Our Approach", labs: "Labs & Medication", why: "Why Follow-Up Matters", integrated: "Integrated Wellness", steps: "How to Get Started", faq: "FAQ", area: "Service Area" },
+  es: { conditions: "Condiciones que Manejamos", approach: "Nuestro Enfoque", labs: "Labs y Medicamentos", why: "Por Qué Importa el Seguimiento", integrated: "Bienestar Integrado", steps: "Cómo Comenzar", faq: "Preguntas", area: "Área de Servicio" },
+}[lang];
+
+const supervising = {
+  en: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides medical oversight that keeps your chronic care safe and guideline-aligned." },
+  es: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda supervisión médica que mantiene tu atención crónica segura y alineada con las guías clínicas." },
+}[lang];
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+// Single hover language: a 2px lift plus ONE soft black shadow. It belongs to
+// things the user can act on, or to the single card that fronts an action —
+// never to both at once.
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="heart-pulse" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV — in flow after the hero; sticks flush to the bottom edge of the
+     sticky primary nav (header is 70px at lg, 64px below), so no gap appears. -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- INTRO -->
+<section class="bg-white">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.intro.heading}</h2>
+      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+    </div>
+    <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-1">
+      {content.intro.compare.map((c, i) => (
+        <div class={i === 1
+          ? `flex flex-col gap-2.5 rounded-lg bg-blue-deep p-7 ${hover}`
+          : `flex flex-col gap-2.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+          <p class={i === 1 ? "text-[11px] font-bold uppercase tracking-[0.1em] text-blue-tint" : "text-[11px] font-bold uppercase tracking-[0.1em] text-muted"}>{c.tag}</p>
+          <p class={i === 1 ? "font-titles text-[34px] font-bold leading-none text-white" : "font-titles text-[34px] font-bold leading-none text-ink"}>{c.value}</p>
+          <p class={i === 1 ? "text-[15px] leading-[1.55] text-blue-tint" : "text-[15px] leading-[1.55] text-body"}>{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section id="conditions" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="heart-pulse" class="h-3.5 w-3.5" />{eyebrow.conditions}</span>
+      <h2 class={h2Cls}>{content.conditions.heading}</h2>
+      <p class={leadCls}>{content.conditions.lead}</p>
+    </div>
+    <ul class="grid gap-px overflow-hidden rounded-lg border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+      {content.conditions.items.map((c) => (
+        <li class="flex flex-col gap-3.5 bg-white p-7">
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink sm:text-[19px]">{c.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-body">{c.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- APPROACH (dark band) -->
+<section id="approach" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[800px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{eyebrow.approach}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.approach.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.approach.lead}</p>
+    </div>
+    <ol class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {content.approach.steps.map((s, i) => (
+        <li class="flex flex-col gap-3 border-t border-white/15 pt-6">
+          <span class="font-titles text-[15px] font-bold text-green-bright">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white">{s.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-blue-tint">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- LABS & MEDICATION -->
+<section id="labs" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="clipboard" class="h-3.5 w-3.5" />{eyebrow.labs}</span>
+      <h2 class={h2Cls}>{content.labs.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body sm:text-[17px]">{content.labs.body}</p>
+      <ul class="grid gap-3.5 sm:grid-cols-2">
+        {content.labs.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+    </div>
+    <article class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-9 ${hover}`}>
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.labs.cardLabel}</p>
+      <ul class="flex flex-col">
+        {content.labs.panels.map((panel, i) => (
+          <li class={`flex items-baseline justify-between gap-4 py-3.5 ${i > 0 ? "border-t border-line" : ""}`}>
+            <span class="text-[14.5px] leading-[1.45] text-body">{panel.name}</span>
+            <span class="shrink-0 font-titles text-[18px] font-bold text-ink">{panel.price}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="border-t border-line pt-4 text-[13px] leading-[1.55] text-muted">{content.labs.note}</p>
+    </article>
+  </div>
+</section>
+
+<!-- WHY FOLLOW-UP MATTERS -->
+<section class="bg-bg-alt">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.why.image} width="560" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[300px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[480px]" />
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}>{eyebrow.why}</span>
+      <h2 class={h2Cls}>{content.why.heading}</h2>
+      <p class={leadCls}>{content.why.lead}</p>
+      <ul class="grid gap-3.5 sm:grid-cols-2">
+        {content.why.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+      <div class={`rounded-md bg-white p-5 ${hover}`}>
+        <p class="text-[14.5px] leading-[1.55] text-body">{content.why.closing}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATED (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{eyebrow.integrated}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.integrated.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.integrated.lead}</p>
+    </div>
+    <div class="grid overflow-hidden rounded-lg border border-white/15 bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
+      {content.integrated.items.map((s, i) => (
+        <a href={s.href} class={`group flex flex-col gap-3.5 p-7 hover:bg-white/10 lg:p-8 ${hover} ${i > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white sm:text-[20px]">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-white">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+    <div class="flex flex-col gap-4 pt-9">
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.integrated.relatedLabel}</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.integrated.related.map((r) => (
+          <a href={r.href} class={`flex items-center justify-between gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-[14px] font-semibold text-white hover:bg-white/15 ${hover}`}>
+            {r.label}<Icon name="arrow" class="h-[15px] w-[15px] shrink-0" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+      <div class={`flex flex-col gap-1.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{content.trust.supervisorLabel}</p>
+        <p class="font-titles text-[18px] font-bold text-ink">{supervising.name}</p>
+        <p class="text-[13px] font-semibold leading-[1.4] text-blue">{supervising.cred}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{supervising.bio}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="start" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.steps}</span>
+      <h2 class={h2Cls}>{content.steps.heading}</h2>
+    </div>
+    <ol class="grid gap-5 md:grid-cols-3">
+      {content.steps.items.map((s, i) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[20px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    <p class="text-[13px] text-muted">{content.steps.note}</p>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.faq}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.area}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>
