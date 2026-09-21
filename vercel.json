@@ -9,23 +9,5 @@
         }
       ]
     }
-  ],
-  "redirects": [
-    { "source": "/primary-care/chronic-condition-management/", "destination": "/chronic-condition-management/", "permanent": true },
-    { "source": "/primary-care/chronic-condition-management", "destination": "/chronic-condition-management/", "permanent": true },
-    { "source": "/primary-care/preventive-care/", "destination": "/preventive-care/", "permanent": true },
-    { "source": "/primary-care/preventive-care", "destination": "/preventive-care/", "permanent": true },
-    { "source": "/primary-care/telemedicine/", "destination": "/telemedicine/", "permanent": true },
-    { "source": "/primary-care/telemedicine", "destination": "/telemedicine/", "permanent": true },
-    { "source": "/primary-care/membership/", "destination": "/membership/", "permanent": true },
-    { "source": "/primary-care/membership", "destination": "/membership/", "permanent": true },
-    { "source": "/es/atencion-primaria/manejo-enfermedades-cronicas/", "destination": "/es/manejo-enfermedades-cronicas/", "permanent": true },
-    { "source": "/es/atencion-primaria/manejo-enfermedades-cronicas", "destination": "/es/manejo-enfermedades-cronicas/", "permanent": true },
-    { "source": "/es/atencion-primaria/atencion-preventiva/", "destination": "/es/atencion-preventiva/", "permanent": true },
-    { "source": "/es/atencion-primaria/atencion-preventiva", "destination": "/es/atencion-preventiva/", "permanent": true },
-    { "source": "/es/atencion-primaria/telemedicina/", "destination": "/es/telemedicina/", "permanent": true },
-    { "source": "/es/atencion-primaria/telemedicina", "destination": "/es/telemedicina/", "permanent": true },
-    { "source": "/es/atencion-primaria/membresia/", "destination": "/es/membresia/", "permanent": true },
-    { "source": "/es/atencion-primaria/membresia", "destination": "/es/membresia/", "permanent": true }
   ]
 }
