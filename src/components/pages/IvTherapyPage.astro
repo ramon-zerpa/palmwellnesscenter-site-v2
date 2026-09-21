@@ -1,0 +1,807 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "IV Therapy in Tampa",
+      title: "IV therapy and vitamin injections, medically supervised",
+      lead: "Infusions and injectable nutrients for energy, immunity, skin, and recovery - prescribed after a medical evaluation and coordinated with the rest of your care.",
+      chips: [
+        { icon: "stethoscope", label: "Medically supervised" },
+        { icon: "clock", label: "30-90 minute sessions" },
+        { icon: "sparkles", label: "Beauty & signature drips" },
+        { icon: "zap", label: "NAD+ protocol" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "Physician-supervised · Medical evaluation required · Pricing confirmed before treatment",
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "A provider reviewing a patient's health history before IV therapy at Palm Wellness Center in Tampa",
+      rail: [
+        { value: "$170", label: "Beauty & signature IV" },
+        { value: "$199", label: "NAD+ protocol" },
+        { value: "$25", label: "Lipotropic injection" },
+      ],
+    },
+    subnav: [
+      { label: "Treatments", href: "#treatments" },
+      { label: "NAD+", href: "#nad" },
+      { label: "What to expect", href: "#how" },
+      { label: "Safety", href: "#safety" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    intro: {
+      heading: "IV therapy, without the guesswork",
+      paras: [
+        "IV therapy delivers fluids, vitamins, and minerals directly into the bloodstream, bypassing digestion so your body can use them right away. It is not a replacement for a healthy routine - it is a targeted boost ordered by a licensed provider who knows your history.",
+        "Every infusion at Palm Wellness Center starts with a clinical evaluation. Your provider reviews your medications, health conditions, and goals to confirm that IV therapy is appropriate for you and to choose the formulation that fits.",
+      ],
+      highlight: "This is a medical service, not a spa add-on. We screen for contraindications, monitor your response, and document every visit in your record.",
+    },
+    treatments: {
+      heading: "Infusions and injections we offer",
+      lead: "Four options, each with a clear price and duration. Your provider confirms which one fits your goals.",
+      items: [
+        {
+          icon: "sparkles",
+          title: "Beauty IV",
+          price: "$170",
+          duration: "90 min",
+          body: "Antioxidant and nutrient support for healthy skin, hair, and overall wellness - a hydration-forward blend chosen to support your skin from within.",
+          bullets: ["Antioxidant and nutrient blend", "Supports skin, hair, and nails", "Hydration-forward formula"],
+        },
+        {
+          icon: "droplet",
+          title: "Mayer Signature IV",
+          price: "$170",
+          duration: "90 min",
+          body: "Our signature infusion: a balanced mix of fluids, B-complex vitamins, and minerals selected with your provider to support energy, immunity, and recovery.",
+          bullets: ["Fluids, B vitamins, and minerals", "Energy, immunity, and recovery support", "Formulation adjusted to your goals"],
+        },
+        {
+          icon: "zap",
+          title: "NAD+ Weekly Optimization Protocol",
+          price: "$199",
+          duration: "30 min",
+          body: "A structured NAD+ protocol with a pre-start medical evaluation, weekly NAD+ administration, and ongoing monitoring of your tolerance and response.",
+          bullets: ["Pre-start medical evaluation", "Weekly NAD+ administration", "Tolerance and response monitoring", "Clinical guidance throughout"],
+        },
+        {
+          icon: "syringe",
+          title: "Lipotropic Fat Metabolism Injection",
+          price: "$25",
+          duration: "30 min",
+          body: "An injectable used as an add-on within a supervised metabolic program. Your provider determines whether it fits your plan and health history.",
+          bullets: ["Add-on to a supervised metabolic program", "Prescribed only when clinically appropriate"],
+        },
+      ],
+      note: "Pricing is per treatment and confirmed before your visit. A medical evaluation is required before any infusion or injection.",
+    },
+    benefits: {
+      eyebrow: "Why patients choose IV therapy",
+      heading: "What IV therapy may support",
+      lead: "IV nutrients are used to support hydration and general wellness. Individual results vary - your provider will tell you what is realistic for your goals.",
+      items: [
+        { icon: "zap", title: "Everyday energy", body: "Support for the fatigue and afternoon dips that come with a demanding schedule." },
+        { icon: "shield", title: "Immune support", body: "Hydration and nutrients used to support your body's normal immune function." },
+        { icon: "sparkles", title: "Skin, hair & nails", body: "Antioxidant and nutrient support for a healthy glow from the inside out." },
+        { icon: "activity", title: "Recovery", body: "Support after workouts, travel, or a stretch of poor sleep and hydration." },
+        { icon: "brain", title: "Focus & clarity", body: "NAD+ protocols are used to support cellular energy and mental clarity." },
+        { icon: "gauge", title: "Metabolic support", body: "Add-on injections within a supervised program for metabolic and weight goals." },
+      ],
+    },
+    nad: {
+      heading: "NAD+ for cellular energy",
+      body: "NAD+ (nicotinamide adenine dinucleotide) is a coenzyme found in every cell, where it plays a central role in energy production and cellular function. Levels decline with age, which is why some patients choose a structured NAD+ protocol rather than a single drip.",
+      points: [
+        "A pre-start medical evaluation to confirm you are a good candidate",
+        "Weekly NAD+ administration on a schedule your provider sets",
+        "Tolerance and response monitoring at each visit",
+        "Clinical guidance for the full length of the protocol",
+      ],
+      program: {
+        price: "$199",
+        cadence: "Weekly Optimization Protocol · 30 min per visit",
+        benefits: [
+          "Pre-start medical evaluation and clearance",
+          "Weekly NAD+ administration",
+          "Tolerance and response monitoring",
+          "Clinical guidance from start to finish",
+          "Documented in your medical record",
+        ],
+        note: "A medical evaluation is required before starting, and your provider will confirm whether NAD+ is appropriate for you.",
+      },
+    },
+    how: {
+      heading: "What to expect at your visit",
+      steps: [
+        { title: "Book your visit", body: "Call (813) 443-5370 or book online. Tell us your goals - energy, recovery, skin, or a NAD+ protocol." },
+        { title: "Medical evaluation", body: "Your provider reviews your history, medications, and conditions, confirms IV therapy is right for you, and chooses the formulation." },
+        { title: "Relax during your infusion", body: "Most sessions take 30 to 90 minutes. Read, work, or rest while a licensed provider monitors your drip." },
+      ],
+      beforeLabel: "Before your visit",
+      afterLabel: "After your visit",
+      before: ["Drink water and eat a light meal beforehand", "Bring a valid ID and your medication list", "Avoid alcohol for 24 hours before your appointment"],
+      after: ["Keep drinking water through the day", "Keep the infusion site clean and dry", "Avoid strenuous exercise and saunas for the rest of the day"],
+    },
+    safety: {
+      heading: "Is IV therapy safe for you?",
+      lead: "Administered by licensed providers after a medical evaluation, IV therapy is generally well tolerated. It is not right for everyone, so we screen carefully before your first treatment.",
+      image: "/images/comprehensive-primary-care-that-works-with-your-body.webp",
+      imageAlt: "A physician reviewing a patient's health record before clearing IV therapy",
+      notForLabel: "IV therapy may not be appropriate if you have",
+      notFor: ["Pregnancy or nursing", "Uncontrolled heart, liver, or kidney disease", "Certain medication interactions or allergies", "An active infection at the infusion site"],
+      sideLabel: "What you may notice",
+      side: "Mild bruising or discomfort at the infusion site is possible. NAD+ can cause warmth, tightness, or a temporary queasy feeling if it is infused too quickly - your provider controls the rate to keep you comfortable.",
+      note: "IV therapy supports hydration and general wellness. It is not a treatment or cure for disease and does not replace medical care.",
+    },
+    integrated: {
+      heading: "IV therapy is better with context",
+      lead: "Because your infusion is ordered by a provider who can see your whole record, it fits safely into the rest of your care.",
+      items: [
+        { icon: "stethoscope", title: "Primary Care", body: "Your medical home - where your history, medications, and lab results live.", href: "/primary-care/" },
+        { icon: "scale", title: "Medical Weight Loss", body: "Lipotropic injections and IV support within a supervised weight-loss program.", href: "/medical-weight-loss/" },
+        { icon: "activity", title: "Physical Rehabilitation", body: "Hydration and recovery support while you rebuild strength and mobility.", href: "/physical-rehabilitation/" },
+        { icon: "spine", title: "Chiropractic Care", body: "Musculoskeletal care that pairs with your wellness and recovery goals.", href: "/chiropractor/" },
+      ],
+      relatedLabel: "Related services",
+      related: [
+        { label: "Primary Care", href: "/primary-care/" },
+        { label: "Medical Weight Loss", href: "/medical-weight-loss/" },
+        { label: "Physical Rehabilitation", href: "/physical-rehabilitation/" },
+        { label: "Chiropractic Care", href: "/chiropractor/" },
+        { label: "Massage Therapy", href: "/massage-therapy/" },
+        { label: "Therapeutic Exercises", href: "/therapeutic-exercises/" },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered care. Our team follows established clinical standards, prioritizes clear communication, and keeps every infusion documented in your medical record.",
+        "IV therapy is supervised by Dr. Arnaldo V. Orellana-Molina, MD, and delivered by our clinical team in a comfortable, private setting at 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Medical supervision",
+    },
+    transport: {
+      title: "Need a ride? We've got you covered.",
+      body: "Palm Wellness Center offers free transportation to and from appointments for eligible patients across the Tampa Bay area - so getting to your infusion is never the reason you miss care. Just ask when you call or request an appointment.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through pricing, candidacy, and what to expect at your visit.",
+      items: [
+        { q: "What is IV therapy, and how is it different from taking vitamins by mouth?", a: "IV therapy delivers fluids, vitamins, and minerals directly into the bloodstream, so they bypass the digestive system. Your provider decides whether an infusion is appropriate based on your health history and goals." },
+        { q: "Is IV therapy safe?", a: "For appropriate candidates, IV therapy administered by licensed providers is generally well tolerated. We require a medical evaluation first and screen for conditions or medications that could make it unsafe." },
+        { q: "How long does a session take?", a: "Beauty IV and Mayer Signature IV take about 90 minutes. The NAD+ protocol visit is about 30 minutes, and lipotropic injections take about 30 minutes including your visit." },
+        { q: "How much does IV therapy cost?", a: "Beauty IV and Mayer Signature IV are $170 each (90 minutes). The NAD+ Weekly Optimization Protocol is $199, and lipotropic injections are $25. Pricing is confirmed before treatment." },
+        { q: "Do I need to be a member?", a: "No. IV therapy is available to members and non-members. Primary care members may receive discounts on additional services - ask our team." },
+        { q: "What is NAD+ and how often do I receive it?", a: "NAD+ is a coenzyme involved in cellular energy production. The Weekly Optimization Protocol is structured by your provider, who monitors your tolerance and response and sets the schedule." },
+        { q: "Who should not get IV therapy?", a: "It is not recommended during pregnancy or nursing, or with uncontrolled heart, liver, or kidney disease. Your provider reviews your full health profile before clearance." },
+        { q: "Does insurance cover IV therapy?", a: "Coverage varies, and IV therapy is often a self-pay wellness service. Our team will review pricing and payment options with you before your visit." },
+        { q: "Can I combine IV therapy with other services?", a: "Yes. Many patients pair IV therapy with primary care, medical weight loss, or rehabilitation. Because we share one record, your care team can coordinate." },
+      ],
+    },
+    area: {
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Located in the heart of Tampa at 1004 W Linebaugh Ave, we serve patients from across Hillsborough County and nearby communities.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "Free transportation is available for eligible patients throughout Tampa Bay, so getting to your infusion is never the reason you miss care.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Ready to feel the difference?",
+      lead: "Book a medical evaluation and find out which infusion fits your goals.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page", bookTreatment: "Book this treatment" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Terapia IV en Tampa",
+      title: "Terapia IV e inyecciones de vitaminas, supervisadas por médicos",
+      lead: "Infusiones y nutrientes inyectables para energía, inmunidad, piel y recuperación - prescritos tras una evaluación médica y coordinados con el resto de tu atención.",
+      chips: [
+        { icon: "stethoscope", label: "Supervisión médica" },
+        { icon: "clock", label: "Sesiones de 30 a 90 min" },
+        { icon: "sparkles", label: "Beauty IV y fórmula insignia" },
+        { icon: "zap", label: "Protocolo NAD+" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "Supervisado por médicos · Se requiere evaluación médica · Precio confirmado antes del tratamiento",
+      image: "/images/professional-compassionate-primary-care.webp",
+      imageAlt: "Proveedor revisando el historial de una paciente antes de la terapia IV en Palm Wellness Center en Tampa",
+      rail: [
+        { value: "$170", label: "Beauty IV e insignia" },
+        { value: "$199", label: "Protocolo NAD+" },
+        { value: "$25", label: "Inyección lipotrópica" },
+      ],
+    },
+    subnav: [
+      { label: "Tratamientos", href: "#treatments" },
+      { label: "NAD+", href: "#nad" },
+      { label: "Qué esperar", href: "#how" },
+      { label: "Seguridad", href: "#safety" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    intro: {
+      heading: "Terapia IV, sin conjeturas",
+      paras: [
+        "La terapia IV entrega líquidos, vitaminas y minerales directamente al torrente sanguíneo, evitando la digestión para que tu cuerpo los aproveche de inmediato. No reemplaza una rutina saludable - es un impulso puntual indicado por un proveedor licenciado que conoce tu historial.",
+        "Cada infusión en Palm Wellness Center comienza con una evaluación clínica. Tu proveedor revisa tus medicamentos, condiciones de salud y metas para confirmar que la terapia IV es apropiada para ti y elegir la fórmula adecuada.",
+      ],
+      highlight: "Es un servicio médico, no un complemento de spa. Evaluamos contraindicaciones, monitoreamos tu respuesta y documentamos cada visita en tu expediente.",
+    },
+    treatments: {
+      heading: "Infusiones e inyecciones que ofrecemos",
+      lead: "Cuatro opciones, cada una con precio y duración claros. Tu proveedor confirma cuál se ajusta a tus metas.",
+      items: [
+        {
+          icon: "sparkles",
+          title: "Beauty IV",
+          price: "$170",
+          duration: "90 min",
+          body: "Apoyo antioxidante y de nutrientes para piel, cabello y bienestar general - una fórmula con base de hidratación, elegida para cuidar tu piel desde adentro.",
+          bullets: ["Mezcla antioxidante y de nutrientes", "Apoya piel, cabello y uñas", "Fórmula con base de hidratación"],
+        },
+        {
+          icon: "droplet",
+          title: "Mayer Signature IV",
+          price: "$170",
+          duration: "90 min",
+          body: "Nuestra infusión insignia: una mezcla equilibrada de líquidos, vitaminas B y minerales elegida con tu proveedor para apoyar energía, inmunidad y recuperación.",
+          bullets: ["Líquidos, vitaminas B y minerales", "Apoyo a energía, inmunidad y recuperación", "Fórmula ajustada a tus metas"],
+        },
+        {
+          icon: "zap",
+          title: "Protocolo de Optimización NAD+ semanal",
+          price: "$199",
+          duration: "30 min",
+          body: "Un protocolo estructurado de NAD+ con evaluación médica previa, administración semanal y monitoreo continuo de tu tolerancia y respuesta.",
+          bullets: ["Evaluación médica previa", "Administración semanal de NAD+", "Monitoreo de tolerancia y respuesta", "Orientación clínica durante el protocolo"],
+        },
+        {
+          icon: "syringe",
+          title: "Inyección lipotrópica para el metabolismo",
+          price: "$25",
+          duration: "30 min",
+          body: "Un inyectable usado como complemento dentro de un programa metabólico supervisado. Tu proveedor determina si encaja en tu plan y tu historial.",
+          bullets: ["Complemento de un programa metabólico supervisado", "Se prescribe solo cuando es clínicamente apropiado"],
+        },
+      ],
+      note: "El precio es por tratamiento y se confirma antes de tu visita. Se requiere una evaluación médica antes de cualquier infusión o inyección.",
+    },
+    benefits: {
+      eyebrow: "Por qué los pacientes eligen la terapia IV",
+      heading: "Qué puede apoyar la terapia IV",
+      lead: "Los nutrientes por vía IV se usan para apoyar la hidratación y el bienestar general. Los resultados varían - tu proveedor te dirá qué es realista para tus metas.",
+      items: [
+        { icon: "zap", title: "Energía diaria", body: "Apoyo para la fatiga y la caída de media tarde que trae una agenda exigente." },
+        { icon: "shield", title: "Apoyo inmunológico", body: "Hidratación y nutrientes usados para apoyar la función inmunológica normal." },
+        { icon: "sparkles", title: "Piel, cabello y uñas", body: "Apoyo antioxidante y de nutrientes para un brillo saludable de adentro hacia afuera." },
+        { icon: "activity", title: "Recuperación", body: "Apoyo después de entrenamientos, viajes o etapas de mal sueño e hidratación." },
+        { icon: "brain", title: "Concentración y claridad", body: "Los protocolos de NAD+ se usan para apoyar la energía celular y la claridad mental." },
+        { icon: "gauge", title: "Apoyo metabólico", body: "Inyecciones complementarias dentro de un programa supervisado para metas metabólicas y de peso." },
+      ],
+    },
+    nad: {
+      heading: "NAD+ para la energía celular",
+      body: "El NAD+ (nicotinamida adenina dinucleótido) es una coenzima presente en cada célula, donde cumple un papel central en la producción de energía y la función celular. Sus niveles bajan con la edad, por eso algunos pacientes eligen un protocolo estructurado en lugar de una infusión única.",
+      points: [
+        "Evaluación médica previa para confirmar que eres buen candidato",
+        "Administración semanal de NAD+ según el calendario que fije tu proveedor",
+        "Monitoreo de tolerancia y respuesta en cada visita",
+        "Orientación clínica durante todo el protocolo",
+      ],
+      program: {
+        price: "$199",
+        cadence: "Protocolo de Optimización semanal · 30 min por visita",
+        benefits: [
+          "Evaluación médica y autorización previas",
+          "Administración semanal de NAD+",
+          "Monitoreo de tolerancia y respuesta",
+          "Orientación clínica de principio a fin",
+          "Documentado en tu expediente médico",
+        ],
+        note: "Se requiere una evaluación médica antes de comenzar, y tu proveedor confirmará si el NAD+ es apropiado para ti.",
+      },
+    },
+    how: {
+      heading: "Qué esperar en tu visita",
+      steps: [
+        { title: "Reserva tu visita", body: "Llama al (813) 443-5370 o agenda en línea. Cuéntanos tus metas - energía, recuperación, piel o un protocolo NAD+." },
+        { title: "Evaluación médica", body: "Tu proveedor revisa tu historial, medicamentos y condiciones, confirma que la terapia IV es adecuada y elige la fórmula." },
+        { title: "Relájate durante la infusión", body: "La mayoría de las sesiones duran de 30 a 90 minutos. Lee, trabaja o descansa mientras un proveedor licenciado monitorea tu goteo." },
+      ],
+      beforeLabel: "Antes de tu visita",
+      afterLabel: "Después de tu visita",
+      before: ["Toma agua y come algo ligero antes", "Trae una identificación válida y tu lista de medicamentos", "Evita el alcohol 24 horas antes de tu cita"],
+      after: ["Sigue tomando agua durante el día", "Mantén el sitio de la infusión limpio y seco", "Evita ejercicio intenso y saunas por el resto del día"],
+    },
+    safety: {
+      heading: "¿La terapia IV es segura para ti?",
+      lead: "Administrada por proveedores licenciados tras una evaluación médica, la terapia IV suele tolerarse bien. No es para todos, por eso evaluamos con cuidado antes de tu primer tratamiento.",
+      image: "/images/comprehensive-primary-care-that-works-with-your-body.webp",
+      imageAlt: "Médico revisando el expediente de un paciente antes de autorizar la terapia IV",
+      notForLabel: "La terapia IV puede no ser apropiada si tienes",
+      notFor: ["Embarazo o lactancia", "Enfermedad cardíaca, hepática o renal no controlada", "Ciertas interacciones de medicamentos o alergias", "Una infección activa en el sitio de la infusión"],
+      sideLabel: "Qué podrías notar",
+      side: "Es posible un leve moretón o molestia en el sitio de la infusión. El NAD+ puede causar calor, tensión o una sensación temporal de náusea si se infunde muy rápido - tu proveedor controla la velocidad para mantenerte cómodo.",
+      note: "La terapia IV apoya la hidratación y el bienestar general. No trata ni cura enfermedades y no reemplaza la atención médica.",
+    },
+    integrated: {
+      heading: "La terapia IV es mejor con contexto",
+      lead: "Como tu infusión la indica un proveedor que ve todo tu expediente, encaja de forma segura con el resto de tu atención.",
+      items: [
+        { icon: "stethoscope", title: "Atención Primaria", body: "Tu hogar médico - donde están tu historial, medicamentos y laboratorios.", href: "/es/atencion-primaria/" },
+        { icon: "scale", title: "Pérdida de Peso Médica", body: "Inyecciones lipotrópicas y apoyo IV dentro de un programa de pérdida de peso supervisado.", href: "/es/perdida-de-peso-medica/" },
+        { icon: "activity", title: "Fisioterapia", body: "Apoyo de hidratación y recuperación mientras recuperas fuerza y movilidad.", href: "/es/fisioterapia/" },
+        { icon: "spine", title: "Quiropráctica", body: "Cuidado musculoesquelético que acompaña tus metas de bienestar y recuperación.", href: "/es/quiropractico/" },
+      ],
+      relatedLabel: "Servicios relacionados",
+      related: [
+        { label: "Atención Primaria", href: "/es/atencion-primaria/" },
+        { label: "Pérdida de Peso Médica", href: "/es/perdida-de-peso-medica/" },
+        { label: "Fisioterapia", href: "/es/fisioterapia/" },
+        { label: "Quiropráctica", href: "/es/quiropractico/" },
+        { label: "Terapia de Masajes", href: "/es/terapia-de-masajes/" },
+        { label: "Ejercicios Terapéuticos", href: "/es/ejercicios-terapeuticos/" },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center está dirigido por profesionales médicos y de rehabilitación con licencia, comprometidos con una atención segura y centrada en el paciente. Nuestro equipo sigue estándares clínicos establecidos, prioriza la comunicación clara y documenta cada infusión en tu expediente.",
+        "La terapia IV está supervisada por el Dr. Arnaldo V. Orellana-Molina, MD, y la administra nuestro equipo clínico en un espacio cómodo y privado en 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Supervisión médica",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Lo tenemos cubierto.",
+      body: "Palm Wellness Center ofrece transporte gratuito de ida y vuelta a las citas para pacientes elegibles en toda el área de la Bahía de Tampa - para que llegar a tu infusión nunca sea la razón para faltar. Solo pregúntalo al llamar o solicitar una cita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará precios, elegibilidad y qué esperar en tu visita.",
+      items: [
+        { q: "¿Qué es la terapia IV y en qué se diferencia de tomar vitaminas por boca?", a: "La terapia IV entrega líquidos, vitaminas y minerales directamente al torrente sanguíneo, evitando el sistema digestivo. Tu proveedor decide si una infusión es apropiada según tu historial y tus metas." },
+        { q: "¿La terapia IV es segura?", a: "Para candidatos apropiados, la terapia IV administrada por proveedores licenciados suele tolerarse bien. Requerimos primero una evaluación médica y evaluamos condiciones o medicamentos que podrían hacerla insegura." },
+        { q: "¿Cuánto dura una sesión?", a: "Beauty IV y Mayer Signature IV duran alrededor de 90 minutos. La visita del protocolo NAD+ es de unos 30 minutos y las inyecciones lipotrópicas unos 30 minutos, incluida tu visita." },
+        { q: "¿Cuánto cuesta la terapia IV?", a: "Beauty IV y Mayer Signature IV cuestan $170 cada una (90 minutos). El Protocolo de Optimización NAD+ semanal cuesta $199 y las inyecciones lipotrópicas $25. El precio se confirma antes del tratamiento." },
+        { q: "¿Necesito ser miembro?", a: "No. La terapia IV está disponible para miembros y no miembros. Los miembros de atención primaria pueden recibir descuentos en servicios adicionales - pregúntale a nuestro equipo." },
+        { q: "¿Qué es el NAD+ y cada cuánto lo recibo?", a: "El NAD+ es una coenzima involucrada en la producción de energía celular. El Protocolo de Optimización semanal lo estructura tu proveedor, quien monitorea tu tolerancia y respuesta y define el calendario." },
+        { q: "¿Quién no debería recibir terapia IV?", a: "No se recomienda durante el embarazo o la lactancia, ni con enfermedad cardíaca, hepática o renal no controlada. Tu proveedor revisa tu perfil completo antes de autorizarla." },
+        { q: "¿El seguro cubre la terapia IV?", a: "La cobertura varía y la terapia IV suele ser un servicio de bienestar de pago directo. Nuestro equipo revisará contigo los precios y las opciones de pago antes de tu visita." },
+        { q: "¿Puedo combinar la terapia IV con otros servicios?", a: "Sí. Muchos pacientes combinan la terapia IV con atención primaria, pérdida de peso médica o rehabilitación. Como compartimos un solo expediente, tu equipo puede coordinarse." },
+      ],
+    },
+    area: {
+      heading: "Sirviendo con orgullo a Tampa y sus vecindarios",
+      lead: "Ubicados en el corazón de Tampa en 1004 W Linebaugh Ave, atendemos a pacientes de todo el condado de Hillsborough y comunidades cercanas.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Town 'N' Country", "Temple Terrace", "Brandon", "Westchase"],
+      note: "El transporte gratuito está disponible para pacientes elegibles en toda la Bahía de Tampa, para que llegar a tu infusión nunca sea la razón para faltar.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
+    },
+    cta: {
+      title: "¿Listo para sentir la diferencia?",
+      lead: "Reserva una evaluación médica y descubre qué infusión se ajusta a tus metas.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página", bookTreatment: "Reservar este tratamiento" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const eyebrow = {
+  en: { treatments: "Treatments & Pricing", nad: "NAD+ Protocol", how: "What to Expect", safety: "Safety", integrated: "Integrated Wellness", faq: "FAQ", area: "Service Area" },
+  es: { treatments: "Tratamientos y Precios", nad: "Protocolo NAD+", how: "Qué Esperar", safety: "Seguridad", integrated: "Bienestar Integrado", faq: "Preguntas", area: "Área de Servicio" },
+}[lang];
+
+const supervising = {
+  en: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides medical oversight that keeps every infusion safe and guideline-aligned." },
+  es: { name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda supervisión médica que mantiene cada infusión segura y alineada con las guías clínicas." },
+}[lang];
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+// Single hover language: a 2px lift plus ONE soft black shadow. It belongs to
+// things the user can act on, or to the single card that fronts an action —
+// never to both at once.
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="droplet" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV — in flow after the hero; sticks flush to the bottom edge of the
+     sticky primary nav (header is 70px at lg, 64px below), so no gap appears. -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- INTRO -->
+<section class="bg-white">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.intro.heading}</h2>
+      {content.intro.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+    </div>
+    <aside class="flex items-start gap-4 rounded-lg border border-line bg-bg-alt p-7">
+      <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="shield" class="h-6 w-6" /></span>
+      <p class="text-[16px] font-medium leading-[1.55] text-ink">{content.intro.highlight}</p>
+    </aside>
+  </div>
+</section>
+
+<!-- TREATMENTS -->
+<section id="treatments" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="droplet" class="h-3.5 w-3.5" />{eyebrow.treatments}</span>
+      <h2 class={h2Cls}>{content.treatments.heading}</h2>
+      <p class={leadCls}>{content.treatments.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+      {content.treatments.items.map((t) => (
+        <article class={`flex flex-col gap-5 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <div class="flex items-start justify-between gap-4">
+            <span class="grid h-12 w-12 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={t.icon} class="h-[22px] w-[22px]" /></span>
+            <div class="text-right">
+              <p class="font-titles text-[28px] font-bold leading-none text-blue-deep">{t.price}</p>
+              <p class="mt-1 text-[12px] font-semibold uppercase tracking-[0.08em] text-muted">{t.duration}</p>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-titles text-[20px] leading-[1.25] text-ink">{t.title}</h3>
+            <p class="text-[15px] leading-[1.6] text-body">{t.body}</p>
+          </div>
+          <ul class="flex flex-col gap-2.5">
+            {t.bullets.map((b) => (
+              <li class="flex items-start gap-2.5 text-[14.5px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{b}</li>
+            ))}
+          </ul>
+          <a href={APPOINTMENT_URL} {...bookAttrs} class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue transition-colors hover:text-blue-deep">{l.bookTreatment}<Icon name="arrow" class="h-[15px] w-[15px]" /></a>
+        </article>
+      ))}
+    </div>
+    <p class="text-[13px] text-muted">{content.treatments.note}</p>
+  </div>
+</section>
+
+<!-- BENEFITS (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[800px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{content.benefits.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.benefits.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.benefits.lead}</p>
+    </div>
+    <ul class="grid gap-x-12 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+      {content.benefits.items.map((it) => (
+        <li class="flex flex-col gap-2.5">
+          <Icon name={it.icon} class="h-6 w-6 text-green-bright" />
+          <h3 class="font-titles text-[18px] leading-[1.25] text-white sm:text-[19px]">{it.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-blue-tint">{it.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- NAD+ -->
+<section id="nad" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="zap" class="h-3.5 w-3.5" />{eyebrow.nad}</span>
+      <h2 class={h2Cls}>{content.nad.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body sm:text-[17px]">{content.nad.body}</p>
+      <ul class="grid gap-3.5 sm:grid-cols-2">
+        {content.nad.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+    </div>
+    <article class={`flex flex-col gap-5 rounded-lg bg-blue-deep p-7 lg:p-9 ${hover}`}>
+      <p class="flex flex-wrap items-end gap-2.5">
+        <strong class="font-titles text-[44px] font-bold leading-none text-white lg:text-[52px]">{content.nad.program.price}</strong>
+        <span class="pb-1 text-[15px] text-blue-tint">{content.nad.program.cadence}</span>
+      </p>
+      <ul class="flex flex-col gap-3 text-[14.5px]">
+        {content.nad.program.benefits.map((b) => (
+          <li class="flex items-start gap-2.5 text-blue-tint"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{b}</li>
+        ))}
+      </ul>
+      <p class="border-t border-white/15 pt-4 text-[13px] leading-[1.55] text-blue-tint">{content.nad.program.note}</p>
+      <a href={APPOINTMENT_URL} {...bookAttrs} class="inline-flex items-center justify-center gap-2 rounded-md bg-white px-5 py-3.5 text-[15px] font-bold text-blue-deep transition-colors hover:bg-blue-pale">
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+    </article>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.how}</span>
+      <h2 class={h2Cls}>{content.how.heading}</h2>
+    </div>
+    <ol class="grid gap-5 md:grid-cols-3">
+      {content.how.steps.map((s, i) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[20px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="grid gap-6 rounded-lg border border-line bg-white p-7 lg:grid-cols-2 lg:gap-10 lg:p-9">
+      <div class="flex flex-col gap-3">
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.how.beforeLabel}</p>
+        <ul class="flex flex-col gap-2.5">
+          {content.how.before.map((b) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{b}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="flex flex-col gap-3">
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.how.afterLabel}</p>
+        <ul class="flex flex-col gap-2.5">
+          {content.how.after.map((b) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{b}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section id="safety" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:items-start lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="shield" class="h-3.5 w-3.5" />{eyebrow.safety}</span>
+      <h2 class={h2Cls}>{content.safety.heading}</h2>
+      <p class={leadCls}>{content.safety.lead}</p>
+      <img src={content.safety.image} width="480" height="420" alt={content.safety.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[280px] w-full rounded-lg object-cover object-top lg:h-[340px]" />
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-9 ${hover}`}>
+      <div class="flex flex-col gap-3">
+        <h3 class="text-[13px] font-bold uppercase tracking-[0.1em] text-danger">{content.safety.notForLabel}</h3>
+        <ul class="flex flex-col gap-2.5">
+          {content.safety.notFor.map((c) => (
+            <li class="flex items-start gap-2.5 text-[14.5px] leading-[1.55] text-ink"><Icon name="alert" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-danger" />{c}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="flex flex-col gap-3 border-t border-line pt-6">
+        <h3 class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.safety.sideLabel}</h3>
+        <p class="text-[15px] leading-[1.6] text-body">{content.safety.side}</p>
+      </div>
+      <p class="border-t border-line pt-5 text-[13px] leading-[1.55] text-muted">{content.safety.note}</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATED (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{eyebrow.integrated}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.integrated.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.integrated.lead}</p>
+    </div>
+    <div class="grid overflow-hidden rounded-lg border border-white/15 bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
+      {content.integrated.items.map((s, i) => (
+        <a href={s.href} class={`group flex flex-col gap-3.5 p-7 hover:bg-white/10 lg:p-8 ${hover} ${i > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white sm:text-[20px]">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-white">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+    <div class="flex flex-col gap-4 pt-9">
+      <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.integrated.relatedLabel}</p>
+      <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.integrated.related.map((r) => (
+          <a href={r.href} class={`flex items-center justify-between gap-3 rounded-full border border-white/15 bg-white/5 px-4 py-3 text-[14px] font-semibold text-white hover:bg-white/15 ${hover}`}>
+            {r.label}<Icon name="arrow" class="h-[15px] w-[15px] shrink-0" />
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+      <div class={`flex flex-col gap-1.5 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{content.trust.supervisorLabel}</p>
+        <p class="font-titles text-[18px] font-bold text-ink">{supervising.name}</p>
+        <p class="text-[13px] font-semibold leading-[1.4] text-blue">{supervising.cred}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{supervising.bio}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.faq}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{eyebrow.area}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

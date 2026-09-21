@@ -1,7 +1,23 @@
 ﻿---
-import SimplePage from "../../components/SimplePage.astro";
-const lang = "es";
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import IvTherapyPage from "../../components/pages/IvTherapyPage.astro";
+
 const path = "/es/terapia-iv/";
 ---
 
-<SimplePage lang={lang} path={path} />
+<Layout
+  lang="es"
+  path={path}
+  title="Terapia IV en Tampa, FL | Beauty IV, NAD+ e Inyecciones | Palm Wellness Center"
+  description="Terapia IV supervisada médicamente en Tampa: Beauty IV y Mayer Signature IV ($170), protocolo NAD+ ($199) e inyecciones lipotrópicas ($25). Primero, una evaluación médica."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <IvTherapyPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>
