@@ -1,4 +1,4 @@
-# Optantra — Authoritative service list (client-managed)
+# OptiMantra — Authoritative service list (client-managed)
 
 Source: client's OptiMantra patient-access portal (`servicesallV2`), captured 2026-09-19.
 This is the **most up-to-date** list of services and prices the client offers. Treat as the content source of truth for service/pricing copy, pending client confirmation.
@@ -27,6 +27,7 @@ Notes captured from the portal:
 
 ## Mismatches to correct on the website
 1. **Membership pricing** (site says $75/mo individual, $140/mo couples, $85/visit) → Optantra: **$99 initial + $39/month**.
-2. **IV Therapy** currently "Coming Soon" on the site → **live** with 3 treatments ($170, $170, $199).
+2. **IV Therapy** may still appear as “Coming Soon” in legacy content → **live** with 3 treatments
+   ($170, $170, $199). Redesigned Homepage, Primary Care and navigation already treat it as active.
 3. Missing services/pages: Telehealth Medical Visit, Telehealth Follow-up, Annual Preventive Assessment, Hormonal Profile, Metabolic Panel, Lipotropic Injection, NAD+ protocol.
 4. Visit pricing: site "non-member $85/visit" → Optantra Office Visit **$39**, New Patient **$65**.

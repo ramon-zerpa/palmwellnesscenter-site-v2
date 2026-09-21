@@ -7,7 +7,7 @@ Companion tokens: `design-system/palm-wellness-center/MASTER.md`.
 
 ## 1. Project context
 
-Rebuild of `palmwellness.center` (currently an acceptable-but-weak Astro migration of a WordPress site). Same company, same logo, same contact data and licenses. **Service priority changes: Primary Care becomes the flagship service**; Medical Weight Loss, IV Therapy (coming soon) and Telemedicine support it; rehabilitation (chiropractic, physical therapy, auto accident, slip & fall, massage, ultrasound, therapeutic exercise) drops to a **secondary** section. Bilingual EN/ES. Serves Tampa / Hillsborough County.
+Rebuild of `palmwellness.center` (currently an acceptable-but-weak Astro migration of a WordPress site). Same company, same logo, same contact data and licenses. **Service priority changes: Primary Care becomes the flagship service**; Medical Weight Loss, active IV Therapy and Telemedicine support it; Physical Rehabilitation (chiropractic, physical therapy, auto accident, slip & fall, massage, ultrasound, therapeutic exercise) is the second key service line. Bilingual EN/ES. Serves Tampa / Hillsborough County.
 
 ## 2. Positioning & primary goal
 
@@ -57,12 +57,17 @@ Rebuild of `palmwellness.center` (currently an acceptable-but-weak Astro migrati
 
 ## 6. Homepage section order (desktop)
 
-1. **Utility bar** — address · hours · licenses · EN/ES · phone.
-2. **Header** — logo, nav (Primary Care first), persistent **Book Appointment**.
-3. **Hero** — H1 (primary care promise), 4 trust badges (licensed providers, bilingual, same-day, telehealth), dual CTA (Book / Call), primary-care image.
-4. **Flagship services grid** — Primary Care, Medical Weight Loss, IV (coming soon) → emphasized.
+1. **Utility bar** — desktop: address · hours · licenses; mobile: address only.
+2. **Header** — logo, nav (Primary Care first), EN/ES pill and persistent **Book Appointment**.
+   On mobile, the language pill and Book CTA close the expanded menu.
+3. **Hero** — H1 (primary care promise), trust badges, dual CTA (Book / Call), image at right.
+   Shared hero treatment: frame shadow, full-image entrance translated from right to left (no
+   reveal wipe), light resting drift, heartbeat badge and dynamic vital line; respect reduced
+   motion. Set the image focal point per asset after checking desktop and mobile.
+4. **Flagship services grid** — Primary Care, Medical Weight Loss and active IV Therapy.
 5. **Why integrated care** — differentiators: integrated primary care + rehab, free transportation, bilingual team, extended visits.
-6. **Membership pricing** — $75 individual / $140 couples / $85 non-member, transparent table + CTA.
+6. **Membership pricing** — $99 initial + $39/month; Office Visit $39; New Patient $65;
+   Telehealth $55. Present clear comparisons + CTA.
 7. **Meet your care team** — Leivys C. Marsall PA ACN, Dr. Orellana-Molina MD, Michel Reyes LMT.
 8. **Conditions treated** — chronic + preventive quick-links to condition pages.
 9. **Rehabilitation (secondary)** — compact block, subdued styling.
@@ -70,7 +75,9 @@ Rebuild of `palmwellness.center` (currently an acceptable-but-weak Astro migrati
 11. **Social proof** — testimonials/reviews.
 12. **FAQ** — accordion, FAQ schema.
 13. **Final CTA** — book/call + transportation note.
-14. **Footer** — full NAP, hours, services, licenses, legal, social.
+14. **Footer** — text brand name; columns for Primary Care, Physical Rehabilitation and Contact;
+    text-only pale-turquoise social/Brand Hub pills; legal links centered in the bottom bar and
+    True Webmaster credit on the right.
 
 **Mobile:** same order; collapsible nav; **sticky bottom bar** = Call + Book; one-tap phone.
 

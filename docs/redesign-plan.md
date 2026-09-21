@@ -1,11 +1,14 @@
-# Internal Pages Redesign — Plan (Home as visual reference)
+# Internal Pages Redesign — Plan (Homepage + Primary Care as visual reference)
 
-**Goal:** bring every internal page onto the **HomePage visual language** (same tokens,
-section rhythm, hero, cards, pills, FAQ, CTA band), designed in **Pencil** first (frame
-approved by the client) and then built **directly in Astro**, in **groups of 2 EN pages** per
-iteration. ES mirrors each group translated (same layout, `/es/...` slug).
+**Goal:** bring every internal page onto the approved **Homepage + Primary Care visual language**
+(same tokens, section rhythm, hero, cards, pills, FAQ, CTA band), designed in **Pencil** first
+when a desktop frame is needed as a review reference, and then built **directly in Astro**, in
+groups of 2 EN pages per iteration. ES mirrors each group translated (same layout, `/es/...`
+slug).
 
-**Reference:** `src/components/HomePage.astro` (approved).
+**References:** `src/components/HomePage.astro` and `src/components/pages/PrimaryCarePage.astro`
+(approved). See `docs/PROJECT-HANDOFF.md` for the approved global header/footer, hero behavior,
+images and content decisions.
 **Tokens:** `src/styles/global.css` (`bg-bg-alt`, `bg-white`, `bg-blue-deep`, `bg-blue-pale`,
 `text-ink`, `text-body`, `text-muted`, `border-line`, `blue-tint`, `green-bright`, `green-dark`).
 **Fonts:** Figtree (headings) + Noto Sans (body). **Radius:** `rounded-lg` cards, `rounded-md` controls/buttons.
@@ -57,7 +60,7 @@ flow), with pricing corrected to Optantra truth.
 
 1. Read the legacy content (`richpages.json` blocks) for the 2 pages.
 2. Draft corrected bilingual content into `servicePages.ts` (or the relevant data file).
-3. Create the dedicated Astro pages (EN + ES) using the shared template.
+3. Create the dedicated Astro pages (EN + ES) using the bespoke component for that page.
 4. Add the 2 pages' paths to the `migrated` `Set` in `[...slug].astro` (×2 for ES).
 5. `npm run build` → verify routes still 200, no orphan/broken links, hreflang intact.
 6. Screenshot/QA pass (desktop + mobile) in one batched round.
@@ -65,5 +68,7 @@ flow), with pricing corrected to Optantra truth.
 
 ## Status
 
+- [x] Homepage — approved visual reference, EN + ES
 - [x] Group 1 — `/primary-care/` + `/medical-weight-loss/` (bespoke EN/ES components)
-- [ ] Group 2 … Group 12
+- [ ] Group 2 — `/physical-rehabilitation/` + `/iv-therapy/` (next)
+- [ ] Groups 3–12

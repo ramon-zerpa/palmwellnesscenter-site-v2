@@ -1,9 +1,9 @@
 # Palm Wellness Center — sitio v2
 
 Reconstrucción de **palmwellness.center** como sitio **Astro 5 estático**, bilingüe EN/ES, con un
-reposicionamiento deliberado: **Atención Primaria es el servicio bandera** y la rehabilitación
-(quiropráctica, fisioterapia, accidentes, masajes, ultrasonido, ejercicios terapéuticos) pasa a
-sección secundaria.
+reposicionamiento deliberado: **Atención Primaria es el servicio bandera**, respaldada por
+**Rehabilitación Física** (quiropráctica, fisioterapia, accidentes, masajes, ultrasonido y
+ejercicios terapéuticos) como segunda línea clave.
 
 El sitio anterior era un WordPress/Oxygen con una migración Astro débil. Aquí se reconstruye con
 un design system propio, conservando **todas** las URLs indexadas del sitio viejo.
@@ -16,9 +16,10 @@ un design system propio, conservando **todas** las URLs indexadas del sitio viej
 | **Páginas** | 273 |
 | **Idiomas** | EN en la raíz · ES en `/es/` con slugs traducidos |
 
-> **¿Eres un agente o vienes a tocar código?** Lee antes [`AGENTS.md`](./AGENTS.md). Contiene
-> las decisiones ya tomadas, los errores ya cometidos, las reglas vinculantes del cliente y los
-> bugs conocidos de producción. Este README es la vista general; `AGENTS.md` es la memoria.
+> **¿Eres un agente o vienes a tocar código?** Lee en este orden
+> [`AGENTS.md`](./AGENTS.md) → [`docs/PROJECT-HANDOFF.md`](./docs/PROJECT-HANDOFF.md) → el
+> documento específico de tu tarea. Ahí están las reglas vinculantes, el estado aprobado, los
+> cambios recientes, los bugs conocidos y el siguiente paso. Este README es la vista general.
 
 ---
 
@@ -68,8 +69,7 @@ astro.config.mjs        site, i18n, sitemap, plugin de dimensiones de imagen
 tsconfig.json
 src/
   components/
-    Layout.astro        <head>, meta, hreflang, JSON-LD
-    TopBar.astro        barra superior (dirección, horario, licencias, redes)
+    TopBar.astro        barra superior (dirección, horario, licencias)
     Header.astro        nav principal (megamenú por desplegables) + CTA
     Footer.astro
     Icon.astro          renderiza Lucide; FaIcon.astro delega en él
@@ -79,6 +79,8 @@ src/
     RichPage.astro      renderizador del cuerpo heredado (richpages.json)
     RichSection.astro   primitivas del cuerpo heredado
     BlogIndex.astro, BlogPost.astro, ContactPage.astro, SimplePage.astro, ContactForm.astro
+  layouts/
+    Layout.astro        <head>, meta, hreflang, JSON-LD
   data/
     richpages.json         41 páginas heredadas (contenido en bloques)
     home.ts                contenido de la homepage
@@ -200,6 +202,7 @@ commit.
 | Archivo | Contenido |
 |---|---|
 | [`AGENTS.md`](./AGENTS.md) | memoria operativa: reglas, gotchas, estado, bugs conocidos |
+| [`docs/PROJECT-HANDOFF.md`](./docs/PROJECT-HANDOFF.md) | relevo de sesión: decisiones aprobadas, imágenes, metadatos, QA y siguiente fase |
 | `docs/redesign-plan.md` | los 12 grupos de migración de páginas |
 | `docs/optimantra-services.md` | precios y servicios reales |
 | `docs/ux-ui-brief.md` | brief de diseño que guio Pencil |

@@ -4,7 +4,7 @@ Memoria operativa de **palmwellness.center (v2)**. Léelo antes de tocar nada: c
 decisiones que ya se tomaron, por qué se tomaron, y los errores que ya se cometieron para no
 repetirlos. Si eres un agente nuevo, este archivo más `docs/` te ahorran empezar de cero.
 
-Última verificación de los datos de este archivo: **2026-09-20**.
+Última verificación de los datos de este archivo: **2026-09-21**.
 
 ---
 
@@ -256,37 +256,48 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 
 ---
 
-## 8. Estado actual (2026-09-20)
+## 8. Estado actual (2026-09-21)
 
 **Hecho**
 
-- Grupo 1 completo: `/primary-care/` y `/medical-weight-loss/` rediseñados a medida, EN+ES.
-- Header, TopBar y Footer nuevos, con el contenedor único de 1200px.
+- Homepage, `/primary-care/` y `/medical-weight-loss/` rediseñados a medida, EN+ES. El cliente
+  aprobó el lenguaje visual actual de Homepage y Primary Care; son la referencia para las páginas
+  nuevas, manteniendo contenido y fotografía propios por página.
+- Header, TopBar y Footer nuevos, con el contenedor único de 1200px. El header y footer actuales
+  son el estándar global ya aprobado.
 - Familia única de iconos (Lucide), extracción de `AnchorNav`, sistema de hover y primitivas de
   movimiento del hero, todo reutilizable.
-- Primera página del patrón nuevo verificada de punta a punta (build, 2 idiomas × 5 anchos,
-  reduced-motion, click del nav de anclas).
+- Héroes con imagen a la derecha: entrada completa por desplazamiento de derecha a izquierda (no
+  wipe), sombra, leve deriva, corazón pulsante y línea vital dinámica. Para cada nueva foto,
+  verifica el `object-position` en el contenedor real; no asumas `center`.
+- Homepage y Primary Care verificados en EN/ES a 360 y 1440px: sin overflow, sin texto recortado
+  ni imágenes sin dimensiones. El build sigue produciendo 273 páginas.
 - Pencil: frame **`EnF3Q` (Primary Care Desktop)** construido y aprobado por el cliente.
 - `AGENTS.md`, `README.md` y el harness CDP versionado en `tools/qa/`.
 - Preview **no indexable**: `robots.txt` con `Disallow: /` + header `X-Robots-Tag` (ver § 9).
+- Último commit funcional publicado: `b42a682 Refresh care imagery and homepage metadata`.
+  Consulta `docs/PROJECT-HANDOFF.md` para el estado preciso, decisiones recientes y siguientes
+  pasos antes de tocar código.
 
 **Siguiente**
 
-1. **Homepage** (`src/components/HomePage.astro`): aplicar el mismo patrón (bandas oscuras,
-   hover, movimiento del hero, `AnchorNav`).
-2. Grupos 2-12 de `docs/redesign-plan.md` (rehabilitación, accidentes, legal, blog…).
+1. **Grupo 2:** `/physical-rehabilitation/` + `/iv-therapy/` y sus espejos ES. Diseñar primero
+   su desktop en Pencil si se va a utilizar como referencia visual, y construir componentes
+   propios siguiendo el estándar de Homepage/Primary Care.
+2. Grupos 3-12 de `docs/redesign-plan.md` (rehabilitación, accidentes, legal, blog…).
 
 **Pendiente / bloqueado**
 
-- `public/images/placeholders/{iv-therapy,telemedicine,care-team,general}.svg` — el cliente debe
-  entregar imágenes reales.
+- `public/images/placeholders/{iv-therapy,telemedicine,care-team,general}.svg` siguen siendo
+  placeholders para páginas interiores todavía no rediseñadas. Las imágenes nuevas de Homepage y
+  Primary Care ya son WebP optimizados; no hace falta sustituirlas.
 - El logo es `public/images/logo.webp`, 120×60 y de baja resolución. El cliente debe entregar
   SVG o 2×. Es inmutable: no lo rediseñes.
 - Las páginas del interior aún usan el cuerpo heredado (`RichPage`/`RichSection`): ya heredan
   header/footer e iconos nuevos, pero su contenido no está en el lenguaje visual nuevo.
 - **El frame `EnF3Q` y el código divergen en 2 puntos**: Pencil todavía muestra el separador del
-  bloque de Related Services (eliminado en código) y el orden viejo del nav de anclas. Sincronizar
-  si el diseño se va a seguir usando como referencia.
+  bloque de Related Services (eliminado en código) y el orden viejo del nav de anclas. El código
+  aprobado prevalece; sincronizar Pencil si se vuelve a editar ese frame.
 - **El formulario de contacto está muerto en producción** (§ 10). Es lo único que hoy pierde
   leads de verdad.
 - El `noindex` del preview **hay que retirarlo antes de apuntar el dominio real** (§ 9).
@@ -423,6 +434,7 @@ para no añadir esa fricción. Consecuencia aceptada: cualquiera con el enlace p
 |---|---|
 | `README.md` | visión general, stack, cómo arrancar |
 | `docs/redesign-plan.md` | los 12 grupos de migración |
+| `docs/PROJECT-HANDOFF.md` | estado aprobado, decisiones recientes, QA y próxima fase |
 | `docs/optimantra-services.md` | precios y servicios reales: la verdad del negocio |
 | `docs/ux-ui-brief.md` | brief de diseño que guio Pencil |
 | `seo/url-inventory.md` | las 262 URLs heredadas y su política |
