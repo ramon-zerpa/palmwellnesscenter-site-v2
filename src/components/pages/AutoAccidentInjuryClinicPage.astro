@@ -1,0 +1,616 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Auto Accident Injury Clinic in Tampa",
+      title: "Auto accident injury clinic in Tampa",
+      lead: "Regain your health and mobility with comprehensive care tailored to your recovery. We treat whiplash, neck pain, soft tissue damage, and more after any type of crash.",
+      chips: [
+        { icon: "car", label: "Any type of collision" },
+        { icon: "spine", label: "Chiropractic and rehab" },
+        { icon: "bandage", label: "Soft tissue and disc injuries" },
+        { icon: "stethoscope", label: "Medical oversight" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "Comprehensive auto injury care · Documentation for claims · Free transportation for eligible patients",
+      image: "/images/how-to-find-doctor-after-a-car-accident-main-banner.webp",
+      imageAlt: "A man with neck pain beside damaged cars after an auto accident in Tampa",
+      rail: [
+        { value: "Injury care", label: "Focused on recovery" },
+        { value: "5", label: "Treatment services" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "The clinic", href: "#clinic" },
+      { label: "Injuries", href: "#injuries" },
+      { label: "Services", href: "#services" },
+      { label: "Why choose us", href: "#why" },
+      { label: "Process", href: "#process" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    clinic: {
+      heading: "Auto accident injury clinic",
+      paras: [
+        "Were you involved in a car accident? Palm Wellness Center helps. We treat common injuries like whiplash, neck pain, and soft tissue damage with a comprehensive, coordinated approach.",
+        "Regardless of the type of accident - rear-end, sideswipe, or head-on - car accident victims often face similar injuries. Our team evaluates how your body is responding and builds a plan focused on restoring movement and function.",
+      ],
+      highlight: "Because we bring chiropractic care, physical therapy, massage, and advanced modalities together, you can recover in one place instead of being sent from office to office.",
+      image: "/images/auto-accident-rehabilitation-in-tampa-fl.webp",
+      imageAlt: "A person seeking care after a car accident in Tampa",
+    },
+    injuries: {
+      eyebrow: "Injuries we treat",
+      heading: "Common auto accident injuries",
+      lead: "Here are the most common car accident injuries we treat.",
+      items: [
+        { icon: "spine", title: "Whiplash", body: "Neck strain and stiffness after the sudden jolt of a collision." },
+        { icon: "brain", title: "Brain and head injuries", body: "Head pain, dizziness, and symptoms that need careful evaluation." },
+        { icon: "accessibility", title: "Chest and shoulder injuries", body: "Pain and restricted movement in the upper body after impact." },
+        { icon: "activity", title: "Diaphragm rupture", body: "Rare but serious internal injury from the force of a crash." },
+        { icon: "person-standing", title: "Pelvis and abdominal injuries", body: "Pain and internal injury from the abrupt stop or impact." },
+        { icon: "bone", title: "Back, neck, leg, knee, and foot injuries", body: "Spinal and lower-body injuries that affect how you move." },
+        { icon: "move", title: "Shoulder pain", body: "Shoulder discomfort that limits reaching and daily tasks." },
+        { icon: "gauge", title: "Dislocated or herniated discs", body: "Disc injuries that can press on nerves and cause pain." },
+        { icon: "shield-check", title: "Spinal injuries", body: "Injuries to the spine that need structured, careful recovery." },
+      ],
+      moreLabel: "We also treat:",
+      more: ["Broken bones", "Muscular contusions, sprains, and strains", "Ligament or tendon tears", "Bruising of the internal organs"],
+      note: "The duration of your auto injury treatment may vary depending on the extent of your injuries.",
+    },
+    services: {
+      eyebrow: "Our services",
+      heading: "Our services and car accident treatments",
+      lead: "The road to recovery after a car accident can feel overwhelming. Pain, stiffness, and limited mobility are some of the challenges you may face. Our clinic brings the right treatments together.",
+      items: [
+        { icon: "spine", title: "Chiropractic care", body: "A noninvasive approach to alleviating pain and promoting healing after an auto injury.", href: "/chiropractor/" },
+        { icon: "activity", title: "Physical therapy", body: "Restoring mobility, strength, and function as your body recovers.", href: "/physical-rehabilitation/" },
+        { icon: "dumbbell", title: "Therapeutic exercise", body: "Exercises tailored to your condition, rebuilding strength, flexibility, and stability.", href: "/therapeutic-exercises/" },
+        { icon: "hand-heart", title: "Massage therapy", body: "Targeted treatment to alleviate pain, reduce muscle tension, and enhance recovery.", href: "/massage-therapy/" },
+        { icon: "waves", title: "Ultrasound therapy", body: "High-frequency sound waves that generate deep heat to reduce pain and improve circulation.", href: "/therapeutic-ultrasound-treatment/" },
+      ],
+    },
+    why: {
+      eyebrow: "Why choose us",
+      heading: "Why choose Palm Wellness Center",
+      lead: "We understand the challenges people recovering from auto accident injuries face, and we are committed to personalized care that helps you regain your strength and mobility.",
+      items: [
+        { icon: "calendar-check", title: "Rapid appointments", body: "Timely treatment and relief, so your recovery does not stall." },
+        { icon: "briefcase-medical", title: "Comprehensive approach", body: "Chiropractic care, physical therapy, therapeutic exercises, and advanced modalities like ultrasound." },
+        { icon: "sparkles", title: "Modern facility", body: "Equipped with current technology and treatment techniques." },
+        { icon: "clipboard-list", title: "Personalized plans", body: "Treatment tailored to your specific needs and goals." },
+        { icon: "user-round", title: "Experienced team", body: "Skilled chiropractors, physical therapists, and healthcare professionals." },
+        { icon: "hand-heart", title: "Holistic care", body: "An approach that alleviates pain, restores mobility, and promotes optimal healing." },
+        { icon: "badge-check", title: "Patient education", body: "We educate and empower patients for long-term health and wellness." },
+      ],
+    },
+    process: {
+      eyebrow: "The treatment process",
+      heading: "Step-by-step guide to the treatment process",
+      lead: "Our experienced team provides effective, noninvasive care to help you heal from common auto accident injuries.",
+      steps: [
+        { title: "Intake and examination", body: "Our medical assistants gather information about your accident and injuries, and a thorough examination may include x-rays." },
+        { title: "Personalized plan", body: "Based on your assessment, we create a plan that may include chiropractic adjustments, exercises, and lifestyle changes." },
+        { title: "Guided therapy", body: "We guide you through targeted sessions that may involve chiropractic adjustments, soft tissue mobilization, and therapeutic exercises." },
+        { title: "Follow-up and progress", body: "Regular follow-ups let us monitor your progress and adjust the plan, aiming to get you back to full potential quickly and safely." },
+      ],
+      supportLabel: "How we support you",
+      support: [
+        { icon: "hand-heart", title: "We support you", body: "We understand the complexities of auto accidents and can help you navigate insurance claims." },
+        { icon: "users", title: "We work as a team", body: "We collaborate with you, your doctor, and other healthcare providers for coordinated care." },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center combines medical oversight, chiropractic care, rehabilitation services, massage therapy, and therapeutic treatments under one roof. This coordinated approach supports safer movement and long-term recovery after an auto accident.",
+        "Palm Wellness Center proudly serves Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/trust-palm-wellness-center-for-auto-accident-injuries.webp",
+      imageAlt: "Licensed medical and rehabilitation providers at Palm Wellness Center in Tampa",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+    },
+    transport: {
+      title: "Need a ride? We have got you covered.",
+      body: "Palm Wellness Center offers transportation assistance for eligible patients throughout the Tampa Bay area. If transportation is a concern, let our team know when you call or request an appointment, and we will help coordinate your visit.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Tampa auto injury center FAQs",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through your options and what to expect.",
+      items: [
+        { q: "What are the most common auto accident injuries that you treat?", a: "We commonly treat whiplash, brain and head injuries, chest and shoulder injuries, back and neck injuries, shoulder pain, dislocated or herniated discs, spinal injuries, broken bones, sprains and strains, and ligament or tendon tears." },
+        { q: "Will my health insurance cover the treatment for auto accident injuries?", a: "Florida PIP insurance often covers care after an auto accident, regardless of fault, and may include the initial evaluation, follow-ups, physical therapy and rehabilitation, and medically necessary treatment. Confirm coverage with your carrier." },
+        { q: "How long will it take to see results from treatment?", a: "Every recovery is different. Some patients feel better within a few visits, while others need more time depending on the extent of their injuries and how their body responds." },
+        { q: "How long does it typically take to recover from auto accident injuries?", a: "Recovery time depends on the injury. Those who undergo surgery often require more time, while many soft tissue and joint injuries improve with a structured rehabilitation program." },
+        { q: "What should I expect during my first visit?", a: "A review of how the accident happened, a physical examination of your pain, mobility, and range of motion, and a personalized treatment plan based on your condition." },
+        { q: "Should I seek treatment even if my injuries seem minor?", a: "Yes. Symptoms do not always match the severity of the injury, and some injuries appear hours or days later. An early evaluation helps identify problems before they worsen." },
+        { q: "Does Palm Wellness Center offer other services like massage therapy?", a: "Yes. Alongside chiropractic care and rehabilitation, we offer massage therapy, therapeutic exercises, and ultrasound therapy as part of a coordinated plan." },
+      ],
+    },
+    area: {
+      eyebrow: "Service Area",
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Palm Wellness Center is located in Tampa, FL, and serves patients from across the surrounding area.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Tampa Bay area communities"],
+      note: "Need directions or a ride? Call (813) 443-5370 and our team will help you plan your visit.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Start your recovery at our auto accident injury clinic",
+      lead: "Do not let auto accident injuries hold you back. Call Palm Wellness Center to schedule your initial consultation and begin your path to recovery.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Clínica de Lesiones por Accidentes de Auto en Tampa",
+      title: "Clínica de lesiones por accidentes de auto en Tampa",
+      lead: "Recupera tu salud y movilidad con atención integral adaptada a tu recuperación. Tratamos latigazo cervical, dolor de cuello, daño de tejidos blandos y más después de cualquier tipo de choque.",
+      chips: [
+        { icon: "car", label: "Cualquier tipo de colisión" },
+        { icon: "spine", label: "Quiropráctica y rehabilitación" },
+        { icon: "bandage", label: "Tejidos blandos y discos" },
+        { icon: "stethoscope", label: "Supervisión médica" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "Atención integral de lesiones · Documentación para reclamos · Transporte gratis para pacientes elegibles",
+      image: "/images/how-to-find-doctor-after-a-car-accident-main-banner.webp",
+      imageAlt: "Hombre con dolor de cuello junto a autos dañados tras un accidente en Tampa",
+      rail: [
+        { value: "Atención de lesiones", label: "Enfocada en la recuperación" },
+        { value: "5", label: "Servicios de tratamiento" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "La clínica", href: "#clinic" },
+      { label: "Lesiones", href: "#injuries" },
+      { label: "Servicios", href: "#services" },
+      { label: "Por qué elegirnos", href: "#why" },
+      { label: "Proceso", href: "#process" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    clinic: {
+      heading: "Clínica de lesiones por accidentes de auto",
+      paras: [
+        "¿Estuviste involucrado en un accidente de auto? Palm Wellness Center puede ayudar. Tratamos lesiones comunes como latigazo cervical, dolor de cuello y daño de tejidos blandos con un enfoque integral y coordinado.",
+        "Independientemente del tipo de accidente - por alcance, lateral o de frente - las víctimas suelen enfrentar lesiones similares. Nuestro equipo evalúa cómo responde tu cuerpo y crea un plan enfocado en restaurar el movimiento y la función.",
+      ],
+      highlight: "Como reunimos quiropráctica, fisioterapia, masajes y modalidades avanzadas, puedes recuperarte en un solo lugar en vez de ir de consultorio en consultorio.",
+      image: "/images/auto-accident-rehabilitation-in-tampa-fl.webp",
+      imageAlt: "Persona buscando atención después de un accidente de auto en Tampa",
+    },
+    injuries: {
+      eyebrow: "Lesiones que tratamos",
+      heading: "Lesiones comunes por accidentes de auto",
+      lead: "Esta es la lista de las lesiones por accidentes de auto más comunes que tratamos.",
+      items: [
+        { icon: "spine", title: "Latigazo cervical", body: "Distensión y rigidez del cuello tras el movimiento brusco de una colisión." },
+        { icon: "brain", title: "Lesiones cerebrales y en la cabeza", body: "Dolor de cabeza, mareos y síntomas que necesitan una evaluación cuidadosa." },
+        { icon: "accessibility", title: "Lesiones en el pecho y el hombro", body: "Dolor y movimiento restringido en la parte superior del cuerpo tras el impacto." },
+        { icon: "activity", title: "Rotura del diafragma", body: "Lesión interna poco común pero grave por la fuerza de un choque." },
+        { icon: "person-standing", title: "Lesiones pélvicas y abdominales", body: "Dolor y lesión interna por la parada brusca o el impacto." },
+        { icon: "bone", title: "Lesiones de espalda, cuello, piernas, rodillas y pies", body: "Lesiones de columna y del tren inferior que afectan cómo te mueves." },
+        { icon: "move", title: "Dolor de hombro", body: "Molestia en el hombro que limita alcanzar objetos y las tareas diarias." },
+        { icon: "gauge", title: "Discos dislocados o herniados", body: "Lesiones de disco que pueden presionar los nervios y causar dolor." },
+        { icon: "shield-check", title: "Lesiones de la médula espinal", body: "Lesiones de columna que necesitan una recuperación estructurada y cuidadosa." },
+      ],
+      moreLabel: "También tratamos:",
+      more: ["Huesos rotos", "Contusiones, esguinces y torceduras musculares", "Desgarros de ligamentos o tendones", "Hematomas en los órganos internos"],
+      note: "La duración de tu tratamiento puede variar según el alcance de tus lesiones.",
+    },
+    services: {
+      eyebrow: "Nuestros servicios",
+      heading: "Nuestros servicios y tratamientos para accidentes de auto",
+      lead: "El camino hacia la recuperación después de un accidente de auto puede resultar abrumador. El dolor, la rigidez y la movilidad limitada son algunos de los desafíos que puedes enfrentar. Nuestra clínica reúne los tratamientos adecuados.",
+      items: [
+        { icon: "spine", title: "Atención quiropráctica", body: "Un enfoque no invasivo para aliviar el dolor y promover la curación tras una lesión automovilística.", href: "/es/quiropractico/" },
+        { icon: "activity", title: "Fisioterapia", body: "Restaura la movilidad, la fuerza y la función a medida que tu cuerpo se recupera.", href: "/es/fisioterapia/" },
+        { icon: "dumbbell", title: "Ejercicio terapéutico", body: "Ejercicios adaptados a tu condición que reconstruyen fuerza, flexibilidad y estabilidad.", href: "/es/ejercicios-terapeuticos/" },
+        { icon: "hand-heart", title: "Terapia de masajes", body: "Tratamiento dirigido para aliviar el dolor, reducir la tensión muscular y mejorar la recuperación.", href: "/es/terapia-de-masajes/" },
+        { icon: "waves", title: "Terapia con ultrasonido", body: "Ondas sonoras de alta frecuencia que generan calor profundo para reducir el dolor y mejorar la circulación.", href: "/es/tratamiento-de-ultrasonido-terapeutico/" },
+      ],
+    },
+    why: {
+      eyebrow: "Por qué elegirnos",
+      heading: "Por qué elegir Palm Wellness Center",
+      lead: "Entendemos los desafíos que enfrentan las personas que se recuperan de lesiones por accidentes de auto, y estamos comprometidos con una atención personalizada que te ayuda a recuperar tu fuerza y movilidad.",
+      items: [
+        { icon: "calendar-check", title: "Citas rápidas", body: "Tratamiento y alivio oportunos, para que tu recuperación no se detenga." },
+        { icon: "briefcase-medical", title: "Enfoque integral", body: "Atención quiropráctica, fisioterapia, ejercicios terapéuticos y modalidades avanzadas como el ultrasonido." },
+        { icon: "sparkles", title: "Instalaciones modernas", body: "Equipadas con tecnología y técnicas de tratamiento actuales." },
+        { icon: "clipboard-list", title: "Planes personalizados", body: "Tratamiento adaptado a tus necesidades y objetivos específicos." },
+        { icon: "user-round", title: "Equipo con experiencia", body: "Quiroprácticos, fisioterapeutas y profesionales de la salud capacitados." },
+        { icon: "hand-heart", title: "Atención holística", body: "Un enfoque que alivia el dolor, restaura la movilidad y promueve una curación óptima." },
+        { icon: "badge-check", title: "Educación al paciente", body: "Educamos y empoderamos a los pacientes para la salud y el bienestar a largo plazo." },
+      ],
+    },
+    process: {
+      eyebrow: "El proceso de tratamiento",
+      heading: "Guía paso a paso del proceso de tratamiento",
+      lead: "Nuestro equipo con experiencia brinda atención eficaz y no invasiva para ayudarte a sanar de lesiones comunes por accidentes de auto.",
+      steps: [
+        { title: "Recepción y examen", body: "Nuestros asistentes médicos recopilan información sobre tu accidente y tus lesiones, y un examen minucioso puede incluir radiografías." },
+        { title: "Plan personalizado", body: "Según tu evaluación, creamos un plan que puede incluir ajustes quiroprácticos, ejercicios y cambios en el estilo de vida." },
+        { title: "Terapia guiada", body: "Te guiamos en sesiones dirigidas que pueden incluir ajustes quiroprácticos, movilización de tejidos blandos y ejercicios terapéuticos." },
+        { title: "Seguimiento y progreso", body: "Los seguimientos regulares nos permiten monitorear tu progreso y ajustar el plan, con el objetivo de que vuelvas a tu máximo potencial de forma rápida y segura." },
+      ],
+      supportLabel: "Cómo te apoyamos",
+      support: [
+        { icon: "hand-heart", title: "Te apoyamos", body: "Entendemos las complejidades de los accidentes de auto y podemos ayudarte a navegar los reclamos del seguro." },
+        { icon: "users", title: "Trabajamos en equipo", body: "Colaboramos contigo, tu médico y otros proveedores de atención para una atención coordinada." },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center combina supervisión médica, atención quiropráctica, servicios de rehabilitación, terapia de masajes y tratamientos terapéuticos bajo un mismo techo. Este enfoque coordinado apoya un movimiento más seguro y una recuperación a largo plazo tras un accidente de auto.",
+        "Palm Wellness Center atiende con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/trust-palm-wellness-center-for-auto-accident-injuries.webp",
+      imageAlt: "Proveedores médicos y de rehabilitación con licencia en Palm Wellness Center en Tampa",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Nosotros te ayudamos.",
+      body: "Palm Wellness Center ofrece asistencia de transporte para pacientes elegibles en toda el área de la Bahía de Tampa. Si el transporte es una preocupación, avísale a nuestro equipo cuando llames o solicites una cita, y te ayudaremos a coordinar tu visita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes sobre la clínica de lesiones de auto en Tampa",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará tus opciones y qué esperar.",
+      items: [
+        { q: "¿Cuáles son las lesiones por accidentes de auto más comunes que tratan?", a: "Tratamos comúnmente latigazo cervical, lesiones cerebrales y en la cabeza, lesiones en el pecho y el hombro, lesiones de espalda y cuello, dolor de hombro, discos dislocados o herniados, lesiones de la médula espinal, huesos rotos, esguinces y torceduras, y desgarros de ligamentos o tendones." },
+        { q: "¿Mi seguro médico cubrirá el tratamiento de las lesiones por accidentes automovilísticos?", a: "El seguro PIP de Florida a menudo cubre la atención tras un accidente de auto, independientemente de quién tenga la culpa, y puede incluir la evaluación inicial, los seguimientos, la fisioterapia y la rehabilitación, y el tratamiento médicamente necesario. Confirma la cobertura con tu aseguradora." },
+        { q: "¿Cuánto tiempo tomará ver resultados del tratamiento?", a: "Cada recuperación es diferente. Algunos pacientes se sienten mejor en pocas visitas, mientras que otros necesitan más tiempo según el alcance de sus lesiones y cómo responde su cuerpo." },
+        { q: "¿Cuánto tiempo suele tardar en recuperarse de las lesiones por accidentes de auto?", a: "El tiempo de recuperación depende de la lesión. Quienes se someten a cirugía suelen requerir más tiempo, mientras que muchas lesiones de tejidos blandos y articulaciones mejoran con un programa de rehabilitación estructurado." },
+        { q: "¿Qué debo esperar durante mi primera visita?", a: "Una revisión de cómo ocurrió el accidente, un examen físico de tu dolor, movilidad y rango de movimiento, y un plan de tratamiento personalizado según tu condición." },
+        { q: "¿Debo buscar tratamiento si las lesiones parecen menores?", a: "Sí. Los síntomas no siempre coinciden con la gravedad de la lesión y algunas lesiones aparecen horas o días después. Una evaluación temprana ayuda a identificar problemas antes de que empeoren." },
+        { q: "¿Palm Wellness Center ofrece otros servicios como terapia de masaje?", a: "Sí. Junto con la atención quiropráctica y la rehabilitación, ofrecemos terapia de masajes, ejercicios terapéuticos y terapia con ultrasonido como parte de un plan coordinado." },
+      ],
+    },
+    area: {
+      eyebrow: "Área de Servicio",
+      heading: "Sirviendo con orgullo a Tampa y vecindarios circundantes",
+      lead: "Palm Wellness Center está ubicado en Tampa, FL, y atiende a pacientes de toda el área circundante.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Comunidades del área de Tampa Bay"],
+      note: "¿Necesitas indicaciones o transporte? Llama al (813) 443-5370 y nuestro equipo te ayudará a planificar tu visita.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
+    },
+    cta: {
+      title: "Comienza tu recuperación en nuestra clínica de lesiones por accidentes de auto",
+      lead: "No dejes que las lesiones por accidentes de auto te detengan. Llama a Palm Wellness Center para programar tu consulta inicial y comenzar tu recuperación.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="car" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- CLINIC OVERVIEW -->
+<section id="clinic" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid items-center gap-12 py-16 lg:grid-cols-[1fr_480px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.clinic.heading}</h2>
+      {content.clinic.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <aside class="mt-1 flex items-start gap-4 rounded-lg border border-line bg-bg-alt p-6">
+        <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="briefcase-medical" class="h-6 w-6" /></span>
+        <p class="text-[15px] font-medium leading-[1.55] text-ink">{content.clinic.highlight}</p>
+      </aside>
+    </div>
+    <img src={content.clinic.image} width="480" height="460" alt={content.clinic.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[460px]" />
+  </div>
+</section>
+
+<!-- INJURIES -->
+<section id="injuries" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="car" class="h-3.5 w-3.5" />{content.injuries.eyebrow}</span>
+        <h2 class={h2Cls}>{content.injuries.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.injuries.lead}</p>
+    </div>
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {content.injuries.items.map((c) => (
+        <li class="flex flex-col gap-3 rounded-lg border border-line bg-white p-6 lg:p-7">
+          <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-5 w-5" /></span>
+          <h3 class="font-titles text-[17px] leading-[1.25] text-ink">{c.title}</h3>
+          <p class="text-[14px] leading-[1.5] text-body">{c.body}</p>
+        </li>
+      ))}
+    </ul>
+    <div class="flex flex-col gap-3 rounded-lg border border-line bg-white p-6 lg:p-7">
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.injuries.moreLabel}</p>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.injuries.more.map((m) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="check" class="h-4 w-4 text-green-dark" />{m}
+          </li>
+        ))}
+      </ul>
+      <p class="text-[13px] text-muted">{content.injuries.note}</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="list-checks" class="h-3.5 w-3.5" />{content.services.eyebrow}</span>
+        <h2 class={h2Cls}>{content.services.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.services.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {content.services.items.map((t) => (
+        <a href={t.href} class={`group flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white text-blue-deep"><Icon name={t.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-ink lg:text-[20px]">{t.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{t.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US (dark band) -->
+<section id="why" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[800px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{content.why.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.why.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.why.lead}</p>
+    </div>
+    <ul class="grid gap-x-12 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+      {content.why.items.map((it) => (
+        <li class="flex flex-col gap-2.5">
+          <Icon name={it.icon} class="h-6 w-6 text-green-bright" />
+          <h3 class="font-titles text-[18px] leading-[1.25] text-white sm:text-[19px]">{it.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-blue-tint">{it.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="route" class="h-3.5 w-3.5" />{content.process.eyebrow}</span>
+        <h2 class={h2Cls}>{content.process.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.process.lead}</p>
+    </div>
+    <ol class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {content.process.steps.map((s, i) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink lg:text-[19px]">{s.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8">
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.process.supportLabel}</p>
+      <div class="grid gap-6 sm:grid-cols-2 lg:gap-10">
+        {content.process.support.map((s) => (
+          <div class="flex items-start gap-4">
+            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-white text-blue-deep"><Icon name={s.icon} class="h-5 w-5" /></span>
+            <div class="flex flex-col gap-1.5">
+              <h3 class="font-titles text-[17px] leading-[1.25] text-ink">{s.title}</h3>
+              <p class="text-[14.5px] leading-[1.55] text-body">{s.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-center lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{lang === "es" ? "Preguntas" : "FAQ"}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{content.area.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

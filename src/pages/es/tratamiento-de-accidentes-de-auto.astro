@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CarAccidentTreatmentPage from "../../components/pages/CarAccidentTreatmentPage.astro";
+
+const path = "/es/tratamiento-de-accidentes-de-auto/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Doctor de Accidentes de Auto en Tampa, FL | Clínica de Tratamiento de Lesiones por Accidentes de Auto"
+  description="¿Sufrió lesiones en un accidente de auto? Consulte hoy mismo con un médico especialista en accidentes de tránsito en Tampa. Ofrecemos tratamiento, evaluaciones y citas para el mismo día. ¡Llame ahora!"
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <CarAccidentTreatmentPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

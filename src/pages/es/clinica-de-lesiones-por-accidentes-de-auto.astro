@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import AutoAccidentInjuryClinicPage from "../../components/pages/AutoAccidentInjuryClinicPage.astro";
+
+const path = "/es/clinica-de-lesiones-por-accidentes-de-auto/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Clínica de Lesiones por Accidentes de Auto en Tampa - Palm Wellness Center"
+  description="Visite Palm Wellness Center, la principal clínica de lesiones por accidentes de auto en Tampa, FL. Nuestros quiroprácticos se especializan en terapia de lesiones personales. ¡Programe una cita hoy!"
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <AutoAccidentInjuryClinicPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

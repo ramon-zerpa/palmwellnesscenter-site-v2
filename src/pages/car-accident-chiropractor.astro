@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CarAccidentChiropractorPage from "../components/pages/CarAccidentChiropractorPage.astro";
+
+const path = "/car-accident-chiropractor/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Comprehensive Auto Injury Chiropractic Care - Palm Wellness Center"
+  description="Discover Palm Wellness Center's specialized chiropractic solutions for auto injury recovery in Tampa. Tailored treatments for pain relief and rehabilitation."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <CarAccidentChiropractorPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

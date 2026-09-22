@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import AutoAccidentInjuryClinicPage from "../components/pages/AutoAccidentInjuryClinicPage.astro";
+
+const path = "/auto-accident-injury-clinic/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Comprehensive Auto Accident Injury Clinic in Tampa - Palm Wellness Center"
+  description="Visit Palm Wellness Center, the premier auto accident injury clinic in Tampa, FL. Our chiropractors specialize in personal injury therapy. Schedule an appointment today!"
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <AutoAccidentInjuryClinicPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

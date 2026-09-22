@@ -25,6 +25,12 @@ export async function getStaticPaths() {
     "/es/fisioterapia/",
     "/car-accident-rehabilitation/",
     "/es/rehabilitacion-de-accidentes-automovilisticos/",
+    "/car-accident-treatment/",
+    "/es/tratamiento-de-accidentes-de-auto/",
+    "/auto-accident-injury-clinic/",
+    "/es/clinica-de-lesiones-por-accidentes-de-auto/",
+    "/car-accident-chiropractor/",
+    "/es/quiropractico-para-accidente-de-auto/",
   ]);
   const resolvedRichPages = (richpages as any[])
     .filter((page) => !migrated.has(page.path))

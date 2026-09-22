@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CarAccidentChiropractorPage from "../../components/pages/CarAccidentChiropractorPage.astro";
+
+const path = "/es/quiropractico-para-accidente-de-auto/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Atención Quiropráctica Integral para Lesiones Automovilísticas - Palm Wellness Center"
+  description="Descubra las soluciones quiroprácticas especializadas de Palm Wellness Center para la recuperación de lesiones automovilísticas en Tampa. Tratamientos personalizados para el alivio del dolor y la rehabilitación."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <CarAccidentChiropractorPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>
