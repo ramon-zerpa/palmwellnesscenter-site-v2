@@ -22,9 +22,9 @@ images and content decisions.
 3. Migrating a "rich" page = create a dedicated Astro page and add its path to the `migrated`
    `Set` in `getStaticPaths()` of `src/pages/[...slug].astro`. **Do not delete the entry from
    `richpages.json`**: it stays as a historical record and the catch-all filters it out. This step
-   **only applies to paths that exist in `richpages.json`** (today: `/primary-care/`,
-   `/medical-weight-loss/` + ES). Pages that were never in the JSON (the Primary Care children)
-   need no `migrated` entry: their explicit route is the only one that exists.
+   **only applies to paths that exist in `richpages.json`** (today: the Primary Care, Physical
+   Rehabilitation and Car Accident families). Pages that were never in the JSON (the Primary Care
+   children) need no `migrated` entry: their explicit route is the only one that exists.
 4. Bilingual: every group ships EN + ES.
 5. One H1; keep title/meta/canonical/hreflang intact; images keep alt + dimensions.
 6. Build must stay green and page count stable (no lost routes) after each group.
@@ -47,12 +47,12 @@ flow), with pricing corrected to Optantra truth.
 | # | Group | Pages (EN) | ES |
 |---|-------|-----------|-----|
 | 1 | Flagship hubs | `/primary-care/`, `/medical-weight-loss/` | `/es/atencion-primaria/`, `/es/perdida-de-peso-medica/` |
-| 2 | Rehab hub + IV | `/physical-rehabilitation/`, `/iv-therapy/` (✅ IV done) | `/es/fisioterapia/`, `/es/terapia-iv/` (✅) |
+| 2 | Rehab hub + IV | `/physical-rehabilitation/` (✅ done), `/iv-therapy/` (✅ done) | `/es/fisioterapia/`, `/es/terapia-iv/` (✅) |
 | 3 | Core rehab | `/chiropractor/`, `/massage-therapy/` | `/es/quiropractico/`, `/es/terapia-de-masajes/` |
 | 4 | Therapy | `/therapeutic-exercises/`, `/therapeutic-ultrasound-treatment/` | `/es/ejercicios-terapeuticos/`, `/es/tratamiento-de-ultrasonido-terapeutico/` |
-| 5 | Auto accident I | `/car-accident-rehabilitation/`, `/auto-accident-injury-clinic/` | `/es/rehabilitacion-de-accidentes-automovilisticos/`, `/es/clinica-de-lesiones-por-accidentes-de-auto/` |
-| 6 | Auto accident II | `/car-accident-treatment/`, `/car-accident-physical-therapy/` | `/es/tratamiento-de-accidentes-de-auto/`, `/es/fisioterapia-para-accidente-de-auto/` |
-| 7 | Auto accident III | `/car-accident-chiropractor/`, `/whiplash-treatment-tampa/` | `/es/quiropractico-para-accidente-de-auto/`, `/es/tratamiento-latigazo-cervical-tampa/` |
+| 5 | Auto accident I | `/car-accident-rehabilitation/` (✅), `/auto-accident-injury-clinic/` (✅) | `/es/rehabilitacion-de-accidentes-automovilisticos/`, `/es/clinica-de-lesiones-por-accidentes-de-auto/` (✅) |
+| 6 | Auto accident II | `/car-accident-treatment/` (✅), `/car-accident-physical-therapy/` (pending) | `/es/tratamiento-de-accidentes-de-auto/` (✅), `/es/fisioterapia-para-accidente-de-auto/` (pending) |
+| 7 | Auto accident III | `/car-accident-chiropractor/` (✅), `/whiplash-treatment-tampa/` (pending) | `/es/quiropractico-para-accidente-de-auto/` (✅), `/es/tratamiento-latigazo-cervical-tampa/` (pending) |
 | 8 | Slip & fall + cities | `/slip-and-fall-injury-treatment/` + city cluster (`/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/`) as one template | ES cluster |
 | 9 | About + Contact | `/about-us/`, `/contact/` | `/es/acerca-de-nosotros/`, `/es/contacto/` |
 | 10 | Blog + misc | `/news-blog/` (+ post template), `/business-profiles/` | `/es/blog-de-noticias/` |
@@ -61,10 +61,11 @@ flow), with pricing corrected to Optantra truth.
 
 ## Per-group workflow
 
-1. Read the legacy content (`richpages.json` blocks) for the 2 pages.
-2. Draft corrected bilingual content into `servicePages.ts` (or the relevant data file).
-3. Create the dedicated Astro pages (EN + ES) using the bespoke component for that page.
-4. Add the 2 pages' paths to the `migrated` `Set` in `[...slug].astro` (×2 for ES).
+1. Read the legacy content (`richpages.json` blocks) for the pages, plus `docs/optimantra-services.md`.
+2. Build the bespoke component under `src/components/pages/<Page>.astro`, holding the bilingual
+   copy inline in its `content` object (EN + ES).
+3. Create/wrap the dedicated Astro routes (EN + ES).
+4. Add the pages' paths to the `migrated` `Set` in `[...slug].astro` when they exist in `richpages.json`.
 5. `npm run build` → verify routes still 200, no orphan/broken links, hreflang intact.
 6. Screenshot/QA pass (desktop + mobile) in one batched round.
 7. Report + move to next group.
@@ -77,17 +78,24 @@ flow), with pricing corrected to Optantra truth.
       `/preventive-care/`, `/telemedicine/`, `/membership/` (+ ES), built one page at a time in
       the approved language, each with its own component under `src/components/pages/`.
       The 4 nested children were flattened to top level (new URLs, so no redirects were needed).
-- [ ] Group 2 — `/physical-rehabilitation/` + `/es/fisioterapia/` still on the legacy body
-      (IV Therapy, the other half of the group, is already redesigned)
-- [ ] Groups 3–12
+- [x] Group 2 — `/physical-rehabilitation/` + `/es/fisioterapia/` (`PhysicalRehabilitationPage.astro`,
+      commit `1fed483`); `/iv-therapy/` was already redesigned.
+- [x] Group 5 — `/car-accident-rehabilitation/` + `/auto-accident-injury-clinic/` (+ ES)
+      (`CarAccidentRehabilitationPage.astro` `7e53823`, `AutoAccidentInjuryClinicPage.astro` `b68ac95`).
+- [ ] Group 6 — `/car-accident-treatment/` done (`CarAccidentTreatmentPage.astro` `b68ac95`);
+      **`/car-accident-physical-therapy/` (+ ES) pending**.
+- [ ] Group 7 — `/car-accident-chiropractor/` done (`CarAccidentChiropractorPage.astro` `b68ac95`);
+      **`/whiplash-treatment-tampa/` (+ ES) pending**.
+- [ ] Groups 3, 4 and 8–12 — still on the legacy body.
 
-**Per-page workflow actually used for the Primary Care family** (repeat for the next groups):
+**Per-page workflow actually used** (repeat for the next groups):
 
 1. Research two direct Tampa competitors for that service (structure and intent, never copy).
-2. Read the legacy content for the page + `docs/optimantra-services.md` for prices.
-3. Build the bespoke EN component in the approved language (hero + `AnchorNav` + 11–13 sections,
+2. Read the legacy content for the page (`richpages.json`) + `docs/optimantra-services.md` for prices.
+3. Build the bespoke EN component in the approved language (hero + `AnchorNav` + 11–15 sections,
    alternating light and `blue-deep` bands, FAQ, transport, final CTA).
-4. Wrap EN/ES routes as ~23-line files (`Layout` → `TopBar` → `Header` → `main` → `Footer`).
+4. Wrap EN/ES routes as ~23-line files (`Layout` → `TopBar` → `Header` → `main` → `Footer`), and add
+   the paths to the `migrated` `Set` in `[...slug].astro` when the path exists in `richpages.json`.
 5. `npm run build` → **273 pages**; audit EN/ES at 360·412·768·1024·1440 with `tools/qa/cdp-pc.ps1`
    (overflow, H1, image dimensions, clipped text, anchor clicks); review screenshots.
 6. Commit + push (Vercel deploys), then verify the live pages over HTTP.

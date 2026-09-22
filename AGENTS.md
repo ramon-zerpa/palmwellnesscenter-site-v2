@@ -4,7 +4,7 @@ Memoria operativa de **palmwellness.center (v2)**. Léelo antes de tocar nada: c
 decisiones que ya se tomaron, por qué se tomaron, y los errores que ya se cometieron para no
 repetirlos. Si eres un agente nuevo, este archivo más `docs/` te ahorran empezar de cero.
 
-Última verificación de los datos de este archivo: **2026-09-21**.
+Última verificación de los datos de este archivo: **2026-09-22**.
 
 ---
 
@@ -44,7 +44,7 @@ npm run preview
 La razón por la que ya no hay paso manual: el proyecto está **conectado a GitHub**
 (`ramon-zerpa/palmwellnesscenter-site-v2`, framework `astro`, **rama de producción `main`**), así
 que un push a `main` produce un deployment de producción automáticamente. Para comprobar que
-salió, consulta la API (ver sección 9) en vez de fiarte de la consola.
+salió, usa `vercel ls palmwellnesscenter-site-v2` (ver sección 9) en vez de fiarte de la consola.
 
 **No existe `lint`, `typecheck` ni `test`.** No los inventes. La verificación real es:
 `npm run build` (el build **rompe** ante un icono desconocido y ante referencias mal formadas)
@@ -108,7 +108,9 @@ migrada o no**:
 **Cómo se migra una página a diseño nuevo**: **NO se borra la entrada de `richpages.json`.**
 Se añade la ruta al `Set` llamado `migrated` dentro de `getStaticPaths()` de `[...slug].astro`.
 Así la entrada vieja queda como archivo histórico y el catch-all la ignora. Migradas hoy:
-`/primary-care/`, `/es/atencion-primaria/`, `/medical-weight-loss/`, `/es/perdida-de-peso-medica/`.
+`/primary-care/`, `/medical-weight-loss/`, `/physical-rehabilitation/`,
+`/car-accident-rehabilitation/`, `/car-accident-treatment/`, `/auto-accident-injury-clinic/`,
+`/car-accident-chiropractor/` y sus espejos ES.
 
 Ojo: **el `Set` `migrated` solo hace falta para rutas que existen en `richpages.json`.** Las otras
 cinco páginas del grupo de Atención Primaria (`/iv-therapy/`, `/chronic-condition-management/`,
@@ -283,7 +285,7 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 
 ---
 
-## 8. Estado actual (2026-09-21)
+## 8. Estado actual (2026-09-22)
 
 **Hecho**
 
@@ -302,6 +304,14 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   link bueno, 0 con el viejo).
 - **`src/components/SimplePage.astro` y `src/data/newPages.ts` eliminados**: al cerrar el grupo
   ninguna ruta los importaba. Nadie debe recrearlos.
+- **Grupo 2 cerrado, EN+ES.** El hub `/physical-rehabilitation/` (+ `/es/fisioterapia/`) tiene
+  componente propio (`PhysicalRehabilitationPage.astro`, commit `1fed483`); `/iv-therapy/` ya estaba
+  rediseñada.
+- **Familia de accidentes de auto rediseñada, EN+ES** (commits `7e53823` y `b68ac95`):
+  `/car-accident-rehabilitation/`, `/car-accident-treatment/`, `/auto-accident-injury-clinic/` y
+  `/car-accident-chiropractor/` con sus espejos ES. Las tarjetas de "Treatment options" y
+  "Our services" **enlazan** a las páginas de servicio (`/chiropractor/`,
+  `/physical-rehabilitation/`, `/massage-therapy/`, …), no son texto suelto.
 - Header, TopBar y Footer nuevos, con el contenedor único de 1200px; familia única de iconos
   (Lucide), `AnchorNav`, sistema de hover y primitivas de movimiento del hero, todo reutilizable.
 - Héroes con imagen a la derecha: entrada completa por desplazamiento de derecha a izquierda (no
@@ -312,17 +322,20 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 - Pencil: frame **`EnF3Q` (Primary Care Desktop)** construido y aprobado por el cliente.
 - `AGENTS.md`, `README.md`, `docs/` y el harness CDP versionado en `tools/qa/`.
 - Preview **no indexable**: `robots.txt` con `Disallow: /` + header `X-Robots-Tag` (ver § 9).
-- Último commit funcional publicado: `ec9d1bc Fix the appointment booking link everywhere`.
+- Último commit funcional publicado: `b68ac95 Add bespoke Car Accident Treatment, Auto Accident
+  Injury Clinic and Car Accident Chiropractor pages (EN/ES)`.
   Consulta `docs/PROJECT-HANDOFF.md` (estado canónico) y `docs/SESSION-HANDOFF.md` (brief de
   arranque de sesión) antes de tocar código.
 
 **Siguiente**
 
-1. **Grupo 2 (parcial):** el hub `/physical-rehabilitation/` (+ `/es/fisioterapia/`) todavía usa el
-   cuerpo heredado. `/iv-therapy/` de ese mismo grupo ya está rediseñada. Diseñar el desktop en
-   Pencil si se va a usar como referencia visual y construir su componente propio
-   (`PhysicalRehabilitationPage.astro`) siguiendo el estándar de Homepage/Primary Care.
-2. Grupos 3-12 de `docs/redesign-plan.md` (rehabilitación, accidentes, legal, blog…).
+1. **Cerrar los grupos 6 y 7** de `docs/redesign-plan.md`: faltan `/car-accident-physical-therapy/`
+   (+ ES) y `/whiplash-treatment-tampa/` (+ ES). El grupo 5 está cerrado
+   (`/car-accident-rehabilitation/` y `/auto-accident-injury-clinic/` hechos) y las mitades ya hechas
+   de 6 y 7 son `/car-accident-treatment/` y `/car-accident-chiropractor/`.
+2. **Grupos 3 y 4**: `/chiropractor/`, `/massage-therapy/`, `/therapeutic-exercises/` y
+   `/therapeutic-ultrasound-treatment/` (+ ES), todavía con el cuerpo heredado.
+3. Grupos 8-12 (slip & fall + clúster de ciudades, About/Contact, blog, legal).
 
 **Pendiente / bloqueado**
 
@@ -354,12 +367,14 @@ plan **hobby**), framework `astro`, rama de producción `main`. Conectado a
 Comprobar el último deploy sin fiarse de la consola:
 
 ```powershell
-$tok = (Get-Content "$env:APPDATA\com.vercel.cli\Data\auth.json" -Raw | ConvertFrom-Json).token
-$h = @{ Authorization = "Bearer $tok" }
-$p = Invoke-RestMethod "https://api.vercel.com/v9/projects/palmwellnesscenter-site-v2" -Headers $h
-Invoke-RestMethod "https://api.vercel.com/v6/deployments?projectId=$($p.id)&limit=3&target=production" -Headers $h |
-  ForEach-Object { $_.deployments | Select-Object url, readyState, created }
+vercel ls palmwellnesscenter-site-v2
 ```
+
+Usa el auth del propio CLI, que se auto-refresca. **No llames a la REST API con el
+`token` de `auth.json`**: desde Vercel CLI v50 ese archivo guarda un OAuth token
+rotativo con `expiresAt`, y cuando está vencido la API responde
+`{"invalidToken":true}`. El `.env.local` tampoco sirve para esto: contiene un
+`VERCEL_OIDC_TOKEN` efímero de `vercel env pull`/`vercel dev`, no un token de API.
 
 ### Este sitio NO debe ser indexado ni visto por nadie más
 
@@ -449,7 +464,8 @@ para no añadir esa fricción. Consecuencia aceptada: cualquiera con el enlace p
   DNS deja el formulario y los redirects sin funcionar en el dominio nuevo.
 - Variables de entorno que necesita el formulario: `TURNSTILE_SECRET_KEY`, `MAILGUN_API_KEY`,
   `MAILGUN_DOMAIN`, `MAILGUN_FROM`, `MAILGUN_TO` (opcional `MAILGUN_BCC`), más
-  `PUBLIC_TURNSTILE_SITE_KEY` para el widget. Hoy el `.env.local` solo tiene el token de Vercel.
+  `PUBLIC_TURNSTILE_SITE_KEY` para el widget. Hoy el `.env.local` solo tiene un
+  `VERCEL_OIDC_TOKEN` efímero (de `vercel env pull`), **no** las claves de Mailgun ni de Turnstile.
 
 ---
 

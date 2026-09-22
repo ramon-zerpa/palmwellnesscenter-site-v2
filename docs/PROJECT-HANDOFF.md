@@ -1,7 +1,7 @@
 # Palm Wellness Center — Project Handoff
 
-**Updated:** 2026-09-21  
-**Last published commit:** `ec9d1bc Fix the appointment booking link everywhere`  
+**Updated:** 2026-09-22  
+**Last published commit:** `b68ac95 Add bespoke Car Accident Treatment, Auto Accident Injury Clinic and Car Accident Chiropractor pages (EN/ES)`  
 **Branch:** `main` · a push to `origin main` deploys automatically through Vercel.
 
 Read this after `AGENTS.md` at the beginning of a new session. It is the concise, current
@@ -30,6 +30,21 @@ visual language, with its own content and photography:
 | `/telemedicine/` | `/es/telemedicina/` | `TelemedicinePage.astro` |
 | `/membership/` | `/es/membresia/` | `MembershipPage.astro` |
 
+**Group 2 is closed** (`/physical-rehabilitation/` + `/es/fisioterapia/`,
+`PhysicalRehabilitationPage.astro`), and **the car accident family is redesigned in EN + ES**:
+
+| EN | ES | Component |
+|---|---|---|
+| `/car-accident-rehabilitation/` | `/es/rehabilitacion-de-accidentes-automovilisticos/` | `CarAccidentRehabilitationPage.astro` |
+| `/car-accident-treatment/` | `/es/tratamiento-de-accidentes-de-auto/` | `CarAccidentTreatmentPage.astro` |
+| `/auto-accident-injury-clinic/` | `/es/clinica-de-lesiones-por-accidentes-de-auto/` | `AutoAccidentInjuryClinicPage.astro` |
+| `/car-accident-chiropractor/` | `/es/quiropractico-para-accidente-de-auto/` | `CarAccidentChiropractorPage.astro` |
+
+On the treatment and clinic pages the "Treatment options" and "Our services" cards **link** to the
+matching service pages (`/chiropractor/`, `/physical-rehabilitation/`, `/massage-therapy/`,
+`/therapeutic-exercises/`, `/therapeutic-ultrasound-treatment/`, `/car-accident-chiropractor/`);
+they are not plain text. Keep that behavior on future pages.
+
 Use Homepage and Primary Care as the visual and interaction reference for future bespoke pages.
 Keep each page's content, photo and information hierarchy specific to its service; do not turn
 them into one generic page template.
@@ -38,9 +53,10 @@ The Primary Care children that used to be nested under `/primary-care/` were **f
 level** (they are new URLs, so no redirects were needed) and `SimplePage.astro` +
 `src/data/newPages.ts` were deleted once no route imported them.
 
-The next planned migration is **Group 2**: `/physical-rehabilitation/` (+ `/es/fisioterapia/`),
-which still renders the legacy body. IV Therapy, the other half of that group, is already
-redesigned. See `docs/redesign-plan.md`.
+The next planned migration is the **remaining halves of Groups 6 and 7**:
+`/car-accident-physical-therapy/` (+ ES) and `/whiplash-treatment-tampa/` (+ ES). Then Groups 3
+and 4 (`/chiropractor/`, `/massage-therapy/`, `/therapeutic-exercises/`,
+`/therapeutic-ultrasound-treatment/`). See `docs/redesign-plan.md`.
 
 ## 2. Approved global UI decisions
 
@@ -97,6 +113,23 @@ All are optimized WebP assets under `public/images/` and are already wired into 
 | `primary-care-membership.webp` | Preventive “who it's for”; Membership hero | Diverse group with a clinician. |
 | `patient-transportation-assistance.webp` | Transportation block on every page | Replaced former taxi/car image in an earlier approved session. |
 
+Rehabilitation and car accident imagery added with Group 2 and the car accident family:
+
+| Asset | Used by | Notes |
+|---|---|---|
+| `top-physical-rehabilitation-clinic-in-tampa-bay-min.jpg` | Physical Rehabilitation hero | Landscape; verify focal point per the hero standard. |
+| `what-is-a-slip-and-fall-accident.webp` | Physical Rehabilitation section | Fall-injury illustration. |
+| `comprehensive-physical-therapy-for-car-accident-victims-in-tampa.webp` | Car Accident Rehabilitation | Therapy scene. |
+| `auto-accident-rehabilitation-in-tampa-fl.webp` | Physical Rehabilitation; Auto Accident Injury Clinic | Rehabilitation session. |
+| `car-accident-treatment-background.webp` | Car Accident Treatment hero | Landscape; content left / photo right. |
+| `delayed-injury-symptoms-after-a-car-accident.webp` | Car Accident Treatment section | Delayed-symptom context. |
+| `integrated-wellness-services-chiropractor.webp` | Car Accident Treatment section | Clinic services. |
+| `how-to-find-doctor-after-a-car-accident-main-banner.webp` | Auto Accident Injury Clinic hero | Landscape banner. |
+| `how-to-find-doctor-after-a-car-accident-inner-image.webp` | Car Accident Chiropractor section | Supporting scene. |
+| `auto-accident-injury-background.webp` | Car Accident Chiropractor hero | Landscape; content left / photo right. |
+| `chiropractor-tampa-conditions-we-treat.webp` | Car Accident Chiropractor section | Conditions context. |
+| `trust-palm-wellness-center-for-auto-accident-injuries.webp` | Car Accident Rehabilitation and Auto Accident Injury Clinic trust | Consultation scene. |
+
 **Avoid assets that are graphics with baked-in text** (for example
 `osteoporosis-prevention-management-man-knee-pain.webp` carries a printed headline and a brand
 band): cropping them to a hero or section box cuts the text and looks like a layout bug. Open the
@@ -129,12 +162,14 @@ The full business name is immutable in title tags: **Palm Wellness Center**. Do 
 ## 6. Recent verification and performance context
 
 - `npm run build` passes with **273 pages**.
-- Every page of the Primary Care family was audited in EN/ES at 360·412·768·1024·1440: zero
-  horizontal overflow, one H1, no clipped text, no images missing dimensions, anchor clicks never
-  write a hash into the URL.
+- Every page of the Primary Care family, Physical Rehabilitation and the car accident family was
+  audited in EN/ES at 360·412·768·1024·1440: zero horizontal overflow, one H1, no clipped text, no
+  images missing dimensions, anchor clicks never write a hash into the URL.
 - The appointment booking link was verified in production after `ec9d1bc`: **273/273 pages** carry
   the canonical URL, and there is **zero** occurrence of the old corrupt `lid` or the legacy V1
   endpoint in `src` or `dist`.
+- The car accident family was verified live after `b68ac95`: the redesigned pages and their linked
+  service cards were confirmed over HTTP on the preview.
 - The user reported PageSpeed Insights results of **97 mobile / 100 desktop** for the preview
   homepage. Treat those as the current performance reference. A local Lighthouse attempt was
   contaminated by the machine's AdBlock360 injection, so do not use it as a baseline or change
@@ -154,13 +189,13 @@ npm run build
 .\tools\qa\cdp-pc.ps1 -Urls @("/primary-care/","/es/atencion-primaria/") `
   -Widths @(360,412,768,1024,1440) -Mode audit
 
-# For any page of the Primary Care family, point -Urls at its EN/ES pair, e.g.
-.\tools\qa\cdp-pc.ps1 -Urls @("/membership/","/es/membresia/") `
+# For any redesigned page, point -Urls at its EN/ES pair, e.g.
+.\tools\qa\cdp-pc.ps1 -Urls @("/car-accident-treatment/","/es/tratamiento-de-accidentes-de-auto/") `
   -Widths @(360,412,768,1024,1440) -Mode audit
 
 # Anchor behaviour (must not write a hash into the URL) and screenshots.
-.\tools\qa\cdp-pc.ps1 -Urls @("/membership/") -Widths @(390,1440) -Mode click
-.\tools\qa\cdp-pc.ps1 -Urls @("/membership/") -Widths @(1440) -Mode shots -ScrollY @(0,1600,3200)
+.\tools\qa\cdp-pc.ps1 -Urls @("/car-accident-treatment/") -Widths @(390,1440) -Mode click
+.\tools\qa\cdp-pc.ps1 -Urls @("/car-accident-treatment/") -Widths @(1440) -Mode shots -ScrollY @(0,1600,3200)
 ```
 
 For the broad checklist, required breakpoints and Windows/PowerShell gotchas, follow `AGENTS.md`
@@ -168,8 +203,10 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
 
 ## 8. Important unresolved work
 
-1. Redesign Groups 2–12 per `docs/redesign-plan.md`; the immediate page is
-   `/physical-rehabilitation/` (+ `/es/fisioterapia/`), which still uses the legacy body.
+1. Redesign Groups 3–12 per `docs/redesign-plan.md`; the immediate pages are
+   `/car-accident-physical-therapy/` (+ ES) and `/whiplash-treatment-tampa/` (+ ES) to close
+   Groups 6 and 7, then `/chiropractor/`, `/massage-therapy/`, `/therapeutic-exercises/` and
+   `/therapeutic-ultrasound-treatment/` (Groups 3 and 4).
 2. Interior pages still rendered through `RichPage`/`RichSection` retain legacy body design even
    though they inherit the current header/footer and icons.
 3. The Contact form is **404 in Vercel production** because `functions/api/contact.ts` is a
@@ -200,4 +237,7 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
 - Icons: Lucide only through `src/lib/lucide.ts` and `src/components/Icon.astro`; never hand-code
   SVG.
 - Commit/push: only when explicitly requested. “Commit local” means no push; “commit and push”
-  means push `main` and let Vercel deploy. Never use a manual `vercel deploy`.
+  means push `main` and let Vercel deploy. Never use a manual `vercel deploy`. Check the result
+  with `vercel ls palmwellnesscenter-site-v2` (the CLI auth self-refreshes); do **not** call the
+  Vercel REST API with the `token` in `auth.json` (rotating OAuth → `invalidToken`) or with the
+  ephemeral `VERCEL_OIDC_TOKEN` in `.env.local`.

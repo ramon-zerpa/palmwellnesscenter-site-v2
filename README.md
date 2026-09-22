@@ -77,7 +77,9 @@ src/
     HomePage.astro      homepage
     pages/              páginas rediseñadas a medida (PrimaryCarePage, MedicalWeightLossPage,
                         IvTherapyPage, ChronicConditionManagementPage, PreventiveCarePage,
-                        TelemedicinePage, MembershipPage)
+                        TelemedicinePage, MembershipPage, PhysicalRehabilitationPage,
+                        CarAccidentRehabilitationPage, CarAccidentTreatmentPage,
+                        AutoAccidentInjuryClinicPage, CarAccidentChiropractorPage)
     RichPage.astro      renderizador del cuerpo heredado (richpages.json)
     RichSection.astro   primitivas del cuerpo heredado
     BlogIndex.astro, BlogPost.astro, ContactPage.astro, ContactForm.astro
@@ -181,7 +183,9 @@ git push origin main    # publica: Vercel despliega solo
 ```
 
 No lances `vercel deploy` a mano: crearía un deployment huérfano que no corresponde a ningún
-commit.
+commit. Para comprobar el último deploy usa `vercel ls palmwellnesscenter-site-v2` (auth del CLI,
+auto-refrescante); **no** llames a la REST API con el token de `auth.json` (OAuth rotativo) ni con
+el `VERCEL_OIDC_TOKEN` efímero de `.env.local`.
 
 > **El sitio es un preview y no debe indexarse.** Está aplicado: `public/robots.txt` sirve
 > `Disallow: /` y `vercel.json` fuerza el header `X-Robots-Tag: noindex, nofollow, noarchive`.

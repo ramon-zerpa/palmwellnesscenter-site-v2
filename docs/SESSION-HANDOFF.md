@@ -1,6 +1,6 @@
 # SESSION-HANDOFF — brief de arranque
 
-**Snapshot: 2026-09-21** · último commit publicado `ec9d1bc` · rama `main`
+**Snapshot: 2026-09-22** · último commit publicado `b68ac95` · rama `main`
 
 > Pega este archivo (o su ruta) al empezar un chat nuevo. Es autosuficiente, pero **la referencia
 > vinculante es `AGENTS.md`** y el estado canónico está en `docs/PROJECT-HANDOFF.md`. Si algo
@@ -25,7 +25,7 @@ como segunda línea. El sitio viejo (WordPress/Oxygen) sigue en el dominio final
 
 ---
 
-## 2. Estado: la familia de Atención Primaria está cerrada (EN+ES)
+## 2. Estado actual
 
 Cada página es un componente propio bajo `src/components/pages/`; las rutas EN/ES son wrappers de
 ~23 líneas (`Layout` → `TopBar` → `Header` → `main` → `Footer`).
@@ -40,41 +40,55 @@ Cada página es un componente propio bajo `src/components/pages/`; las rutas EN/
 | `/preventive-care/` | `/es/atencion-preventiva/` | `PreventiveCarePage.astro` |
 | `/telemedicine/` | `/es/telemedicina/` | `TelemedicinePage.astro` |
 | `/membership/` | `/es/membresia/` | `MembershipPage.astro` |
+| `/physical-rehabilitation/` | `/es/fisioterapia/` | `PhysicalRehabilitationPage.astro` |
+| `/car-accident-rehabilitation/` | `/es/rehabilitacion-de-accidentes-automovilisticos/` | `CarAccidentRehabilitationPage.astro` |
+| `/car-accident-treatment/` | `/es/tratamiento-de-accidentes-de-auto/` | `CarAccidentTreatmentPage.astro` |
+| `/auto-accident-injury-clinic/` | `/es/clinica-de-lesiones-por-accidentes-de-auto/` | `AutoAccidentInjuryClinicPage.astro` |
+| `/car-accident-chiropractor/` | `/es/quiropractico-para-accidente-de-auto/` | `CarAccidentChiropractorPage.astro` |
 
-Hecho además en la última sesión:
+Hitos recientes:
 
-- Los 4 hijos de Primary Care se **aplanaron a primer nivel** (rutas nuevas → no hicieron falta
-  redirects): `/membership/`, `/preventive-care/`, `/telemedicine/`, `/chronic-condition-management/`.
-- `src/components/SimplePage.astro` y `src/data/newPages.ts` **eliminados** (código muerto).
-  **No recrearlos**; todas sus rutas ya tienen página propia.
-- **Link de reserva corregido en las 88 apariciones del sitio** (`ec9d1bc`): `lid` corrupto
-  corregido, 5 copias hardcodeadas eliminadas, 82 enlaces heredados migrados del endpoint V1 al
-  canónico. Verificado en producción.
+- **Atención Primaria cerrada, EN+ES.** Los 4 hijos anidados se **aplanaron a primer nivel**
+  (`/membership/`, `/preventive-care/`, `/telemedicine/`, `/chronic-condition-management/`; rutas
+  nuevas → sin redirects). `src/components/SimplePage.astro` y `src/data/newPages.ts`
+  **eliminados**; no recrearlos.
+- **Link de reserva corregido en las 88 apariciones del sitio** (`ec9d1bc`). `APPOINTMENT_URL` es la
+  única fuente: se importa, nunca se copia.
+- **Grupo 2 cerrado** (`1fed483`): `/physical-rehabilitation/` + `/es/fisioterapia/`.
+- **Familia de accidentes rediseñada, EN+ES** (`7e53823`, `b68ac95`): el hub de rehabilitación, la
+  clínica de lesiones, el tratamiento y el quiropráctico. Sus tarjetas de "Treatment options" y
+  "Our services" **enlazan** a las páginas de servicio (`/chiropractor/`, `/physical-rehabilitation/`,
+  `/massage-therapy/`, …).
+- Las 6 rutas nuevas se añadieron al `Set` `migrated` de `src/pages/[...slug].astro` (×2 por idioma).
 
 ---
 
 ## 3. Próximo paso exacto
 
-**Grupo 2 (parcial): el hub `/physical-rehabilitation/` (+ `/es/fisioterapia/`).**
-Hoy usa el cuerpo heredado (`RichPage`/`RichSection`). IV Therapy, la otra mitad del grupo, ya está
-rediseñada.
+**Cerrar los grupos 6 y 7 de `docs/redesign-plan.md`.** Ya están hechas las mitades
+`/car-accident-treatment/` y `/car-accident-chiropractor/`; faltan:
 
-Procedimiento que funcionó para las 5 últimas páginas:
+- **Grupo 6**: `/car-accident-physical-therapy/` (+ `/es/fisioterapia-para-accidente-de-auto/`).
+- **Grupo 7**: `/whiplash-treatment-tampa/` (+ `/es/tratamiento-latigazo-cervical-tampa/`).
+
+Después: **grupos 3 y 4** (`/chiropractor/`, `/massage-therapy/`, `/therapeutic-exercises/`,
+`/therapeutic-ultrasound-treatment/` + ES), y luego grupos 8-12.
+
+Procedimiento que funciona:
 
 1. **Investigación**: abre 2 competidores directos de Tampa del mismo servicio (estructura e
    intención; nunca copiar diseño).
-2. **Contenido**: lee el contenido heredado de la página + `docs/optimantra-services.md` (precios).
-3. **Componente**: crea `src/components/pages/PhysicalRehabilitationPage.astro` con `lang` y un
-   objeto `content` con `en`/`es`. Estructura probada: hero (contenido izq. / imagen der. + rail) →
-   `AnchorNav` → intro con comparativa → 8 tarjetas → banda oscura de pasos → sección de precios →
-   banda oscura integrada → confianza+horario+ubicación+supervisor → pasos → transporte → FAQ →
-   área → CTA final. Alterna ~3 secciones claras por cada `bg-blue-deep`.
-4. **Wrappers**: reescribe `src/pages/physical-rehabilitation.astro` y
-   `src/pages/es/fisioterapia.astro`.
-5. **Build** → debe dar **273**. **QA**: auditoría EN/ES a 360·412·768·1024·1440 + click + capturas.
-6. **Commit y push** → Vercel despliega solo; verifica con la API y por HTTP.
-
-Después: Grupos 3–12 de `docs/redesign-plan.md` (rehabilitación, accidentes, legal, blog…).
+2. **Contenido**: lee el contenido heredado de la página (`richpages.json`) + `docs/optimantra-services.md` (precios).
+3. **Componente**: crea `src/components/pages/<X>Page.astro` con `lang` y un objeto `content` con
+   `en`/`es`. Estructura probada: hero (contenido izq. / imagen der. + rail) → `AnchorNav` →
+   secciones alternando `bg-white`/`bg-bg-alt`/`bg-blue-deep` (≈3 claras por cada oscura) →
+   confianza+horario+ubicación+supervisor → transporte → FAQ → área → CTA final. Las secciones con
+   `id` usan `scroll-mt-24 lg:scroll-mt-[184px]`.
+4. **Wrappers**: crea/reescribe las rutas EN y ES como archivos de ~23 líneas.
+5. **Catch-all**: añade las rutas al `Set` `migrated` de `[...slug].astro` **solo si la ruta existe
+   en `richpages.json`**.
+6. **Build** → debe dar **273**. **QA**: auditoría EN/ES a 360·412·768·1024·1440 + click + capturas.
+7. **Commit y push** → Vercel despliega solo; verifica con `vercel ls` y por HTTP.
 
 ---
 
@@ -86,10 +100,10 @@ npm run build                        # debe dar 273 páginas
 npm run preview
 
 # QA (requiere el dev server levantado)
-.\tools\qa\cdp-pc.ps1 -Urls @("/physical-rehabilitation/","/es/fisioterapia/") `
+.\tools\qa\cdp-pc.ps1 -Urls @("/car-accident-treatment/","/es/tratamiento-de-accidentes-de-auto/") `
                       -Widths @(360,412,768,1024,1440) -Mode audit
-.\tools\qa\cdp-pc.ps1 -Urls @("/physical-rehabilitation/") -Widths @(390,1440) -Mode click
-.\tools\qa\cdp-pc.ps1 -Urls @("/physical-rehabilitation/") -Widths @(1440) -Mode shots -ScrollY @(0,1200,2400)
+.\tools\qa\cdp-pc.ps1 -Urls @("/car-accident-treatment/") -Widths @(390,1440) -Mode click
+.\tools\qa\cdp-pc.ps1 -Urls @("/car-accident-treatment/") -Widths @(1440) -Mode shots -ScrollY @(0,1200,2400)
 ```
 
 **No existe `lint`, `typecheck` ni `test`.** No los inventes: el build + el harness CDP son la
@@ -99,8 +113,10 @@ Commit messages: PowerShell 5.1 no tiene heredocs → escribe el texto a un arch
 `git commit -F <archivo>`.
 
 Despliegue: **el push es el deploy.** `git commit` + `git push origin main`; Vercel despliega solo.
-Nunca `vercel deploy` a mano. Para comprobar el deploy, usa la API (ver § 9 de `AGENTS.md`) o HTTP,
-no la consola.
+Nunca `vercel deploy` a mano. Para comprobar el deploy usa `vercel ls palmwellnesscenter-site-v2`
+(auth del CLI, auto-refrescante) o HTTP, nunca la consola. **No** llames a la REST API con el
+`token` de `auth.json` (OAuth rotativo → `invalidToken`) ni con el `VERCEL_OIDC_TOKEN` de
+`.env.local` (efímero).
 
 ---
 
@@ -149,8 +165,9 @@ no la consola.
 - **`Set-Content -Encoding UTF8` escribe BOM** → nunca lo uses para archivos fuente.
 - **`rg` no está instalado** → usa `Select-String`.
 - **Páginas legacy de anclas**: el `Set` `migrated` de `[...slug].astro` **solo** hace falta para
-  rutas que existen en `richpages.json` (hoy: `/primary-care/`, `/medical-weight-loss/` + ES). Las
-  páginas nuevas que nunca estuvieron en el JSON no lo necesitan.
+  rutas que existen en `richpages.json` (hoy: las familias de Primary Care, Physical Rehabilitation
+  y Car Accident). Las páginas nuevas que nunca estuvieron en el JSON no lo necesitan.
+- **Comprobar el deploy**: `vercel ls`, no la REST API con el token de `auth.json` (ver §4).
 
 ---
 
@@ -177,7 +194,7 @@ no la consola.
 - `docs/redesign-plan.md` — los 12 grupos de migración + workflow.
 - `docs/optimantra-services.md` — precios y servicios reales (la verdad del negocio).
 - `src/components/HomePage.astro`, `src/components/pages/PrimaryCarePage.astro` — referencia visual.
-- `src/components/pages/*.astro` — las 7 páginas del grupo (plantilla de facto).
+- `src/components/pages/*.astro` — las 13 páginas bespoke (plantilla de facto).
 - `src/components/AnchorNav.astro`, `src/components/Icon.astro`, `src/lib/lucide.ts`.
 - `src/i18n/{ui,utils,altmap}.ts` — nav, rutas/`APPOINTMENT_URL`, mapa hreflang.
 - `src/styles/global.css` — tokens, breakpoints, `@layer`, primitivas del hero.
