@@ -23,6 +23,8 @@ export async function getStaticPaths() {
     "/es/perdida-de-peso-medica/",
     "/physical-rehabilitation/",
     "/es/fisioterapia/",
+    "/car-accident-rehabilitation/",
+    "/es/rehabilitacion-de-accidentes-automovilisticos/",
   ]);
   const resolvedRichPages = (richpages as any[])
     .filter((page) => !migrated.has(page.path))

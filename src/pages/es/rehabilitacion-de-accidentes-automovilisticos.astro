@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CarAccidentRehabilitationPage from "../../components/pages/CarAccidentRehabilitationPage.astro";
+
+const path = "/es/rehabilitacion-de-accidentes-automovilisticos/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Rehabilitación de Accidentes de Auto en Tampa, FL | Palm Wellness Center"
+  description="Recupérese de latigazo cervical, dolor de espalda, lesiones de tejidos blandos y más con rehabilitación de accidentes de auto en Tampa. Llame a Palm Wellness Center hoy."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <CarAccidentRehabilitationPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>
