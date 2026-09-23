@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import CarAccidentPhysicalTherapyPage from "../../components/pages/CarAccidentPhysicalTherapyPage.astro";
+
+const path = "/es/fisioterapia-para-accidente-de-auto/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Recupérate Después de un Accidente de Auto con Fisioterapia Experta - Palm Wellness Center"
+  description="Recupérate más rápido después de un accidente de auto con la fisioterapia experta de Palm Wellness Center en Tampa. Resultados comprobados y planes de tratamiento personalizados."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <CarAccidentPhysicalTherapyPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

@@ -1,7 +1,7 @@
 # Palm Wellness Center — Project Handoff
 
 **Updated:** 2026-09-22  
-**Last published commit:** `b68ac95 Add bespoke Car Accident Treatment, Auto Accident Injury Clinic and Car Accident Chiropractor pages (EN/ES)`  
+**Last published commit:** car accident family closed (Groups 6 and 7): `CarAccidentPhysicalTherapyPage.astro` and `WhiplashTreatmentPage.astro` (EN/ES), on top of `b68ac95`  
 **Branch:** `main` · a push to `origin main` deploys automatically through Vercel.
 
 Read this after `AGENTS.md` at the beginning of a new session. It is the concise, current
@@ -39,9 +39,12 @@ visual language, with its own content and photography:
 | `/car-accident-treatment/` | `/es/tratamiento-de-accidentes-de-auto/` | `CarAccidentTreatmentPage.astro` |
 | `/auto-accident-injury-clinic/` | `/es/clinica-de-lesiones-por-accidentes-de-auto/` | `AutoAccidentInjuryClinicPage.astro` |
 | `/car-accident-chiropractor/` | `/es/quiropractico-para-accidente-de-auto/` | `CarAccidentChiropractorPage.astro` |
+| `/car-accident-physical-therapy/` | `/es/fisioterapia-para-accidente-de-auto/` | `CarAccidentPhysicalTherapyPage.astro` |
+| `/whiplash-treatment-tampa/` | `/es/tratamiento-latigazo-cervical-tampa/` | `WhiplashTreatmentPage.astro` |
 
-On the treatment and clinic pages the "Treatment options" and "Our services" cards **link** to the
-matching service pages (`/chiropractor/`, `/physical-rehabilitation/`, `/massage-therapy/`,
+With Groups 6 and 7 closed, the **whole car accident family is redesigned**. On the treatment,
+clinic and whiplash pages the "Treatment options" / "Our services" cards **link** to the matching
+service pages (`/chiropractor/`, `/physical-rehabilitation/`, `/massage-therapy/`,
 `/therapeutic-exercises/`, `/therapeutic-ultrasound-treatment/`, `/car-accident-chiropractor/`);
 they are not plain text. Keep that behavior on future pages.
 
@@ -53,10 +56,9 @@ The Primary Care children that used to be nested under `/primary-care/` were **f
 level** (they are new URLs, so no redirects were needed) and `SimplePage.astro` +
 `src/data/newPages.ts` were deleted once no route imported them.
 
-The next planned migration is the **remaining halves of Groups 6 and 7**:
-`/car-accident-physical-therapy/` (+ ES) and `/whiplash-treatment-tampa/` (+ ES). Then Groups 3
-and 4 (`/chiropractor/`, `/massage-therapy/`, `/therapeutic-exercises/`,
-`/therapeutic-ultrasound-treatment/`). See `docs/redesign-plan.md`.
+The next planned migration is **Groups 3 and 4**: `/chiropractor/`, `/massage-therapy/`,
+`/therapeutic-exercises/` and `/therapeutic-ultrasound-treatment/` (+ ES). See
+`docs/redesign-plan.md`.
 
 ## 2. Approved global UI decisions
 
@@ -126,9 +128,20 @@ Rehabilitation and car accident imagery added with Group 2 and the car accident 
 | `integrated-wellness-services-chiropractor.webp` | Car Accident Treatment section | Clinic services. |
 | `how-to-find-doctor-after-a-car-accident-main-banner.webp` | Auto Accident Injury Clinic hero | Landscape banner. |
 | `how-to-find-doctor-after-a-car-accident-inner-image.webp` | Car Accident Chiropractor section | Supporting scene. |
-| `auto-accident-injury-background.webp` | Car Accident Chiropractor hero | Landscape; content left / photo right. |
+| `auto-accident-injury-background.webp` | Car Accident Chiropractor hero; Whiplash symptoms | Landscape; content left / photo right. |
 | `chiropractor-tampa-conditions-we-treat.webp` | Car Accident Chiropractor section | Conditions context. |
-| `trust-palm-wellness-center-for-auto-accident-injuries.webp` | Car Accident Rehabilitation and Auto Accident Injury Clinic trust | Consultation scene. |
+| `regular-therapy-sessions.webp` | Car Accident Rehabilitation trust | Therapy session; `object-top`. |
+| `medical-office-chiropractor-rehabilitating-patient-back.webp` | Car Accident Chiropractor trust | Adjustment scene; `object-top`. |
+| `conditions-we-treat-at-our-tampa-rehabilitation-clinic.webp` | Car Accident Physical Therapy trust | Therapy session; `object-top`. |
+| `therapist-examining-patient.jpg` | Whiplash treatment trust | Stretch scene; `object-top`. |
+| `integrated-wellness-services-chiropractor.webp` | Car Accident Treatment trust | Doctor with patient; `object-top`. |
+| `trust-palm-wellness-center-for-auto-accident-injuries.webp` | Auto Accident Injury Clinic trust | Driving scene; `object-top`. |
+| `comprehensive-physical-therapy-for-car-accident-victims-in-tampa.webp` | Car Accident Rehabilitation hero; Car Accident Physical Therapy hero | Man with neck pain by a car. |
+| `chiropractor-helping-his-patient.webp` | Car Accident Physical Therapy 14-day rule section | Consultation scene. |
+
+**The trust block image ("Professional and compassionate care you can trust") always uses
+`object-top`**, never `object-center`: the box is only 240/300px tall and a centered crop cuts the
+subjects' heads. This is the only image in the site with that rule.
 
 **Avoid assets that are graphics with baked-in text** (for example
 `osteoporosis-prevention-management-man-knee-pain.webp` carries a printed headline and a brand
@@ -170,6 +183,9 @@ The full business name is immutable in title tags: **Palm Wellness Center**. Do 
   endpoint in `src` or `dist`.
 - The car accident family was verified live after `b68ac95`: the redesigned pages and their linked
   service cards were confirmed over HTTP on the preview.
+- Groups 6 and 7 (`CarAccidentPhysicalTherapyPage`, `WhiplashTreatmentPage` + ES) were audited in
+  EN/ES at 360·412·768·1024·1440: clean, and the trust block images were confirmed to show heads
+  with `object-top`.
 - The user reported PageSpeed Insights results of **97 mobile / 100 desktop** for the preview
   homepage. Treat those as the current performance reference. A local Lighthouse attempt was
   contaminated by the machine's AdBlock360 injection, so do not use it as a baseline or change
@@ -204,9 +220,9 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
 ## 8. Important unresolved work
 
 1. Redesign Groups 3–12 per `docs/redesign-plan.md`; the immediate pages are
-   `/car-accident-physical-therapy/` (+ ES) and `/whiplash-treatment-tampa/` (+ ES) to close
-   Groups 6 and 7, then `/chiropractor/`, `/massage-therapy/`, `/therapeutic-exercises/` and
-   `/therapeutic-ultrasound-treatment/` (Groups 3 and 4).
+   `/chiropractor/`, `/massage-therapy/` (Group 3) and `/therapeutic-exercises/`,
+   `/therapeutic-ultrasound-treatment/` (Group 4), all with their ES mirrors. Groups 5, 6 and 7
+   (the whole car accident family) are closed.
 2. Interior pages still rendered through `RichPage`/`RichSection` retain legacy body design even
    though they inherit the current header/footer and icons.
 3. The Contact form is **404 in Vercel production** because `functions/api/contact.ts` is a

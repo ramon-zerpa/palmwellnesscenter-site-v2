@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import WhiplashTreatmentPage from "../components/pages/WhiplashTreatmentPage.astro";
+
+const path = "/whiplash-treatment-tampa/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Whiplash Treatment in Tampa, FL | Neck Pain & Injury Recovery"
+  description="Neck pain or stiffness after a car accident? Get whiplash treatment in Tampa focused on pain relief, mobility, and injury recovery. Call today."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <WhiplashTreatmentPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

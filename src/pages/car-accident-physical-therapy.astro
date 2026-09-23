@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CarAccidentPhysicalTherapyPage from "../components/pages/CarAccidentPhysicalTherapyPage.astro";
+
+const path = "/car-accident-physical-therapy/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Recover After a Car Accident with Expert Physical Therapy - Palm Wellness Center"
+  description="Recover faster after a car accident with Palm Wellness Center's expert physical therapy in Tampa. Proven results and personalized treatment plans. Schedule today!"
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <CarAccidentPhysicalTherapyPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

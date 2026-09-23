@@ -79,7 +79,8 @@ src/
                         IvTherapyPage, ChronicConditionManagementPage, PreventiveCarePage,
                         TelemedicinePage, MembershipPage, PhysicalRehabilitationPage,
                         CarAccidentRehabilitationPage, CarAccidentTreatmentPage,
-                        AutoAccidentInjuryClinicPage, CarAccidentChiropractorPage)
+                        AutoAccidentInjuryClinicPage, CarAccidentChiropractorPage,
+                        CarAccidentPhysicalTherapyPage, WhiplashTreatmentPage)
     RichPage.astro      renderizador del cuerpo heredado (richpages.json)
     RichSection.astro   primitivas del cuerpo heredado
     BlogIndex.astro, BlogPost.astro, ContactPage.astro, ContactForm.astro

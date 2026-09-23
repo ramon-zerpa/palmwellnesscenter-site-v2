@@ -1,6 +1,6 @@
 # SESSION-HANDOFF — brief de arranque
 
-**Snapshot: 2026-09-22** · último commit publicado `b68ac95` · rama `main`
+**Snapshot: 2026-09-22** · último commit de páginas `b68ac95` + cierre de grupos 6-7 · rama `main`
 
 > Pega este archivo (o su ruta) al empezar un chat nuevo. Es autosuficiente, pero **la referencia
 > vinculante es `AGENTS.md`** y el estado canónico está en `docs/PROJECT-HANDOFF.md`. Si algo
@@ -45,6 +45,8 @@ Cada página es un componente propio bajo `src/components/pages/`; las rutas EN/
 | `/car-accident-treatment/` | `/es/tratamiento-de-accidentes-de-auto/` | `CarAccidentTreatmentPage.astro` |
 | `/auto-accident-injury-clinic/` | `/es/clinica-de-lesiones-por-accidentes-de-auto/` | `AutoAccidentInjuryClinicPage.astro` |
 | `/car-accident-chiropractor/` | `/es/quiropractico-para-accidente-de-auto/` | `CarAccidentChiropractorPage.astro` |
+| `/car-accident-physical-therapy/` | `/es/fisioterapia-para-accidente-de-auto/` | `CarAccidentPhysicalTherapyPage.astro` |
+| `/whiplash-treatment-tampa/` | `/es/tratamiento-latigazo-cervical-tampa/` | `WhiplashTreatmentPage.astro` |
 
 Hitos recientes:
 
@@ -59,20 +61,27 @@ Hitos recientes:
   clínica de lesiones, el tratamiento y el quiropráctico. Sus tarjetas de "Treatment options" y
   "Our services" **enlazan** a las páginas de servicio (`/chiropractor/`, `/physical-rehabilitation/`,
   `/massage-therapy/`, …).
-- Las 6 rutas nuevas se añadieron al `Set` `migrated` de `src/pages/[...slug].astro` (×2 por idioma).
+- **Grupos 6 y 7 cerrados, EN+ES**: `/car-accident-physical-therapy/` (fisioterapia para accidentes
+  de auto) y `/whiplash-treatment-tampa/` (latigazo cervical), con componente propio cada una. Con
+  esto queda cerrada **toda** la familia de accidentes de auto.
+- Las 10 rutas migradas se añadieron al `Set` `migrated` de `src/pages/[...slug].astro` (×2 por idioma).
+- En el bloque de confianza ("Professional and compassionate care you can trust") la imagen va con
+  **`object-top`** en todas las páginas: es bajo (240/300px) y un `object-center` cortaba las
+  cabezas. Ver `AGENTS.md` § 6.
 
 ---
 
 ## 3. Próximo paso exacto
 
-**Cerrar los grupos 6 y 7 de `docs/redesign-plan.md`.** Ya están hechas las mitades
-`/car-accident-treatment/` y `/car-accident-chiropractor/`; faltan:
+**Grupos 3 y 4 de `docs/redesign-plan.md`** (mitad de rehabilitación restante), todavía con el
+cuerpo heredado:
 
-- **Grupo 6**: `/car-accident-physical-therapy/` (+ `/es/fisioterapia-para-accidente-de-auto/`).
-- **Grupo 7**: `/whiplash-treatment-tampa/` (+ `/es/tratamiento-latigazo-cervical-tampa/`).
+- **Grupo 3**: `/chiropractor/` (+ `/es/quiropractico/`) y `/massage-therapy/` (+ `/es/terapia-de-masajes/`).
+- **Grupo 4**: `/therapeutic-exercises/` (+ `/es/ejercicios-terapeuticos/`) y
+  `/therapeutic-ultrasound-treatment/` (+ `/es/tratamiento-de-ultrasonido-terapeutico/`).
 
-Después: **grupos 3 y 4** (`/chiropractor/`, `/massage-therapy/`, `/therapeutic-exercises/`,
-`/therapeutic-ultrasound-treatment/` + ES), y luego grupos 8-12.
+Ojo con `/therapeutic-exercises/`: ya tiene sustitución de contenido heredado
+(`src/data/therapeuticExercises.ts`). Después, grupos 8-12.
 
 Procedimiento que funciona:
 

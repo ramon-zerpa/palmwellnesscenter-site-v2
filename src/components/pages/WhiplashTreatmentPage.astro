@@ -1,0 +1,708 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Whiplash Treatment in Tampa",
+      title: "Whiplash treatment in Tampa",
+      lead: "Structured treatment focused on improving movement, reducing discomfort, and helping you recover safely after a car accident.",
+      chips: [
+        { icon: "spine", label: "Neck pain, stiffness and mobility" },
+        { icon: "stethoscope", label: "Chiropractic plus rehabilitation" },
+        { icon: "shield-check", label: "PIP may be available" },
+        { icon: "car", label: "Transportation assistance" },
+      ],
+      note: "Neck pain · Stiffness · Headaches · Limited range of motion",
+      image: "/images/how-to-find-doctor-after-a-car-accident-inner-image.webp",
+      imageAlt: "A man holding his neck beside damaged cars after a collision in Tampa",
+      rail: [
+        { value: "14 days", label: "PIP window in Florida" },
+        { value: "5 services", label: "Coordinated in one clinic" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "Treatment", href: "#treatment" },
+      { label: "Symptoms", href: "#symptoms" },
+      { label: "Why us", href: "#why" },
+      { label: "Support", href: "#support" },
+      { label: "Insurance", href: "#pip" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    includes: {
+      eyebrow: "What treatment may include",
+      heading: "What whiplash treatment may include",
+      lead: "Treatment is based on how your symptoms affect movement, mobility, and daily activity after an accident. Depending on your condition, care may include:",
+      items: [
+        { icon: "spine", title: "Chiropractic adjustments", body: "Focused on improving joint movement and reducing stiffness.", href: "/chiropractor/" },
+        { icon: "activity", title: "Physical rehabilitation", body: "Supporting flexibility, mobility, and stability.", href: "/physical-rehabilitation/" },
+        { icon: "dumbbell", title: "Therapeutic exercises", body: "Focused on restoring safe movement patterns.", href: "/therapeutic-exercises/" },
+        { icon: "hand-heart", title: "Massage therapy", body: "To reduce muscle tension and discomfort.", href: "/massage-therapy/" },
+        { icon: "waves", title: "Ultrasound therapy", body: "Targeting deeper soft tissue irritation and inflammation.", href: "/therapeutic-ultrasound-treatment/" },
+      ],
+      improveLabel: "As symptoms improve, treatment may help patients:",
+      improve: [
+        "Turn their head more comfortably while driving",
+        "Sit longer with less neck and shoulder tension",
+        "Improve flexibility and posture",
+        "Sleep with less stiffness and discomfort",
+        "Reduce strain affecting the shoulders and upper back",
+      ],
+      note: "Your care plan may change over time as your body responds to treatment.",
+    },
+    symptoms: {
+      eyebrow: "Symptoms",
+      heading: "Common whiplash symptoms after a car accident",
+      paras: [
+        "Whiplash can affect movement, comfort, and routine daily activity. Some patients feel symptoms right away, while others develop them later as swelling, muscle tension, and compensation patterns build after the injury.",
+        "Sometimes the body changes the way it moves to protect sore or injured areas, which can place added stress on nearby muscles and joints over time.",
+      ],
+      listLabel: "Common symptoms may include:",
+      list: [
+        "Neck pain or a stiff neck",
+        "Trouble turning your head",
+        "Headaches near the base of the skull",
+        "Shoulder tension or upper back pain",
+        "Pain while driving, sleeping, or working",
+        "Difficulty sleeping because of discomfort or stiffness",
+        "Muscle tightness that worsens over time",
+      ],
+      activityLabel: "You may notice symptoms during activities such as:",
+      activities: [
+        "Checking blind spots while driving",
+        "Looking down at your phone or computer",
+        "Sitting for extended periods",
+        "Carrying bags or lifting objects",
+        "Sleeping in certain positions",
+      ],
+      note: "Even lower-speed accidents can cause muscle strain, joint restriction, nerve irritation, or soft tissue injury affecting the neck and upper back.",
+      image: "/images/auto-accident-injury-background.webp",
+      imageAlt: "A driver holding her neck after a car accident before whiplash treatment in Tampa",
+    },
+    why: {
+      eyebrow: "Why choose us",
+      heading: "Why patients choose Palm Wellness Center for whiplash treatment",
+      lead: "Palm Wellness Center provides coordinated whiplash treatment in Tampa focused on improving movement, reducing discomfort, and helping patients return to normal activity after a car accident.",
+      points: [
+        "Integrated chiropractic care and rehabilitation in one location",
+        "Treatment plans tailored to your symptoms, mobility limitations, and recovery progress",
+        "Medical oversight supporting coordinated, patient-focused care",
+        "Therapeutic exercises focused on restoring safe movement patterns",
+        "Bilingual care available in English and Spanish",
+        "Transportation assistance available for eligible patients throughout the Tampa area",
+      ],
+    },
+    support: {
+      heading: "When recovery needs more support",
+      paras: [
+        "Recovery looks different for every patient. Some people feel better after a few visits, while others need more care because of delayed symptoms, past injuries, posture, muscle weakness, or how the body protects a sore area.",
+      ],
+      itemsLabel: "When needed, care may also include:",
+      items: [
+        "Medical evaluations for ongoing symptoms",
+        "Follow-up monitoring during recovery",
+        "Referrals for imaging or specialists when appropriate",
+        "Coordinated rehabilitation support based on your condition",
+      ],
+      note: { pre: "Patients needing continued support may also benefit from ", link: { label: "car accident rehabilitation", href: "/car-accident-rehabilitation/" }, post: " focused on improving function after an injury." },
+    },
+    team: {
+      eyebrow: "Our care team",
+      heading: "Experienced medical and rehabilitation team",
+      lead: "Your care at Palm Wellness Center is supported by a licensed medical and rehabilitation team experienced in helping patients recover from car accident injuries and restore safe movement.",
+      members: [
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides clinical guidance to support safe, appropriate, and patient-centered care." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Board-Certified Physician Assistant", bio: "Provides medical evaluations, follow-up care, and coordination with rehabilitation services. Fluent in English and Spanish." },
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Founder and Clinic Administrator", bio: "Oversees patient care coordination and rehabilitation services focused on structured recovery and mobility support." },
+      ],
+      footNote: "Your care is guided by a collaborative team focused on recovery, movement, and long-term function.",
+    },
+    insurance: {
+      eyebrow: "Insurance",
+      heading: "Does PIP insurance cover whiplash treatment?",
+      lead: "Florida Personal Injury Protection insurance may help cover treatment related to a car accident, regardless of fault.",
+      label: "PIP may help cover:",
+      items: [
+        "Chiropractic care",
+        "Rehabilitation visits",
+        "Medically necessary treatment related to your accident",
+        "Follow-up care for ongoing symptoms",
+      ],
+      highlight: "14-day rule: In Florida, patients usually must begin medical care within 14 days of a car accident to qualify for PIP coverage.",
+      note: "Because symptoms do not always appear right away, getting checked early can help document changes over time and guide care before symptoms worsen. Coverage depends on your situation and eligibility requirements.",
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center provides patient-centered rehabilitation focused on safe, coordinated care and long-term recovery support. Our team prioritizes clear communication, thoughtful treatment planning, and continuity of care throughout the rehabilitation process.",
+        "Palm Wellness Center proudly serves Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/therapist-examining-patient.jpg",
+      imageAlt: "A therapist guiding a patient through a mobility exercise at Palm Wellness Center in Tampa",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Medical supervision",
+    },
+    transport: {
+      title: "Need a ride? We have got you covered.",
+      body: "Palm Wellness Center offers transportation assistance for eligible patients throughout the Tampa Bay area. If transportation is a concern, let our team know when you call or request an appointment, and we will help coordinate your visit.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through your options and what to expect.",
+      items: [
+        { q: "Can whiplash symptoms appear later after a car accident?", a: "Yes. Some patients develop symptoms hours or days after an accident, such as swelling and muscle tension. The body may also change how it moves to protect sore areas, which can increase strain on nearby muscles and joints." },
+        { q: "Should I get checked if my symptoms seem mild?", a: "Even mild symptoms can indicate soft tissue injury, muscle strain, nerve irritation, or joint restriction. Early evaluation can help identify issues before they worsen and supports proper insurance documentation." },
+        { q: "How long does neck stiffness last after a car accident?", a: "Recovery time varies depending on the severity of the injury and how your body responds to treatment. Some patients improve within weeks, while others require longer rehabilitation." },
+        { q: "Will Florida PIP insurance cover treatment for whiplash?", a: "In many cases, yes. Florida PIP insurance may cover medically necessary treatment related to a car accident if eligibility requirements are met." },
+        { q: "What treatment is commonly used for whiplash after a car accident?", a: "Whiplash treatment may include chiropractic care, chiropractic adjustments, rehabilitation exercises, massage therapy, ultrasound therapy, and movement-focused recovery care depending on your symptoms and mobility limitations." },
+        { q: "When should I start treatment after a car accident?", a: "It is best to get evaluated as soon as possible after symptoms begin. Under Florida's 14-day rule, medical care usually must start within 14 days of the accident to qualify for PIP coverage." },
+      ],
+    },
+    area: {
+      eyebrow: "Service Area",
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Palm Wellness Center is located in Tampa, FL, and serves patients from across the surrounding area.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "And surrounding areas"],
+      note: "Need directions or a ride? Call (813) 443-5370 and our team will help you plan your visit.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Schedule your whiplash treatment in Tampa",
+      lead: "If pain, stiffness, headaches, or limited neck movement are still affecting your daily life after a car accident, treatment may help reduce discomfort and improve daily function.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Tratamiento de Latigazo Cervical en Tampa",
+      title: "Tratamiento de latigazo cervical en Tampa",
+      lead: "Tratamiento estructurado enfocado en mejorar el movimiento, reducir las molestias y ayudarte a recuperarte de forma segura después de un accidente de auto.",
+      chips: [
+        { icon: "spine", label: "Dolor de cuello, rigidez y movilidad" },
+        { icon: "stethoscope", label: "Atención quiropráctica y rehabilitación" },
+        { icon: "shield-check", label: "PIP puede estar disponible" },
+        { icon: "car", label: "Asistencia de transporte" },
+      ],
+      note: "Dolor de cuello · Rigidez · Dolores de cabeza · Movimiento limitado",
+      image: "/images/how-to-find-doctor-after-a-car-accident-inner-image.webp",
+      imageAlt: "Hombre sosteniéndose el cuello junto a autos dañados tras una colisión en Tampa",
+      rail: [
+        { value: "14 días", label: "Plazo PIP en Florida" },
+        { value: "5 servicios", label: "Coordinados en una clínica" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Tratamiento", href: "#treatment" },
+      { label: "Síntomas", href: "#symptoms" },
+      { label: "Por qué elegirnos", href: "#why" },
+      { label: "Apoyo", href: "#support" },
+      { label: "Seguro", href: "#pip" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    includes: {
+      eyebrow: "Qué puede incluir el tratamiento",
+      heading: "Qué puede incluir el tratamiento de latigazo cervical",
+      lead: "El tratamiento se basa en cómo tus síntomas afectan el movimiento, la movilidad y la actividad diaria después de un accidente. Según tu condición, la atención puede incluir:",
+      items: [
+        { icon: "spine", title: "Ajustes quiroprácticos", body: "Enfocados en mejorar el movimiento articular y reducir la rigidez.", href: "/es/quiropractico/" },
+        { icon: "activity", title: "Rehabilitación física", body: "Para apoyar la flexibilidad, la movilidad y la estabilidad.", href: "/es/fisioterapia/" },
+        { icon: "dumbbell", title: "Ejercicios terapéuticos", body: "Enfocados en restaurar patrones de movimiento seguros.", href: "/es/ejercicios-terapeuticos/" },
+        { icon: "hand-heart", title: "Terapia de masaje", body: "Para reducir la tensión muscular y las molestias.", href: "/es/terapia-de-masajes/" },
+        { icon: "waves", title: "Terapia de ultrasonido", body: "Dirigida a irritación e inflamación más profundas de tejidos blandos.", href: "/es/tratamiento-de-ultrasonido-terapeutico/" },
+      ],
+      improveLabel: "A medida que los síntomas mejoran, el tratamiento puede ayudar a los pacientes a:",
+      improve: [
+        "Girar la cabeza con más comodidad al conducir",
+        "Sentarse por más tiempo con menos tensión en cuello y hombros",
+        "Mejorar la flexibilidad y la postura",
+        "Dormir con menos rigidez y molestias",
+        "Reducir la tensión que afecta los hombros y la parte superior de la espalda",
+      ],
+      note: "Tu plan de atención puede cambiar con el tiempo según cómo responda tu cuerpo al tratamiento.",
+    },
+    symptoms: {
+      eyebrow: "Síntomas",
+      heading: "Síntomas comunes de latigazo cervical después de un accidente de auto",
+      paras: [
+        "El latigazo cervical puede afectar el movimiento, la comodidad y las actividades diarias. Algunos pacientes sienten síntomas de inmediato, mientras que otros los desarrollan más tarde a medida que aumentan la inflamación, la tensión muscular y los patrones de compensación después de la lesión.",
+        "A veces el cuerpo cambia la forma en que se mueve para proteger áreas doloridas o lesionadas, lo que puede aumentar la tensión en músculos y articulaciones cercanas con el tiempo.",
+      ],
+      listLabel: "Los síntomas comunes pueden incluir:",
+      list: [
+        "Dolor de cuello o cuello rígido",
+        "Dificultad para girar la cabeza",
+        "Dolores de cabeza cerca de la base del cráneo",
+        "Tensión en los hombros o dolor en la parte superior de la espalda",
+        "Dolor al conducir, dormir o trabajar",
+        "Dificultad para dormir debido a molestias o rigidez",
+        "Tensión muscular que empeora con el tiempo",
+      ],
+      activityLabel: "Puedes notar síntomas durante actividades como:",
+      activities: [
+        "Revisar puntos ciegos al conducir",
+        "Mirar hacia abajo al teléfono o la computadora",
+        "Sentarte durante períodos prolongados",
+        "Cargar bolsas o levantar objetos",
+        "Dormir en ciertas posiciones",
+      ],
+      note: "Incluso los accidentes a baja velocidad pueden causar distensión muscular, restricción articular, irritación nerviosa o lesión de tejidos blandos que afecta el cuello y la parte superior de la espalda.",
+      image: "/images/auto-accident-injury-background.webp",
+      imageAlt: "Conductora sosteniéndose el cuello tras un accidente de auto antes del tratamiento de latigazo cervical en Tampa",
+    },
+    why: {
+      eyebrow: "Por qué elegirnos",
+      heading: "Por qué los pacientes eligen Palm Wellness Center para el tratamiento de latigazo cervical",
+      lead: "Palm Wellness Center ofrece tratamiento coordinado de latigazo cervical en Tampa enfocado en mejorar el movimiento, reducir las molestias y ayudar a los pacientes a volver a sus actividades normales después de un accidente de auto.",
+      points: [
+        "Atención quiropráctica y rehabilitación integradas en un solo lugar",
+        "Planes de tratamiento adaptados a tus síntomas, limitaciones de movilidad y progreso",
+        "Supervisión médica que respalda una atención coordinada y centrada en el paciente",
+        "Ejercicios terapéuticos enfocados en restaurar patrones de movimiento seguros",
+        "Atención bilingüe disponible en inglés y español",
+        "Asistencia de transporte disponible para pacientes elegibles en el área de Tampa",
+      ],
+    },
+    support: {
+      heading: "Cuando la recuperación necesita más apoyo",
+      paras: [
+        "La recuperación es diferente para cada paciente. Algunas personas se sienten mejor después de pocas visitas, mientras que otras necesitan más atención debido a síntomas tardíos, lesiones previas, postura, debilidad muscular o la forma en que el cuerpo protege una zona dolorida.",
+      ],
+      itemsLabel: "Cuando sea necesario, la atención también puede incluir:",
+      items: [
+        "Evaluaciones médicas para síntomas continuos",
+        "Seguimiento durante la recuperación",
+        "Referencias para imágenes o especialistas cuando sea apropiado",
+        "Apoyo de rehabilitación coordinado según tu condición",
+      ],
+      note: { pre: "Los pacientes que necesitan apoyo continuo también pueden beneficiarse de la ", link: { label: "rehabilitación por accidente de auto", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" }, post: " enfocada en mejorar la función después de una lesión." },
+    },
+    team: {
+      eyebrow: "Nuestro equipo",
+      heading: "Equipo médico y de rehabilitación con experiencia",
+      lead: "Tu atención en Palm Wellness Center está respaldada por un equipo médico y de rehabilitación autorizado con experiencia en ayudar a pacientes a recuperarse de lesiones por accidentes de auto y restaurar un movimiento seguro.",
+      members: [
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda orientación clínica para apoyar una atención segura, apropiada y centrada en el paciente." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Asistente Médico Certificado", bio: "Proporciona evaluaciones médicas, atención de seguimiento y coordinación con los servicios de rehabilitación. Habla inglés y español con fluidez." },
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Fundador y Administrador de la Clínica", bio: "Supervisa la coordinación de la atención al paciente y los servicios de rehabilitación enfocados en una recuperación estructurada y apoyo de movilidad." },
+      ],
+      footNote: "Tu atención es guiada por un equipo colaborativo enfocado en la recuperación, el movimiento y la función a largo plazo.",
+    },
+    insurance: {
+      eyebrow: "Seguro",
+      heading: "¿El seguro PIP cubre el tratamiento de latigazo cervical?",
+      lead: "El seguro de Protección contra Lesiones Personales (PIP) de Florida puede ayudar a cubrir el tratamiento relacionado con un accidente de auto, independientemente de quién tuvo la culpa.",
+      label: "El PIP puede ayudar a cubrir:",
+      items: [
+        "Atención quiropráctica",
+        "Visitas de rehabilitación",
+        "Tratamiento médicamente necesario relacionado con tu accidente",
+        "Atención de seguimiento para síntomas continuos",
+      ],
+      highlight: "Regla de 14 días: En Florida, los pacientes normalmente deben comenzar la atención médica dentro de los 14 días posteriores a un accidente de auto para calificar para la cobertura PIP.",
+      note: "Debido a que los síntomas no siempre aparecen de inmediato, evaluarse temprano puede ayudar a documentar los cambios con el tiempo y guiar la atención antes de que empeoren. La cobertura depende de tu situación y de los requisitos de elegibilidad.",
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center ofrece rehabilitación centrada en el paciente, enfocada en atención segura y coordinada y apoyo para la recuperación a largo plazo. Nuestro equipo prioriza la comunicación clara, una planificación cuidadosa del tratamiento y la continuidad de la atención.",
+        "Palm Wellness Center atiende con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/therapist-examining-patient.jpg",
+      imageAlt: "Terapeuta guiando a un paciente en un ejercicio de movilidad en Palm Wellness Center en Tampa",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Supervisión médica",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Nosotros te ayudamos.",
+      body: "Palm Wellness Center ofrece asistencia de transporte para pacientes elegibles en toda el área de la Bahía de Tampa. Si el transporte es una preocupación, avísale a nuestro equipo cuando llames o solicites una cita, y te ayudaremos a coordinar tu visita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará tus opciones y qué esperar.",
+      items: [
+        { q: "¿Los síntomas de latigazo cervical pueden aparecer después de un accidente de auto?", a: "Sí. Algunos pacientes desarrollan síntomas horas o días después de un accidente, como inflamación y tensión muscular. El cuerpo también puede cambiar la forma en que se mueve para proteger áreas doloridas, lo que puede aumentar la tensión en músculos y articulaciones cercanas." },
+        { q: "¿Debo evaluarme si mis síntomas parecen leves?", a: "Incluso los síntomas leves pueden indicar lesión de tejidos blandos, distensión muscular, irritación nerviosa o restricción articular. Una evaluación temprana puede ayudar a identificar problemas antes de que empeoren y respaldar la documentación del seguro." },
+        { q: "¿Cuánto tiempo dura la rigidez del cuello después de un accidente de auto?", a: "El tiempo de recuperación varía según la gravedad de la lesión y la respuesta de tu cuerpo al tratamiento. Algunos pacientes mejoran en semanas, mientras que otros requieren rehabilitación por más tiempo." },
+        { q: "¿Cubre el seguro PIP de Florida el tratamiento para el latigazo cervical?", a: "En muchos casos, sí. El seguro PIP de Florida puede cubrir el tratamiento médicamente necesario relacionado con un accidente de auto si se cumplen los requisitos de elegibilidad." },
+        { q: "¿Qué tratamiento se usa comúnmente para el latigazo cervical después de un accidente?", a: "El tratamiento de latigazo cervical puede incluir atención quiropráctica, ajustes quiroprácticos, ejercicios de rehabilitación, terapia de masaje, terapia de ultrasonido y atención enfocada en el movimiento según tus síntomas y limitaciones de movilidad." },
+        { q: "¿Cuándo debo comenzar tratamiento después de un accidente de auto?", a: "Lo mejor es evaluarte lo antes posible después de que comiencen los síntomas. Según la regla de 14 días de Florida, la atención médica normalmente debe comenzar dentro de los 14 días posteriores al accidente para calificar para la cobertura PIP." },
+      ],
+    },
+    area: {
+      eyebrow: "Área de Servicio",
+      heading: "Sirviendo con orgullo a Tampa y vecindarios circundantes",
+      lead: "Palm Wellness Center está ubicado en Tampa, FL, y atiende a pacientes de toda el área circundante.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Y áreas cercanas"],
+      note: "¿Necesitas indicaciones o transporte? Llama al (813) 443-5370 y nuestro equipo te ayudará a planificar tu visita.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
+    },
+    cta: {
+      title: "Programa tu tratamiento de latigazo cervical en Tampa",
+      lead: "Si el dolor, la rigidez, los dolores de cabeza o el movimiento limitado del cuello todavía afectan tu vida diaria después de un accidente de auto, el tratamiento puede ayudar a reducir las molestias y mejorar la función diaria.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="spine" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- TREATMENT INCLUDES -->
+<section id="treatment" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="list-checks" class="h-3.5 w-3.5" />{content.includes.eyebrow}</span>
+        <h2 class={h2Cls}>{content.includes.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.includes.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {content.includes.items.map((t) => (
+        <a href={t.href} class={`group flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white text-blue-deep"><Icon name={t.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-ink lg:text-[20px]">{t.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{t.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+    <div class={`grid gap-6 rounded-lg bg-blue-deep p-7 lg:grid-cols-[320px_1fr] lg:items-center lg:gap-10 lg:p-8 ${hover}`}>
+      <div class="flex flex-col gap-4">
+        <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-green-bright"><Icon name="trending-up" class="h-[22px] w-[22px]" /></span>
+        <p class="font-titles text-[19px] leading-[1.3] text-white lg:text-[20px]">{content.includes.improveLabel}</p>
+      </div>
+      <ul class="grid gap-x-8 gap-y-3.5 border-t border-white/15 pt-6 sm:grid-cols-2 lg:border-l lg:border-t-0 lg:pl-10 lg:pt-0">
+        {content.includes.improve.map((it) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-blue-tint"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-bright" />{it}</li>
+        ))}
+      </ul>
+    </div>
+    <p class="text-[13px] text-muted">{content.includes.note}</p>
+  </div>
+</section>
+
+<!-- SYMPTOMS -->
+<section id="symptoms" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_520px] lg:items-center lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="activity" class="h-3.5 w-3.5" />{content.symptoms.eyebrow}</span>
+      <h2 class={h2Cls}>{content.symptoms.heading}</h2>
+      {content.symptoms.paras.map((p) => <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.symptoms.listLabel}</p>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {content.symptoms.list.map((it) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{it}</li>
+        ))}
+      </ul>
+      <p class="text-[14px] leading-[1.6] text-muted">{content.symptoms.note}</p>
+    </div>
+    <div class="flex flex-col gap-8 lg:gap-10">
+      <img src={content.symptoms.image} width="520" height="520" alt={content.symptoms.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[360px]" />
+      <div class="flex flex-col gap-3">
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.symptoms.activityLabel}</p>
+        <ul class="flex flex-col gap-3">
+          {content.symptoms.activities.map((it) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{it}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY (dark band) -->
+<section id="why" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_440px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowDarkCls}>{content.why.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.why.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-blue-tint">{content.why.lead}</p>
+      <a href={PHONE_TEL} class="mt-1 inline-flex w-fit items-center gap-2 rounded-md bg-white px-6 py-3.5 font-bold text-blue-deep transition-colors hover:bg-blue-pale"><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+    <ul class="flex flex-col gap-4 rounded-lg border border-white/15 bg-white/5 p-7 lg:p-8">
+      {content.why.points.map((p) => (
+        <li class="flex items-start gap-3 text-[15px] leading-[1.55] text-blue-tint"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{p}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.support.heading}</h2>
+      {content.support.paras.map((p) => <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <p class="text-[15px] leading-[1.6] text-body">
+        {content.support.note.pre}<a href={content.support.note.link.href} class="font-semibold text-blue underline-offset-4 hover:text-blue-deep hover:underline">{content.support.note.link.label}</a>{content.support.note.post}
+      </p>
+    </div>
+    <div class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.support.itemsLabel}</p>
+      <ul class="flex flex-col gap-3">
+        {content.support.items.map((it) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{it}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}>{content.team.eyebrow}</span>
+      <h2 class={h2Cls}>{content.team.heading}</h2>
+      <p class={leadCls}>{content.team.lead}</p>
+    </div>
+    <ul class="grid gap-6 md:grid-cols-3">
+      {content.team.members.map((m) => (
+        <li class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-[74px] w-[74px] place-items-center rounded-full bg-blue-deep font-titles text-[26px] font-bold text-white">{m.initials}</span>
+          <div class="flex flex-col gap-1">
+            <h3 class="font-titles text-[19px] font-bold leading-[1.2] text-ink lg:text-[20px]">{m.name}</h3>
+            <p class="text-[13px] font-semibold leading-[1.4] text-blue">{m.cred}</p>
+          </div>
+          <p class="text-[15px] leading-[1.6] text-body">{m.bio}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="max-w-[720px] text-[15px] leading-[1.6] text-body">{content.team.footNote}</p>
+  </div>
+</section>
+
+<!-- PIP INSURANCE -->
+<section id="pip" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[800px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="shield-check" class="h-3.5 w-3.5" />{content.insurance.eyebrow}</span>
+      <h2 class={h2Cls}>{content.insurance.heading}</h2>
+      <p class={leadCls}>{content.insurance.lead}</p>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-[1fr_460px] lg:items-start lg:gap-10">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.insurance.label}</p>
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {content.insurance.items.map((it) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{it}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="flex flex-col gap-4">
+        <p class="flex items-start gap-3 rounded-lg border border-line bg-blue-pale/50 p-5 text-[15px] font-semibold leading-[1.55] text-ink">
+          <Icon name="alert" class="mt-0.5 h-5 w-5 shrink-0 text-danger" />{content.insurance.highlight}
+        </p>
+        <p class="text-[15px] leading-[1.6] text-body">{content.insurance.note}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+      <div class={`flex flex-col gap-1.5 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{content.trust.supervisorLabel}</p>
+        <p class="font-titles text-[18px] font-bold text-ink">Dr. Arnaldo V. Orellana-Molina</p>
+        <p class="text-[13px] font-semibold leading-[1.4] text-blue">{lang === "es" ? "MD - Médico Supervisor" : "MD - Supervising Physician"}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{lang === "es" ? "Brinda supervisión médica que mantiene cada plan seguro y alineado con las guías clínicas." : "Provides medical oversight that keeps every care plan safe and guideline-aligned."}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{lang === "es" ? "Preguntas" : "FAQ"}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{content.area.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

@@ -110,7 +110,8 @@ Se añade la ruta al `Set` llamado `migrated` dentro de `getStaticPaths()` de `[
 Así la entrada vieja queda como archivo histórico y el catch-all la ignora. Migradas hoy:
 `/primary-care/`, `/medical-weight-loss/`, `/physical-rehabilitation/`,
 `/car-accident-rehabilitation/`, `/car-accident-treatment/`, `/auto-accident-injury-clinic/`,
-`/car-accident-chiropractor/` y sus espejos ES.
+`/car-accident-chiropractor/`, `/car-accident-physical-therapy/`, `/whiplash-treatment-tampa/`
+y sus espejos ES.
 
 Ojo: **el `Set` `migrated` solo hace falta para rutas que existen en `richpages.json`.** Las otras
 cinco páginas del grupo de Atención Primaria (`/iv-therapy/`, `/chronic-condition-management/`,
@@ -255,6 +256,12 @@ una banda de marca; al recortarla a una caja de hero o de sección el texto se c
 error de maquetación. Antes de aprobar un asset, **ábrelo y míralo**: si trae texto incrustado, no
 sirve como fotografía de sección.
 
+**Bloque de confianza: la imagen va `object-top`, no `object-center`.** La caja mide solo
+240/300px de alto, así que un `object-center` recorta la banda central y **corta la cabeza** de los
+sujetos. El `<img>` de "Professional and compassionate care you can trust" lleva siempre
+`object-cover object-top lg:h-[300px]` en todas las páginas. Es la única imagen del sitio con esa
+regla; el resto de imágenes usa `object-center` (o su focal punto propio).
+
 **Pencil (MCP):** `TakeScreenshot` devuelve **vacío si se pide en el mismo `execute` que una
 mutación** — captura siempre en una llamada aparte. Y `pencil_browser` falla de forma
 intermitente con `MCP error -32603: A capture is already running`; cuando pasa, usa el harness CDP.
@@ -312,6 +319,10 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   `/car-accident-chiropractor/` con sus espejos ES. Las tarjetas de "Treatment options" y
   "Our services" **enlazan** a las páginas de servicio (`/chiropractor/`,
   `/physical-rehabilitation/`, `/massage-therapy/`, …), no son texto suelto.
+- **Grupos 6 y 7 cerrados, EN+ES**: `/car-accident-physical-therapy/`
+  (+ `/es/fisioterapia-para-accidente-de-auto/`) y `/whiplash-treatment-tampa/`
+  (+ `/es/tratamiento-latigazo-cervical-tampa/`), con componente propio cada una. Con esto queda
+  cerrada toda la familia de accidentes de auto.
 - Header, TopBar y Footer nuevos, con el contenedor único de 1200px; familia única de iconos
   (Lucide), `AnchorNav`, sistema de hover y primitivas de movimiento del hero, todo reutilizable.
 - Héroes con imagen a la derecha: entrada completa por desplazamiento de derecha a izquierda (no
@@ -322,20 +333,17 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 - Pencil: frame **`EnF3Q` (Primary Care Desktop)** construido y aprobado por el cliente.
 - `AGENTS.md`, `README.md`, `docs/` y el harness CDP versionado en `tools/qa/`.
 - Preview **no indexable**: `robots.txt` con `Disallow: /` + header `X-Robots-Tag` (ver § 9).
-- Último commit funcional publicado: `b68ac95 Add bespoke Car Accident Treatment, Auto Accident
-  Injury Clinic and Car Accident Chiropractor pages (EN/ES)`.
+- Último commit funcional publicado: `298c530` (docs) / `b68ac95` (páginas de accidentes).
   Consulta `docs/PROJECT-HANDOFF.md` (estado canónico) y `docs/SESSION-HANDOFF.md` (brief de
   arranque de sesión) antes de tocar código.
 
 **Siguiente**
 
-1. **Cerrar los grupos 6 y 7** de `docs/redesign-plan.md`: faltan `/car-accident-physical-therapy/`
-   (+ ES) y `/whiplash-treatment-tampa/` (+ ES). El grupo 5 está cerrado
-   (`/car-accident-rehabilitation/` y `/auto-accident-injury-clinic/` hechos) y las mitades ya hechas
-   de 6 y 7 son `/car-accident-treatment/` y `/car-accident-chiropractor/`.
-2. **Grupos 3 y 4**: `/chiropractor/`, `/massage-therapy/`, `/therapeutic-exercises/` y
-   `/therapeutic-ultrasound-treatment/` (+ ES), todavía con el cuerpo heredado.
-3. Grupos 8-12 (slip & fall + clúster de ciudades, About/Contact, blog, legal).
+1. **Grupos 3 y 4** de `docs/redesign-plan.md`: `/chiropractor/`, `/massage-therapy/`,
+   `/therapeutic-exercises/` y `/therapeutic-ultrasound-treatment/` (+ ES), todavía con el cuerpo
+   heredado. Ojo con `/therapeutic-exercises/`: ya tiene sustitución de contenido heredado
+   (`src/data/therapeuticExercises.ts`).
+2. Grupos 8-12 (slip & fall + clúster de ciudades, About/Contact, blog, legal).
 
 **Pendiente / bloqueado**
 
