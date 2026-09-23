@@ -121,11 +121,10 @@ Rehabilitation and car accident imagery added with Group 2 and the car accident 
 |---|---|---|
 | `top-physical-rehabilitation-clinic-in-tampa-bay-min.jpg` | Physical Rehabilitation hero | Landscape; verify focal point per the hero standard. |
 | `what-is-a-slip-and-fall-accident.webp` | Physical Rehabilitation section | Fall-injury illustration. |
-| `comprehensive-physical-therapy-for-car-accident-victims-in-tampa.webp` | Car Accident Rehabilitation | Therapy scene. |
+| `comprehensive-physical-therapy-for-car-accident-victims-in-tampa.webp` | Car Accident Rehabilitation hero; Car Accident Physical Therapy hero | Man with neck pain by a car. |
 | `auto-accident-rehabilitation-in-tampa-fl.webp` | Physical Rehabilitation; Auto Accident Injury Clinic | Rehabilitation session. |
 | `car-accident-treatment-background.webp` | Car Accident Treatment hero | Landscape; content left / photo right. |
 | `delayed-injury-symptoms-after-a-car-accident.webp` | Car Accident Treatment section | Delayed-symptom context. |
-| `integrated-wellness-services-chiropractor.webp` | Car Accident Treatment section | Clinic services. |
 | `how-to-find-doctor-after-a-car-accident-main-banner.webp` | Auto Accident Injury Clinic hero | Landscape banner. |
 | `how-to-find-doctor-after-a-car-accident-inner-image.webp` | Car Accident Chiropractor section | Supporting scene. |
 | `auto-accident-injury-background.webp` | Car Accident Chiropractor hero; Whiplash symptoms | Landscape; content left / photo right. |
@@ -136,7 +135,6 @@ Rehabilitation and car accident imagery added with Group 2 and the car accident 
 | `therapist-examining-patient.jpg` | Whiplash treatment trust | Stretch scene; `object-top`. |
 | `integrated-wellness-services-chiropractor.webp` | Car Accident Treatment trust | Doctor with patient; `object-top`. |
 | `trust-palm-wellness-center-for-auto-accident-injuries.webp` | Auto Accident Injury Clinic trust | Driving scene; `object-top`. |
-| `comprehensive-physical-therapy-for-car-accident-victims-in-tampa.webp` | Car Accident Rehabilitation hero; Car Accident Physical Therapy hero | Man with neck pain by a car. |
 | `chiropractor-helping-his-patient.webp` | Car Accident Physical Therapy 14-day rule section | Consultation scene. |
 
 **The trust block image ("Professional and compassionate care you can trust") always uses

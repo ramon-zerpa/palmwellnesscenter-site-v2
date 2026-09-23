@@ -64,7 +64,8 @@ Hitos recientes:
 - **Grupos 6 y 7 cerrados, EN+ES**: `/car-accident-physical-therapy/` (fisioterapia para accidentes
   de auto) y `/whiplash-treatment-tampa/` (latigazo cervical), con componente propio cada una. Con
   esto queda cerrada **toda** la familia de accidentes de auto.
-- Las 10 rutas migradas se añadieron al `Set` `migrated` de `src/pages/[...slug].astro` (×2 por idioma).
+- Las 4 rutas nuevas de esta ronda (y las de las rondas anteriores) están en el `Set` `migrated` de
+  `src/pages/[...slug].astro` (×2 por idioma).
 - En el bloque de confianza ("Professional and compassionate care you can trust") la imagen va con
   **`object-top`** en todas las páginas: es bajo (240/300px) y un `object-center` cortaba las
   cabezas. Ver `AGENTS.md` § 6.
@@ -203,7 +204,7 @@ Nunca `vercel deploy` a mano. Para comprobar el deploy usa `vercel ls palmwellne
 - `docs/redesign-plan.md` — los 12 grupos de migración + workflow.
 - `docs/optimantra-services.md` — precios y servicios reales (la verdad del negocio).
 - `src/components/HomePage.astro`, `src/components/pages/PrimaryCarePage.astro` — referencia visual.
-- `src/components/pages/*.astro` — las 13 páginas bespoke (plantilla de facto).
+- `src/components/pages/*.astro` — las 14 páginas bespoke (+ `HomePage.astro` en `src/components/`).
 - `src/components/AnchorNav.astro`, `src/components/Icon.astro`, `src/lib/lucide.ts`.
 - `src/i18n/{ui,utils,altmap}.ts` — nav, rutas/`APPOINTMENT_URL`, mapa hreflang.
 - `src/styles/global.css` — tokens, breakpoints, `@layer`, primitivas del hero.
