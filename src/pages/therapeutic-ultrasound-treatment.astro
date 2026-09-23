@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import TherapeuticUltrasoundPage from "../components/pages/TherapeuticUltrasoundPage.astro";
+
+const path = "/therapeutic-ultrasound-treatment/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Therapeutic Ultrasound Treatment in Tampa, FL | Rehab Therapy"
+  description="Reduce pain, stiffness, and soft tissue irritation with therapeutic ultrasound treatment in Tampa. Integrated rehabilitation care focused on recovery."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <TherapeuticUltrasoundPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

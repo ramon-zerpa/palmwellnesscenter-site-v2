@@ -1,6 +1,6 @@
 # SESSION-HANDOFF — brief de arranque
 
-**Snapshot: 2026-09-22** · último commit de páginas `b68ac95` + cierre de grupos 6-7 · rama `main`
+**Snapshot: 2026-09-23** · Grupo 4 cerrado (`/therapeutic-exercises/` + `/therapeutic-ultrasound-treatment/`, EN/ES); rehabilitación completa · rama `main`
 
 > Pega este archivo (o su ruta) al empezar un chat nuevo. Es autosuficiente, pero **la referencia
 > vinculante es `AGENTS.md`** y el estado canónico está en `docs/PROJECT-HANDOFF.md`. Si algo
@@ -47,6 +47,10 @@ Cada página es un componente propio bajo `src/components/pages/`; las rutas EN/
 | `/car-accident-chiropractor/` | `/es/quiropractico-para-accidente-de-auto/` | `CarAccidentChiropractorPage.astro` |
 | `/car-accident-physical-therapy/` | `/es/fisioterapia-para-accidente-de-auto/` | `CarAccidentPhysicalTherapyPage.astro` |
 | `/whiplash-treatment-tampa/` | `/es/tratamiento-latigazo-cervical-tampa/` | `WhiplashTreatmentPage.astro` |
+| `/chiropractor/` | `/es/quiropractico/` | `ChiropractorPage.astro` |
+| `/massage-therapy/` | `/es/terapia-de-masajes/` | `MassageTherapyPage.astro` |
+| `/therapeutic-exercises/` | `/es/ejercicios-terapeuticos/` | `TherapeuticExercisesPage.astro` |
+| `/therapeutic-ultrasound-treatment/` | `/es/tratamiento-de-ultrasonido-terapeutico/` | `TherapeuticUltrasoundPage.astro` |
 
 Hitos recientes:
 
@@ -64,6 +68,14 @@ Hitos recientes:
 - **Grupos 6 y 7 cerrados, EN+ES**: `/car-accident-physical-therapy/` (fisioterapia para accidentes
   de auto) y `/whiplash-treatment-tampa/` (latigazo cervical), con componente propio cada una. Con
   esto queda cerrada **toda** la familia de accidentes de auto.
+- **Grupo 3 cerrado, EN+ES**: `/chiropractor/` (+ `/es/quiropractico/`) y `/massage-therapy/`
+  (+ `/es/terapia-de-masajes/`), con componente propio cada una. Ambas existían en `richpages.json`,
+  así que sus rutas entraron en el `Set` `migrated`. El hero heredado de masaje era un thumbnail de
+  YouTube con texto y marca incrustados: el hero ahora es `massage-therapy-session.webp`.
+- **Grupo 4 cerrado, EN+ES**: `/therapeutic-exercises/` (+ `/es/ejercicios-terapeuticos/`) y
+  `/therapeutic-ultrasound-treatment/` (+ `/es/tratamiento-de-ultrasonido-terapeutico/`). Al `Set`
+  `migrated`. Esto elimina la capa de sustitución de contenido: `src/data/therapeuticExercises.ts`
+  se borró. **Toda la rehabilitación queda rediseñada.**
 - Las 4 rutas nuevas de esta ronda (y las de las rondas anteriores) están en el `Set` `migrated` de
   `src/pages/[...slug].astro` (×2 por idioma).
 - En el bloque de confianza ("Professional and compassionate care you can trust") la imagen va con
@@ -74,15 +86,15 @@ Hitos recientes:
 
 ## 3. Próximo paso exacto
 
-**Grupos 3 y 4 de `docs/redesign-plan.md`** (mitad de rehabilitación restante), todavía con el
+**Grupo 8 de `docs/redesign-plan.md`** (slip & fall + clúster de ciudades), todavía con el
 cuerpo heredado:
 
-- **Grupo 3**: `/chiropractor/` (+ `/es/quiropractico/`) y `/massage-therapy/` (+ `/es/terapia-de-masajes/`).
-- **Grupo 4**: `/therapeutic-exercises/` (+ `/es/ejercicios-terapeuticos/`) y
-  `/therapeutic-ultrasound-treatment/` (+ `/es/tratamiento-de-ultrasonido-terapeutico/`).
+- `/slip-and-fall-injury-treatment/` (+ `/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/`).
+- Clúster de ciudades de `/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/`
+  (+ espejos ES) como **una plantilla**.
 
-Ojo con `/therapeutic-exercises/`: ya tiene sustitución de contenido heredado
-(`src/data/therapeuticExercises.ts`). Después, grupos 8-12.
+Ojo: las rutas del clúster de ciudades **sí** existen en `richpages.json`, así que van al `Set`
+`migrated`. Rehabilitación (Grupos 2, 3, 4) ya está cerrada. Después, 9-12.
 
 Procedimiento que funciona:
 

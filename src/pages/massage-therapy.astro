@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import MassageTherapyPage from "../components/pages/MassageTherapyPage.astro";
+
+const path = "/massage-therapy/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Massage Therapy in Tampa for Pain Relief and Recovery"
+  description="Massage therapy in Tampa focused on pain relief, mobility, and injury recovery. Often combined with rehabilitation and chiropractic care."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <MassageTherapyPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

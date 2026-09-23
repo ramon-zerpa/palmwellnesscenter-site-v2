@@ -1,0 +1,853 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Therapeutic Ultrasound in Tampa",
+      title: "Therapeutic ultrasound treatment in Tampa",
+      lead: "Non-invasive therapy that uses sound waves to support soft tissue recovery, reduce stiffness, and help you move more comfortably.",
+      chips: [
+        { icon: "waves", label: "Soft tissue recovery" },
+        { icon: "droplet", label: "Reduces stiffness and swelling" },
+        { icon: "activity", label: "Supports circulation" },
+        { icon: "shield-check", label: "Non-invasive and gentle" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "Non-invasive · Combined with rehabilitation · Bilingual care",
+      image: "/images/ultrasound-therapy-on-patient-shoulder.webp",
+      imageAlt: "Therapeutic ultrasound treatment on a patient's shoulder in Tampa",
+      rail: [
+        { value: "Non-invasive", label: "Gentle sound-wave therapy" },
+        { value: "One roof", label: "Combined with chiropractic and rehab" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "Why us", href: "#why" },
+      { label: "What it is", href: "#what" },
+      { label: "When it helps", href: "#when" },
+      { label: "What to expect", href: "#expect" },
+      { label: "Safety", href: "#safety" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    why: {
+      eyebrow: "Why choose us",
+      heading: "Why patients choose Palm Wellness Center",
+      lead: "If pain, inflammation, or mobility limitations are affecting your daily life, the right treatment plan can help support a safer and more complete recovery.",
+      pointsLabel: "What you can expect",
+      points: [
+        "Coordinated rehabilitation and chiropractic care in one Tampa clinic",
+        "Personalized recovery plans based on symptoms and movement limitations",
+        "Licensed medical oversight supporting patient-centered care",
+        "Bilingual care available in English and Spanish",
+        "Transportation assistance available for eligible Tampa patients",
+      ],
+      note: "Treatment is focused on helping patients improve movement, recover safely, and return to daily activity with greater comfort and stability.",
+      image: "/images/how-ultrasound-therapy-works-to-improve-healing-and-recovery-img.webp",
+      imageAlt: "Therapist applying ultrasound therapy to a patient's shoulder",
+    },
+    what: {
+      eyebrow: "The basics",
+      heading: "What is ultrasound therapy?",
+      lead: "Ultrasound therapy is a non-invasive treatment that uses sound waves to support healing in muscles, tendons, ligaments, and other soft tissue. A provider moves a small handheld device over the affected area to help improve circulation, reduce stiffness, and support more comfortable movement.",
+      pointsLabel: "How a session works",
+      points: [
+        { icon: "waves", title: "Sound waves", body: "High-frequency sound waves are directed beneath the skin to support healing." },
+        { icon: "hand", title: "Handheld device", body: "A provider moves a small device over the affected area." },
+        { icon: "droplet", title: "Conductive gel", body: "A gel helps transmit the waves and keeps treatment comfortable." },
+      ],
+      image: "/images/ultrasound-therapy-for-patinet-leg.webp",
+      imageAlt: "Ultrasound therapy applied to a patient's leg for soft tissue recovery",
+    },
+    when: {
+      heading: "When ultrasound therapy may help",
+      lead: "Ultrasound therapy for injuries may be recommended when pain, stiffness, or inflammation continues affecting movement and daily activity.",
+      depLabel: "Treatment recommendations may depend on",
+      dep: [
+        "How long symptoms have been present",
+        "Whether mobility or range of motion is limited",
+        "Muscle or tendon involvement",
+        "Pain during daily activity",
+        "Recovery progress during rehabilitation",
+      ],
+      helpLabel: "Ultrasound treatment for pain may help patients experiencing",
+      help: [
+        "Muscle tightness or tension",
+        "Tendonitis or repetitive strain injuries",
+        "Neck pain or back pain",
+        "Shoulder pain",
+        "Joint stiffness limiting mobility",
+        "Sprains and strains",
+        "Soft tissue injuries after an accident",
+        "Ongoing soreness during rehabilitation",
+      ],
+      note: "Some patients receive ultrasound therapy early in rehabilitation to help calm irritation and improve movement tolerance, while others receive treatment later. Many patients receive therapeutic ultrasound as part of car accident rehabilitation in Tampa.",
+      linkLabel: "Car accident rehabilitation",
+      link: "/car-accident-rehabilitation/",
+    },
+    signs: {
+      heading: "What you feel vs. what may be happening",
+      lead: "These issues can continue affecting movement even when symptoms seem mild.",
+      head: ["What you notice", "What may be happening"],
+      rows: [
+        ["Muscle tightness", "Soft tissue irritation or inflammation"],
+        ["Stiffness with movement", "Restricted mobility or joint irritation"],
+        ["Ongoing soreness", "Delayed tissue recovery"],
+        ["Pain during activity", "Muscle or tendon stress"],
+        ["Reduced flexibility", "Tight or irritated soft tissue"],
+      ],
+    },
+    persists: {
+      heading: "When pain or stiffness does not fully improve",
+      lead: "Soft tissue injuries and muscle irritation often take time to heal. In some cases, symptoms continue affecting movement long after the original injury occurred.",
+      itemsLabel: "You may notice",
+      items: [
+        "Ongoing soreness",
+        "Muscle tension or tightness",
+        "Stiffness with movement",
+        "Reduced flexibility",
+        "Discomfort during activity",
+      ],
+      note: "These symptoms can sometimes point to deeper soft tissue irritation or mobility restrictions that continue affecting recovery and daily movement.",
+      image: "/images/ultrasound-therapy-for-patinet-leg.webp",
+      imageAlt: "Ultrasound therapy session supporting recovery from stiffness and soreness",
+    },
+    expect: {
+      eyebrow: "What to expect",
+      heading: "What to expect during therapeutic ultrasound treatment",
+      lead: "During therapeutic ultrasound treatment, a handheld device is moved over the affected area using a conductive gel while sound waves are directed beneath the skin to support circulation and soft tissue recovery.",
+      describeLabel: "Most patients describe ultrasound therapy as",
+      describe: ["Gentle", "Comfortable", "Mildly warming", "Relaxing"],
+      note: "Treatment sessions are usually brief and may be combined with therapeutic exercises, massage therapy, stretching, or Tampa chiropractic care depending on your recovery plan.",
+      freqHeading: "Treatment frequency and recovery plans",
+      freqPara: "Treatment frequency depends on your condition, symptoms, and rehabilitation progress. Some patients receive ultrasound therapy multiple times per week during the early phase of recovery, while others need it less often as movement improves.",
+      freqLabel: "Your plan may change over time depending on",
+      freqItems: [
+        "Pain levels",
+        "Inflammation or swelling",
+        "Mobility improvements",
+        "Response to rehabilitation exercises",
+        "Overall recovery progress",
+      ],
+    },
+    safety: {
+      eyebrow: "Safety",
+      heading: "Is ultrasound therapy safe?",
+      paras: [
+        "Therapeutic ultrasound is generally well tolerated when performed by a trained provider as part of an appropriate treatment plan. Most patients feel only mild warmth or gentle pressure during treatment.",
+        "Before recommending ultrasound treatment, your provider reviews your symptoms, medical history, and treatment area to determine whether it is appropriate for your condition.",
+      ],
+      contraLabel: "Ultrasound may not be recommended over certain areas or conditions, including",
+      contra: [
+        "Pregnancy-related treatment areas",
+        "Active infection",
+        "Open wounds or broken skin",
+        "Areas with reduced sensation",
+        "Certain implants or medical devices",
+        "Areas requiring deeper medical evaluation first",
+      ],
+      note: "Side effects are uncommon when treatment is performed correctly, but each patient is evaluated carefully to reduce unnecessary risk and ensure safe recovery.",
+    },
+    rehab: {
+      eyebrow: "How it supports recovery",
+      heading: "How ultrasound therapy supports rehabilitation",
+      lead: "Therapeutic ultrasound is usually one part of a broader rehabilitation strategy focused on improving movement, mobility, and long-term function. Depending on your condition, your treatment plan may also include:",
+      items: [
+        { icon: "spine", title: "Chiropractic care", body: "To improve joint mobility.", href: "/chiropractor/" },
+        { icon: "hand", title: "Massage therapy", body: "To reduce muscle tension.", href: "/massage-therapy/" },
+        { icon: "dumbbell", title: "Therapeutic exercises", body: "To rebuild strength and flexibility.", href: "/therapeutic-exercises/" },
+        { icon: "accessibility", title: "Physical rehabilitation", body: "To improve movement patterns and stability.", href: "/physical-rehabilitation/" },
+      ],
+      note: "This coordinated approach helps support more complete recovery and long-term mobility.",
+    },
+    team: {
+      eyebrow: "Our care team",
+      heading: "Experienced medical and rehabilitation team",
+      lead: "Your care at Palm Wellness Center is supported by a licensed medical and rehabilitation team experienced in helping patients recover from pain, soft tissue injuries, and movement limitations.",
+      members: [
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides clinical guidance that supports safe, appropriate, and patient-centered care." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Board-Certified Physician Assistant", bio: "Provides medical evaluations, follow-up care, and coordination with rehabilitation services. Fluent in English and Spanish." },
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Founder and Clinic Administrator", bio: "Oversees patient care coordination and rehabilitation services focused on structured recovery and mobility support." },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center provides patient-centered rehabilitation focused on safe, coordinated care and long-term recovery support. Our team prioritizes clear communication, thoughtful treatment planning, and continuity of care.",
+        "Palm Wellness Center proudly serves Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/regular-therapy-sessions.webp",
+      imageAlt: "Therapist supporting a patient during rehabilitation at Palm Wellness Center in Tampa",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+    },
+    transport: {
+      title: "Need a ride? We have got you covered.",
+      body: "Palm Wellness Center offers transportation assistance for eligible patients throughout the Tampa Bay area. If transportation is a concern, let our team know when you call or request an appointment, and we will help coordinate your visit.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through your options and what to expect.",
+      items: [
+        { q: "What is therapeutic ultrasound used for?", a: "Therapeutic ultrasound is commonly used during rehabilitation for muscle pain, swelling, tendonitis, soft tissue injuries, stiffness, and mobility limitations. It is typically used as part of a broader treatment plan." },
+        { q: "Does ultrasound therapy help with pain?", a: "Ultrasound therapy for pain may help reduce discomfort and stiffness by supporting circulation and soft tissue recovery. It is often combined with rehabilitation exercises, massage therapy, and chiropractic care." },
+        { q: "Does ultrasound therapy help with inflammation?", a: "Ultrasound therapy for inflammation may help support circulation and calm irritated soft tissue when swelling or muscle tension is limiting movement." },
+        { q: "What does ultrasound therapy feel like?", a: "Most patients describe ultrasound treatment as gentle and comfortable, with mild warmth or light pressure during the session." },
+        { q: "Is ultrasound therapy painful?", a: "Therapeutic ultrasound treatment is generally non-invasive and well tolerated. If an area is especially sensitive, your provider can adjust treatment as needed." },
+        { q: "How long does ultrasound therapy take?", a: "Most ultrasound therapy sessions are brief and may be combined with other rehabilitation treatments during the same visit." },
+        { q: "How often is ultrasound therapy used during rehabilitation?", a: "Treatment frequency depends on your symptoms, recovery goals, and rehabilitation progress. Your provider will recommend a schedule based on your needs." },
+        { q: "Is therapeutic ultrasound the same as diagnostic ultrasound?", a: "No. Diagnostic ultrasound creates images inside the body, while therapeutic ultrasound is used to support circulation, mobility, and soft tissue recovery." },
+        { q: "Can ultrasound therapy help after a car accident?", a: "Yes. Ultrasound therapy may be included in car accident rehabilitation in Tampa when muscle tightness, stiffness, or soft tissue irritation is limiting movement after a crash." },
+      ],
+    },
+    area: {
+      eyebrow: "Service Area",
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Palm Wellness Center is located in Tampa, FL, but our patients come from across the surrounding area. We regularly help patients improve mobility, reduce discomfort, and recover from injury through coordinated rehabilitation services.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Tampa Bay area communities"],
+      note: "Need directions or a ride? Call (813) 443-5370 and our team will help you plan your visit.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Ready to move with less pain and stiffness?",
+      lead: "If pain, stiffness, inflammation, or soft tissue irritation is still affecting how you move, therapeutic ultrasound may help support your recovery.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Ultrasonido Terapéutico en Tampa",
+      title: "Tratamiento de ultrasonido terapéutico en Tampa",
+      lead: "Terapia no invasiva que usa ondas sonoras para apoyar la recuperación de los tejidos blandos, reducir la rigidez y ayudarle a moverse con más comodidad.",
+      chips: [
+        { icon: "waves", label: "Recuperación de tejidos blandos" },
+        { icon: "droplet", label: "Reduce rigidez e inflamación" },
+        { icon: "activity", label: "Apoya la circulación" },
+        { icon: "shield-check", label: "No invasivo y suave" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "No invasivo · Combinado con la rehabilitación · Atención bilingüe",
+      image: "/images/ultrasound-therapy-on-patient-shoulder.webp",
+      imageAlt: "Tratamiento de ultrasonido terapéutico en el hombro de un paciente en Tampa",
+      rail: [
+        { value: "No invasivo", label: "Terapia suave con ondas sonoras" },
+        { value: "Un solo lugar", label: "Combinado con quiropráctica y rehabilitación" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Por qué elegirnos", href: "#why" },
+      { label: "Qué es", href: "#what" },
+      { label: "Cuándo ayuda", href: "#when" },
+      { label: "Qué esperar", href: "#expect" },
+      { label: "Seguridad", href: "#safety" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    why: {
+      eyebrow: "Por qué elegirnos",
+      heading: "Por qué los pacientes eligen Palm Wellness Center",
+      lead: "Si el dolor, la inflamación o las limitaciones de movilidad afectan su vida diaria, el plan de tratamiento adecuado puede apoyar una recuperación más segura y completa.",
+      pointsLabel: "Qué puede esperar",
+      points: [
+        "Rehabilitación coordinada y atención quiropráctica en una clínica de Tampa",
+        "Planes de recuperación personalizados según síntomas y limitaciones de movimiento",
+        "Supervisión médica autorizada que apoya una atención centrada en el paciente",
+        "Atención bilingüe disponible en inglés y español",
+        "Asistencia de transporte para pacientes elegibles en Tampa",
+      ],
+      note: "El tratamiento se enfoca en ayudar a los pacientes a mejorar el movimiento, recuperarse de forma segura y volver a sus actividades diarias con mayor comodidad y estabilidad.",
+      image: "/images/how-ultrasound-therapy-works-to-improve-healing-and-recovery-img.webp",
+      imageAlt: "Terapeuta aplicando ultrasonido terapéutico en el hombro de un paciente",
+    },
+    what: {
+      eyebrow: "Lo básico",
+      heading: "¿Qué es la terapia de ultrasonido?",
+      lead: "La terapia de ultrasonido es un tratamiento no invasivo que usa ondas sonoras para apoyar la recuperación de músculos, tendones, ligamentos y otros tejidos blandos. Un proveedor mueve un pequeño dispositivo manual sobre el área afectada para mejorar la circulación, reducir la rigidez y apoyar un movimiento más cómodo.",
+      pointsLabel: "Cómo funciona una sesión",
+      points: [
+        { icon: "waves", title: "Ondas sonoras", body: "Ondas sonoras de alta frecuencia se dirigen bajo la piel para apoyar la recuperación." },
+        { icon: "hand", title: "Dispositivo manual", body: "Un proveedor mueve un pequeño dispositivo sobre el área afectada." },
+        { icon: "droplet", title: "Gel conductor", body: "Un gel ayuda a transmitir las ondas y mantiene el tratamiento cómodo." },
+      ],
+      image: "/images/ultrasound-therapy-for-patinet-leg.webp",
+      imageAlt: "Terapia de ultrasonido aplicada en la pierna de un paciente para la recuperación de tejidos blandos",
+    },
+    when: {
+      heading: "Cuándo puede ayudar la terapia de ultrasonido",
+      lead: "La terapia de ultrasonido para lesiones puede recomendarse cuando el dolor, la rigidez o la inflamación siguen afectando el movimiento y la actividad diaria.",
+      depLabel: "Las recomendaciones de tratamiento pueden depender de",
+      dep: [
+        "Cuánto tiempo han estado presentes los síntomas",
+        "Si el movimiento o el rango de movimiento están limitados",
+        "La afectación de músculos o tendones",
+        "El dolor durante la actividad diaria",
+        "El progreso de recuperación durante la rehabilitación",
+      ],
+      helpLabel: "El tratamiento de ultrasonido para el dolor puede ayudar a pacientes que presentan",
+      help: [
+        "Tensión o rigidez muscular",
+        "Tendinitis o lesiones por esfuerzo repetitivo",
+        "Dolor de cuello o espalda",
+        "Dolor de hombro",
+        "Rigidez articular que limita la movilidad",
+        "Esguinces y distensiones",
+        "Lesiones de tejidos blandos después de un accidente",
+        "Dolor persistente durante la rehabilitación",
+      ],
+      note: "Algunos pacientes reciben terapia de ultrasonido al inicio de la rehabilitación para calmar la irritación y mejorar la tolerancia al movimiento, mientras que otros la reciben más adelante. Muchos pacientes reciben ultrasonido terapéutico como parte de la rehabilitación de accidentes de auto en Tampa.",
+      linkLabel: "Rehabilitación de accidentes de auto",
+      link: "/es/rehabilitacion-de-accidentes-automovilisticos/",
+    },
+    signs: {
+      heading: "Lo que siente vs. lo que puede estar pasando",
+      lead: "Estos problemas pueden seguir afectando el movimiento incluso cuando los síntomas parecen leves.",
+      head: ["Lo que nota", "Lo que puede estar pasando"],
+      rows: [
+        ["Tensión muscular", "Irritación o inflamación de tejidos blandos"],
+        ["Rigidez al moverse", "Movilidad restringida o irritación articular"],
+        ["Dolor persistente", "Recuperación retardada de los tejidos"],
+        ["Dolor durante la actividad", "Estrés muscular o tendinoso"],
+        ["Menor flexibilidad", "Tejido blando tenso o irritado"],
+      ],
+    },
+    persists: {
+      heading: "Cuando el dolor o la rigidez no mejoran por completo",
+      lead: "Las lesiones de tejidos blandos y la irritación muscular suelen tardar en sanar. En algunos casos, los síntomas continúan afectando el movimiento mucho después de la lesión original.",
+      itemsLabel: "Puede notar",
+      items: [
+        "Dolor persistente",
+        "Tensión o rigidez muscular",
+        "Rigidez al moverse",
+        "Flexibilidad reducida",
+        "Molestias durante la actividad",
+      ],
+      note: "Estos síntomas a veces pueden indicar irritación más profunda de los tejidos blandos o restricciones de movilidad que siguen afectando la recuperación y el movimiento diario.",
+      image: "/images/ultrasound-therapy-for-patinet-leg.webp",
+      imageAlt: "Sesión de ultrasonido terapéutico para la rigidez y el dolor persistente",
+    },
+    expect: {
+      eyebrow: "Qué esperar",
+      heading: "Qué esperar durante el tratamiento de ultrasonido terapéutico",
+      lead: "Durante el tratamiento de ultrasonido terapéutico, se mueve un dispositivo manual sobre el área afectada usando un gel conductor mientras las ondas sonoras se dirigen debajo de la piel para apoyar la circulación y la recuperación de los tejidos blandos.",
+      describeLabel: "La mayoría de los pacientes describe la terapia de ultrasonido como",
+      describe: ["Suave", "Cómoda", "Con una sensación leve de calor", "Relajante"],
+      note: "Las sesiones suelen ser breves y pueden combinarse con ejercicios terapéuticos, terapia de masajes, estiramientos o atención quiropráctica en Tampa, según su plan de recuperación.",
+      freqHeading: "Frecuencia del tratamiento y planes de recuperación",
+      freqPara: "La frecuencia del tratamiento depende de su condición, síntomas y progreso de rehabilitación. Algunos pacientes reciben terapia de ultrasonido varias veces por semana durante la fase inicial de recuperación, mientras que otros la necesitan con menos frecuencia a medida que mejora el movimiento.",
+      freqLabel: "Su plan puede cambiar con el tiempo según",
+      freqItems: [
+        "Los niveles de dolor",
+        "La inflamación o hinchazón",
+        "Las mejoras en la movilidad",
+        "La respuesta a los ejercicios de rehabilitación",
+        "El progreso general de recuperación",
+      ],
+    },
+    safety: {
+      eyebrow: "Seguridad",
+      heading: "¿Es segura la terapia de ultrasonido?",
+      paras: [
+        "El ultrasonido terapéutico generalmente se tolera bien cuando lo realiza un proveedor capacitado como parte de un plan de tratamiento apropiado. La mayoría de los pacientes solo sienten una leve sensación de calor o presión durante el tratamiento.",
+        "Antes de recomendar el tratamiento con ultrasonido, su proveedor revisa sus síntomas, historial médico y área de tratamiento para determinar si es adecuado para su condición.",
+      ],
+      contraLabel: "El ultrasonido puede no recomendarse sobre ciertas áreas o condiciones, incluyendo",
+      contra: [
+        "Áreas relacionadas con el embarazo",
+        "Infección activa",
+        "Heridas abiertas o piel lesionada",
+        "Áreas con sensibilidad reducida",
+        "Ciertos implantes o dispositivos médicos",
+        "Áreas que requieren primero una evaluación médica más profunda",
+      ],
+      note: "Los efectos secundarios son poco comunes cuando el tratamiento se realiza correctamente, pero cada paciente se evalúa cuidadosamente para reducir riesgos innecesarios y apoyar una recuperación segura.",
+    },
+    rehab: {
+      eyebrow: "Cómo apoya la recuperación",
+      heading: "Cómo la terapia de ultrasonido apoya la rehabilitación",
+      lead: "El ultrasonido terapéutico suele ser una parte de una estrategia más amplia de rehabilitación física enfocada en mejorar el movimiento, la movilidad y la función a largo plazo. Según su condición, su plan puede incluir también:",
+      items: [
+        { icon: "spine", title: "Atención quiropráctica", body: "Para mejorar la movilidad articular.", href: "/es/quiropractico/" },
+        { icon: "hand", title: "Terapia de masajes", body: "Para reducir la tensión muscular.", href: "/es/terapia-de-masajes/" },
+        { icon: "dumbbell", title: "Ejercicios terapéuticos", body: "Para recuperar fuerza y flexibilidad.", href: "/es/ejercicios-terapeuticos/" },
+        { icon: "accessibility", title: "Rehabilitación física", body: "Para mejorar los patrones de movimiento y la estabilidad.", href: "/es/fisioterapia/" },
+      ],
+      note: "Este enfoque coordinado ayuda a apoyar una recuperación más completa y movilidad a largo plazo.",
+    },
+    team: {
+      eyebrow: "Nuestro equipo",
+      heading: "Equipo médico y de rehabilitación con experiencia",
+      lead: "Su atención en Palm Wellness Center cuenta con el respaldo de un equipo médico y de rehabilitación autorizado con experiencia en el tratamiento del dolor, las lesiones de tejidos blandos y las limitaciones de movimiento.",
+      members: [
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda orientación clínica que apoya una atención segura, apropiada y centrada en el paciente." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Asistente Médica Certificada", bio: "Realiza evaluaciones médicas, atención de seguimiento y coordinación con los servicios de rehabilitación. Habla inglés y español." },
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Fundador y Administrador de la Clínica", bio: "Supervisa la coordinación de la atención al paciente y los servicios de rehabilitación enfocados en una recuperación estructurada y la movilidad." },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puede confiar",
+      paras: [
+        "Palm Wellness Center ofrece rehabilitación centrada en el paciente, enfocada en una atención segura, coordinada y apoyo para la recuperación a largo plazo. Nuestro equipo prioriza la comunicación clara, la planificación cuidadosa y la continuidad de la atención.",
+        "Palm Wellness Center atiende con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/regular-therapy-sessions.webp",
+      imageAlt: "Terapeuta apoyando a un paciente durante la rehabilitación en Palm Wellness Center en Tampa",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Nosotros te ayudamos.",
+      body: "Palm Wellness Center ofrece asistencia de transporte para pacientes elegibles en toda el área de la Bahía de Tampa. Si el transporte es una preocupación, avísale a nuestro equipo cuando llames o solicites una cita, y te ayudaremos a coordinar tu visita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tiene preguntas? Llámenos al (813) 443-5370 y nuestro equipo le explicará sus opciones y qué esperar.",
+      items: [
+        { q: "¿Para qué se usa el ultrasonido terapéutico?", a: "El ultrasonido terapéutico se usa comúnmente durante la rehabilitación para dolor muscular, inflamación, tendinitis, lesiones de tejidos blandos, rigidez y limitaciones de movilidad. Normalmente se usa como parte de un plan de tratamiento más amplio." },
+        { q: "¿La terapia de ultrasonido ayuda con el dolor?", a: "La terapia de ultrasonido para el dolor puede ayudar a reducir molestias y rigidez al apoyar la circulación y la recuperación de los tejidos blandos. A menudo se combina con ejercicios de rehabilitación, terapia de masajes y atención quiropráctica." },
+        { q: "¿La terapia de ultrasonido ayuda con la inflamación?", a: "La terapia de ultrasonido para la inflamación puede ayudar a apoyar la circulación y calmar tejidos blandos irritados cuando la inflamación o la tensión muscular limitan el movimiento." },
+        { q: "¿Cómo se siente la terapia de ultrasonido?", a: "La mayoría de los pacientes describe el tratamiento de ultrasonido como suave y cómodo, con calor leve o presión ligera durante la sesión." },
+        { q: "¿La terapia de ultrasonido duele?", a: "El tratamiento de ultrasonido terapéutico generalmente es no invasivo y bien tolerado. Si un área es especialmente sensible, su proveedor puede ajustar el tratamiento según sea necesario." },
+        { q: "¿Cuánto dura la terapia de ultrasonido?", a: "La mayoría de las sesiones de terapia de ultrasonido son breves y pueden combinarse con otros tratamientos de rehabilitación durante la misma visita." },
+        { q: "¿Con qué frecuencia se usa la terapia de ultrasonido durante la rehabilitación?", a: "La frecuencia del tratamiento depende de sus síntomas, objetivos de recuperación y progreso durante la rehabilitación. Su proveedor recomendará un calendario según sus necesidades." },
+        { q: "¿El ultrasonido terapéutico es lo mismo que un ultrasonido diagnóstico?", a: "No. El ultrasonido diagnóstico crea imágenes del interior del cuerpo, mientras que el ultrasonido terapéutico se usa para apoyar la circulación, la movilidad y la recuperación de los tejidos blandos." },
+        { q: "¿Puede ayudar la terapia de ultrasonido después de un accidente de auto?", a: "Sí. La terapia de ultrasonido puede incluirse en la rehabilitación de accidentes de auto en Tampa cuando la tensión muscular, la rigidez o la irritación de tejidos blandos limitan el movimiento tras un choque." },
+      ],
+    },
+    area: {
+      eyebrow: "Área de Servicio",
+      heading: "Sirviendo con orgullo a Tampa y vecindarios cercanos",
+      lead: "Palm Wellness Center está ubicado en Tampa, FL, pero nuestros pacientes vienen de toda el área circundante. Ayudamos regularmente a los pacientes a mejorar su movilidad, reducir molestias y recuperarse de lesiones mediante servicios coordinados de rehabilitación.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Comunidades del área de Tampa Bay"],
+      note: "¿Necesita indicaciones o transporte? Llame al (813) 443-5370 y nuestro equipo le ayudará a planificar su visita.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntelo al reservar.",
+    },
+    cta: {
+      title: "¿Listo para moverse con menos dolor y rigidez?",
+      lead: "Si el dolor, la rigidez, la inflamación o la irritación de tejidos blandos siguen afectando la forma en que se mueve, el ultrasonido terapéutico puede apoyar su recuperación.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="waves" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[24px] font-bold leading-none text-blue-deep lg:text-[28px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- WHY -->
+<section id="why" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[460px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.why.image} width="460" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover object-top sm:h-[380px] lg:h-[440px]" />
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="badge-check" class="h-3.5 w-3.5" />{content.why.eyebrow}</span>
+      <h2 class={h2Cls}>{content.why.heading}</h2>
+      <p class={leadCls}>{content.why.lead}</p>
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.why.pointsLabel}</p>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {content.why.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+      <p class="max-w-[62ch] text-[15px] leading-[1.6] text-muted">{content.why.note}</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT -->
+<section id="what" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[760px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="waves" class="h-3.5 w-3.5" />{content.what.eyebrow}</span>
+      <h2 class={h2Cls}>{content.what.heading}</h2>
+      <p class={leadCls}>{content.what.lead}</p>
+    </div>
+    <div class="grid gap-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-stretch lg:gap-8">
+      <div class="lg:relative">
+        <img src={content.what.image} width="600" height="440" alt={content.what.imageAlt} loading="lazy" decoding="async" class="h-[260px] w-full rounded-lg object-cover sm:h-[340px] lg:absolute lg:inset-0 lg:h-full" />
+      </div>
+      <div class="flex flex-col gap-4">
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.what.pointsLabel}</p>
+        <div class="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+          {content.what.points.map((p) => (
+            <div class={`flex items-start gap-4 rounded-lg border border-line bg-white p-5 lg:p-6 ${hover}`}>
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={p.icon} class="h-5 w-5" /></span>
+              <div class="flex flex-col gap-1">
+                <h3 class="font-titles text-[16px] leading-[1.25] text-ink">{p.title}</h3>
+                <p class="text-[14px] leading-[1.5] text-body">{p.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHEN -->
+<section id="when" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <h2 class={h2Cls}>{content.when.heading}</h2>
+      <p class={leadCls}>{content.when.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class="flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8">
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.when.depLabel}</p>
+        <ul class="flex flex-col gap-3">
+          {content.when.dep.map((it) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="circle-check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-blue" />{it}</li>
+          ))}
+        </ul>
+      </div>
+      <div class="flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8">
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.when.helpLabel}</p>
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {content.when.help.map((it) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="circle-check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-blue" />{it}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col gap-3 rounded-lg bg-blue-deep p-7 lg:p-8">
+      <p class="max-w-[90ch] text-[15px] leading-[1.6] text-blue-tint">{content.when.note}</p>
+      <a href={content.when.link} class="inline-flex w-fit items-center gap-2 text-[14px] font-bold text-white hover:text-blue-pale">{content.when.linkLabel}<Icon name="arrow" class="h-[15px] w-[15px]" /></a>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNS (table) -->
+<section class="bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="activity" class="h-3.5 w-3.5" />{lang === "es" ? "Señales" : "Signs"}</span>
+      <h2 class={h2Cls}>{content.signs.heading}</h2>
+      <p class={leadCls}>{content.signs.lead}</p>
+    </div>
+    <div class="overflow-hidden rounded-lg border border-line">
+      <div class="hidden grid-cols-2 bg-blue-deep sm:grid">
+        {content.signs.head.map((h, i) => (
+          <div class={`px-6 py-4 text-[12px] font-bold uppercase tracking-[0.08em] text-white ${i > 0 ? "border-l border-white/20" : ""}`}>{h}</div>
+        ))}
+      </div>
+      {content.signs.rows.map((r, i) => (
+        <div class={`grid gap-1.5 sm:grid-cols-2 sm:gap-0 ${i > 0 ? "border-t border-line" : ""}`}>
+          <div class="px-6 pt-5 font-semibold text-ink sm:py-5">{r[0]}</div>
+          <div class="px-6 pb-5 text-[15px] leading-[1.55] text-body sm:border-l sm:border-line sm:py-5">{r[1]}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- PERSISTS -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.persists.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{content.persists.lead}</p>
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.persists.itemsLabel}</p>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {content.persists.items.map((it) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{it}</li>
+        ))}
+      </ul>
+      <p class="max-w-[62ch] text-[15px] leading-[1.6] text-muted">{content.persists.note}</p>
+    </div>
+    <img src={content.persists.image} width="460" height="460" alt={content.persists.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[440px]" />
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section id="expect" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="route" class="h-3.5 w-3.5" />{content.expect.eyebrow}</span>
+        <h2 class={h2Cls}>{content.expect.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.expect.lead}</p>
+    </div>
+    <div class="grid items-start gap-6 md:grid-cols-2">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.expect.describeLabel}</p>
+        <ul class="grid gap-3 sm:grid-cols-2">
+          {content.expect.describe.map((t) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="circle-check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-blue" />{t}</li>
+          ))}
+        </ul>
+        <p class="text-[14.5px] leading-[1.6] text-body">{content.expect.note}</p>
+      </div>
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.expect.freqHeading}</p>
+        <p class="text-[15px] leading-[1.6] text-body">{content.expect.freqPara}</p>
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.expect.freqLabel}</p>
+        <ul class="flex flex-col gap-3">
+          {content.expect.freqItems.map((t) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="circle-check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-blue" />{t}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section id="safety" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_440px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="shield-check" class="h-3.5 w-3.5" />{content.safety.eyebrow}</span>
+      <h2 class={h2Cls}>{content.safety.heading}</h2>
+      {content.safety.paras.map((p) => <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <p class="max-w-[62ch] text-[15px] leading-[1.6] text-muted">{content.safety.note}</p>
+    </div>
+    <div class="flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8">
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.safety.contraLabel}</p>
+      <ul class="flex flex-col gap-3">
+        {content.safety.contra.map((t) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="triangle-alert" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-danger" />{t}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- REHAB (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[760px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{content.rehab.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.rehab.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.rehab.lead}</p>
+    </div>
+    <div class="grid overflow-hidden rounded-lg border border-white/15 bg-white/5 sm:grid-cols-2 lg:grid-cols-4">
+      {content.rehab.items.map((s, i) => (
+        <a href={s.href} class={`group flex flex-col gap-3.5 p-7 hover:bg-white/10 lg:p-8 ${hover} ${i > 0 ? "border-t border-white/15 sm:border-l sm:border-t-0" : ""}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white lg:text-[20px]">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-2 text-[14px] font-bold text-white">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+    <p class="max-w-[80ch] text-[15px] leading-[1.6] text-blue-tint/90">{content.rehab.note}</p>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}>{content.team.eyebrow}</span>
+      <h2 class={h2Cls}>{content.team.heading}</h2>
+      <p class={leadCls}>{content.team.lead}</p>
+    </div>
+    <ul class="grid gap-6 md:grid-cols-3">
+      {content.team.members.map((m) => (
+        <li class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-[74px] w-[74px] place-items-center rounded-full bg-blue-deep font-titles text-[26px] font-bold text-white">{m.initials}</span>
+          <div class="flex flex-col gap-1">
+            <h3 class="font-titles text-[19px] font-bold leading-[1.2] text-ink lg:text-[20px]">{m.name}</h3>
+            <p class="text-[13px] font-semibold leading-[1.4] text-blue">{m.cred}</p>
+          </div>
+          <p class="text-[15px] leading-[1.6] text-body">{m.bio}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{lang === "es" ? "Preguntas" : "FAQ"}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{content.area.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

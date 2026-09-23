@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import TherapeuticUltrasoundPage from "../../components/pages/TherapeuticUltrasoundPage.astro";
+
+const path = "/es/tratamiento-de-ultrasonido-terapeutico/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Tratamiento de ultrasonido terapéutico en Tampa, FL | Terapia de rehabilitación"
+  description="Reduzca dolor, rigidez e irritación de tejidos blandos con tratamiento de ultrasonido terapéutico en Tampa. Atención de rehabilitación enfocada en la recuperación."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <TherapeuticUltrasoundPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

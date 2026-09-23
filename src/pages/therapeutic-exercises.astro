@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import TherapeuticExercisesPage from "../components/pages/TherapeuticExercisesPage.astro";
+
+const path = "/therapeutic-exercises/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Therapeutic Exercise in Tampa for Strength, Balance, and Mobility"
+  description="Provider-guided therapeutic exercises in Tampa for strength, balance, mobility, range of motion, and injury recovery. Call Palm Wellness Center today."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <TherapeuticExercisesPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

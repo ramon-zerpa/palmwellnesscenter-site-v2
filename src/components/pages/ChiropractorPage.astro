@@ -1,0 +1,603 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Chiropractic Care in Tampa",
+      title: "Chiropractic care in Tampa that restores movement",
+      lead: "Personalized chiropractic care focused on reducing pain, improving spinal alignment, and restoring safe movement for patients recovering from injuries or chronic spine conditions.",
+      chips: [
+        { icon: "spine", label: "Spine and joint pain" },
+        { icon: "bandage", label: "Injury-focused care" },
+        { icon: "activity", label: "Physical rehabilitation" },
+        { icon: "user-round", label: "Medical oversight" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "Same-day or next-day appointments when available · Bilingual care",
+      image: "/images/integrated-wellness-services-chiropractor.webp",
+      imageAlt: "Chiropractor at Palm Wellness Center in Tampa",
+      rail: [
+        { value: "3 steps", label: "Evaluate, treat, progress" },
+        { value: "One roof", label: "Chiropractic + rehabilitation" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "Services", href: "#services" },
+      { label: "What we treat", href: "#conditions" },
+      { label: "Integrated care", href: "#integrated" },
+      { label: "Getting started", href: "#start" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    services: {
+      eyebrow: "What we do",
+      heading: "Chiropractic care services",
+      lead: "Chiropractic care at Palm Wellness Center focuses on improving joint movement, reducing inflammation, and helping patients recover from injury while restoring safe, comfortable mobility.",
+      items: [
+        { icon: "activity", title: "Chiropractic adjustments", body: "Gentle adjustments restore spinal alignment and joint mobility, reducing stiffness, relieving nerve pressure, and improving how the spine and surrounding muscles move." },
+        { icon: "clipboard", title: "Spinal and joint evaluation", body: "Your chiropractor evaluates posture, spinal alignment, muscle balance, nerve symptoms, and range of motion to identify the root cause of pain or movement limitations." },
+        { icon: "bandage", title: "Injury-focused chiropractic care", body: "Care for patients after an auto accident, work injury, or slip and fall, addressing soft tissue injuries, muscle strain, joint restrictions, and nerve irritation." },
+        { icon: "move", title: "Mobility and movement support", body: "Adjustments, traction, and manual therapy improve joint mobility and reduce muscle tension so everyday movements feel more natural and comfortable." },
+        { icon: "target", title: "Posture and spinal health guidance", body: "Understand how posture, work habits, exercise routines, and daily activities affect your spinal health and your overall wellness." },
+        { icon: "users", title: "Care coordination when needed", body: "When more is needed, your chiropractor coordinates with our rehabilitation team, physical therapy providers, or supervising physician to support safe recovery." },
+      ],
+    },
+    conditions: {
+      heading: "When chiropractic care can help",
+      paras: [
+        "Chiropractic care can help relieve pain, improve mobility, and restore everyday movement affected by injury or chronic spine conditions. Symptoms may include back pain, neck stiffness, headaches, or limited range of motion that make daily activities more difficult.",
+        "At Palm Wellness Center, chiropractic care is combined with physical rehabilitation and therapeutic exercises to reduce pain, improve alignment, and support safe recovery.",
+      ],
+      itemsLabel: "Common symptoms we evaluate",
+      items: [
+        "Back pain and stiffness",
+        "Neck pain and tension",
+        "Headaches and migraines",
+        "Limited range of motion",
+        "Sciatica and radiating pain",
+        "Joint stiffness",
+      ],
+      note: "Early evaluation helps identify joint restrictions, muscle tension, and movement issues before they worsen.",
+      image: "/images/how-to-fix-a-pinched-nerve-in-the-neck-inner.webp",
+      imageAlt: "Chiropractor evaluating the neck and spine of a patient in Tampa",
+    },
+    integrated: {
+      eyebrow: "Integrated wellness services",
+      heading: "Chiropractic care works best with the rest of your care",
+      lead: "Chiropractic care at Palm Wellness Center is most effective when it is coordinated with other health and rehabilitation services. Our team builds unified treatment plans that address pain, movement, and overall wellness.",
+      items: [
+        { icon: "user-round", title: "Primary care in Tampa", body: "Medical oversight, lab testing, imaging referrals, and medication management to support safe chiropractic care.", href: "/primary-care/" },
+        { icon: "accessibility", title: "Physical rehabilitation", body: "Therapeutic exercises, strength training, and mobility work that complement chiropractic adjustments.", href: "/physical-rehabilitation/" },
+        { icon: "venus", title: "Medical weight loss", body: "Reduce joint strain and inflammation through physician-supervised weight management.", href: "/medical-weight-loss/" },
+        { icon: "car", title: "Auto accident rehabilitation", body: "Coordinated chiropractic and rehab care for whiplash, soft-tissue injuries, and spinal trauma.", href: "/car-accident-rehabilitation/" },
+        { icon: "triangle-alert", title: "Slip and fall treatment", body: "Injury-focused chiropractic and physical rehabilitation for fall-related spine and joint injuries.", href: "/slip-and-fall-injury-treatment/" },
+      ],
+    },
+    why: {
+      eyebrow: "Why integrated care matters",
+      heading: "One team, one plan, better recovery",
+      lead: "When medical providers, chiropractors, and rehabilitation specialists work together, patients receive more complete care.",
+      points: [
+        "One coordinated care team across all services",
+        "Shared treatment plans and medical records",
+        "Safer, rehab-informed decisions about exercise and activity",
+        "Weight loss, IV therapy, and other services evaluated in your full medical context when appropriate",
+        "Reduced need to repeat your medical history at every visit",
+        "Better outcomes through collaborative treatment planning",
+      ],
+      ctaTitle: "Take the first step toward feeling better",
+      ctaLead: "Our goal is to help you feel better, move easier, and enjoy everyday life again. With affordable options and transportation support, Palm Wellness Center is here for you.",
+    },
+    start: {
+      eyebrow: "Getting started",
+      heading: "How to get started with chiropractic care",
+      items: [
+        { title: "Call or request an appointment", body: "Call (813) 443-5370 or request an appointment online. Our office will follow up to schedule your chiropractic evaluation." },
+        { title: "Your evaluation", body: "Your provider reviews your health history, discusses your symptoms, and evaluates your posture, mobility, and joint function." },
+        { title: "Your personalized plan", body: "Based on your evaluation, we create a care plan that may include adjustments, physical rehabilitation, and therapeutic exercises, adjusted as you progress." },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered care. Our team follows established clinical standards and emphasizes clear communication, appropriate treatment planning, and continuity of care.",
+        "Patients are seen in person at our Tampa clinic. Palm Wellness Center proudly serves Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/medical-office-chiropractor-rehabilitating-patient-back.webp",
+      imageAlt: "Chiropractor performing an adjustment at Palm Wellness Center in Tampa",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Medical supervision",
+    },
+    transport: {
+      title: "Need a ride? We have got you covered.",
+      body: "Palm Wellness Center offers transportation assistance for eligible patients throughout the Tampa Bay area. If transportation is a concern, let our team know when you call or request an appointment, and we will help coordinate your visit.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through your options and what to expect.",
+      items: [
+        { q: "Do I need a referral to see a chiropractor at Palm Wellness Center?", a: "No. Chiropractic care does not require a referral in Florida. You can call or book an appointment directly. However, if you have a related injury claim or are seeing a primary care provider, coordinating care is often helpful." },
+        { q: "What conditions can chiropractic care help with?", a: "Chiropractic care may help with neck and back pain, headaches, sciatica, joint stiffness, whiplash, sports injuries, work-related strain, and chronic spine conditions. Your chiropractor will evaluate your symptoms and recommend a personalized plan." },
+        { q: "Is chiropractic care safe after an auto accident or slip and fall?", a: "Yes, when provided by a licensed chiropractor with experience in injury care. Your provider will evaluate your condition carefully and coordinate with medical providers if imaging, testing, or a specialist referral is needed." },
+        { q: "How many chiropractic visits will I need?", a: "It depends on your condition, injury severity, and treatment goals. Some patients feel improvement in a few visits, while others benefit from ongoing care. Your chiropractor will discuss a realistic plan during your first visit." },
+        { q: "Do you accept insurance for chiropractic services?", a: "Palm Wellness Center works with many insurance plans. Call (813) 443-5370 to verify your coverage and discuss payment options." },
+        { q: "What should I bring to my first chiropractic appointment?", a: "Bring a photo ID, insurance card (if using insurance), a list of current medications, and any imaging or medical records related to your symptoms if available." },
+        { q: "Can I receive chiropractic care and physical therapy at the same time?", a: "Yes. In fact, chiropractic adjustments and physical rehabilitation often work well together. Your care team will coordinate both services to support safe, effective recovery." },
+        { q: "Can I see my chiropractor and primary care provider in the same clinic?", a: "Yes. Palm Wellness Center integrates chiropractic, physical rehabilitation, and primary care services, so your providers can coordinate your treatment plan and share records." },
+        { q: "What if I have osteoporosis, prior surgery, or other medical conditions?", a: "Your chiropractor will review your health history and adjust techniques to match your needs. If chiropractic care is not appropriate for your condition, your provider will refer you to the right specialist." },
+        { q: "Does chiropractic care hurt?", a: "Most patients report feeling immediate relief or mild soreness similar to post-workout stiffness. Your chiropractor will explain each technique and adjust the treatment to your comfort level." },
+      ],
+    },
+    area: {
+      eyebrow: "Service Area",
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Palm Wellness Center is located in Tampa, FL, but our patients come from all across the region. Wherever you live in the Tampa Bay area, we are here to help you heal, move better, and feel your best.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Tampa Bay area communities"],
+      note: "Need directions or a ride? Call (813) 443-5370 and our team will help you plan your visit.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Ready to start chiropractic care in Tampa?",
+      lead: "If pain, stiffness, headaches, or injury are limiting your movement and daily life, chiropractic care may help restore mobility and improve your quality of life.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Atención Quiropráctica en Tampa",
+      title: "Atención quiropráctica en Tampa que restaura el movimiento",
+      lead: "Atención quiropráctica personalizada enfocada en reducir el dolor, mejorar la alineación de la columna y restaurar el movimiento seguro en pacientes que se recuperan de lesiones o afecciones crónicas de la columna.",
+      chips: [
+        { icon: "spine", label: "Dolor de columna y articulaciones" },
+        { icon: "bandage", label: "Atención enfocada en lesiones" },
+        { icon: "activity", label: "Rehabilitación física" },
+        { icon: "user-round", label: "Supervisión médica" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "Citas el mismo día o al día siguiente cuando hay disponibilidad · Atención bilingüe",
+      image: "/images/integrated-wellness-services-chiropractor.webp",
+      imageAlt: "Quiropráctico en Palm Wellness Center en Tampa",
+      rail: [
+        { value: "3 pasos", label: "Evaluar, tratar, progresar" },
+        { value: "Un solo lugar", label: "Quiropráctica + rehabilitación" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Servicios", href: "#services" },
+      { label: "Qué tratamos", href: "#conditions" },
+      { label: "Atención integrada", href: "#integrated" },
+      { label: "Cómo empezar", href: "#start" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    services: {
+      eyebrow: "Qué hacemos",
+      heading: "Servicios de atención quiropráctica",
+      lead: "La atención quiropráctica en Palm Wellness Center se enfoca en mejorar el movimiento de las articulaciones, reducir la inflamación y ayudar a los pacientes a recuperarse de una lesión mientras restauran una movilidad segura y cómoda.",
+      items: [
+        { icon: "activity", title: "Ajustes quiroprácticos", body: "Los ajustes suaves restauran la alineación de la columna y la movilidad articular, reducen la rigidez, alivian la presión sobre los nervios y mejoran el movimiento de la columna y los músculos." },
+        { icon: "clipboard", title: "Evaluación de columna y articulaciones", body: "Su quiropráctico evalúa la postura, la alineación de la columna, el equilibrio muscular, los síntomas nerviosos y el rango de movimiento para encontrar la causa del dolor." },
+        { icon: "bandage", title: "Atención enfocada en lesiones", body: "Atención tras un accidente de auto, una lesión laboral o un resbalón y caída: lesiones de tejidos blandos, distensiones musculares, restricciones articulares e irritación de nervios." },
+        { icon: "move", title: "Soporte de movilidad y movimiento", body: "Los ajustes, la tracción y la terapia manual mejoran la movilidad articular y reducen la tensión muscular para que los movimientos diarios se sientan más naturales." },
+        { icon: "target", title: "Guía de postura y salud de la columna", body: "Comprenda cómo la postura, los hábitos de trabajo, el ejercicio y las actividades diarias afectan la salud de su columna y su bienestar general." },
+        { icon: "users", title: "Coordinación de la atención cuando se necesita", body: "Cuando hace falta más, su quiropráctico coordina con nuestro equipo de rehabilitación, fisioterapia o el médico supervisor para apoyar una recuperación segura." },
+      ],
+    },
+    conditions: {
+      heading: "Cuándo puede ayudar la atención quiropráctica",
+      paras: [
+        "La atención quiropráctica puede aliviar el dolor, mejorar la movilidad y restaurar el movimiento diario afectado por una lesión o una afección crónica de la columna. Los síntomas pueden incluir dolor de espalda, rigidez de cuello, dolores de cabeza o rango de movimiento limitado.",
+        "En Palm Wellness Center, la atención quiropráctica se combina con rehabilitación física y ejercicios terapéuticos para reducir el dolor, mejorar la alineación y apoyar una recuperación segura.",
+      ],
+      itemsLabel: "Síntomas que evaluamos con frecuencia",
+      items: [
+        "Dolor y rigidez de espalda",
+        "Dolor y tensión de cuello",
+        "Dolores de cabeza y migrañas",
+        "Rango de movimiento limitado",
+        "Ciática y dolor irradiado",
+        "Rigidez articular",
+      ],
+      note: "La evaluación temprana ayuda a identificar restricciones articulares, tensión muscular y problemas de movimiento antes de que empeoren.",
+      image: "/images/how-to-fix-a-pinched-nerve-in-the-neck-inner.webp",
+      imageAlt: "Quiropráctico evaluando el cuello y la columna de un paciente en Tampa",
+    },
+    integrated: {
+      eyebrow: "Servicios de bienestar integrados",
+      heading: "La quiropráctica funciona mejor con el resto de su atención",
+      lead: "La atención quiropráctica en Palm Wellness Center es más eficaz cuando se coordina con otros servicios de salud y rehabilitación. Nuestro equipo crea planes unificados que abordan el dolor, el movimiento y el bienestar general.",
+      items: [
+        { icon: "user-round", title: "Atención primaria en Tampa", body: "Supervisión médica, pruebas de laboratorio, derivaciones de imágenes y manejo de medicamentos para apoyar una atención quiropráctica segura.", href: "/es/atencion-primaria/" },
+        { icon: "accessibility", title: "Rehabilitación física", body: "Ejercicios terapéuticos, entrenamiento de fuerza y trabajo de movilidad que complementan los ajustes quiroprácticos.", href: "/es/fisioterapia/" },
+        { icon: "venus", title: "Pérdida de peso médica", body: "Reduzca la tensión y la inflamación de las articulaciones mediante el control de peso supervisado por un médico.", href: "/es/perdida-de-peso-medica/" },
+        { icon: "car", title: "Rehabilitación de accidentes de auto", body: "Atención quiropráctica y de rehabilitación coordinada para latigazo cervical, lesiones de tejidos blandos y traumatismos de la columna.", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
+        { icon: "triangle-alert", title: "Tratamiento de resbalones y caídas", body: "Atención quiropráctica y rehabilitación física enfocada en lesiones de columna y articulaciones relacionadas con caídas.", href: "/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/" },
+      ],
+    },
+    why: {
+      eyebrow: "Por qué importa la atención integrada",
+      heading: "Un equipo, un plan, mejor recuperación",
+      lead: "Cuando los proveedores médicos, los quiroprácticos y los especialistas en rehabilitación trabajan juntos, los pacientes reciben una atención más completa.",
+      points: [
+        "Un equipo de atención coordinado en todos los servicios",
+        "Planes de tratamiento y registros médicos compartidos",
+        "Decisiones más seguras e informadas sobre el ejercicio y la actividad",
+        "Pérdida de peso, terapia IV y otros servicios evaluados en su contexto médico completo cuando es apropiado",
+        "Menor necesidad de repetir su historial médico en cada visita",
+        "Mejores resultados gracias a la planificación colaborativa del tratamiento",
+      ],
+      ctaTitle: "Dé el primer paso para sentirse mejor",
+      ctaLead: "Nuestro objetivo es ayudarle a sentirse mejor, moverse con mayor facilidad y disfrutar de la vida diaria otra vez. Con opciones asequibles y apoyo de transporte, Palm Wellness Center está aquí para usted.",
+    },
+    start: {
+      eyebrow: "Cómo empezar",
+      heading: "Cómo comenzar con la atención quiropráctica",
+      items: [
+        { title: "Llame o solicite una cita", body: "Llame al (813) 443-5370 o solicite una cita. Nuestra oficina hará seguimiento para programar su evaluación quiropráctica." },
+        { title: "Su evaluación", body: "Su proveedor revisa su historial de salud, analiza sus síntomas y evalúa su postura, movilidad y función articular." },
+        { title: "Su plan personalizado", body: "Según su evaluación, creamos un plan que puede incluir ajustes, rehabilitación física y ejercicios terapéuticos, ajustado a medida que avanza." },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puede confiar",
+      paras: [
+        "Palm Wellness Center está dirigido por proveedores médicos y de rehabilitación autorizados comprometidos con una atención segura y centrada en el paciente. Nuestro equipo sigue estándares clínicos establecidos y enfatiza la comunicación clara, la planificación adecuada y la continuidad de la atención.",
+        "Los pacientes son atendidos en persona en nuestra clínica de Tampa. Palm Wellness Center atiende con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/medical-office-chiropractor-rehabilitating-patient-back.webp",
+      imageAlt: "Quiropráctico realizando un ajuste en Palm Wellness Center en Tampa",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Supervisión médica",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Nosotros te ayudamos.",
+      body: "Palm Wellness Center ofrece asistencia de transporte para pacientes elegibles en toda el área de la Bahía de Tampa. Si el transporte es una preocupación, avísale a nuestro equipo cuando llames o solicites una cita, y te ayudaremos a coordinar tu visita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tiene preguntas? Llámenos al (813) 443-5370 y nuestro equipo le explicará sus opciones y qué esperar.",
+      items: [
+        { q: "¿Necesito una derivación para ver a un quiropráctico en Palm Wellness Center?", a: "No. La atención quiropráctica no requiere derivación en Florida. Puede llamar o programar una cita directamente. Sin embargo, si tiene un reclamo por lesiones o está viendo a un proveedor de atención primaria, coordinar la atención suele ser útil." },
+        { q: "¿Con qué afecciones puede ayudar la atención quiropráctica?", a: "Puede ayudar con dolor de cuello y espalda, dolores de cabeza, ciática, rigidez articular, latigazo cervical, lesiones deportivas, tensión laboral y afecciones crónicas de la columna. Su quiropráctico evaluará sus síntomas y recomendará un plan personalizado." },
+        { q: "¿Es segura la atención quiropráctica después de un accidente de auto o un resbalón y caída?", a: "Sí, cuando la brinda un quiropráctico autorizado con experiencia en atención de lesiones. Su proveedor evaluará cuidadosamente su afección y se coordinará con los proveedores médicos si se necesitan imágenes, pruebas o derivación." },
+        { q: "¿Cuántas visitas quiroprácticas necesitaré?", a: "Depende de su afección, la gravedad de la lesión y los objetivos del tratamiento. Algunos pacientes sienten mejoría en pocas visitas, mientras que otros se benefician de atención continua. Su quiropráctico le explicará un plan realista en su primera visita." },
+        { q: "¿Aceptan seguros para servicios quiroprácticos?", a: "Palm Wellness Center trabaja con muchos planes de seguro. Llame al (813) 443-5370 para verificar su cobertura y analizar las opciones de pago." },
+        { q: "¿Qué debo llevar a mi primera cita quiropráctica?", a: "Lleve una identificación con foto, tarjeta de seguro (si la usa), una lista de medicamentos actuales y cualquier imagen o registro médico relacionado con sus síntomas, si está disponible." },
+        { q: "¿Puedo recibir atención quiropráctica y fisioterapia al mismo tiempo?", a: "Sí. De hecho, los ajustes quiroprácticos y la rehabilitación física suelen combinarse bien. Su equipo coordinará ambos servicios para apoyar una recuperación segura y eficaz." },
+        { q: "¿Puedo ver a mi quiropráctico y a mi proveedor de atención primaria en la misma clínica?", a: "Sí. Palm Wellness Center integra servicios quiroprácticos, de rehabilitación física y de atención primaria, para que sus proveedores coordinen su plan y compartan registros." },
+        { q: "¿Y si tengo osteoporosis, cirugías previas u otras afecciones médicas?", a: "Su quiropráctico revisará su historial de salud y ajustará las técnicas a sus necesidades. Si la atención quiropráctica no es adecuada para su afección, su proveedor lo derivará al especialista adecuado." },
+        { q: "¿Duele la atención quiropráctica?", a: "La mayoría de los pacientes reporta alivio inmediato o un dolor leve similar a la rigidez posterior al ejercicio. Su quiropráctico explicará cada técnica y ajustará el tratamiento a su nivel de comodidad." },
+      ],
+    },
+    area: {
+      eyebrow: "Área de Servicio",
+      heading: "Sirviendo con orgullo a Tampa y vecindarios circundantes",
+      lead: "Palm Wellness Center está ubicado en Tampa, FL, pero nuestros pacientes vienen de toda la región. Dondequiera que viva en el área de la Bahía de Tampa, estamos aquí para ayudarle a sanar y moverse mejor.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Comunidades del área de Tampa Bay"],
+      note: "¿Necesita indicaciones o transporte? Llame al (813) 443-5370 y nuestro equipo le ayudará a planificar su visita.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntelo al reservar.",
+    },
+    cta: {
+      title: "¿Listo para comenzar la atención quiropráctica en Tampa?",
+      lead: "Si el dolor, la rigidez, los dolores de cabeza o una lesión limitan su movimiento y su vida diaria, la atención quiropráctica puede ayudar a restaurar la movilidad y mejorar su calidad de vida.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="spine" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-top" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- SERVICES -->
+<section id="services" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="activity" class="h-3.5 w-3.5" />{content.services.eyebrow}</span>
+        <h2 class={h2Cls}>{content.services.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.services.lead}</p>
+    </div>
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {content.services.items.map((c) => (
+        <li class="flex flex-col gap-3 rounded-lg border border-line bg-bg-alt p-6 lg:p-7">
+          <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-5 w-5" /></span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink">{c.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-body">{c.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- CONDITIONS -->
+<section id="conditions" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[1fr_520px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <h2 class={h2Cls}>{content.conditions.heading}</h2>
+      {content.conditions.paras.map((p) => <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.conditions.itemsLabel}</p>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {content.conditions.items.map((it) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{it}</li>
+        ))}
+      </ul>
+      <p class="flex items-start gap-3 rounded-lg border border-line bg-white p-5 text-[15px] font-semibold leading-[1.5] text-ink">
+        <Icon name="circle-check" class="mt-0.5 h-5 w-5 shrink-0 text-blue-deep" />{content.conditions.note}
+      </p>
+    </div>
+    <img src={content.conditions.image} width="520" height="520" alt={content.conditions.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[460px]" />
+  </div>
+</section>
+
+<!-- INTEGRATED SERVICES -->
+<section id="integrated" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="users" class="h-3.5 w-3.5" />{content.integrated.eyebrow}</span>
+        <h2 class={h2Cls}>{content.integrated.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.integrated.lead}</p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {content.integrated.items.map((s) => (
+        <a href={s.href} class={`group flex flex-col gap-3 rounded-lg border border-line bg-bg-alt p-6 lg:p-7 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHY (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_440px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowDarkCls}>{content.why.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.why.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-blue-tint">{content.why.lead}</p>
+      <div class="mt-2 flex flex-col gap-3 border-t border-white/15 pt-6">
+        <p class="font-titles text-[20px] leading-[1.25] text-white lg:text-[22px]">{content.why.ctaTitle}</p>
+        <p class="max-w-[60ch] text-[15px] leading-[1.6] text-blue-tint">{content.why.ctaLead}</p>
+        <div class="mt-1 flex flex-wrap gap-3">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-6 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+      </div>
+    </div>
+    <ul class="flex flex-col gap-4 rounded-lg border border-white/15 bg-white/5 p-7 lg:p-8">
+      {content.why.points.map((p) => (
+        <li class="flex items-start gap-3 text-[15px] leading-[1.55] text-blue-tint"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{p}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- GET STARTED -->
+<section id="start" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="route" class="h-3.5 w-3.5" />{content.start.eyebrow}</span>
+      <h2 class={h2Cls}>{content.start.heading}</h2>
+    </div>
+    <ol class="grid gap-5 md:grid-cols-3">
+      {content.start.items.map((s, i) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[14.5px] leading-[1.6] text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+      <div class={`flex flex-col gap-1.5 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{content.trust.supervisorLabel}</p>
+        <p class="font-titles text-[18px] font-bold text-ink">Dr. Arnaldo V. Orellana-Molina</p>
+        <p class="text-[13px] font-semibold leading-[1.4] text-blue">{lang === "es" ? "MD - Médico Supervisor" : "MD - Supervising Physician"}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{lang === "es" ? "Brinda supervisión médica que mantiene cada plan seguro y alineado con las guías clínicas." : "Provides medical oversight that keeps every care plan safe and guideline-aligned."}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{lang === "es" ? "Preguntas" : "FAQ"}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{content.area.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

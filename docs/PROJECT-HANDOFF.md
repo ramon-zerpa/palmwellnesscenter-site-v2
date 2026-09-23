@@ -1,7 +1,7 @@
 # Palm Wellness Center — Project Handoff
 
-**Updated:** 2026-09-22  
-**Last published commit:** car accident family closed (Groups 6 and 7): `CarAccidentPhysicalTherapyPage.astro` and `WhiplashTreatmentPage.astro` (EN/ES), on top of `b68ac95`  
+**Updated:** 2026-09-23  
+**Last published commit:** Groups 6 and 7 (car accident family) published; Groups 3 and 4 (chiropractor, massage, therapeutic exercises, therapeutic ultrasound; EN/ES) built locally, on top of `b68ac95`  
 **Branch:** `main` · a push to `origin main` deploys automatically through Vercel.
 
 Read this after `AGENTS.md` at the beginning of a new session. It is the concise, current
@@ -42,6 +42,36 @@ visual language, with its own content and photography:
 | `/car-accident-physical-therapy/` | `/es/fisioterapia-para-accidente-de-auto/` | `CarAccidentPhysicalTherapyPage.astro` |
 | `/whiplash-treatment-tampa/` | `/es/tratamiento-latigazo-cervical-tampa/` | `WhiplashTreatmentPage.astro` |
 
+**Group 3 is closed** (`/chiropractor/` + `/es/quiropractico/`, `/massage-therapy/` +
+`/es/terapia-de-masajes/`):
+
+| EN | ES | Component |
+|---|---|---|
+| `/chiropractor/` | `/es/quiropractico/` | `ChiropractorPage.astro` |
+| `/massage-therapy/` | `/es/terapia-de-masajes/` | `MassageTherapyPage.astro` |
+
+Both paths existed in `richpages.json`, so they were added to the `migrated` `Set`. The massage
+page's legacy hero was a YouTube thumbnail with baked-in text ("MASSAGE THERAPY / HEALTH BENEFITS")
+and a brand watermark; it was replaced with the clean `massage-therapy-session.webp`. The
+chiropractor hero uses `integrated-wellness-services-chiropractor.webp` (a full clinical scene)
+rather than the white-background provider cutout, which read as a floating white box in the frame.
+
+**Group 4 is closed** (`/therapeutic-exercises/` + `/es/ejercicios-terapeuticos/`,
+`/therapeutic-ultrasound-treatment/` + `/es/tratamiento-de-ultrasonido-terapeutico/`):
+
+| EN | ES | Component |
+|---|---|---|
+| `/therapeutic-exercises/` | `/es/ejercicios-terapeuticos/` | `TherapeuticExercisesPage.astro` |
+| `/therapeutic-ultrasound-treatment/` | `/es/tratamiento-de-ultrasonido-terapeutico/` | `TherapeuticUltrasoundPage.astro` |
+
+Both were in `richpages.json` → `migrated` `Set`. This closes the catch-all's content-substitution
+layer: `src/data/therapeuticExercises.ts` was deleted (nothing imported it anymore). With Groups
+3 and 4 closed, **the entire rehabilitation cluster is redesigned**. The ultrasound page reuses
+`ultrasound-therapy-on-patient-shoulder.webp` (hero), `how-ultrasound-therapy-works-to-improve-healing-and-recovery-img.webp`
+and `ultrasound-therapy-for-patinet-leg.webp`; the exercises page uses
+`therapeutic-exercises-session.webp` as hero. `muscle-strains-treated-physical-therapy.webp` carries
+a brand watermark and was not used.
+
 With Groups 6 and 7 closed, the **whole car accident family is redesigned**. On the treatment,
 clinic and whiplash pages the "Treatment options" / "Our services" cards **link** to the matching
 service pages (`/chiropractor/`, `/physical-rehabilitation/`, `/massage-therapy/`,
@@ -56,9 +86,10 @@ The Primary Care children that used to be nested under `/primary-care/` were **f
 level** (they are new URLs, so no redirects were needed) and `SimplePage.astro` +
 `src/data/newPages.ts` were deleted once no route imported them.
 
-The next planned migration is **Groups 3 and 4**: `/chiropractor/`, `/massage-therapy/`,
-`/therapeutic-exercises/` and `/therapeutic-ultrasound-treatment/` (+ ES). See
-`docs/redesign-plan.md`.
+The next planned migration is **Group 8**: `/slip-and-fall-injury-treatment/` plus the
+`/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/` city cluster (+ ES),
+built as one template. Those paths exist in `richpages.json`, so they need `migrated` `Set`
+entries. See `docs/redesign-plan.md`.
 
 ## 2. Approved global UI decisions
 
@@ -184,6 +215,14 @@ The full business name is immutable in title tags: **Palm Wellness Center**. Do 
 - Groups 6 and 7 (`CarAccidentPhysicalTherapyPage`, `WhiplashTreatmentPage` + ES) were audited in
   EN/ES at 360·412·768·1024·1440: clean, and the trust block images were confirmed to show heads
   with `object-top`.
+- Group 3 (`ChiropractorPage`, `MassageTherapyPage` + ES) was audited in EN/ES at
+  360·412·768·1024·1440: zero horizontal overflow, one H1, no clipped text, no images missing
+  dimensions; anchor clicks resolve to the right target without writing a hash into the URL. Build
+  stays at **273 pages** (the four migrated paths moved from the catch-all to explicit routes).
+- Group 4 (`TherapeuticExercisesPage`, `TherapeuticUltrasoundPage` + ES) was audited in EN/ES at
+  360·412·768·1024·1440 with the same results (zero overflow, one H1, no clipped text, no missing
+  image dimensions), and anchor clicks were verified. Build stays at **273 pages**, and deleting
+  `src/data/therapeuticExercises.ts` did not change the count.
 - The user reported PageSpeed Insights results of **97 mobile / 100 desktop** for the preview
   homepage. Treat those as the current performance reference. A local Lighthouse attempt was
   contaminated by the machine's AdBlock360 injection, so do not use it as a baseline or change
@@ -217,10 +256,9 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
 
 ## 8. Important unresolved work
 
-1. Redesign Groups 3–12 per `docs/redesign-plan.md`; the immediate pages are
-   `/chiropractor/`, `/massage-therapy/` (Group 3) and `/therapeutic-exercises/`,
-   `/therapeutic-ultrasound-treatment/` (Group 4), all with their ES mirrors. Groups 5, 6 and 7
-   (the whole car accident family) are closed.
+1. Redesign Groups 8–12 per `docs/redesign-plan.md`; the immediate work is Group 8
+   (`/slip-and-fall-injury-treatment/` + the city cluster), with their ES mirrors. Groups 3–7 are
+   closed and the whole rehabilitation + car accident clusters are done.
 2. Interior pages still rendered through `RichPage`/`RichSection` retain legacy body design even
    though they inherit the current header/footer and icons.
 3. The Contact form is **404 in Vercel production** because `functions/api/contact.ts` is a

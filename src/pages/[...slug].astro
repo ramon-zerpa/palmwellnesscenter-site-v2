@@ -7,14 +7,9 @@ import RichPage from "../components/RichPage.astro";
 import BlogPost from "../components/BlogPost.astro";
 import type { Lang } from "../i18n/ui";
 import richpages from "../data/richpages.json";
-import therapeuticExercises, { therapeuticExercisesSpanish } from "../data/therapeuticExercises";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
-  const therapeuticExercisesByPath = new Map([
-    [therapeuticExercises.path, therapeuticExercises],
-    [therapeuticExercisesSpanish.path, therapeuticExercisesSpanish],
-  ]);
   // Paths migrated to dedicated new-design pages (removed from the legacy rich renderer).
   const migrated = new Set([
     "/primary-care/",
@@ -35,12 +30,16 @@ export async function getStaticPaths() {
     "/es/fisioterapia-para-accidente-de-auto/",
     "/whiplash-treatment-tampa/",
     "/es/tratamiento-latigazo-cervical-tampa/",
+    "/chiropractor/",
+    "/es/quiropractico/",
+    "/massage-therapy/",
+    "/es/terapia-de-masajes/",
+    "/therapeutic-exercises/",
+    "/es/ejercicios-terapeuticos/",
+    "/therapeutic-ultrasound-treatment/",
+    "/es/tratamiento-de-ultrasonido-terapeutico/",
   ]);
-  const resolvedRichPages = (richpages as any[])
-    .filter((page) => !migrated.has(page.path))
-    .map(
-      (page) => therapeuticExercisesByPath.get(page.path) ?? page,
-    );
+  const resolvedRichPages = (richpages as any[]).filter((page) => !migrated.has(page.path));
   const trim = (s: string) => s.replace(/^\/|\/$/g, "");
   const rich = resolvedRichPages.map((p) => ({
     params: { slug: trim(p.path) },

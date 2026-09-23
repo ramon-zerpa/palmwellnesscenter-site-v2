@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import TherapeuticExercisesPage from "../../components/pages/TherapeuticExercisesPage.astro";
+
+const path = "/es/ejercicios-terapeuticos/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Ejercicios terapéuticos en Tampa para fuerza, equilibrio y movilidad"
+  description="Ejercicios terapéuticos guiados por proveedores en Tampa para mejorar la fuerza, el equilibrio, la movilidad, el rango de movimiento y la recuperación después de una lesión."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <TherapeuticExercisesPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

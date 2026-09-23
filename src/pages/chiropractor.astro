@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ChiropractorPage from "../components/pages/ChiropractorPage.astro";
+
+const path = "/chiropractor/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Chiropractic Care in Tampa, FL - Palm Wellness Center"
+  description="Chiropractic care in Tampa for back pain, injuries, and mobility problems. Call Palm Wellness Center to schedule your evaluation today."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <ChiropractorPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

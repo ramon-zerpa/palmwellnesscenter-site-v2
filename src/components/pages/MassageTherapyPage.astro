@@ -1,0 +1,816 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Massage Therapy in Tampa",
+      title: "Massage therapy in Tampa for pain relief and recovery",
+      lead: "Structured, therapeutic massage focused on improving movement, reducing discomfort, and supporting recovery after injury.",
+      chips: [
+        { icon: "hand", label: "Muscle tension and soreness" },
+        { icon: "move", label: "Mobility and flexibility" },
+        { icon: "bandage", label: "Soft tissue recovery" },
+        { icon: "car", label: "Car accident recovery" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "Therapeutic massage · Coordinated with rehabilitation · Bilingual care",
+      image: "/images/massage-therapy-session.webp",
+      imageAlt: "Therapeutic massage therapy session in Tampa",
+      rail: [
+        { value: "Therapeutic", label: "Focused on function, not just relaxation" },
+        { value: "One roof", label: "Combined with chiropractic and rehab" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "Why massage", href: "#why" },
+      { label: "What it helps", href: "#helps" },
+      { label: "What to expect", href: "#expect" },
+      { label: "Combined care", href: "#combined" },
+      { label: "Care team", href: "#team" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    why: {
+      eyebrow: "Why choose us",
+      heading: "Why patients choose us for massage therapy",
+      lead: "Palm Wellness Center provides rehabilitation massage therapy as part of a coordinated treatment approach focused on injury recovery, movement, and overall function.",
+      pointsLabel: "What you can expect",
+      points: [
+        "Integrated chiropractic care and rehabilitation services in one location",
+        "Individualized treatment plans based on symptoms, mobility limitations, and recovery goals",
+        "Medical oversight supporting coordinated care",
+        "Therapeutic exercises designed to improve strength and movement",
+        "Experienced massage therapists working alongside rehabilitation providers",
+        "Bilingual care available in English and Spanish",
+        "Transportation assistance available for eligible patients throughout the Tampa area",
+      ],
+      image: "/images/therapist-applying-massage-oil.jpg",
+      imageAlt: "Massage therapist applying therapeutic oil during a treatment session",
+    },
+    helps: {
+      eyebrow: "What it helps with",
+      heading: "When massage therapy may help",
+      lead: "Massage therapy may be recommended when muscle tension, soreness, or soft tissue irritation continues to affect movement and daily activity.",
+      itemsLabel: "Treatment may help patients experiencing",
+      items: [
+        "Muscle tension and tightness",
+        "Neck pain",
+        "Back pain",
+        "Shoulder discomfort",
+        "Soft tissue injuries",
+        "Reduced flexibility",
+        "Stiffness affecting mobility",
+        "Ongoing soreness during rehabilitation",
+        "Muscle guarding after a car accident",
+      ],
+      note: "Some patients seek treatment soon after an injury, while others begin care when symptoms continue longer than expected or start interfering with work, sleep, driving, or everyday movement.",
+    },
+    signs: {
+      heading: "What you feel vs. what may be affecting movement",
+      paras: [
+        "Pain, stiffness, and soreness are often easier to notice than the movement problems behind them. Tight or irritated soft tissue can limit range of motion, change posture, or make the body work harder during normal activities.",
+        "Even mild symptoms can make daily movement harder when the body keeps protecting the sore area instead of moving normally.",
+      ],
+      head: ["What you notice", "What may be affecting movement"],
+      rows: [
+        ["Tight muscles", "Muscles may be guarding the sore area, making movement feel restricted"],
+        ["Stiffness with movement", "Joints and surrounding soft tissue may not be moving freely"],
+        ["Ongoing soreness", "Irritated tissue may still be reacting during daily activity"],
+        ["Neck or back discomfort", "Muscle tension may be changing posture or movement patterns"],
+        ["Limited flexibility", "Tight tissue may be reducing range of motion"],
+        ["Pain during activity", "The body may be compensating to avoid using the sore area"],
+        ["Fatigue during activity", "Muscles may be working harder than necessary because movement patterns have changed"],
+      ],
+    },
+    rehab: {
+      eyebrow: "How it supports recovery",
+      heading: "How massage therapy supports rehabilitation",
+      lead: "Massage therapy is commonly used to help reduce muscle tension, improve flexibility, and support recovery after injury.",
+      para: "When muscles become tight or irritated, the body may change the way it moves to protect sore areas. Over time, these compensation patterns can place added stress on nearby muscles and joints, making movement feel more difficult or uncomfortable.",
+      pointsLabel: "Massage therapy may help",
+      points: [
+        "Reduce muscle tension and tightness",
+        "Improve flexibility and mobility",
+        "Support circulation to affected tissues",
+        "Improve comfort during movement",
+        "Complement therapeutic exercises and stretching",
+        "Help patients tolerate activity more comfortably during recovery",
+      ],
+      note: "At Palm Wellness Center, massage therapy may be used alongside other treatments when appropriate, but each treatment plan is based on your symptoms and recovery goals.",
+    },
+    accident: {
+      eyebrow: "Car accident recovery",
+      heading: "Massage therapy and car accident recovery",
+      paras: [
+        "After a car accident, many patients experience muscle tension, soreness, stiffness, or soft tissue irritation that can continue to affect movement long after the initial injury.",
+        "Some symptoms appear immediately, while others develop later as swelling, muscle guarding, and compensation patterns begin affecting nearby areas of the body.",
+      ],
+      itemsLabel: "Massage therapy is commonly included when patients experience",
+      items: [
+        "Neck tension after whiplash injuries",
+        "Upper back or shoulder tightness",
+        "Muscle soreness after impact injuries",
+        "Reduced mobility affecting daily activity",
+        "Soft tissue irritation limiting movement",
+      ],
+      note: "Many patients find that reducing muscle tension helps make rehabilitation exercises, stretching, and other treatments more comfortable throughout recovery.",
+      image: "/images/how-to-pay-for-massage-therapy-after-a-car-accident.webp",
+      imageAlt: "Massage therapist treating a patient recovering from a car accident in Tampa",
+      relatedLabel: "Related care",
+      related: [
+        { label: "Car accident rehabilitation", href: "/car-accident-rehabilitation/" },
+        { label: "Car accident treatment", href: "/car-accident-treatment/" },
+      ],
+    },
+    expect: {
+      heading: "What to expect during massage therapy treatment",
+      paras: [
+        "Massage therapy sessions are tailored to your symptoms, treatment goals, and recovery needs.",
+        "Before treatment begins, your provider reviews your symptoms and identifies areas of muscle tension, soreness, or movement restriction.",
+      ],
+      techniquesLabel: "During treatment, massage techniques may be used to address",
+      techniques: [
+        "Tight muscles",
+        "Soft tissue irritation",
+        "Areas of restricted movement",
+        "Muscle tension affecting posture or mobility",
+      ],
+      note: "Treatment is adjusted based on your symptoms and recovery goals. Some patients need gentle techniques around irritated areas, while others may benefit from more focused work on chronic muscle tension or movement restrictions.",
+      describeLabel: "Most patients describe treatment as",
+      describe: [
+        "Comfortable",
+        "Relaxing",
+        "Gentle to moderate in pressure",
+        "Focused on improving movement rather than temporary relief alone",
+      ],
+    },
+    combined: {
+      eyebrow: "Combined care",
+      heading: "Massage therapy combined with other treatments",
+      lead: "Massage therapy is often used alongside other treatments to help improve movement, flexibility, and comfort during recovery. Depending on your condition, your treatment plan may also include:",
+      items: [
+        { icon: "spine", title: "Chiropractic care", body: "To improve joint mobility and alignment.", href: "/chiropractor/" },
+        { icon: "accessibility", title: "Physical rehabilitation", body: "To improve strength and stability.", href: "/physical-rehabilitation/" },
+        { icon: "dumbbell", title: "Therapeutic exercises", body: "To support long-term function.", href: "/therapeutic-exercises/" },
+        { icon: "waves", title: "Therapeutic ultrasound", body: "To support soft tissue recovery.", href: "/therapeutic-ultrasound-treatment/" },
+        { icon: "car", title: "Car accident rehabilitation", body: "Focused on injury recovery after a crash.", href: "/car-accident-rehabilitation/" },
+        { icon: "triangle-alert", title: "Slip and fall injury treatment", body: "When falls affect mobility or soft tissue recovery.", href: "/slip-and-fall-injury-treatment/" },
+      ],
+      note: "This coordinated approach helps address multiple factors affecting movement while supporting a more complete recovery.",
+    },
+    team: {
+      eyebrow: "Our care team",
+      heading: "Experienced medical and rehabilitation team",
+      lead: "Your care at Palm Wellness Center is supported by a licensed medical and rehabilitation team experienced in helping patients recover from pain, soft tissue injuries, and movement limitations.",
+      members: [
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides clinical guidance that supports safe, appropriate, and patient-centered care." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Board-Certified Physician Assistant", bio: "Provides medical evaluations, follow-up care, and coordination with rehabilitation services. Fluent in English and Spanish." },
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Founder and Clinic Administrator", bio: "Oversees patient care coordination and rehabilitation services focused on structured recovery and mobility support." },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center provides patient-centered rehabilitation focused on safe, coordinated care and long-term recovery support. Our team prioritizes clear communication, thoughtful treatment planning, and continuity of care throughout the rehabilitation process.",
+        "Palm Wellness Center proudly serves Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/regular-therapy-sessions.webp",
+      imageAlt: "Massage therapist working with a patient at Palm Wellness Center in Tampa",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+    },
+    transport: {
+      title: "Need a ride? We have got you covered.",
+      body: "Palm Wellness Center offers transportation assistance for eligible patients throughout the Tampa Bay area. If transportation is a concern, let our team know when you call or request an appointment, and we will help coordinate your visit.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through your options and what to expect.",
+      items: [
+        { q: "What is medical massage therapy?", a: "Medical massage therapy is a treatment approach used to address muscle tension, mobility limitations, soft tissue injury, and pain that may interfere with normal movement and daily activities. It is often included within a structured rehabilitation program." },
+        { q: "Can massage therapy help with pain management?", a: "Yes. Massage therapy for pain relief may help reduce muscle tension, improve movement, and support soft tissue recovery. Many patients use massage for pain as part of a broader rehabilitation plan." },
+        { q: "Is massage therapy part of physical rehabilitation?", a: "Yes. Massage therapy is frequently used within physical rehabilitation programs to improve mobility, reduce muscle tightness, and help patients participate more comfortably in recovery activities." },
+        { q: "Can massage therapy help after a car accident?", a: "Yes. Massage therapy is commonly included in car accident recovery plans when muscle soreness, stiffness, or soft tissue injuries continue to affect movement after an accident." },
+        { q: "How often should I receive massage therapy?", a: "Treatment frequency depends on your symptoms, goals, and response to care. Some patients benefit from more frequent visits initially, while others require less frequent treatment as recovery progresses." },
+        { q: "Is massage therapy covered by PIP after a car accident?", a: "Florida Personal Injury Protection insurance may help cover medically necessary treatment related to accident injuries. Coverage varies based on eligibility requirements and individual circumstances." },
+        { q: "What conditions may benefit from massage therapy?", a: "Massage therapy may help patients experiencing neck pain, back pain, muscle tension, mobility restrictions, soft tissue injuries, stiffness, and other conditions affecting movement and function." },
+        { q: "Can massage therapy be combined with chiropractic care?", a: "Yes. Massage therapy is often combined with chiropractic care, therapeutic exercises, physical rehabilitation, and other services to support recovery and improve overall function." },
+      ],
+    },
+    area: {
+      eyebrow: "Service Area",
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Palm Wellness Center is located in Tampa, FL, but our patients come from across the surrounding area. We regularly help patients improve mobility, reduce discomfort, and recover from injury through coordinated rehabilitation services.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Tampa Bay area communities"],
+      note: "Need directions or a ride? Call (813) 443-5370 and our team will help you plan your visit.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Ready to move with less pain and tension?",
+      lead: "If muscle tension, soreness, stiffness, or soft tissue discomfort is making daily movement more difficult, massage therapy may help support your recovery.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Terapia de Masaje en Tampa",
+      title: "Terapia de masaje en Tampa para alivio del dolor y recuperación",
+      lead: "Terapia de masaje estructurada enfocada en mejorar el movimiento, reducir las molestias y apoyar la recuperación después de una lesión.",
+      chips: [
+        { icon: "hand", label: "Tensión muscular y dolor" },
+        { icon: "move", label: "Movilidad y flexibilidad" },
+        { icon: "bandage", label: "Recuperación de tejidos blandos" },
+        { icon: "car", label: "Recuperación tras un accidente de auto" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "Masaje terapéutico · Coordinado con la rehabilitación · Atención bilingüe",
+      image: "/images/massage-therapy-session.webp",
+      imageAlt: "Sesión de terapia de masaje terapéutico en Tampa",
+      rail: [
+        { value: "Terapéutico", label: "Enfocado en la función, no solo en relajación" },
+        { value: "Un solo lugar", label: "Combinado con quiropráctica y rehabilitación" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Por qué el masaje", href: "#why" },
+      { label: "En qué ayuda", href: "#helps" },
+      { label: "Qué esperar", href: "#expect" },
+      { label: "Atención combinada", href: "#combined" },
+      { label: "Equipo", href: "#team" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    why: {
+      eyebrow: "Por qué elegirnos",
+      heading: "Por qué los pacientes nos eligen para terapia de masaje",
+      lead: "Palm Wellness Center ofrece terapia de masaje para rehabilitación como parte de un enfoque coordinado centrado en la recuperación de lesiones, el movimiento y la función general.",
+      pointsLabel: "Qué puede esperar",
+      points: [
+        "Terapia de masaje integrada con atención quiropráctica y rehabilitación en un solo lugar",
+        "Planes de tratamiento personalizados según sus síntomas, movilidad y objetivos de recuperación",
+        "Supervisión médica que respalda una atención coordinada",
+        "Ejercicios terapéuticos diseñados para mejorar la fuerza y el movimiento",
+        "Terapeutas de masaje con experiencia que trabajan junto a los proveedores de rehabilitación",
+        "Atención bilingüe disponible en inglés y español",
+        "Asistencia de transporte para pacientes elegibles en toda el área de Tampa",
+      ],
+      image: "/images/therapist-applying-massage-oil.jpg",
+      imageAlt: "Terapeuta de masaje aplicando aceite terapéutico durante una sesión",
+    },
+    helps: {
+      eyebrow: "En qué ayuda",
+      heading: "Cuándo puede ayudar la terapia de masaje",
+      lead: "La terapia de masaje puede recomendarse cuando la tensión muscular, el dolor o la irritación de los tejidos blandos siguen afectando el movimiento y la actividad diaria.",
+      itemsLabel: "El tratamiento puede ayudar a pacientes que presentan",
+      items: [
+        "Tensión y rigidez muscular",
+        "Dolor de cuello",
+        "Dolor de espalda",
+        "Molestias en el hombro",
+        "Lesiones de tejidos blandos",
+        "Flexibilidad reducida",
+        "Rigidez que afecta la movilidad",
+        "Dolor continuo durante la rehabilitación",
+        "Tensión muscular después de un accidente de auto",
+      ],
+      note: "Algunos pacientes buscan tratamiento poco después de una lesión, mientras que otros comienzan cuando los síntomas continúan más de lo esperado o interfieren con el trabajo, el sueño, el manejo o el movimiento diario.",
+    },
+    signs: {
+      heading: "Lo que siente vs. lo que puede estar afectando el movimiento",
+      paras: [
+        "El dolor, la rigidez y las molestias suelen ser más fáciles de notar que los problemas de movimiento detrás de ellos. El tejido blando tenso o irritado puede limitar el rango de movimiento, cambiar la postura o hacer que el cuerpo trabaje más durante las actividades normales.",
+        "Incluso síntomas leves pueden dificultar el movimiento diario cuando el cuerpo sigue protegiendo la zona adolorida en lugar de moverse con normalidad.",
+      ],
+      head: ["Lo que nota", "Lo que puede estar afectando el movimiento"],
+      rows: [
+        ["Músculos tensos", "Los músculos pueden estar protegiendo la zona adolorida y restringir el movimiento"],
+        ["Rigidez al moverse", "Las articulaciones y el tejido blando circundante pueden no moverse con libertad"],
+        ["Dolor continuo", "El tejido irritado puede seguir reaccionando durante la actividad diaria"],
+        ["Molestia de cuello o espalda", "La tensión muscular puede estar cambiando la postura o los patrones de movimiento"],
+        ["Flexibilidad limitada", "El tejido tenso puede estar reduciendo el rango de movimiento"],
+        ["Dolor durante la actividad", "El cuerpo puede estar compensando para evitar usar la zona adolorida"],
+        ["Fatiga durante la actividad", "Los músculos pueden trabajar más de lo necesario porque los patrones de movimiento cambiaron"],
+      ],
+    },
+    rehab: {
+      eyebrow: "Cómo apoya la recuperación",
+      heading: "Cómo la terapia de masaje apoya la rehabilitación",
+      lead: "La terapia de masaje se usa comúnmente para ayudar a reducir la tensión muscular, mejorar la flexibilidad y apoyar la recuperación después de una lesión.",
+      para: "Cuando los músculos se tensan o se irritan, el cuerpo puede cambiar la forma en que se mueve para proteger las zonas adoloridas. Con el tiempo, estos patrones de compensación pueden añadir tensión a músculos y articulaciones cercanas, haciendo que el movimiento sea más difícil o incómodo.",
+      pointsLabel: "La terapia de masaje puede ayudar a",
+      points: [
+        "Reducir la tensión y rigidez muscular",
+        "Mejorar la flexibilidad y movilidad",
+        "Apoyar la circulación a los tejidos afectados",
+        "Mejorar la comodidad durante el movimiento",
+        "Complementar los ejercicios terapéuticos y el estiramiento",
+        "Ayudar a tolerar la actividad con más comodidad durante la recuperación",
+      ],
+      note: "En Palm Wellness Center, la terapia de masaje puede usarse junto con otros tratamientos cuando es apropiado, pero cada plan se basa en sus síntomas y objetivos de recuperación.",
+    },
+    accident: {
+      eyebrow: "Recuperación tras un accidente de auto",
+      heading: "Terapia de masaje y recuperación tras un accidente de auto",
+      paras: [
+        "Después de un accidente de auto, muchos pacientes presentan tensión muscular, dolor, rigidez o irritación de tejidos blandos que puede seguir afectando el movimiento mucho después de la lesión inicial.",
+        "Algunos síntomas aparecen de inmediato, mientras que otros se desarrollan más tarde, cuando la inflamación, la tensión muscular y los patrones de compensación comienzan a afectar zonas cercanas del cuerpo.",
+      ],
+      itemsLabel: "La terapia de masaje suele incluirse cuando los pacientes presentan",
+      items: [
+        "Tensión de cuello después de latigazo cervical",
+        "Rigidez de espalda alta u hombros",
+        "Dolor muscular después de lesiones por impacto",
+        "Movilidad reducida que afecta la actividad diaria",
+        "Irritación de tejidos blandos que limita el movimiento",
+      ],
+      note: "Muchos pacientes descubren que reducir la tensión muscular hace que los ejercicios de rehabilitación, el estiramiento y otros tratamientos sean más cómodos durante la recuperación.",
+      image: "/images/how-to-pay-for-massage-therapy-after-a-car-accident.webp",
+      imageAlt: "Terapeuta de masaje tratando a un paciente que se recupera de un accidente de auto en Tampa",
+      relatedLabel: "Atención relacionada",
+      related: [
+        { label: "Rehabilitación de accidentes de auto", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
+        { label: "Tratamiento de accidentes de auto", href: "/es/tratamiento-de-accidentes-de-auto/" },
+      ],
+    },
+    expect: {
+      heading: "Qué esperar durante el tratamiento de terapia de masaje",
+      paras: [
+        "Las sesiones de terapia de masaje se adaptan a sus síntomas, objetivos de tratamiento y necesidades de recuperación.",
+        "Antes de comenzar el tratamiento, su proveedor revisa sus síntomas e identifica zonas de tensión muscular, dolor o restricción del movimiento.",
+      ],
+      techniquesLabel: "Durante el tratamiento, las técnicas de masaje pueden abordar",
+      techniques: [
+        "Músculos tensos",
+        "Irritación de tejidos blandos",
+        "Zonas de movimiento restringido",
+        "Tensión muscular que afecta la postura o la movilidad",
+      ],
+      note: "El tratamiento se ajusta según sus síntomas y objetivos de recuperación. Algunos pacientes necesitan técnicas suaves en zonas irritadas, mientras que otros pueden beneficiarse de un trabajo más enfocado en tensión crónica o restricciones de movimiento.",
+      describeLabel: "La mayoría de los pacientes describe el tratamiento como",
+      describe: [
+        "Cómodo",
+        "Relajante",
+        "De presión suave a moderada",
+        "Enfocado en mejorar el movimiento, no solo en un alivio temporal",
+      ],
+    },
+    combined: {
+      eyebrow: "Atención combinada",
+      heading: "Terapia de masaje combinada con otros tratamientos",
+      lead: "La terapia de masaje suele usarse junto con otros tratamientos para ayudar a mejorar el movimiento, la flexibilidad y la comodidad durante la recuperación. Según su condición, su plan puede incluir también:",
+      items: [
+        { icon: "spine", title: "Atención quiropráctica", body: "Para mejorar el movimiento y la alineación articular.", href: "/es/quiropractico/" },
+        { icon: "accessibility", title: "Rehabilitación física", body: "Para mejorar la fuerza y la estabilidad.", href: "/es/fisioterapia/" },
+        { icon: "dumbbell", title: "Ejercicios terapéuticos", body: "Para apoyar la función a largo plazo.", href: "/es/ejercicios-terapeuticos/" },
+        { icon: "waves", title: "Ultrasonido terapéutico", body: "Para apoyar la recuperación de tejidos blandos.", href: "/es/tratamiento-de-ultrasonido-terapeutico/" },
+        { icon: "car", title: "Rehabilitación de accidentes de auto", body: "Enfocada en la recuperación tras un choque.", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
+        { icon: "triangle-alert", title: "Tratamiento de resbalones y caídas", body: "Cuando las caídas afectan la movilidad o los tejidos blandos.", href: "/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/" },
+      ],
+      note: "Este enfoque coordinado ayuda a abordar múltiples factores que afectan el movimiento y apoya una recuperación más completa.",
+    },
+    team: {
+      eyebrow: "Nuestro equipo",
+      heading: "Equipo médico y de rehabilitación con experiencia",
+      lead: "Su atención en Palm Wellness Center cuenta con el respaldo de un equipo médico y de rehabilitación autorizado con experiencia en el tratamiento de lesiones, dolor muscular y limitaciones de movimiento.",
+      members: [
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda orientación clínica para apoyar una atención segura, apropiada y centrada en el paciente." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Asistente Médica Certificada", bio: "Realiza evaluaciones médicas, atención de seguimiento y coordinación con los servicios de rehabilitación. Habla inglés y español." },
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Fundador y Administrador de la Clínica", bio: "Supervisa la coordinación de la atención al paciente y los servicios de rehabilitación enfocados en la recuperación estructurada y la movilidad." },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puede confiar",
+      paras: [
+        "Palm Wellness Center brinda rehabilitación centrada en el paciente, enfocada en una atención segura, coordinada y apoyo para la recuperación a largo plazo. Nuestro equipo prioriza la comunicación clara, la planificación cuidadosa y la continuidad de la atención.",
+        "Palm Wellness Center atiende con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/regular-therapy-sessions.webp",
+      imageAlt: "Terapeuta de masaje trabajando con un paciente en Palm Wellness Center en Tampa",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Nosotros te ayudamos.",
+      body: "Palm Wellness Center ofrece asistencia de transporte para pacientes elegibles en toda el área de la Bahía de Tampa. Si el transporte es una preocupación, avísale a nuestro equipo cuando llames o solicites una cita, y te ayudaremos a coordinar tu visita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tiene preguntas? Llámenos al (813) 443-5370 y nuestro equipo le explicará sus opciones y qué esperar.",
+      items: [
+        { q: "¿Para qué se usa la terapia de masaje?", a: "La terapia de masaje se usa comúnmente durante la rehabilitación para dolor muscular, rigidez, irritación de tejidos blandos y recuperación después de una lesión. También puede apoyar un mejor movimiento y comodidad diaria." },
+        { q: "¿La terapia de masaje puede ayudar después de un accidente de auto?", a: "Sí. La terapia de masaje puede ayudar a reducir la tensión muscular, el dolor y la rigidez después de un accidente de auto cuando forma parte de un plan de recuperación coordinado." },
+        { q: "¿La terapia de masaje es lo mismo que un masaje de relajación?", a: "No. El masaje terapéutico en un entorno de rehabilitación se enfoca en la función, la movilidad, la recuperación de tejidos blandos y la reducción del dolor, no solo en la relajación." },
+        { q: "¿Cuántas sesiones necesitaré?", a: "La cantidad de sesiones depende de sus síntomas, su condición y su progreso. Algunos pacientes sienten alivio temprano, mientras que otros necesitan atención continua como parte de un plan más amplio." },
+        { q: "¿La terapia de masaje puede combinarse con atención quiropráctica o rehabilitación?", a: "Sí. La terapia de masaje suele combinarse con atención quiropráctica, rehabilitación física, ejercicios terapéuticos o terapia de ultrasonido según sus necesidades." },
+        { q: "¿Cuándo debo comenzar el tratamiento después de una lesión?", a: "Lo mejor es evaluarse tan pronto como comiencen los síntomas. La atención temprana puede ayudar a identificar problemas, apoyar la recuperación y evitar que las molestias empeoren." },
+      ],
+    },
+    area: {
+      eyebrow: "Área de Servicio",
+      heading: "Sirviendo con orgullo a Tampa y vecindarios cercanos",
+      lead: "Palm Wellness Center está ubicado en Tampa, FL, pero nuestros pacientes vienen de toda el área circundante. Regularmente ayudamos a los pacientes a mejorar su movilidad, reducir molestias y recuperarse de lesiones mediante servicios coordinados de rehabilitación.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Comunidades del área de Tampa Bay"],
+      note: "¿Necesita indicaciones o transporte? Llame al (813) 443-5370 y nuestro equipo le ayudará a planificar su visita.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntelo al reservar.",
+    },
+    cta: {
+      title: "¿Listo para moverse con menos dolor y tensión?",
+      lead: "Si la tensión muscular, el dolor, la rigidez o la incomodidad de los tejidos blandos le dificultan el movimiento diario, la terapia de masaje puede apoyar su recuperación.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="hand" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[24px] font-bold leading-none text-blue-deep lg:text-[28px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- WHY -->
+<section id="why" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[460px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.why.image} width="460" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[440px]" />
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="badge-check" class="h-3.5 w-3.5" />{content.why.eyebrow}</span>
+      <h2 class={h2Cls}>{content.why.heading}</h2>
+      <p class={leadCls}>{content.why.lead}</p>
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.why.pointsLabel}</p>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {content.why.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- HELPS -->
+<section id="helps" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="hand" class="h-3.5 w-3.5" />{content.helps.eyebrow}</span>
+        <h2 class={h2Cls}>{content.helps.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.helps.lead}</p>
+    </div>
+    <div class={`flex flex-col gap-5 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.helps.itemsLabel}</p>
+      <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.helps.items.map((it) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="circle-check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-blue" />{it}</li>
+        ))}
+      </ul>
+    </div>
+    <p class="max-w-[80ch] text-[15px] leading-[1.6] text-muted">{content.helps.note}</p>
+  </div>
+</section>
+
+<!-- SIGNS (table) -->
+<section class="bg-white">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="activity" class="h-3.5 w-3.5" />{lang === "es" ? "Señales" : "Signs"}</span>
+        <h2 class={h2Cls}>{content.signs.heading}</h2>
+      </div>
+      <div class="flex flex-col gap-3">
+        {content.signs.paras.map((p) => <p class="text-[15px] leading-[1.6] text-body">{p}</p>)}
+      </div>
+    </div>
+    <div class="overflow-hidden rounded-lg border border-line">
+      <div class="hidden grid-cols-2 bg-blue-deep sm:grid">
+        {content.signs.head.map((h, i) => (
+          <div class={`px-6 py-4 text-[12px] font-bold uppercase tracking-[0.08em] text-white ${i > 0 ? "border-l border-white/20" : ""}`}>{h}</div>
+        ))}
+      </div>
+      {content.signs.rows.map((r, i) => (
+        <div class={`grid gap-1.5 sm:grid-cols-2 sm:gap-0 ${i > 0 ? "border-t border-line" : ""}`}>
+          <div class="px-6 pt-5 font-semibold text-ink sm:py-5">{r[0]}</div>
+          <div class="px-6 pb-5 text-[15px] leading-[1.55] text-body sm:border-l sm:border-line sm:py-5">{r[1]}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- REHAB (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_440px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowDarkCls}>{content.rehab.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.rehab.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-blue-tint">{content.rehab.lead}</p>
+      <p class="max-w-[62ch] text-[15px] leading-[1.62] text-blue-tint">{content.rehab.para}</p>
+      <p class="max-w-[62ch] text-[14px] leading-[1.6] text-blue-tint/90">{content.rehab.note}</p>
+      <div class="mt-1 flex flex-wrap gap-3">
+        <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-6 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+        <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+      </div>
+    </div>
+    <ul class="flex flex-col gap-4 rounded-lg border border-white/15 bg-white/5 p-7 lg:p-8">
+      <li class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.rehab.pointsLabel}</li>
+      {content.rehab.points.map((p) => (
+        <li class="flex items-start gap-3 text-[15px] leading-[1.55] text-blue-tint"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{p}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- CAR ACCIDENT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="car" class="h-3.5 w-3.5" />{content.accident.eyebrow}</span>
+      <h2 class={h2Cls}>{content.accident.heading}</h2>
+      {content.accident.paras.map((p) => <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.accident.itemsLabel}</p>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {content.accident.items.map((it) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{it}</li>
+        ))}
+      </ul>
+      <p class="max-w-[62ch] text-[15px] leading-[1.6] text-muted">{content.accident.note}</p>
+      <div class="flex flex-wrap gap-3 pt-1">
+        {content.accident.related.map((r) => (
+          <a href={r.href} class={`inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[14px] font-semibold text-ink hover:text-blue-deep ${hover}`}>{r.label}<Icon name="arrow" class="h-4 w-4 text-blue" /></a>
+        ))}
+      </div>
+    </div>
+    <img src={content.accident.image} width="460" height="460" alt={content.accident.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[440px]" />
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section id="expect" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <h2 class={h2Cls}>{content.expect.heading}</h2>
+      <div class="flex flex-col gap-3">
+        {content.expect.paras.map((p) => <p class="text-[15px] leading-[1.6] text-body">{p}</p>)}
+      </div>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.expect.techniquesLabel}</p>
+        <ul class="flex flex-col gap-3">
+          {content.expect.techniques.map((t) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="circle-check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-blue" />{t}</li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.expect.describeLabel}</p>
+        <ul class="flex flex-col gap-3">
+          {content.expect.describe.map((t) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="circle-check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-blue" />{t}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+    <p class="max-w-[80ch] text-[15px] leading-[1.6] text-muted">{content.expect.note}</p>
+  </div>
+</section>
+
+<!-- COMBINED -->
+<section id="combined" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="users" class="h-3.5 w-3.5" />{content.combined.eyebrow}</span>
+        <h2 class={h2Cls}>{content.combined.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.combined.lead}</p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {content.combined.items.map((s) => (
+        <a href={s.href} class={`group flex flex-col gap-3 rounded-lg border border-line bg-bg-alt p-6 lg:p-7 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+    <p class="max-w-[80ch] text-[15px] leading-[1.6] text-muted">{content.combined.note}</p>
+  </div>
+</section>
+
+<!-- TEAM (dark band) -->
+<section id="team" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{content.team.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.team.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.team.lead}</p>
+    </div>
+    <ul class="grid gap-6 md:grid-cols-3">
+      {content.team.members.map((m) => (
+        <li class={`flex flex-col gap-4 rounded-lg border border-white/15 bg-white/5 p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-[74px] w-[74px] place-items-center rounded-full bg-white/10 font-titles text-[26px] font-bold text-white">{m.initials}</span>
+          <div class="flex flex-col gap-1">
+            <h3 class="font-titles text-[19px] font-bold leading-[1.2] text-white lg:text-[20px]">{m.name}</h3>
+            <p class="text-[13px] font-semibold leading-[1.4] text-green-bright">{m.cred}</p>
+          </div>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{m.bio}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{lang === "es" ? "Preguntas" : "FAQ"}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{content.area.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

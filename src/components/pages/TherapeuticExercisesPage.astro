@@ -1,0 +1,803 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Therapeutic Exercises in Tampa",
+      title: "Therapeutic exercises in Tampa for strength, balance, and mobility",
+      lead: "Provider-guided care that helps patients move more safely and return to daily activities with more confidence.",
+      chips: [
+        { icon: "dumbbell", label: "Strength and stability" },
+        { icon: "footprints", label: "Balance and coordination" },
+        { icon: "stretch-horizontal", label: "Flexibility and mobility" },
+        { icon: "activity", label: "Range of motion" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "Personalized movement plans · Provider-guided · Bilingual care",
+      image: "/images/therapeutic-exercises-session.webp",
+      imageAlt: "Therapist guiding a patient through a therapeutic exercise with a resistance band in Tampa",
+      rail: [
+        { value: "Guided", label: "Built around your recovery goals" },
+        { value: "One roof", label: "Combined with chiropractic and rehab" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "Why us", href: "#why" },
+      { label: "The basics", href: "#what" },
+      { label: "When they help", href: "#when" },
+      { label: "How they help", href: "#rehab" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    why: {
+      eyebrow: "Why choose us",
+      heading: "Why patients choose Palm Wellness Center for therapeutic exercises",
+      lead: "Patients choose Palm Wellness Center because care is guided by a rehabilitation team and built around recovery, not generic workouts.",
+      pointsLabel: "What you can expect",
+      points: [
+        "Personalized movement plans based on symptoms and goals",
+        "Provider-guided exercises for safer form and progression",
+        "Support for strength, balance, mobility, range of motion, and daily function",
+        "Care that may coordinate with chiropractic, massage, ultrasound, and rehabilitation services",
+        "Bilingual support in English and Spanish",
+        "Transportation assistance for eligible patients",
+      ],
+      image: "/images/regular-therapy-sessions.webp",
+      imageAlt: "Provider guiding a patient through therapeutic movement at Palm Wellness Center",
+    },
+    what: {
+      eyebrow: "The basics",
+      heading: "What are therapeutic exercises?",
+      paras: [
+        "Therapeutic exercises are guided movements selected for a specific recovery goal, such as improving strength, flexibility, balance, coordination, or range of motion.",
+        "The goal is not to push through pain or follow a one-size-fits-all workout. Your movements should match your condition, comfort level, and stage of healing.",
+      ],
+      note: "Your plan may be included in your physical rehabilitation plan when appropriate, based on your evaluation.",
+      image: "/images/rotator-cuff-injuries-rehabilitation-and-recovery.webp",
+      imageAlt: "Therapist guiding a patient through a controlled therapeutic movement",
+    },
+    when: {
+      heading: "When therapeutic exercises may help",
+      lead: "Guided exercise care may be appropriate when pain, weakness, stiffness, or limited mobility affects daily function.",
+      itemsLabel: "You may benefit from guided therapeutic exercises if you are dealing with",
+      items: [
+        "Back or neck pain",
+        "Shoulder, hip, knee, or joint stiffness",
+        "Soft tissue injuries",
+        "Reduced range of motion",
+        "Weakness after an injury",
+        "Poor balance or coordination",
+        "Difficulty walking, bending, lifting, driving, or working",
+        "Pain after a car accident",
+        "Injury after a slip and fall",
+        "Movement changes caused by compensation or guarding",
+      ],
+      note: "Care begins with an evaluation, so your plan can be matched to your symptoms, movement limits, and goals.",
+    },
+    signs: {
+      heading: "What you feel vs. what may be affecting movement",
+      lead: "A guided movement plan can help address these challenges by improving control, support, and everyday movement.",
+      head: ["What you may feel", "What may be affecting movement"],
+      rows: [
+        ["Stiffness", "Limited range of motion, muscle guarding, or joint restriction"],
+        ["Weakness", "Reduced muscle support after injury or limited use"],
+        ["Poor balance", "Reduced coordination, stability, or confidence with movement"],
+        ["Pain with daily tasks", "Compensation patterns or soft tissue irritation"],
+        ["Trouble bending, lifting, or walking", "Strength, mobility, or movement-control limitations"],
+      ],
+    },
+    rehab: {
+      eyebrow: "How they help",
+      heading: "How therapeutic exercises support rehabilitation",
+      lead: "Your provider may recommend one or more types of movement based on your evaluation and recovery goals.",
+      items: [
+        { icon: "stretch-horizontal", title: "Range of motion", body: "Range-of-motion exercises help improve how freely your joints and muscles move, which may be limited by stiffness, pain, swelling, or injury." },
+        { icon: "dumbbell", title: "Strength and stability", body: "Strengthening exercises rebuild muscle support around injured or weakened areas to improve posture, joint stability, and everyday movement." },
+        { icon: "footprints", title: "Balance and coordination", body: "Balance and coordination exercises improve control during movement if you feel unsteady or need support returning to normal activity." },
+        { icon: "move", title: "Flexibility and mobility", body: "Flexibility and mobility exercises reduce stiffness and support smoother movement during walking, driving, sitting, standing, bending, or reaching." },
+        { icon: "heart-pulse", title: "Endurance for daily activity", body: "Some patients need help rebuilding stamina for everyday tasks like walking, climbing stairs, working, shopping, or caring for family." },
+        { icon: "shield-check", title: "Body mechanics and joint protection", body: "Your provider helps you move more safely during daily tasks so you reduce unnecessary strain and protect injured or sensitive areas." },
+      ],
+    },
+    accidents: {
+      eyebrow: "Accidents and falls",
+      heading: "Therapeutic exercises after accidents and falls",
+      lead: "Guided exercises may support recovery after accidents and falls when they are matched to your injury, symptoms, and stage of healing.",
+      items: [
+        { icon: "car", title: "After a car accident", body: "After a crash, patients may experience neck pain, back pain, stiffness, headaches, soft tissue injuries, or trouble returning to normal activity. Guided exercises may be used as part of auto accident rehabilitation to help restore movement and rebuild strength.", href: "/car-accident-rehabilitation/", link: "Car accident rehabilitation" },
+        { icon: "triangle-alert", title: "After a slip and fall", body: "A fall can lead to joint pain, muscle strain, stiffness, balance concerns, or reduced confidence with movement. Provider-guided exercises may be included in slip and fall injury treatment to improve stability, mobility, and function.", href: "/slip-and-fall-injury-treatment/", link: "Slip and fall injury treatment" },
+      ],
+    },
+    expect: {
+      eyebrow: "What to expect",
+      heading: "What to expect during therapeutic exercise care",
+      lead: "Your care plan is based on your evaluation, symptoms, movement limitations, and recovery goals.",
+      steps: [
+        { title: "Evaluation", body: "Your provider reviews your health history, symptoms, injury history, pain level, mobility concerns, and daily activity limitations." },
+        { title: "Movement assessment", body: "Your provider looks at strength, flexibility, balance, coordination, posture, range of motion, and how your body moves during basic activities." },
+        { title: "Guided exercise plan", body: "Your care team creates a plan with exercises selected for your condition and comfort level, from range-of-motion work to strengthening and functional movement." },
+        { title: "Progress monitoring", body: "Your provider monitors your form, comfort, endurance, and progress, and adjusts your plan as your movement improves or your goals change." },
+        { title: "Home guidance", body: "When appropriate, your provider may recommend simple exercises or movement habits to support your progress between visits, to be followed as directed." },
+      ],
+    },
+    combined: {
+      eyebrow: "Combined care",
+      heading: "Therapeutic exercises combined with other treatments",
+      lead: "Exercise care may be used alone or combined with other treatment services based on your care plan.",
+      items: [
+        { icon: "spine", title: "Chiropractic care", body: "May help improve joint function, reduce stiffness, and support better movement patterns.", href: "/chiropractor/" },
+        { icon: "hand", title: "Massage therapy", body: "May help reduce muscle tension and soft tissue discomfort, which can make guided movement more comfortable.", href: "/massage-therapy/" },
+        { icon: "waves", title: "Therapeutic ultrasound", body: "May be used when appropriate to support soft tissue comfort, circulation, and stiffness reduction.", href: "/therapeutic-ultrasound-treatment/" },
+        { icon: "accessibility", title: "Physical rehabilitation", body: "May include guided exercises and other services to support recovery after injury, pain, weakness, or mobility changes.", href: "/physical-rehabilitation/" },
+      ],
+    },
+    recovery: {
+      eyebrow: "Recovery",
+      heading: "When recovery takes longer than expected",
+      lead: "Recovery does not always follow a straight line. When progress slows, it usually is not a setback - it is a signal that your plan needs to adapt.",
+      items: [
+        { icon: "clock", title: "Pain that has lingered", body: "When pain has been present for a while, tissues and movement patterns can take longer to respond." },
+        { icon: "layers", title: "Injuries affecting several areas", body: "When an injury affects multiple areas, the body has more to rebuild and more to coordinate." },
+        { icon: "repeat", title: "Compensation patterns", body: "When the body starts compensating for limited movement, nearby muscles and joints take on extra load." },
+        { icon: "gauge", title: "Stiffness, weakness, and balance", body: "Stiffness, weakness, poor balance, and reduced range of motion can also slow progress if they are not addressed." },
+      ],
+      note: "At Palm Wellness Center, your provider can adjust your plan as your body changes, keeping care aligned with your symptoms, progress, and daily activity goals.",
+    },
+    team: {
+      eyebrow: "Our care team",
+      heading: "Experienced medical and rehabilitation team",
+      lead: "Your care at Palm Wellness Center is supported by a licensed medical and rehabilitation team experienced in helping patients recover from pain, soft tissue injuries, and movement limitations.",
+      members: [
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides medical oversight and clinical guidance that supports safe, appropriate, and patient-centered care." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Board-Certified Physician Assistant", bio: "Provides medical evaluations, follow-up care, and guidance when medical concerns affect a rehabilitation plan. Fluent in English and Spanish." },
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Founder and Clinic Administrator", bio: "Oversees patient care coordination and rehabilitation services focused on structured recovery and mobility support." },
+      ],
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center provides patient-centered rehabilitation focused on safe, coordinated care and long-term recovery support. Our team prioritizes clear communication, thoughtful treatment planning, and continuity of care.",
+        "Palm Wellness Center proudly serves Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/regular-therapy-sessions.webp",
+      imageAlt: "Therapist supporting a patient during rehabilitation at Palm Wellness Center in Tampa",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+    },
+    transport: {
+      title: "Need a ride? We have got you covered.",
+      body: "Palm Wellness Center offers transportation assistance for eligible patients throughout the Tampa Bay area. If transportation is a concern, let our team know when you call or request an appointment, and we will help coordinate your visit.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through your options and what to expect.",
+      items: [
+        { q: "What are therapeutic exercises?", a: "Therapeutic exercises are guided movements used to help improve strength, flexibility, balance, coordination, range of motion, and daily function. They are selected based on your condition, symptoms, and recovery goals." },
+        { q: "Are therapeutic exercises the same as regular exercise?", a: "No. Regular exercise is usually focused on general fitness. Therapeutic exercises are selected to support recovery and address specific movement limitations." },
+        { q: "Can therapeutic exercises help after a car accident?", a: "Guided exercises may be included in an auto accident rehabilitation plan when appropriate to help rebuild strength, improve mobility, and reduce stiffness." },
+        { q: "Can therapeutic exercises help after a slip and fall?", a: "Yes. Therapeutic exercises may be included in slip and fall rehabilitation when pain, stiffness, weakness, balance problems, or reduced mobility are affecting movement after a fall." },
+        { q: "Can therapeutic exercises help with balance and coordination?", a: "Yes. Balance and coordination exercises may help patients improve stability, movement control, and confidence during daily activities. Your provider will recommend exercises based on your evaluation." },
+        { q: "Will I receive exercises to do at home?", a: "Your provider may recommend home guidance when appropriate. It is important to follow your care plan as directed so you do not overdo it or worsen your symptoms." },
+        { q: "How long will I need therapeutic exercises?", a: "Every recovery is different. Your provider will recommend a plan based on your symptoms, condition, goals, and progress during care." },
+        { q: "Can therapeutic exercises be combined with other treatments?", a: "Yes. Exercise care may be combined with chiropractic care, massage therapy, therapeutic ultrasound, physical rehabilitation, or other services based on your condition and treatment plan." },
+      ],
+    },
+    area: {
+      eyebrow: "Service Area",
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Palm Wellness Center is located in Tampa, FL, but our patients come from across the surrounding area. We regularly help patients improve mobility, reduce discomfort, and recover from injury through coordinated rehabilitation services.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Tampa Bay area communities"],
+      note: "Need directions or a ride? Call (813) 443-5370 and our team will help you plan your visit.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Ready to move with more strength and confidence?",
+      lead: "If pain, stiffness, weakness, or balance problems are making daily movement more difficult, guided exercise care may help support your recovery.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Ejercicios Terapéuticos en Tampa",
+      title: "Ejercicios terapéuticos en Tampa para fuerza, equilibrio y movilidad",
+      lead: "Atención guiada por proveedores que ayuda a los pacientes a moverse con mayor seguridad y regresar a sus actividades diarias con más confianza.",
+      chips: [
+        { icon: "dumbbell", label: "Fuerza y estabilidad" },
+        { icon: "footprints", label: "Equilibrio y coordinación" },
+        { icon: "stretch-horizontal", label: "Flexibilidad y movilidad" },
+        { icon: "activity", label: "Rango de movimiento" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "Planes de movimiento personalizados · Guiados por proveedores · Atención bilingüe",
+      image: "/images/therapeutic-exercises-session.webp",
+      imageAlt: "Terapeuta guiando a un paciente en un ejercicio terapéutico con banda elástica en Tampa",
+      rail: [
+        { value: "Guiado", label: "Construido en torno a sus objetivos" },
+        { value: "Un solo lugar", label: "Combinado con quiropráctica y rehabilitación" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Por qué elegirnos", href: "#why" },
+      { label: "Lo básico", href: "#what" },
+      { label: "Cuándo ayudan", href: "#when" },
+      { label: "Cómo ayudan", href: "#rehab" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    why: {
+      eyebrow: "Por qué elegirnos",
+      heading: "Por qué los pacientes eligen Palm Wellness Center para ejercicios terapéuticos",
+      lead: "Los pacientes eligen Palm Wellness Center porque la atención es guiada por un equipo de rehabilitación y se basa en la recuperación, no en rutinas genéricas.",
+      pointsLabel: "Qué puede esperar",
+      points: [
+        "Planes de movimiento personalizados según síntomas y objetivos",
+        "Ejercicios guiados por proveedores para una forma y progresión más seguras",
+        "Apoyo para la fuerza, el equilibrio, la movilidad, el rango de movimiento y la función diaria",
+        "Atención que puede coordinarse con quiropráctica, masajes, ultrasonido y rehabilitación",
+        "Apoyo bilingüe en inglés y español",
+        "Asistencia de transporte para pacientes elegibles",
+      ],
+      image: "/images/regular-therapy-sessions.webp",
+      imageAlt: "Proveedor guiando a un paciente en movimiento terapéutico en Palm Wellness Center",
+    },
+    what: {
+      eyebrow: "Lo básico",
+      heading: "¿Qué son los ejercicios terapéuticos?",
+      paras: [
+        "Los ejercicios terapéuticos son movimientos guiados seleccionados para un objetivo específico de recuperación, como mejorar la fuerza, la flexibilidad, el equilibrio, la coordinación o el rango de movimiento.",
+        "El objetivo no es esforzarse a través del dolor ni seguir una rutina igual para todos. Sus movimientos deben adaptarse a su condición, nivel de comodidad y etapa de recuperación.",
+      ],
+      note: "Su plan puede incluirse en su plan de rehabilitación física cuando sea apropiado, según su evaluación.",
+      image: "/images/rotator-cuff-injuries-rehabilitation-and-recovery.webp",
+      imageAlt: "Terapeuta guiando a un paciente en un movimiento terapéutico controlado",
+    },
+    when: {
+      heading: "Cuándo pueden ayudar los ejercicios terapéuticos",
+      lead: "La atención con ejercicios guiados puede ser apropiada cuando el dolor, la debilidad, la rigidez o la movilidad limitada afectan la función diaria.",
+      itemsLabel: "Puede beneficiarse de ejercicios terapéuticos guiados si presenta",
+      items: [
+        "Dolor de espalda o cuello",
+        "Rigidez en el hombro, la cadera, la rodilla u otras articulaciones",
+        "Lesiones de tejidos blandos",
+        "Rango de movimiento reducido",
+        "Debilidad después de una lesión",
+        "Problemas de equilibrio o coordinación",
+        "Dificultad para caminar, agacharse, levantar, conducir o trabajar",
+        "Dolor después de un accidente de auto",
+        "Lesión después de un resbalón o una caída",
+        "Cambios de movimiento causados por compensación o protección",
+      ],
+      note: "La atención comienza con una evaluación para que su plan se ajuste a sus síntomas, limitaciones de movimiento y objetivos.",
+    },
+    signs: {
+      heading: "Lo que siente vs. lo que puede estar afectando el movimiento",
+      lead: "Un plan de movimiento guiado puede ayudar a abordar estos desafíos al mejorar el control, el apoyo y el movimiento cotidiano.",
+      head: ["Lo que puede sentir", "Lo que puede estar afectando el movimiento"],
+      rows: [
+        ["Rigidez", "Rango de movimiento limitado, protección muscular o restricción articular"],
+        ["Debilidad", "Menor apoyo muscular después de una lesión o uso limitado"],
+        ["Mala estabilidad", "Coordinación, estabilidad o confianza reducidas al moverse"],
+        ["Dolor durante tareas diarias", "Patrones de compensación o irritación de tejidos blandos"],
+        ["Dificultad para agacharse, levantar o caminar", "Limitaciones de fuerza, movilidad o control del movimiento"],
+      ],
+    },
+    rehab: {
+      eyebrow: "Cómo ayudan",
+      heading: "Cómo los ejercicios terapéuticos apoyan la rehabilitación",
+      lead: "Su proveedor puede recomendar uno o más tipos de movimiento según su evaluación y objetivos de recuperación.",
+      items: [
+        { icon: "stretch-horizontal", title: "Rango de movimiento", body: "Los ejercicios de rango de movimiento ayudan a mejorar la libertad con la que se mueven sus articulaciones y músculos, que puede estar limitada por rigidez, dolor, inflamación o lesión." },
+        { icon: "dumbbell", title: "Fuerza y estabilidad", body: "Los ejercicios de fortalecimiento reconstruyen el apoyo muscular alrededor de áreas lesionadas o debilitadas para mejorar la postura, la estabilidad articular y el movimiento diario." },
+        { icon: "footprints", title: "Equilibrio y coordinación", body: "Los ejercicios de equilibrio y coordinación mejoran el control durante el movimiento si se siente inestable o necesita apoyo para regresar a su actividad normal." },
+        { icon: "move", title: "Flexibilidad y movilidad", body: "Los ejercicios de flexibilidad y movilidad reducen la rigidez y favorecen movimientos más fluidos al caminar, conducir, sentarse, ponerse de pie, agacharse o alcanzar objetos." },
+        { icon: "heart-pulse", title: "Resistencia para la actividad diaria", body: "Algunos pacientes necesitan recuperar la resistencia para tareas cotidianas como caminar, subir escaleras, trabajar, hacer compras o cuidar de su familia." },
+        { icon: "shield-check", title: "Mecánica corporal y protección articular", body: "Su proveedor le ayuda a moverse con más seguridad durante las tareas diarias para reducir el esfuerzo innecesario y proteger las áreas lesionadas o sensibles." },
+      ],
+    },
+    accidents: {
+      eyebrow: "Accidentes y caídas",
+      heading: "Ejercicios terapéuticos después de accidentes y caídas",
+      lead: "Los ejercicios guiados pueden apoyar la recuperación después de accidentes y caídas cuando se adaptan a su lesión, síntomas y etapa de recuperación.",
+      items: [
+        { icon: "car", title: "Después de un accidente de auto", body: "Después de un choque, los pacientes pueden presentar dolor de cuello o espalda, rigidez, dolores de cabeza, lesiones de tejidos blandos o dificultad para retomar sus actividades normales. Los ejercicios guiados pueden usarse como parte de la rehabilitación de accidentes de auto para restaurar el movimiento y recuperar la fuerza.", href: "/es/rehabilitacion-de-accidentes-automovilisticos/", link: "Rehabilitación de accidentes de auto" },
+        { icon: "triangle-alert", title: "Después de un resbalón o una caída", body: "Una caída puede causar dolor articular, distensión muscular, rigidez, problemas de equilibrio o menor confianza al moverse. Los ejercicios guiados pueden incluirse en el tratamiento de lesiones por resbalones y caídas para mejorar la estabilidad, la movilidad y la función.", href: "/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/", link: "Tratamiento de resbalones y caídas" },
+      ],
+    },
+    expect: {
+      eyebrow: "Qué esperar",
+      heading: "Qué esperar durante la atención con ejercicios terapéuticos",
+      lead: "Su plan de atención se basa en su evaluación, síntomas, limitaciones de movimiento y objetivos de recuperación.",
+      steps: [
+        { title: "Evaluación", body: "Su proveedor revisa su historial de salud, síntomas, antecedentes de lesiones, nivel de dolor, problemas de movilidad y limitaciones en las actividades diarias." },
+        { title: "Evaluación del movimiento", body: "Su proveedor observa la fuerza, la flexibilidad, el equilibrio, la coordinación, la postura, el rango de movimiento y cómo se mueve su cuerpo en actividades básicas." },
+        { title: "Plan de ejercicios guiados", body: "Su equipo crea un plan con ejercicios seleccionados para su condición y nivel de comodidad, desde rango de movimiento hasta fortalecimiento y movimiento funcional." },
+        { title: "Seguimiento del progreso", body: "Su proveedor controla su forma, comodidad, resistencia y progreso, y ajusta su plan a medida que mejora su movimiento o cambian sus objetivos." },
+        { title: "Guía para el hogar", body: "Cuando sea apropiado, su proveedor puede recomendar ejercicios sencillos o hábitos de movimiento para apoyar su progreso entre visitas, siguiéndolos según las indicaciones." },
+      ],
+    },
+    combined: {
+      eyebrow: "Atención combinada",
+      heading: "Ejercicios terapéuticos combinados con otros tratamientos",
+      lead: "La atención con ejercicios puede utilizarse por sí sola o combinarse con otros servicios de tratamiento según su plan.",
+      items: [
+        { icon: "spine", title: "Atención quiropráctica", body: "Puede ayudar a mejorar la función articular, reducir la rigidez y favorecer mejores patrones de movimiento.", href: "/es/quiropractico/" },
+        { icon: "hand", title: "Terapia de masajes", body: "Puede ayudar a reducir la tensión muscular y las molestias de los tejidos blandos, haciendo que el movimiento guiado sea más cómodo.", href: "/es/terapia-de-masajes/" },
+        { icon: "waves", title: "Ultrasonido terapéutico", body: "Puede utilizarse cuando sea apropiado para favorecer la comodidad de los tejidos blandos, la circulación y la reducción de la rigidez.", href: "/es/tratamiento-de-ultrasonido-terapeutico/" },
+        { icon: "accessibility", title: "Rehabilitación física", body: "Puede incluir ejercicios guiados y otros servicios para apoyar la recuperación tras una lesión, dolor, debilidad o cambios en la movilidad.", href: "/es/fisioterapia/" },
+      ],
+    },
+    recovery: {
+      eyebrow: "Recuperación",
+      heading: "Cuando la recuperación tarda más de lo esperado",
+      lead: "La recuperación no siempre sigue una línea recta. Cuando el progreso se frena, normalmente no es un retroceso: es una señal de que su plan necesita adaptarse.",
+      items: [
+        { icon: "clock", title: "Dolor que ha persistido", body: "Cuando el dolor ha estado presente durante un tiempo, los tejidos y los patrones de movimiento pueden tardar más en responder." },
+        { icon: "layers", title: "Lesiones que afectan varias áreas", body: "Cuando una lesión afecta varias áreas, el cuerpo tiene más que recuperar y más que coordinar." },
+        { icon: "repeat", title: "Patrones de compensación", body: "Cuando el cuerpo empieza a compensar una movilidad limitada, músculos y articulaciones cercanos asumen una carga extra." },
+        { icon: "gauge", title: "Rigidez, debilidad y equilibrio", body: "La rigidez, la debilidad, el mal equilibrio y el rango de movimiento reducido también pueden retrasar el progreso si no se abordan." },
+      ],
+      note: "En Palm Wellness Center, su proveedor puede ajustar su plan a medida que cambia su cuerpo, manteniendo la atención alineada con sus síntomas, progreso y objetivos de actividad diaria.",
+    },
+    team: {
+      eyebrow: "Nuestro equipo",
+      heading: "Equipo médico y de rehabilitación con experiencia",
+      lead: "Su atención en Palm Wellness Center cuenta con el respaldo de un equipo médico y de rehabilitación autorizado con experiencia en el tratamiento del dolor, las lesiones de tejidos blandos y las limitaciones de movimiento.",
+      members: [
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda supervisión médica y orientación clínica que apoya una atención segura, apropiada y centrada en el paciente." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Asistente Médica Certificada", bio: "Realiza evaluaciones médicas, atención de seguimiento y orientación cuando las preocupaciones médicas afectan el plan de rehabilitación. Habla inglés y español." },
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Fundador y Administrador de la Clínica", bio: "Supervisa la coordinación de la atención al paciente y los servicios de rehabilitación enfocados en una recuperación estructurada y la movilidad." },
+      ],
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puede confiar",
+      paras: [
+        "Palm Wellness Center ofrece rehabilitación centrada en el paciente, enfocada en una atención segura, coordinada y apoyo para la recuperación a largo plazo. Nuestro equipo prioriza la comunicación clara, la planificación cuidadosa y la continuidad de la atención.",
+        "Palm Wellness Center atiende con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/regular-therapy-sessions.webp",
+      imageAlt: "Terapeuta apoyando a un paciente durante la rehabilitación en Palm Wellness Center en Tampa",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Nosotros te ayudamos.",
+      body: "Palm Wellness Center ofrece asistencia de transporte para pacientes elegibles en toda el área de la Bahía de Tampa. Si el transporte es una preocupación, avísale a nuestro equipo cuando llames o solicites una cita, y te ayudaremos a coordinar tu visita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tiene preguntas? Llámenos al (813) 443-5370 y nuestro equipo le explicará sus opciones y qué esperar.",
+      items: [
+        { q: "¿Qué son los ejercicios terapéuticos?", a: "Los ejercicios terapéuticos son movimientos guiados que ayudan a mejorar la fuerza, la flexibilidad, el equilibrio, la coordinación, el rango de movimiento y la función diaria. Se seleccionan según su condición, síntomas y objetivos de recuperación." },
+        { q: "¿Los ejercicios terapéuticos son lo mismo que el ejercicio regular?", a: "No. El ejercicio regular suele enfocarse en la condición física general. Los ejercicios terapéuticos se seleccionan para apoyar la recuperación y abordar limitaciones específicas de movimiento." },
+        { q: "¿Pueden ayudar los ejercicios terapéuticos después de un accidente de auto?", a: "Los ejercicios guiados pueden incluirse en un plan de rehabilitación de accidentes de auto cuando sea apropiado para recuperar fuerza, mejorar la movilidad y reducir la rigidez." },
+        { q: "¿Pueden ayudar los ejercicios terapéuticos después de un resbalón o una caída?", a: "Sí. Pueden incluirse en la rehabilitación tras un resbalón o caída cuando el dolor, la rigidez, la debilidad, los problemas de equilibrio o la movilidad reducida afectan el movimiento." },
+        { q: "¿Pueden ayudar los ejercicios terapéuticos con el equilibrio y la coordinación?", a: "Sí. Los ejercicios de equilibrio y coordinación pueden mejorar la estabilidad, el control del movimiento y la confianza durante las actividades diarias. Su proveedor recomendará ejercicios según su evaluación." },
+        { q: "¿Recibiré ejercicios para hacer en casa?", a: "Su proveedor puede recomendar guía para el hogar cuando sea apropiado. Es importante seguir su plan según las indicaciones para no excederse ni empeorar sus síntomas." },
+        { q: "¿Cuánto tiempo necesitaré ejercicios terapéuticos?", a: "Cada recuperación es diferente. Su proveedor recomendará un plan según sus síntomas, condición, objetivos y progreso." },
+        { q: "¿Pueden combinarse los ejercicios terapéuticos con otros tratamientos?", a: "Sí. Pueden combinarse con atención quiropráctica, terapia de masajes, ultrasonido terapéutico, rehabilitación física u otros servicios según su condición y plan de tratamiento." },
+      ],
+    },
+    area: {
+      eyebrow: "Área de Servicio",
+      heading: "Sirviendo con orgullo a Tampa y vecindarios cercanos",
+      lead: "Palm Wellness Center está ubicado en Tampa, FL, pero nuestros pacientes vienen de toda el área circundante. Ayudamos regularmente a los pacientes a mejorar su movilidad, reducir molestias y recuperarse de lesiones mediante servicios coordinados de rehabilitación.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "North Tampa", "Comunidades del área de Tampa Bay"],
+      note: "¿Necesita indicaciones o transporte? Llame al (813) 443-5370 y nuestro equipo le ayudará a planificar su visita.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntelo al reservar.",
+    },
+    cta: {
+      title: "¿Listo para moverse con más fuerza y confianza?",
+      lead: "Si el dolor, la rigidez, la debilidad o los problemas de equilibrio dificultan el movimiento diario, la atención con ejercicios guiados puede apoyar su recuperación.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="dumbbell" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[24px] font-bold leading-none text-blue-deep lg:text-[28px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- WHY -->
+<section id="why" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[460px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.why.image} width="460" height="460" alt={content.why.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover object-top sm:h-[380px] lg:h-[440px]" />
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="badge-check" class="h-3.5 w-3.5" />{content.why.eyebrow}</span>
+      <h2 class={h2Cls}>{content.why.heading}</h2>
+      <p class={leadCls}>{content.why.lead}</p>
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.why.pointsLabel}</p>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {content.why.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT ARE -->
+<section id="what" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="circle-question-mark" class="h-3.5 w-3.5" />{content.what.eyebrow}</span>
+      <h2 class={h2Cls}>{content.what.heading}</h2>
+      {content.what.paras.map((p) => <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <p class="flex items-start gap-3 rounded-lg border border-line bg-white p-5 text-[15px] font-semibold leading-[1.5] text-ink">
+        <Icon name="circle-check" class="mt-0.5 h-5 w-5 shrink-0 text-blue-deep" />{content.what.note}
+      </p>
+    </div>
+    <img src={content.what.image} width="460" height="460" alt={content.what.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[460px]" />
+  </div>
+</section>
+
+<!-- WHEN -->
+<section id="when" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <h2 class={h2Cls}>{content.when.heading}</h2>
+      <p class={leadCls}>{content.when.lead}</p>
+    </div>
+    <div class={`flex flex-col gap-5 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.when.itemsLabel}</p>
+      <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.when.items.map((it) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="circle-check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-blue" />{it}</li>
+        ))}
+      </ul>
+    </div>
+    <p class="max-w-[80ch] text-[15px] leading-[1.6] text-muted">{content.when.note}</p>
+  </div>
+</section>
+
+<!-- SIGNS (table) -->
+<section class="bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="activity" class="h-3.5 w-3.5" />{lang === "es" ? "Señales" : "Signs"}</span>
+      <h2 class={h2Cls}>{content.signs.heading}</h2>
+      <p class={leadCls}>{content.signs.lead}</p>
+    </div>
+    <div class="overflow-hidden rounded-lg border border-line">
+      <div class="hidden grid-cols-2 bg-blue-deep sm:grid">
+        {content.signs.head.map((h, i) => (
+          <div class={`px-6 py-4 text-[12px] font-bold uppercase tracking-[0.08em] text-white ${i > 0 ? "border-l border-white/20" : ""}`}>{h}</div>
+        ))}
+      </div>
+      {content.signs.rows.map((r, i) => (
+        <div class={`grid gap-1.5 sm:grid-cols-2 sm:gap-0 ${i > 0 ? "border-t border-line" : ""}`}>
+          <div class="px-6 pt-5 font-semibold text-ink sm:py-5">{r[0]}</div>
+          <div class="px-6 pb-5 text-[15px] leading-[1.55] text-body sm:border-l sm:border-line sm:py-5">{r[1]}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- REHAB (dark band) -->
+<section id="rehab" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[760px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{content.rehab.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.rehab.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.rehab.lead}</p>
+    </div>
+    <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {content.rehab.items.map((c) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-white/15 bg-white/5 p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={c.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white lg:text-[20px]">{c.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{c.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- ACCIDENTS -->
+<section class="bg-white">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="car" class="h-3.5 w-3.5" />{content.accidents.eyebrow}</span>
+        <h2 class={h2Cls}>{content.accidents.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.accidents.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+      {content.accidents.items.map((a) => (
+        <div class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={a.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[20px] leading-[1.25] text-ink">{a.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{a.body}</p>
+          <a href={a.href} class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue">{a.link}<Icon name="arrow" class="h-[15px] w-[15px]" /></a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section class="bg-bg-alt">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="route" class="h-3.5 w-3.5" />{content.expect.eyebrow}</span>
+        <h2 class={h2Cls}>{content.expect.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.expect.lead}</p>
+    </div>
+    <ol class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {content.expect.steps.map((s, i) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="text-[13px] font-bold tracking-[0.1em] text-blue-deep">{String(i + 1).padStart(2, "0")}</span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[14.5px] leading-[1.6] text-body">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<!-- COMBINED -->
+<section class="bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="users" class="h-3.5 w-3.5" />{content.combined.eyebrow}</span>
+        <h2 class={h2Cls}>{content.combined.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.combined.lead}</p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {content.combined.items.map((s) => (
+        <a href={s.href} class={`group flex flex-col gap-3 rounded-lg border border-line bg-bg-alt p-6 lg:p-7 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={s.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink">{s.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-body">{s.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- RECOVERY (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col gap-9 py-16 lg:py-20">
+    <div class="flex max-w-[760px] flex-col gap-4">
+      <span class={eyebrowDarkCls}>{content.recovery.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.recovery.heading}</h2>
+      <p class="text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.recovery.lead}</p>
+    </div>
+    <ul class="grid gap-6 sm:grid-cols-2">
+      {content.recovery.items.map((it) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-white/15 bg-white/5 p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white/10 text-white"><Icon name={it.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-white lg:text-[20px]">{it.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-blue-tint">{it.body}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="max-w-[80ch] text-[15px] leading-[1.6] text-blue-tint/90">{content.recovery.note}</p>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}>{content.team.eyebrow}</span>
+      <h2 class={h2Cls}>{content.team.heading}</h2>
+      <p class={leadCls}>{content.team.lead}</p>
+    </div>
+    <ul class="grid gap-6 md:grid-cols-3">
+      {content.team.members.map((m) => (
+        <li class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-[74px] w-[74px] place-items-center rounded-full bg-blue-deep font-titles text-[26px] font-bold text-white">{m.initials}</span>
+          <div class="flex flex-col gap-1">
+            <h3 class="font-titles text-[19px] font-bold leading-[1.2] text-ink lg:text-[20px]">{m.name}</h3>
+            <p class="text-[13px] font-semibold leading-[1.4] text-blue">{m.cred}</p>
+          </div>
+          <p class="text-[15px] leading-[1.6] text-body">{m.bio}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-white">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnBookCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{lang === "es" ? "Preguntas" : "FAQ"}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-white [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{content.area.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

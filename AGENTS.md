@@ -4,7 +4,7 @@ Memoria operativa de **palmwellness.center (v2)**. Léelo antes de tocar nada: c
 decisiones que ya se tomaron, por qué se tomaron, y los errores que ya se cometieron para no
 repetirlos. Si eres un agente nuevo, este archivo más `docs/` te ahorran empezar de cero.
 
-Última verificación de los datos de este archivo: **2026-09-22**.
+Última verificación de los datos de este archivo: **2026-09-23**.
 
 ---
 
@@ -120,9 +120,9 @@ JSON**: venían de `src/data/newPages.ts` con el componente genérico `SimplePag
 borraron al cerrar el grupo. Por eso no aparecen en `migrated` y **no es un olvido**: al no haber
 entrada en el JSON, la ruta explícita es la única que existe.
 
-El catch-all también hace de **capa de sustitución de contenido**: si existe un archivo en
-`src/data/` para esa ruta (`physicalRehabilitation.ts`, `therapeuticExercises.ts`), usa ese en
-lugar del JSON heredado.
+El catch-all **ya no hace sustitución de contenido**: los archivos de sustitución
+(`physicalRehabilitation.ts`, `therapeuticExercises.ts`) se eliminaron y esas rutas ya son páginas
+propias. `richpages.json` queda solo como archivo histórico del resto.
 
 ### 4.2 i18n
 
@@ -323,6 +323,19 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   (+ `/es/fisioterapia-para-accidente-de-auto/`) y `/whiplash-treatment-tampa/`
   (+ `/es/tratamiento-latigazo-cervical-tampa/`), con componente propio cada una. Con esto queda
   cerrada toda la familia de accidentes de auto.
+- **Grupo 3 cerrado, EN+ES**: `/chiropractor/` (+ `/es/quiropractico/`) y `/massage-therapy/`
+  (+ `/es/terapia-de-masajes/`), con `ChiropractorPage.astro` y `MassageTherapyPage.astro`. Ambas
+  estaban en `richpages.json` → sus rutas entraron en el `Set` `migrated`. El hero heredado de
+  masaje era un thumbnail de YouTube con texto y marca incrustados: el hero es ahora
+  `massage-therapy-session.webp` (y el de quiropráctica
+  `integrated-wellness-services-chiropractor.webp`, no el recorte sobre blanco).
+- **Grupo 4 cerrado, EN+ES**: `/therapeutic-exercises/` (+ `/es/ejercicios-terapeuticos/`) y
+  `/therapeutic-ultrasound-treatment/` (+ `/es/tratamiento-de-ultrasonido-terapeutico/`), con
+  `TherapeuticExercisesPage.astro` y `TherapeuticUltrasoundPage.astro`. Ambas estaban en
+  `richpages.json` → al `Set` `migrated`. Con esto **se elimina la capa de sustitución de
+  contenido** del catch-all: `src/data/therapeuticExercises.ts` se borró (ya no lo importaba nadie)
+  y `[...slug].astro` dejó de mapear rutas a datos propios. El asset
+  `muscle-strains-treated-physical-therapy.webp` lleva un watermark de marca: no se usa.
 - Header, TopBar y Footer nuevos, con el contenedor único de 1200px; familia única de iconos
   (Lucide), `AnchorNav`, sistema de hover y primitivas de movimiento del hero, todo reutilizable.
 - Héroes con imagen a la derecha: entrada completa por desplazamiento de derecha a izquierda (no
@@ -339,10 +352,8 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 
 **Siguiente**
 
-1. **Grupos 3 y 4** de `docs/redesign-plan.md`: `/chiropractor/`, `/massage-therapy/`,
-   `/therapeutic-exercises/` y `/therapeutic-ultrasound-treatment/` (+ ES), todavía con el cuerpo
-   heredado. Ojo con `/therapeutic-exercises/`: ya tiene sustitución de contenido heredado
-   (`src/data/therapeuticExercises.ts`).
+1. **Grupo 8** de `docs/redesign-plan.md`: slip & fall + clúster de ciudades. Después, 9-12.
+   (Rehabilitación está cerrada: Grupos 2, 3 y 4 hechos.)
 2. Grupos 8-12 (slip & fall + clúster de ciudades, About/Contact, blog, legal).
 
 **Pendiente / bloqueado**

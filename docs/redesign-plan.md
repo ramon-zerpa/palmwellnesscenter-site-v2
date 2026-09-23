@@ -48,8 +48,8 @@ flow), with pricing corrected to Optantra truth.
 |---|-------|-----------|-----|
 | 1 | Flagship hubs | `/primary-care/`, `/medical-weight-loss/` | `/es/atencion-primaria/`, `/es/perdida-de-peso-medica/` |
 | 2 | Rehab hub + IV | `/physical-rehabilitation/` (✅ done), `/iv-therapy/` (✅ done) | `/es/fisioterapia/`, `/es/terapia-iv/` (✅) |
-| 3 | Core rehab | `/chiropractor/`, `/massage-therapy/` | `/es/quiropractico/`, `/es/terapia-de-masajes/` |
-| 4 | Therapy | `/therapeutic-exercises/`, `/therapeutic-ultrasound-treatment/` | `/es/ejercicios-terapeuticos/`, `/es/tratamiento-de-ultrasonido-terapeutico/` |
+| 3 | Core rehab | `/chiropractor/` (✅), `/massage-therapy/` (✅) | `/es/quiropractico/`, `/es/terapia-de-masajes/` (✅) |
+| 4 | Therapy | `/therapeutic-exercises/` (✅), `/therapeutic-ultrasound-treatment/` (✅) | `/es/ejercicios-terapeuticos/`, `/es/tratamiento-de-ultrasonido-terapeutico/` (✅) |
 | 5 | Auto accident I | `/car-accident-rehabilitation/` (✅), `/auto-accident-injury-clinic/` (✅) | `/es/rehabilitacion-de-accidentes-automovilisticos/`, `/es/clinica-de-lesiones-por-accidentes-de-auto/` (✅) |
 | 6 | Auto accident II | `/car-accident-treatment/` (✅), `/car-accident-physical-therapy/` (✅) | `/es/tratamiento-de-accidentes-de-auto/` (✅), `/es/fisioterapia-para-accidente-de-auto/` (✅) |
 | 7 | Auto accident III | `/car-accident-chiropractor/` (✅), `/whiplash-treatment-tampa/` (✅) | `/es/quiropractico-para-accidente-de-auto/` (✅), `/es/tratamiento-latigazo-cervical-tampa/` (✅) |
@@ -87,7 +87,16 @@ flow), with pricing corrected to Optantra truth.
 - [x] Group 7 — `/car-accident-chiropractor/` + `/whiplash-treatment-tampa/` (+ ES)
       (`CarAccidentChiropractorPage.astro` `b68ac95`, `WhiplashTreatmentPage.astro`). With this, the
       whole car accident family is closed.
-- [ ] Groups 3, 4 and 8–12 — still on the legacy body.
+- [x] Group 3 — `/chiropractor/` + `/massage-therapy/` (+ ES) (`ChiropractorPage.astro`,
+      `MassageTherapyPage.astro`). Both were in `richpages.json`, so their paths were added to the
+      `migrated` `Set`. Massage's legacy hero was a YouTube thumbnail with baked-in text and a
+      brand watermark: the hero is now `massage-therapy-session.webp`.
+- [x] Group 4 — `/therapeutic-exercises/` + `/therapeutic-ultrasound-treatment/` (+ ES)
+      (`TherapeuticExercisesPage.astro`, `TherapeuticUltrasoundPage.astro`). Both were in
+      `richpages.json` → `migrated` `Set`. This closes the content-substitution layer of the
+      catch-all: `src/data/therapeuticExercises.ts` was deleted. With this, **all of rehabilitation
+      is redesigned**.
+- [ ] Groups 8–12 — still on the legacy body.
 
 **Per-page workflow actually used** (repeat for the next groups):
 

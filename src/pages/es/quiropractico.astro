@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import ChiropractorPage from "../../components/pages/ChiropractorPage.astro";
+
+const path = "/es/quiropractico/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Atención Quiropráctica en Tampa, FL - Palm Wellness Center"
+  description="Atención quiropráctica en Tampa para el dolor de espalda, lesiones y problemas de movilidad. Llame a Palm Wellness Center para programar su evaluación hoy mismo."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <ChiropractorPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>
