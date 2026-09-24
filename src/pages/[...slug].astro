@@ -38,6 +38,8 @@ export async function getStaticPaths() {
     "/es/ejercicios-terapeuticos/",
     "/therapeutic-ultrasound-treatment/",
     "/es/tratamiento-de-ultrasonido-terapeutico/",
+    "/slip-and-fall-injury-treatment/",
+    "/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/",
   ]);
   const resolvedRichPages = (richpages as any[]).filter((page) => !migrated.has(page.path));
   const trim = (s: string) => s.replace(/^\/|\/$/g, "");

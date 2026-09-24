@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import SlipAndFallInjuryPage from "../components/pages/SlipAndFallInjuryPage.astro";
+
+const path = "/slip-and-fall-injury-treatment/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="Slip and Fall Injury Treatment in Tampa, FL | Palm Wellness Center"
+  description="Hurt in a slip and fall in Tampa? Get personalized evaluation, rehab, and balance-focused care at Palm Wellness Center. Request an appointment today."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <SlipAndFallInjuryPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

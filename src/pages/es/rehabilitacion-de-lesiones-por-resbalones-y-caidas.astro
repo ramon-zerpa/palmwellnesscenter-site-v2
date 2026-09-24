@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import SlipAndFallInjuryPage from "../../components/pages/SlipAndFallInjuryPage.astro";
+
+const path = "/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Tratamiento de Lesiones por Resbalones y Caídas en Tampa, FL | Palm Wellness Center"
+  description="¿Te lesionaste en una caída en Tampa? Recibe evaluación personalizada, rehabilitación y atención especializada para mejorar tu equilibrio en Palm Wellness Center. Solicita una cita hoy mismo."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <SlipAndFallInjuryPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

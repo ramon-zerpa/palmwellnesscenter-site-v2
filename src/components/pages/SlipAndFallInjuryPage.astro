@@ -1,0 +1,585 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Slip and Fall Injury Treatment in Tampa",
+      title: "Slip and fall injury treatment in Tampa",
+      lead: "Careful evaluation, hands-on rehabilitation, and balance-focused recovery to help you move safely again after a fall.",
+      chips: [
+        { icon: "person-standing", label: "Balance and mobility recovery" },
+        { icon: "stethoscope", label: "Chiropractic plus rehabilitation" },
+        { icon: "shield-check", label: "Medical oversight" },
+        { icon: "car", label: "Transportation assistance" },
+      ],
+      note: "Neck and back pain · Stiffness · Headaches · Dizziness · Balance problems",
+      image: "/images/common-injuries-after-falling-in-the-shower.webp",
+      imageAlt: "Older adult who fell in the bathroom holding her back before slip and fall treatment in Tampa",
+      rail: [
+        { value: "One team", label: "Chiropractic + rehabilitation" },
+        { value: "5 services", label: "Coordinated in one clinic" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "Services", href: "#services" },
+      { label: "Integrated care", href: "#integrated" },
+      { label: "Why us", href: "#why" },
+      { label: "Get started", href: "#start" },
+      { label: "Team", href: "#team" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    services: {
+      eyebrow: "Our services",
+      heading: "Our slip and fall treatment services",
+      lead: "Treatment plans are personalized around your pain, mobility, and recovery goals, using rehabilitation, therapeutic exercises, and in-clinic therapies to help you move safely again after a fall.",
+      items: [
+        { icon: "dumbbell", title: "Therapeutic exercises", body: "Guided exercises to rebuild strength, restore joint motion, and support healthier movement patterns.", href: "/therapeutic-exercises/" },
+        { icon: "waves", title: "Ultrasound therapy", body: "Gentle warming of soft tissues to support circulation and ease pain and stiffness in injured areas.", href: "/therapeutic-ultrasound-treatment/" },
+        { icon: "hand-heart", title: "Massage therapy", body: "Clinical massage to relax tight muscles, reduce soreness, and improve flexibility as your body heals.", href: "/massage-therapy/" },
+        { icon: "spine", title: "Chiropractic care", body: "Gentle adjustments that help improve joint alignment and mobility so movement feels more comfortable.", href: "/chiropractor/" },
+        { icon: "activity", title: "Balance and mobility training", body: "Guided work to improve stability, confidence, and movement control after a fall.", href: "/therapeutic-exercises/" },
+        { icon: "search", title: "Medical evaluation and referrals", body: "When appropriate, your provider can arrange imaging or refer you to other medical specialists.", href: "/primary-care/" },
+      ],
+    },
+    integrated: {
+      eyebrow: "Integrated care",
+      heading: "Integrated wellness services",
+      lead: "Slip and fall treatment at Palm Wellness Center is most effective when it is coordinated with other medical and rehabilitation services. Our team works together to create unified care plans that address pain, mobility, and overall health during recovery.",
+      items: [
+        { icon: "user-md", title: "Primary care in Tampa", body: "Medical oversight, lab testing, imaging referrals, and medication management when needed.", href: "/primary-care/" },
+        { icon: "blind", title: "Physical rehabilitation", body: "Therapeutic exercises, strength training, and mobility work that complement hands-on treatment.", href: "/physical-rehabilitation/" },
+        { icon: "female", title: "Medical weight loss", body: "Physician-supervised weight management that may help reduce joint strain and support mobility.", href: "/medical-weight-loss/" },
+        { icon: "car", title: "Car accident rehabilitation", body: "Coordinated care for patients recovering from whiplash and other accident-related conditions.", href: "/car-accident-rehabilitation/" },
+      ],
+    },
+    why: {
+      eyebrow: "Why choose us",
+      heading: "Why integrated care matters",
+      lead: "Recovering from a slip and fall injury often involves more than one type of care. When medical, chiropractic, and rehabilitation services work together, treatment can address pain, mobility, and long-term recovery more effectively.",
+      points: [
+        "One coordinated care team supporting your recovery across medical and rehabilitation services",
+        "Shared treatment plans and medical records so your providers stay aligned on your progress",
+        "Safer decisions about movement and activity based on your injury and recovery stage",
+        "Access to additional services when appropriate, including primary care, weight management, or wellness support",
+        "Less repetition of your medical history during appointments",
+        "Better recovery outcomes through coordinated treatment planning",
+      ],
+    },
+    start: {
+      eyebrow: "Get started",
+      heading: "How to get started with slip and fall treatment",
+      lead: "Three simple steps to begin your recovery at Palm Wellness Center.",
+      steps: [
+        { n: "1", title: "Call or request an appointment", body: "Call (813) 443-5370 or request an appointment online. Our office will follow up to schedule your slip and fall evaluation." },
+        { n: "2", title: "Personalized evaluation", body: "Your provider will review how the fall occurred, discuss your symptoms, and evaluate your movement, strength, and balance." },
+        { n: "3", title: "A plan built around you", body: "Your care may include chiropractic treatment, physical rehabilitation, and therapeutic exercises, adjusted as you progress." },
+      ],
+      image: "/images/medical-office-chiropractor-rehabilitating-patient-back.webp",
+      imageAlt: "Therapist treating a patient's back at Palm Wellness Center in Tampa",
+    },
+    team: {
+      eyebrow: "Our care team",
+      heading: "Your rehabilitation and chiropractic care team",
+      lead: "Your care is supported by a licensed medical and rehabilitation team experienced in helping patients recover from slip and fall injuries and restore safe movement.",
+      members: [
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides clinical guidance to support safe, appropriate, and patient-centered care." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Board-Certified Physician Assistant", bio: "Provides medical evaluations, follow-up care, and coordination with rehabilitation services. Fluent in English and Spanish." },
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Founder and Clinic Administrator", bio: "Oversees patient care coordination and rehabilitation services focused on structured recovery and mobility support." },
+      ],
+      footNote: "Your care is guided by a collaborative team focused on safe movement, balance, and long-term function.",
+    },
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center is led by licensed medical and rehabilitation providers committed to safe, patient-centered care. Our team follows established clinical standards and prioritizes clear communication, thoughtful treatment planning, and continuity of care.",
+        "Patients are seen in person at our Tampa clinic. Palm Wellness Center proudly serves Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/therapist-examining-patient.jpg",
+      imageAlt: "A therapist guiding a patient through a mobility exercise at Palm Wellness Center in Tampa",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Medical supervision",
+    },
+    transport: {
+      title: "Need a ride? We have got you covered.",
+      body: "Palm Wellness Center offers transportation assistance for eligible patients throughout the Tampa Bay area. If transportation is a concern, let our team know when you call or request an appointment, and we will help coordinate your visit.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    faq: {
+      heading: "Frequently asked questions",
+      note: "Still have questions? Call us at (813) 443-5370 and our team will walk you through your options and what to expect.",
+      items: [
+        { q: "How soon after a slip and fall should I seek treatment?", a: "It is best to be evaluated as soon as possible after a fall. Some injuries may not cause immediate pain, and symptoms like stiffness, dizziness, or limited movement can appear hours or days later. Early evaluation helps identify hidden injuries and supports safer recovery." },
+        { q: "What symptoms should I watch for after a fall?", a: "Common symptoms include neck or back pain, muscle stiffness, headaches, dizziness, numbness or tingling, and balance problems. Even mild discomfort can affect how you move and may worsen without proper care." },
+        { q: "What happens during my first appointment?", a: "Your provider will review how the fall occurred, discuss your symptoms, and evaluate your movement, strength, and balance. Based on this assessment, a personalized treatment plan will be created to support your recovery." },
+        { q: "What types of treatment may be recommended?", a: "Treatment may include chiropractic care, physical rehabilitation, therapeutic exercises, and balance training. The goal is to reduce pain, restore safe movement, and help you return to everyday activities with confidence." },
+        { q: "Can symptoms appear days after a slip and fall?", a: "Yes. Some injuries develop gradually as inflammation and muscle tension increase. Pain, stiffness, headaches, or balance problems may appear several days after the fall." },
+        { q: "Will my treatment be supervised by a physician?", a: "Yes. Care at Palm Wellness Center is coordinated with medical oversight to ensure treatment is safe and appropriate for your condition." },
+        { q: "Do I need a referral to receive slip and fall treatment?", a: "Most patients can schedule an evaluation directly by calling the clinic or requesting an appointment online. If additional testing or specialist care is needed, referrals can be arranged." },
+        { q: "What should I bring to my first appointment?", a: "Bring a photo ID, your insurance information if applicable, and any medical records or imaging related to your injury. If the fall occurred at work or on another property, documentation of the incident may also be helpful." },
+      ],
+    },
+    area: {
+      eyebrow: "Service Area",
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Palm Wellness Center is located in Tampa, FL, and serves patients from across the surrounding area.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "And surrounding areas"],
+      note: "Need directions or a ride? Call (813) 443-5370 and our team will help you plan your visit.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Start your slip and fall recovery in Tampa",
+      lead: "If a slip and fall has left you with pain, stiffness, or balance problems, early evaluation can help support a safer recovery.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Tratamiento de Resbalones y Caídas en Tampa",
+      title: "Tratamiento de lesiones por resbalones y caídas en Tampa",
+      lead: "Evaluación cuidadosa, rehabilitación práctica y recuperación enfocada en el equilibrio para ayudarte a moverte con seguridad después de una caída.",
+      chips: [
+        { icon: "person-standing", label: "Recuperación del equilibrio y la movilidad" },
+        { icon: "stethoscope", label: "Atención quiropráctica y rehabilitación" },
+        { icon: "shield-check", label: "Supervisión médica" },
+        { icon: "car", label: "Asistencia de transporte" },
+      ],
+      note: "Dolor de cuello y espalda · Rigidez · Dolores de cabeza · Mareos · Problemas de equilibrio",
+      image: "/images/common-injuries-after-falling-in-the-shower.webp",
+      imageAlt: "Persona mayor que se cayó en el baño sosteniéndose la espalda antes del tratamiento por resbalón y caída en Tampa",
+      rail: [
+        { value: "Un equipo", label: "Quiropráctica + rehabilitación" },
+        { value: "5 servicios", label: "Coordinados en una clínica" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Servicios", href: "#services" },
+      { label: "Atención integrada", href: "#integrated" },
+      { label: "Por qué elegirnos", href: "#why" },
+      { label: "Cómo empezar", href: "#start" },
+      { label: "Equipo", href: "#team" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    services: {
+      eyebrow: "Nuestros servicios",
+      heading: "Nuestros servicios de tratamiento por resbalones y caídas",
+      lead: "Los planes de tratamiento se personalizan según tu dolor, movilidad y objetivos de recuperación, usando rehabilitación, ejercicios terapéuticos y terapias en la clínica para ayudarte a moverte con seguridad después de una caída.",
+      items: [
+        { icon: "dumbbell", title: "Ejercicios terapéuticos", body: "Ejercicios guiados para reconstruir fuerza, restaurar el movimiento articular y apoyar patrones de movimiento más saludables.", href: "/es/ejercicios-terapeuticos/" },
+        { icon: "waves", title: "Terapia de ultrasonido", body: "Calentamiento suave de los tejidos blandos para favorecer la circulación y aliviar el dolor y la rigidez en zonas lesionadas.", href: "/es/tratamiento-de-ultrasonido-terapeutico/" },
+        { icon: "hand-heart", title: "Terapia de masajes", body: "Masaje clínico para relajar músculos tensos, reducir el dolor y mejorar la flexibilidad mientras tu cuerpo se recupera.", href: "/es/terapia-de-masajes/" },
+        { icon: "spine", title: "Atención quiropráctica", body: "Ajustes suaves que ayudan a mejorar la alineación articular y la movilidad para moverte con más comodidad.", href: "/es/quiropractico/" },
+        { icon: "activity", title: "Entrenamiento de equilibrio y movilidad", body: "Trabajo guiado para mejorar la estabilidad, la confianza y el control del movimiento tras una caída.", href: "/es/ejercicios-terapeuticos/" },
+        { icon: "search", title: "Evaluación médica y derivaciones", body: "Cuando es apropiado, tu proveedor puede coordinar estudios de imagen o derivarte a otros especialistas.", href: "/es/atencion-primaria/" },
+      ],
+    },
+    integrated: {
+      eyebrow: "Atención integrada",
+      heading: "Servicios de bienestar integrados",
+      lead: "El tratamiento por resbalones y caídas en Palm Wellness Center es más efectivo cuando se coordina con otros servicios médicos y de rehabilitación. Nuestro equipo trabaja en conjunto para crear planes unificados que abordan el dolor, la movilidad y la salud general durante la recuperación.",
+      items: [
+        { icon: "user-md", title: "Atención primaria en Tampa", body: "Supervisión médica, pruebas de laboratorio, derivaciones de imágenes y manejo de medicamentos cuando sea necesario.", href: "/es/atencion-primaria/" },
+        { icon: "blind", title: "Rehabilitación física", body: "Ejercicios terapéuticos, entrenamiento de fuerza y trabajo de movilidad que complementan el tratamiento práctico.", href: "/es/fisioterapia/" },
+        { icon: "female", title: "Pérdida de peso médica", body: "Manejo del peso supervisado por un médico que puede ayudar a reducir la tensión en las articulaciones.", href: "/es/perdida-de-peso-medica/" },
+        { icon: "car", title: "Rehabilitación de accidentes de auto", body: "Atención coordinada para pacientes que se recuperan de latigazo cervical y lesiones de tejidos blandos.", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
+      ],
+    },
+    why: {
+      eyebrow: "Por qué elegirnos",
+      heading: "Por qué es importante la atención integrada",
+      lead: "Recuperarse de una lesión por resbalón y caída a menudo involucra más de un tipo de atención. Cuando los servicios médicos, quiroprácticos y de rehabilitación trabajan juntos, el tratamiento aborda el dolor, la movilidad y la recuperación a largo plazo de forma más eficaz.",
+      points: [
+        "Un equipo de atención coordinado que respalda tu recuperación en los servicios médicos y de rehabilitación",
+        "Planes de tratamiento y registros médicos compartidos para que tus proveedores se mantengan alineados",
+        "Decisiones más seguras sobre el movimiento y la actividad según tu lesión y etapa de recuperación",
+        "Acceso a servicios adicionales cuando es apropiado, como atención primaria, control de peso o bienestar",
+        "Menos repetición de tu historial médico durante las citas",
+        "Mejores resultados de recuperación gracias a una planificación de tratamiento coordinada",
+      ],
+    },
+    start: {
+      eyebrow: "Cómo empezar",
+      heading: "Cómo comenzar con el tratamiento por resbalones y caídas",
+      lead: "Tres pasos simples para comenzar tu recuperación en Palm Wellness Center.",
+      steps: [
+        { n: "1", title: "Llama o solicita una cita", body: "Llama al (813) 443-5370 o solicita una cita en línea. Nuestra oficina hará seguimiento para programar tu evaluación." },
+        { n: "2", title: "Evaluación personalizada", body: "Tu proveedor revisará cómo ocurrió la caída, analizará tus síntomas y evaluará tu movimiento, fuerza y equilibrio." },
+        { n: "3", title: "Un plan hecho a tu medida", body: "Tu atención puede incluir tratamiento quiropráctico, rehabilitación física y ejercicios terapéuticos, ajustados a medida que avanzas." },
+      ],
+      image: "/images/medical-office-chiropractor-rehabilitating-patient-back.webp",
+      imageAlt: "Terapeuta tratando la espalda de un paciente en Palm Wellness Center en Tampa",
+    },
+    team: {
+      eyebrow: "Nuestro equipo",
+      heading: "Tu equipo de rehabilitación y atención quiropráctica",
+      lead: "Tu atención está respaldada por un equipo médico y de rehabilitación autorizado con experiencia en ayudar a pacientes a recuperarse de lesiones por resbalones y caídas y restaurar un movimiento seguro.",
+      members: [
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda orientación clínica para apoyar una atención segura, apropiada y centrada en el paciente." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Asistente Médico Certificado", bio: "Proporciona evaluaciones médicas, atención de seguimiento y coordinación con los servicios de rehabilitación. Habla inglés y español con fluidez." },
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Fundador y Administrador de la Clínica", bio: "Supervisa la coordinación de la atención al paciente y los servicios de rehabilitación enfocados en una recuperación estructurada y apoyo de movilidad." },
+      ],
+      footNote: "Tu atención es guiada por un equipo colaborativo enfocado en el movimiento seguro, el equilibrio y la función a largo plazo.",
+    },
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center está dirigido por proveedores médicos y de rehabilitación autorizados, comprometidos con una atención segura y centrada en el paciente. Nuestro equipo sigue estándares clínicos establecidos y prioriza la comunicación clara, la planificación cuidadosa del tratamiento y la continuidad de la atención.",
+        "Los pacientes son atendidos en persona en nuestra clínica de Tampa. Palm Wellness Center atiende con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/therapist-examining-patient.jpg",
+      imageAlt: "Terapeuta guiando a un paciente en un ejercicio de movilidad en Palm Wellness Center en Tampa",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Supervisión médica",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Nosotros te ayudamos.",
+      body: "Palm Wellness Center ofrece asistencia de transporte para pacientes elegibles en toda el área de la Bahía de Tampa. Si el transporte es una preocupación, avísale a nuestro equipo cuando llames o solicites una cita, y te ayudaremos a coordinar tu visita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    faq: {
+      heading: "Preguntas frecuentes",
+      note: "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará tus opciones y qué esperar.",
+      items: [
+        { q: "¿Qué tan pronto después de un resbalón y caída debo buscar tratamiento?", a: "Lo mejor es evaluarte lo antes posible después de una caída. Algunas lesiones no causan dolor inmediato, y síntomas como rigidez, mareos o movimiento limitado pueden aparecer horas o días después. La evaluación temprana ayuda a identificar lesiones ocultas y respalda una recuperación más segura." },
+        { q: "¿A qué síntomas debo prestar atención después de una caída?", a: "Los síntomas comunes incluyen dolor de cuello o espalda, rigidez muscular, dolores de cabeza, mareos, entumecimiento u hormigueo y problemas de equilibrio. Incluso las molestias leves pueden afectar cómo te mueves y pueden empeorar sin la atención adecuada." },
+        { q: "¿Qué sucede durante mi primera cita?", a: "Tu proveedor revisará cómo ocurrió la caída, analizará tus síntomas y evaluará tu movimiento, fuerza y equilibrio. Con base en esta evaluación, se creará un plan de tratamiento personalizado para respaldar tu recuperación." },
+        { q: "¿Qué tipos de tratamiento se pueden recomendar?", a: "El tratamiento puede incluir atención quiropráctica, rehabilitación física, ejercicios terapéuticos y entrenamiento del equilibrio. El objetivo es reducir el dolor, restaurar el movimiento seguro y ayudarte a volver a tus actividades diarias con confianza." },
+        { q: "¿Pueden aparecer síntomas días después de un resbalón y caída?", a: "Sí. Algunas lesiones se desarrollan gradualmente a medida que aumentan la inflamación y la tensión muscular. Dolor, rigidez, dolores de cabeza o problemas de equilibrio pueden aparecer varios días después de la caída." },
+        { q: "¿Mi tratamiento será supervisado por un médico?", a: "Sí. La atención en Palm Wellness Center se coordina con supervisión médica para garantizar que el tratamiento sea seguro y adecuado para tu condición." },
+        { q: "¿Necesito una derivación médica para recibir tratamiento por resbalones y caídas?", a: "La mayoría de los pacientes pueden programar una evaluación directamente llamando a la clínica o solicitando una cita en línea. Si se necesitan pruebas adicionales o atención especializada, se pueden organizar derivaciones." },
+        { q: "¿Qué debo llevar a mi primera cita?", a: "Trae una identificación con foto, la información de tu seguro (si corresponde) y cualquier registro médico o de imágenes relacionado con tu lesión. Si la caída ocurrió en el trabajo o en otra propiedad, la documentación del incidente también puede ser útil." },
+      ],
+    },
+    area: {
+      eyebrow: "Área de Servicio",
+      heading: "Sirviendo con orgullo a Tampa y vecindarios circundantes",
+      lead: "Palm Wellness Center está ubicado en Tampa, FL, y atiende a pacientes de toda el área circundante.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Y áreas cercanas"],
+      note: "¿Necesitas indicaciones o transporte? Llama al (813) 443-5370 y nuestro equipo te ayudará a planificar tu visita.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
+    },
+    cta: {
+      title: "Comienza tu recuperación por resbalones y caídas en Tampa",
+      lead: "Si un resbalón y caída te dejó con dolor, rigidez o problemas de equilibrio, una evaluación temprana puede ayudar a una recuperación más segura.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="person-standing" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- SERVICES -->
+<section id="services" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="list-checks" class="h-3.5 w-3.5" />{content.services.eyebrow}</span>
+        <h2 class={h2Cls}>{content.services.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.services.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {content.services.items.map((t) => (
+        <a href={t.href} class={`group flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white text-blue-deep"><Icon name={t.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-ink lg:text-[20px]">{t.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{t.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- INTEGRATED -->
+<section id="integrated" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="stethoscope" class="h-3.5 w-3.5" />{content.integrated.eyebrow}</span>
+        <h2 class={h2Cls}>{content.integrated.heading}</h2>
+      </div>
+      <p class={leadCls}>{content.integrated.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {content.integrated.items.map((t) => (
+        <a href={t.href} class={`group flex flex-col gap-4 rounded-lg border border-line bg-white p-7 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={t.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink">{t.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{t.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHY (dark band) -->
+<section id="why" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_440px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowDarkCls}>{content.why.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.why.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-blue-tint">{content.why.lead}</p>
+      <a href={PHONE_TEL} class="mt-1 inline-flex w-fit items-center gap-2 rounded-md bg-white px-6 py-3.5 font-bold text-blue-deep transition-colors hover:bg-blue-pale"><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+    <ul class="flex flex-col gap-4 rounded-lg border border-white/15 bg-white/5 p-7 lg:p-8">
+      {content.why.points.map((p) => (
+        <li class="flex items-start gap-3 text-[15px] leading-[1.55] text-blue-tint"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{p}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- GET STARTED -->
+<section id="start" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_480px] lg:items-center lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-6">
+      <span class={eyebrowCls}><Icon name="route" class="h-3.5 w-3.5" />{content.start.eyebrow}</span>
+      <h2 class={h2Cls}>{content.start.heading}</h2>
+      <p class={leadCls}>{content.start.lead}</p>
+      <ol class="flex flex-col gap-5">
+        {content.start.steps.map((s) => (
+          <li class={`flex items-start gap-4 rounded-lg border border-line bg-bg-alt p-6 ${hover}`}>
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-blue-deep font-titles text-[17px] font-bold text-white">{s.n}</span>
+            <div class="flex flex-col gap-1">
+              <h3 class="font-titles text-[18px] font-bold leading-[1.25] text-ink">{s.title}</h3>
+              <p class="text-[15px] leading-[1.6] text-body">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <img src={content.start.image} width="480" height="520" alt={content.start.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[520px]" />
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}>{content.team.eyebrow}</span>
+      <h2 class={h2Cls}>{content.team.heading}</h2>
+      <p class={leadCls}>{content.team.lead}</p>
+    </div>
+    <ul class="grid gap-6 md:grid-cols-3">
+      {content.team.members.map((m) => (
+        <li class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-[74px] w-[74px] place-items-center rounded-full bg-blue-deep font-titles text-[26px] font-bold text-white">{m.initials}</span>
+          <div class="flex flex-col gap-1">
+            <h3 class="font-titles text-[19px] font-bold leading-[1.2] text-ink lg:text-[20px]">{m.name}</h3>
+            <p class="text-[13px] font-semibold leading-[1.4] text-blue">{m.cred}</p>
+          </div>
+          <p class="text-[15px] leading-[1.6] text-body">{m.bio}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="max-w-[720px] text-[15px] leading-[1.6] text-body">{content.team.footNote}</p>
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.trust.heading}</h2>
+      {content.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={content.trust.image} width="560" height="320" alt={content.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{content.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {content.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{content.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{content.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+      <div class={`flex flex-col gap-1.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{content.trust.supervisorLabel}</p>
+        <p class="font-titles text-[18px] font-bold text-ink">Dr. Arnaldo V. Orellana-Molina</p>
+        <p class="text-[13px] font-semibold leading-[1.4] text-blue">{lang === "es" ? "MD - Médico Supervisor" : "MD - Supervising Physician"}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{lang === "es" ? "Brinda supervisión médica que mantiene cada plan seguro y alineado con las guías clínicas." : "Provides medical oversight that keeps every care plan safe and guideline-aligned."}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-bg-alt">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={content.transport.image} width="560" height="400" alt={content.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{content.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{content.transport.body}</p>
+      <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{lang === "es" ? "Preguntas" : "FAQ"}</span>
+      <h2 class={h2Cls}>{content.faq.heading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{content.faq.note}</p>
+    </div>
+    <div class="flex flex-col">
+      {content.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-bg-alt [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{content.area.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{content.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{content.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{content.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{content.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>
