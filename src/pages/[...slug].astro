@@ -40,6 +40,12 @@ export async function getStaticPaths() {
     "/es/tratamiento-de-ultrasonido-terapeutico/",
     "/slip-and-fall-injury-treatment/",
     "/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/",
+    "/car-accident-rehabilitation/seminole-heights/",
+    "/car-accident-rehabilitation/forest-hills/",
+    "/car-accident-rehabilitation/carrollwood/",
+    "/es/rehabilitacion-de-accidentes-automovilisticos/seminole-heights/",
+    "/es/rehabilitacion-de-accidentes-automovilisticos/forest-hills/",
+    "/es/rehabilitacion-de-accidentes-automovilisticos/carrollwood/",
   ]);
   const resolvedRichPages = (richpages as any[]).filter((page) => !migrated.has(page.path));
   const trim = (s: string) => s.replace(/^\/|\/$/g, "");

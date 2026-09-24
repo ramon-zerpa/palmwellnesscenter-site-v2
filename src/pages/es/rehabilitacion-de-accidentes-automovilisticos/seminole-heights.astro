@@ -1,0 +1,23 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import TopBar from "../../../components/TopBar.astro";
+import Header from "../../../components/Header.astro";
+import Footer from "../../../components/Footer.astro";
+import CityCarAccidentRehabPage from "../../../components/pages/CityCarAccidentRehabPage.astro";
+
+const path = "/es/rehabilitacion-de-accidentes-automovilisticos/seminole-heights/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Rehabilitación de Accidentes de Auto en Seminole Heights, Tampa - Palm Wellness Center"
+  description="Recupérate rápidamente con rehabilitación personalizada por lesiones de tránsito en Palm Wellness Center en Seminole Heights. ¡Llama ahora para programar una cita con quiropráctica, masajes y más!"
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <CityCarAccidentRehabPage lang="es" city="seminole-heights" />
+  </main>
+  <Footer lang="es" />
+</Layout>

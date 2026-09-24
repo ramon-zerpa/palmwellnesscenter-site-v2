@@ -53,7 +53,7 @@ flow), with pricing corrected to Optantra truth.
 | 5 | Auto accident I | `/car-accident-rehabilitation/` (✅), `/auto-accident-injury-clinic/` (✅) | `/es/rehabilitacion-de-accidentes-automovilisticos/`, `/es/clinica-de-lesiones-por-accidentes-de-auto/` (✅) |
 | 6 | Auto accident II | `/car-accident-treatment/` (✅), `/car-accident-physical-therapy/` (✅) | `/es/tratamiento-de-accidentes-de-auto/` (✅), `/es/fisioterapia-para-accidente-de-auto/` (✅) |
 | 7 | Auto accident III | `/car-accident-chiropractor/` (✅), `/whiplash-treatment-tampa/` (✅) | `/es/quiropractico-para-accidente-de-auto/` (✅), `/es/tratamiento-latigazo-cervical-tampa/` (✅) |
-| 8 | Slip & fall + cities | `/slip-and-fall-injury-treatment/` + city cluster (`/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/`) as one template | ES cluster |
+| 8 | Slip & fall + cities | `/slip-and-fall-injury-treatment/` (✅) + city cluster (`/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/`) as one template (✅) | ES cluster (✅) |
 | 9 | About + Contact | `/about-us/`, `/contact/` | `/es/acerca-de-nosotros/`, `/es/contacto/` |
 | 10 | Blog + misc | `/news-blog/` (+ post template), `/business-profiles/` | `/es/blog-de-noticias/` |
 | 11 | Legal | `/hipaa-policy/`, `/privacy-policy/` | `/es/politica-de-hipaa/`, `/es/politica-de-privacidad/` |
@@ -96,7 +96,11 @@ flow), with pricing corrected to Optantra truth.
       `richpages.json` → `migrated` `Set`. This closes the content-substitution layer of the
       catch-all: `src/data/therapeuticExercises.ts` was deleted. With this, **all of rehabilitation
       is redesigned**.
-- [ ] Groups 8–12 — still on the legacy body.
+- [x] Group 8 — `/slip-and-fall-injury-treatment/` (+ ES) with `SlipAndFallInjuryPage.astro`, and the
+      city cluster `/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/` (+ ES)
+      as one template (`CityCarAccidentRehabPage.astro`, `city` prop). All eight paths were in
+      `richpages.json` → `migrated` `Set`.
+- [ ] Groups 9–12 — still on the legacy body.
 
 **Per-page workflow actually used** (repeat for the next groups):
 

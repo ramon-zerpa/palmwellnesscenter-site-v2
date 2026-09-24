@@ -1,7 +1,7 @@
 # Palm Wellness Center — Project Handoff
 
-**Updated:** 2026-09-23  
-**Last published commit:** Groups 6 and 7 (car accident family) published; Groups 3 and 4 (chiropractor, massage, therapeutic exercises, therapeutic ultrasound; EN/ES) built locally, on top of `b68ac95`  
+**Updated:** 2026-09-24  
+**Last published commit:** Groups 3, 4 and the slip-and-fall page (EN/ES) published on top of `b68ac95`; the Group 8 city cluster (Seminole Heights, Forest Hills, Carrollwood; EN/ES) built locally, on top of `767396d`  
 **Branch:** `main` · a push to `origin main` deploys automatically through Vercel.
 
 Read this after `AGENTS.md` at the beginning of a new session. It is the concise, current
@@ -86,10 +86,24 @@ The Primary Care children that used to be nested under `/primary-care/` were **f
 level** (they are new URLs, so no redirects were needed) and `SimplePage.astro` +
 `src/data/newPages.ts` were deleted once no route imported them.
 
-The next planned migration is **Group 8**: `/slip-and-fall-injury-treatment/` plus the
-`/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/` city cluster (+ ES),
-built as one template. Those paths exist in `richpages.json`, so they need `migrated` `Set`
-entries. See `docs/redesign-plan.md`.
+**Group 8 is closed.** It has two parts, both EN + ES:
+
+| EN | ES | Component |
+|---|---|---|
+| `/slip-and-fall-injury-treatment/` | `/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/` | `SlipAndFallInjuryPage.astro` |
+| `/car-accident-rehabilitation/seminole-heights/` | `/es/rehabilitacion-de-accidentes-automovilisticos/seminole-heights/` | `CityCarAccidentRehabPage.astro` (`city="seminole-heights"`) |
+| `/car-accident-rehabilitation/forest-hills/` | `/es/rehabilitacion-de-accidentes-automovilisticos/forest-hills/` | `CityCarAccidentRehabPage.astro` (`city="forest-hills"`) |
+| `/car-accident-rehabilitation/carrollwood/` | `/es/rehabilitacion-de-accidentes-automovilisticos/carrollwood/` | `CityCarAccidentRehabPage.astro` (`city="carrollwood"`) |
+
+All eight paths (slip-and-fall pair + six city routes) exist in `richpages.json` and were added to
+the `migrated` `Set`. The three city pages share one component and differ in city name, drive time,
+local points, directions, FAQ and things-to-do. The slip-and-fall service cards **link** to the
+real service pages. The legacy "slip and fall injuries — types" asset
+(`slip-and-fall-injuries-different-types.webp`) carries baked-in text and a brand watermark and is
+not used; the slip-and-fall hero is `common-injuries-after-falling-in-the-shower.webp`.
+
+The next planned migration is **Group 9**: `/about-us/` + `/contact/` (+ ES), then Groups 10 (blog
+and business profiles) and 11 (legal). See `docs/redesign-plan.md`.
 
 ## 2. Approved global UI decisions
 
@@ -223,6 +237,10 @@ The full business name is immutable in title tags: **Palm Wellness Center**. Do 
   360·412·768·1024·1440 with the same results (zero overflow, one H1, no clipped text, no missing
   image dimensions), and anchor clicks were verified. Build stays at **273 pages**, and deleting
   `src/data/therapeuticExercises.ts` did not change the count.
+- Group 8 (`SlipAndFallInjuryPage` + `CityCarAccidentRehabPage` × 3 cities, EN/ES) was audited: the
+  slip-and-fall pair and all six city routes show zero horizontal overflow, one H1, no clipped text
+  and no images missing dimensions; anchor clicks resolve to the right target without writing a hash
+  into the URL. Build stays at **273 pages**.
 - The user reported PageSpeed Insights results of **97 mobile / 100 desktop** for the preview
   homepage. Treat those as the current performance reference. A local Lighthouse attempt was
   contaminated by the machine's AdBlock360 injection, so do not use it as a baseline or change
@@ -256,9 +274,9 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
 
 ## 8. Important unresolved work
 
-1. Redesign Groups 8–12 per `docs/redesign-plan.md`; the immediate work is Group 8
-   (`/slip-and-fall-injury-treatment/` + the city cluster), with their ES mirrors. Groups 3–7 are
-   closed and the whole rehabilitation + car accident clusters are done.
+1. Redesign Groups 9–12 per `docs/redesign-plan.md`; the immediate work is Group 9 (`/about-us/` +
+   `/contact/` + ES). Groups 2–8 are closed: the whole rehabilitation, car accident, slip-and-fall
+   and city-cluster work is done.
 2. Interior pages still rendered through `RichPage`/`RichSection` retain legacy body design even
    though they inherit the current header/footer and icons.
 3. The Contact form is **404 in Vercel production** because `functions/api/contact.ts` is a

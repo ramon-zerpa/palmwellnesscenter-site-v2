@@ -1,6 +1,6 @@
 # SESSION-HANDOFF — brief de arranque
 
-**Snapshot: 2026-09-23** · Grupo 4 cerrado (`/therapeutic-exercises/` + `/therapeutic-ultrasound-treatment/`, EN/ES); rehabilitación completa · rama `main`
+**Snapshot: 2026-09-24** · Grupo 8 cerrado (slip & fall + clúster de ciudades, EN/ES); rehabilitación, accidentes de auto, slip & fall y ciudades completos · rama `main`
 
 > Pega este archivo (o su ruta) al empezar un chat nuevo. Es autosuficiente, pero **la referencia
 > vinculante es `AGENTS.md`** y el estado canónico está en `docs/PROJECT-HANDOFF.md`. Si algo
@@ -51,6 +51,10 @@ Cada página es un componente propio bajo `src/components/pages/`; las rutas EN/
 | `/massage-therapy/` | `/es/terapia-de-masajes/` | `MassageTherapyPage.astro` |
 | `/therapeutic-exercises/` | `/es/ejercicios-terapeuticos/` | `TherapeuticExercisesPage.astro` |
 | `/therapeutic-ultrasound-treatment/` | `/es/tratamiento-de-ultrasonido-terapeutico/` | `TherapeuticUltrasoundPage.astro` |
+| `/slip-and-fall-injury-treatment/` | `/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/` | `SlipAndFallInjuryPage.astro` |
+| `/car-accident-rehabilitation/seminole-heights/` | `/es/rehabilitacion-de-accidentes-automovilisticos/seminole-heights/` | `CityCarAccidentRehabPage.astro` (`city="seminole-heights"`) |
+| `/car-accident-rehabilitation/forest-hills/` | `/es/rehabilitacion-de-accidentes-automovilisticos/forest-hills/` | `CityCarAccidentRehabPage.astro` (`city="forest-hills"`) |
+| `/car-accident-rehabilitation/carrollwood/` | `/es/rehabilitacion-de-accidentes-automovilisticos/carrollwood/` | `CityCarAccidentRehabPage.astro` (`city="carrollwood"`) |
 
 Hitos recientes:
 
@@ -76,6 +80,11 @@ Hitos recientes:
   `/therapeutic-ultrasound-treatment/` (+ `/es/tratamiento-de-ultrasonido-terapeutico/`). Al `Set`
   `migrated`. Esto elimina la capa de sustitución de contenido: `src/data/therapeuticExercises.ts`
   se borró. **Toda la rehabilitación queda rediseñada.**
+- **Grupo 8 cerrado, EN+ES**: `/slip-and-fall-injury-treatment/` (+ ES) con `SlipAndFallInjuryPage.astro`,
+  y el clúster de ciudades `/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/`
+  (+ ES) como **una plantilla** (`CityCarAccidentRehabPage.astro`, prop `city`). Las 8 rutas estaban
+  en `richpages.json` → al `Set` `migrated`. El asset heredado
+  `slip-and-fall-injuries-different-types.webp` trae texto y marca incrustados: no se usa.
 - Las 4 rutas nuevas de esta ronda (y las de las rondas anteriores) están en el `Set` `migrated` de
   `src/pages/[...slug].astro` (×2 por idioma).
 - En el bloque de confianza ("Professional and compassionate care you can trust") la imagen va con
@@ -86,15 +95,14 @@ Hitos recientes:
 
 ## 3. Próximo paso exacto
 
-**Grupo 8 de `docs/redesign-plan.md`** (slip & fall + clúster de ciudades), todavía con el
-cuerpo heredado:
+**Grupo 9 de `docs/redesign-plan.md`** (About + Contact), todavía con el cuerpo heredado:
 
-- `/slip-and-fall-injury-treatment/` (+ `/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/`).
-- Clúster de ciudades de `/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/`
-  (+ espejos ES) como **una plantilla**.
+- `/about-us/` (+ `/es/acerca-de-nosotros/`).
+- `/contact/` (+ `/es/contacto/`).
 
-Ojo: las rutas del clúster de ciudades **sí** existen en `richpages.json`, así que van al `Set`
-`migrated`. Rehabilitación (Grupos 2, 3, 4) ya está cerrada. Después, 9-12.
+Ojo: comprueba si esas rutas existen en `richpages.json` antes de añadirlas al `Set` `migrated`
+(solo hace falta para rutas del JSON). Rehabilitación (2–4), accidentes de auto (5–7) y slip & fall
++ ciudades (8) están cerrados. Después, 10-12.
 
 Procedimiento que funciona:
 

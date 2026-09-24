@@ -1,0 +1,861 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+type City = "seminole-heights" | "forest-hills" | "carrollwood";
+interface Props { lang: Lang; city: City; }
+const { lang, city } = Astro.props;
+
+const CITIES = {
+  "seminole-heights": {
+    en: {
+      name: "Seminole Heights",
+      drive: "an 11-minute drive",
+      driveEs: "11 minutos en auto",
+      heroImageAlt: "A driver holding her head beside damaged cars after a collision near Seminole Heights, Tampa",
+      local: {
+        heading: "Why Seminole Heights residents choose Palm Wellness Center",
+        lead: "Palm Wellness Center is easy to reach from Seminole Heights and offers expert care with extended hours, bilingual services, and personalized recovery plans.",
+        paras: [
+          "Conveniently located just an 11-minute drive from Seminole Heights, Tampa, Palm Wellness Center specializes in personalized auto accident rehabilitation designed to help you recover quickly and effectively.",
+          "Whether you are dealing with whiplash, soft tissue injuries, or back pain, our clinic provides tailored care to address your specific needs.",
+        ],
+        points: [
+          "Conveniently located near Seminole Heights, with easy access to expert care.",
+          "Extended hours to accommodate your schedule.",
+          "Bilingual services in English and Spanish for clear communication.",
+          "Personalized treatment plans focused on your recovery goals.",
+        ],
+      },
+      directions: {
+        steps: [
+          "Head west on E Clifton St toward N Central Ave.",
+          "Turn right onto N Central Ave.",
+          "Turn left onto E Sligh Ave, then right onto N Blvd.",
+          "Continue straight and turn left onto W Linebaugh Ave.",
+          "The destination is on your left at 1004 W Linebaugh Ave, Suite A.",
+        ],
+        driveNote: "With just an 11-minute drive, our clinic offers easy access for residents of Seminole Heights, ensuring convenient and timely care.",
+      },
+      faq: {
+        items: [
+          { q: "How soon should I start therapy after a car accident?", a: "It is important to begin therapy as soon as possible after a car accident, ideally within 72 hours. Early treatment addresses hidden symptoms like whiplash, back pain, neck pain, or soft tissue injuries, improves recovery, and helps prevent chronic pain and stiffness." },
+          { q: "What is a physical examination, and why is it important after an accident?", a: "A physical examination identifies injuries such as soft tissue damage, fractures, or spinal cord injuries that may not be immediately obvious. Early diagnosis helps address pain and prevent complications. Evaluations may include imaging such as MRI to assess internal injuries or spinal alignment." },
+          { q: "Do you work with personal injury lawyers?", a: "We frequently collaborate with personal injury lawyers to help patients receive appropriate care while navigating legal claims. Our team provides detailed documentation for motor vehicle accident cases." },
+          { q: "Will my insurance cover rehabilitation costs?", a: "Many insurance plans, including Personal Injury Protection (PIP) and liability insurance, cover rehabilitation services for accident-related injuries. Our team assists with insurance claims and helps you navigate coverage." },
+          { q: "Can you help with pain management for chronic conditions?", a: "Yes. We specialize in pain management for conditions like low back pain, joint stiffness, and degenerative disc disease, with personalized treatment plans." },
+          { q: "What if I still experience pain weeks after the accident?", a: "Delayed symptoms such as headaches, dizziness, or neck pain are common after accidents and may result from soft tissue injuries, concussions, or spinal trauma. Our specialists create tailored treatment plans to address lingering issues." },
+        ],
+      },
+      thingsToDo: {
+        items: [
+          { title: "Explore historic bungalows in Old Seminole Heights", body: "Stroll through Old Seminole Heights to admire the early 20th-century bungalows that give this Tampa neighborhood its charm." },
+          { title: "Relax by the Hillsborough River", body: "The Hillsborough River offers peaceful views, perfect for walks or enjoying Florida's warm weather." },
+          { title: "Dine on Florida Avenue", body: "Florida Avenue is home to some of Seminole Heights' most popular restaurants, from casual to upscale." },
+          { title: "Visit Sulphur Springs", body: "Near Seminole Heights, Sulphur Springs is a historic spot known for its iconic tower and riverfront setting." },
+          { title: "Explore Tampa Heights and Ybor City", body: "A short drive away, Tampa Heights offers cultural experiences and historic Ybor City is great for dining and nightlife." },
+        ],
+      },
+    },
+    es: {
+      name: "Seminole Heights",
+      drive: "an 11-minute drive",
+      driveEs: "11 minutos en auto",
+      heroImageAlt: "Conductora sosteniéndose la cabeza junto a autos dañados tras una colisión cerca de Seminole Heights, Tampa",
+      local: {
+        heading: "Por qué los residentes de Seminole Heights eligen Palm Wellness Center",
+        lead: "Palm Wellness Center es de fácil acceso desde Seminole Heights y ofrece atención experta con horarios extendidos, servicios bilingües y planes de recuperación personalizados.",
+        paras: [
+          "Convenientemente ubicado a solo 11 minutos en auto de Seminole Heights, Tampa, Palm Wellness Center se especializa en rehabilitación personalizada por accidente de auto diseñada para ayudarte a recuperarte de forma rápida y eficaz.",
+          "Ya sea que estés lidiando con latigazo cervical, lesiones de tejidos blandos o dolor de espalda, nuestra clínica brinda atención personalizada para abordar tus necesidades específicas.",
+        ],
+        points: [
+          "Ubicado convenientemente cerca de Seminole Heights, con fácil acceso a atención experta.",
+          "Horario extendido para adaptarnos a tu agenda.",
+          "Servicios bilingües en inglés y español para una comunicación clara.",
+          "Planes de tratamiento personalizados centrados en tus objetivos de recuperación.",
+        ],
+      },
+      directions: {
+        steps: [
+          "Dirígete hacia el oeste por E Clifton St hacia N Central Ave.",
+          "Gira a la derecha en N Central Ave.",
+          "Gira a la izquierda en E Sligh Ave, luego a la derecha en N Blvd.",
+          "Continúa recto y gira a la izquierda en W Linebaugh Ave.",
+          "El destino está a tu izquierda en 1004 W Linebaugh Ave, Suite A.",
+        ],
+        driveNote: "A solo 11 minutos en auto, nuestra clínica ofrece fácil acceso para los residentes de Seminole Heights, garantizando una atención conveniente y oportuna.",
+      },
+      faq: {
+        items: [
+          { q: "¿Qué tan pronto debo comenzar la terapia después de un accidente de auto?", a: "Es importante comenzar la terapia lo antes posible después de un accidente, idealmente dentro de las 72 horas. El tratamiento temprano aborda síntomas ocultos como latigazo cervical, dolor de espalda, dolor de cuello o lesiones de tejidos blandos, mejora la recuperación y ayuda a prevenir el dolor crónico y la rigidez." },
+          { q: "¿Qué es un examen físico y por qué es importante después de un accidente?", a: "Un examen físico identifica lesiones como daño de tejidos blandos, fracturas o lesiones de la médula espinal que pueden no ser evidentes de inmediato. El diagnóstico temprano ayuda a abordar el dolor y prevenir complicaciones. Las evaluaciones pueden incluir imágenes como resonancia magnética (MRI) para evaluar lesiones internas o la alineación de la columna." },
+          { q: "¿Trabajan con abogados de lesiones personales?", a: "Colaboramos con frecuencia con abogados de lesiones personales para ayudar a los pacientes a recibir la atención adecuada mientras gestionan reclamos legales. Nuestro equipo proporciona documentación detallada para casos de accidentes de auto." },
+          { q: "¿Mi seguro cubrirá los costos de rehabilitación?", a: "Muchos planes de seguro, incluidos los de protección contra lesiones personales (PIP) y de responsabilidad civil, cubren servicios de rehabilitación por lesiones relacionadas con accidentes. Nuestro equipo ayuda con los reclamos de seguros y te orienta sobre la cobertura." },
+          { q: "¿Pueden ayudar con el manejo del dolor en afecciones crónicas?", a: "Sí. Nos especializamos en el manejo del dolor en afecciones como dolor lumbar, rigidez articular y enfermedad degenerativa del disco, con planes de tratamiento personalizados." },
+          { q: "¿Qué pasa si sigo sintiendo dolor semanas después del accidente?", a: "Los síntomas tardíos, como dolores de cabeza, mareos o dolor de cuello, son comunes después de un accidente y pueden deberse a lesiones de tejidos blandos, conmociones cerebrales o traumatismos de la columna. Nuestros especialistas crean planes de tratamiento personalizados para abordar los problemas persistentes." },
+        ],
+      },
+      thingsToDo: {
+        items: [
+          { title: "Explora los bungalows históricos de Old Seminole Heights", body: "Pasea por Old Seminole Heights para admirar los bungalows de principios del siglo XX que dan su encanto a este barrio de Tampa." },
+          { title: "Relájate junto al río Hillsborough", body: "El río Hillsborough ofrece vistas tranquilas, perfectas para caminar o disfrutar del cálido clima de Florida." },
+          { title: "Cena en Florida Avenue", body: "Florida Avenue alberga algunos de los restaurantes más populares de Seminole Heights, desde informales hasta de lujo." },
+          { title: "Visita Sulphur Springs", body: "Cerca de Seminole Heights, Sulphur Springs es un lugar histórico conocido por su icónica torre y su entorno junto al río." },
+          { title: "Explora Tampa Heights y Ybor City", body: "A un corto trayecto, Tampa Heights ofrece experiencias culturales y la histórica Ybor City es ideal para cenar y salir de noche." },
+        ],
+      },
+    },
+  },
+  "forest-hills": {
+    en: {
+      name: "Forest Hills",
+      drive: "a short drive",
+      driveEs: "poca distancia",
+      heroImageAlt: "A driver holding her neck after a collision before auto accident rehabilitation near Forest Hills, Tampa",
+      local: {
+        heading: "Why Forest Hills residents choose Palm Wellness Center",
+        lead: "Forest Hills residents choose Palm Wellness Center for coordinated, close-to-home care focused on recovery after a car accident.",
+        paras: [
+          "Seeking immediate care after an auto accident is essential for a full recovery. Our Tampa clinic gives Forest Hills residents convenient access to personalized rehabilitation services, including physical therapy, manual therapy, massage, and spinal manipulation, to address back pain, neck pain, soft tissue injuries, and limited range of motion.",
+          "Early intervention reduces the risk of chronic issues while improving your quality of life. We also assist with insurance and personal injury protection cases.",
+        ],
+        points: [
+          "Comprehensive care: motor vehicle accidents, sports injuries, and slip and fall cases treated with physical therapy, chiropractic care, and manual therapy.",
+          "Expert team: board-certified specialists and doctors of physical therapy who work with physicians to treat sciatica, soft tissue injuries, arthritis, and post-surgical recovery.",
+          "Legal support: medical history documentation, MRI referrals, and coordination with your personal injury lawyer.",
+          "Accessible care: bilingual services, extended hours, and telehealth options for Forest Hills residents.",
+          "Compassionate service: from gait training to chronic condition management, personalized care focused on your recovery.",
+        ],
+      },
+      directions: {
+        steps: [
+          "Head south on N Oregon Ave toward W Meadowbrook Ave (0.1 mi).",
+          "Turn left at the intersection of W Linebaugh Ave and N Edison Ave (0.4 mi).",
+          "Continue along W Linebaugh Ave.",
+          "Turn right onto N Edison Ave - the destination will be on your right after 108 ft.",
+        ],
+        driveNote: "Our clinic is a short drive from Forest Hills, so expert care stays easy to reach.",
+      },
+      faq: {
+        items: [
+          { q: "How soon should I start rehabilitation after a car accident?", a: "You should start rehabilitation as soon as possible, ideally within 72 hours. Immediate care helps identify hidden injuries and prevents long-term issues such as chronic pain or mobility problems." },
+          { q: "What injuries do you treat from car accidents?", a: "We treat a range of auto accident injuries, including whiplash, back pain, herniated discs, shoulder and joint injuries, and soft tissue damage such as sprains and strains." },
+          { q: "What services are included in your rehabilitation program?", a: "Our program combines chiropractic adjustments, physical rehabilitation, manual therapy, massage therapy, therapeutic exercises, and ultrasound therapy based on your needs." },
+          { q: "Will my health insurance cover treatment?", a: "Many policies, including Personal Injury Protection (PIP) coverage, offer benefits for auto injury rehabilitation. Our team can assist with insurance-related questions." },
+          { q: "Do you offer transportation services for appointments?", a: "Yes. If you need help getting to or from your appointments, let us know and we will help coordinate transportation." },
+          { q: "How long will my recovery take?", a: "Recovery time varies with the type and severity of the injury. Some patients feel relief within a few weeks, while others may need several months of therapy." },
+          { q: "What happens if I delay treatment after an accident?", a: "Delaying treatment can worsen injuries or cause new issues such as chronic pain or reduced mobility. Early rehabilitation helps prevent these complications." },
+          { q: "Do you offer bilingual care?", a: "Yes. We provide care in both English and Spanish." },
+        ],
+      },
+      thingsToDo: {
+        items: [
+          { title: "Play at Babe Zaharias Golf Course", body: "A scenic course in Forest Hills, minutes from Old Seminole Heights, offering a blend of challenge and relaxation." },
+          { title: "Visit Forest Hills Park", body: "This community park's multipurpose sports field and fitness trail make it a hub for sports and exercise." },
+          { title: "Outdoor activities at Lake Magdalene", body: "This peaceful lake near Woodland Terrace offers fishing and nature walks for outdoor recreation." },
+          { title: "Quick access to Tampa attractions", body: "With Lowry Park and South Seminole Heights nearby, Forest Hills is close to ZooTampa and downtown Tampa." },
+        ],
+      },
+    },
+    es: {
+      name: "Forest Hills",
+      drive: "a short drive",
+      driveEs: "poca distancia",
+      heroImageAlt: "Conductora sosteniéndose el cuello tras una colisión antes de la rehabilitación por accidente de auto cerca de Forest Hills, Tampa",
+      local: {
+        heading: "Por qué los residentes de Forest Hills eligen Palm Wellness Center",
+        lead: "Los residentes de Forest Hills eligen Palm Wellness Center por su atención coordinada, cercana y enfocada en la recuperación tras un accidente de auto.",
+        paras: [
+          "Buscar atención médica inmediata después de un accidente de auto es esencial para una recuperación completa. Nuestra clínica de Tampa ofrece a los residentes de Forest Hills acceso conveniente a servicios de rehabilitación personalizados, como fisioterapia, terapia manual, masajes y manipulación espinal, para tratar dolor de espalda, dolor de cuello, lesiones de tejidos blandos y movilidad limitada.",
+          "La intervención temprana reduce el riesgo de problemas crónicos y mejora tu calidad de vida. También ayudamos con casos de seguros y de protección contra lesiones personales.",
+        ],
+        points: [
+          "Atención integral: accidentes de auto, lesiones deportivas y casos de resbalones y caídas, con fisioterapia, atención quiropráctica y terapia manual.",
+          "Equipo de expertos: especialistas certificados y médicos de fisioterapia que trabajan con médicos para tratar ciática, lesiones de tejidos blandos, artritis y recuperación posquirúrgica.",
+          "Asistencia legal: documentación del historial médico, derivaciones para resonancia magnética y coordinación con tu abogado de lesiones personales.",
+          "Atención accesible: servicios bilingües, horarios extendidos y opciones de telesalud para los residentes de Forest Hills.",
+          "Servicio compasivo: desde entrenamiento de la marcha hasta el manejo de afecciones crónicas, con atención personalizada enfocada en tu recuperación.",
+        ],
+      },
+      directions: {
+        steps: [
+          "Dirígete hacia el sur por N Oregon Ave hacia W Meadowbrook Ave (0.1 mi).",
+          "Gira a la izquierda en la intersección de W Linebaugh Ave y N Edison Ave (0.4 mi).",
+          "Continúa por W Linebaugh Ave.",
+          "Gira a la derecha en N Edison Ave: el destino estará a tu derecha después de 108 pies.",
+        ],
+        driveNote: "Nuestra clínica está a poca distancia de Forest Hills, para que la atención experta sea fácil de alcanzar.",
+      },
+      faq: {
+        items: [
+          { q: "¿Qué tan pronto debo comenzar la rehabilitación después de un accidente de auto?", a: "Debes comenzar la rehabilitación lo antes posible, idealmente dentro de las 72 horas. La atención inmediata ayuda a identificar lesiones ocultas y previene problemas a largo plazo, como dolor crónico o problemas de movilidad." },
+          { q: "¿Qué lesiones tratan por accidentes de auto?", a: "Tratamos una variedad de lesiones por accidentes de auto, como latigazo cervical, dolor de espalda, hernias discales, lesiones de hombro y articulaciones y daño de tejidos blandos como esguinces y distensiones." },
+          { q: "¿Qué servicios incluye su programa de rehabilitación?", a: "Nuestro programa combina ajustes quiroprácticos, rehabilitación física, terapia manual, terapia de masajes, ejercicios terapéuticos y terapia de ultrasonido según tus necesidades." },
+          { q: "¿Mi seguro médico cubrirá el tratamiento?", a: "Muchas pólizas, incluida la cobertura de protección contra lesiones personales (PIP), ofrecen beneficios para la rehabilitación de lesiones por accidentes de auto. Nuestro equipo puede ayudarte con las preguntas relacionadas con el seguro." },
+          { q: "¿Ofrecen servicios de transporte para las citas?", a: "Sí. Si necesitas ayuda para llegar o regresar de tus citas, avísanos y te ayudaremos a coordinar el transporte." },
+          { q: "¿Cuánto tiempo durará mi recuperación?", a: "El tiempo de recuperación varía según el tipo y la gravedad de la lesión. Algunos pacientes sienten alivio en pocas semanas, mientras que otros pueden necesitar varios meses de terapia." },
+          { q: "¿Qué pasa si retraso el tratamiento después de un accidente?", a: "Retrasar el tratamiento puede empeorar las lesiones o causar nuevos problemas, como dolor crónico o movilidad reducida. La rehabilitación temprana ayuda a prevenir estas complicaciones." },
+          { q: "¿Ofrecen atención bilingüe?", a: "Sí. Brindamos atención en inglés y español." },
+        ],
+      },
+      thingsToDo: {
+        items: [
+          { title: "Juega en el campo de golf Babe Zaharias", body: "Un campo pintoresco en Forest Hills, a minutos de Old Seminole Heights, que combina desafío y relajación." },
+          { title: "Visita Forest Hills Park", body: "El campo deportivo multiusos y el sendero de ejercicios de este parque comunitario lo convierten en un punto de encuentro para el deporte." },
+          { title: "Actividades al aire libre en Lake Magdalene", body: "Este tranquilo lago cerca de Woodland Terrace ofrece pesca y caminatas por la naturaleza." },
+          { title: "Acceso rápido a las atracciones de Tampa", body: "Con Lowry Park y South Seminole Heights cerca, Forest Hills está próximo a ZooTampa y al centro de Tampa." },
+        ],
+      },
+    },
+  },
+  "carrollwood": {
+    en: {
+      name: "Carrollwood",
+      drive: "a short drive",
+      driveEs: "poca distancia",
+      heroImageAlt: "A driver holding her head beside a damaged car after a collision before auto accident rehabilitation near Carrollwood, Tampa",
+      local: {
+        heading: "Why Carrollwood residents choose Palm Wellness Center",
+        lead: "Carrollwood residents choose Palm Wellness Center for coordinated, close-to-home care focused on recovery after a car accident.",
+        paras: [
+          "After an auto accident, quick access to care is crucial. Our Tampa Bay clinic, conveniently located near Carrollwood and South Tampa, provides personalized rehabilitation for auto injuries like whiplash, back pain, neck pain, and soft tissue injuries, helping patients recover effectively.",
+          "With a skilled team of licensed doctors of physical therapy and board-certified specialists, we provide tailored pain management, manual therapy, and exercise plans to help restore mobility and improve your range of motion.",
+        ],
+        points: [
+          "Comprehensive care: motor vehicle accidents, sports injuries, and slip and fall cases treated with physical therapy, chiropractic care, manual therapy, and massage.",
+          "Expert team: board-certified doctors of physical therapy and specialists who treat ankle sprains, sciatica, arthritis, and post-surgical recovery.",
+          "Legal support: medical diagnosis, documentation, and MRI referrals, working with your personal injury lawyer.",
+          "Accessible care: bilingual services, extended hours, and telehealth options for Carrollwood residents.",
+          "Compassionate results: from gait training to massage therapy, care dedicated to helping you recover mobility and wellness.",
+        ],
+      },
+      directions: {
+        steps: [
+          "Head west on Valencia Rd toward Nakora Dr (364 ft).",
+          "Turn left onto Orange Grove Dr (1.4 mi).",
+          "Turn left again to stay on Orange Grove Dr (0.3 mi).",
+          "Continue onto W Barclay Rd (0.1 mi).",
+          "Turn left onto N Armenia Ave, passing the 7-Eleven on the left (0.2 mi).",
+          "Continue onto W Linebaugh Ave (0.7 mi).",
+          "Turn right onto N Edison Ave - the destination will be on the right (108 ft).",
+        ],
+        driveNote: "Our clinic is a short drive from Carrollwood, so expert care is close to home.",
+      },
+      faq: {
+        items: [
+          { q: "How soon should I start rehabilitation after a car accident?", a: "Starting rehabilitation within 72 hours is ideal to ensure a thorough evaluation of injuries like whiplash, soft tissue injury, or back pain. Early treatment can prevent complications such as chronic pain or reduced range of motion." },
+          { q: "What injuries do you treat from car accidents?", a: "We treat a wide range of auto accident injuries, including whiplash, back pain, herniated discs, shoulder and joint injuries, and soft tissue damage." },
+          { q: "What services are included in your rehabilitation program?", a: "Our rehabilitation program combines chiropractic care, physical therapy, manual therapy, massage therapy, therapeutic exercises, and ultrasound therapy." },
+          { q: "Will my health insurance cover treatment?", a: "Most health insurance plans, including Personal Injury Protection (PIP) in Florida, cover auto injury rehabilitation. Our team works directly with your insurance provider to help you maximize your benefits." },
+          { q: "How long will my recovery take?", a: "Recovery time depends on the severity of the injury. Minor strains may resolve within weeks, while complex injuries can take months. Regular therapy supports optimal healing." },
+          { q: "What happens if I delay treatment after an accident?", a: "Delaying treatment can worsen injuries or cause new problems such as chronic pain, ligament damage, or reduced range of motion. Early care helps prevent long-term complications." },
+          { q: "What if I am still experiencing pain weeks after the accident?", a: "It is never too late to seek treatment. Injuries like whiplash or herniated discs can develop symptoms weeks later. Our team will evaluate your condition and recommend the right therapy." },
+          { q: "Do you offer bilingual care?", a: "Yes. Our Tampa Bay clinic provides care in both English and Spanish." },
+        ],
+      },
+      thingsToDo: {
+        items: [
+          { title: "Explore the nearby lakes", body: "Carrollwood's central location offers quick access to Lake Carroll and Lake Magdalene for fishing, kayaking, and outdoor fun." },
+          { title: "Visit Carrollwood Village Park", body: "Enjoy walking trails, splash pads, a dog park, and year-round community events." },
+          { title: "Play at Babe Zaharias Golf Course", body: "This nearby course offers a relaxing yet challenging experience for golf enthusiasts." },
+          { title: "Shop and dine locally", body: "Discover dining at Noble Crust, Burger 21, and Cepas Wine & Tapas Bar, plus shopping at Whole Foods and Sprouts." },
+          { title: "Experience the Carrollwood Cultural Center", body: "Enjoy art exhibits, live performances, and classes in music, dance, and theater." },
+        ],
+      },
+    },
+    es: {
+      name: "Carrollwood",
+      drive: "a short drive",
+      driveEs: "poca distancia",
+      heroImageAlt: "Conductora sosteniéndose la cabeza junto a un auto dañado tras una colisión antes de la rehabilitación por accidente de auto cerca de Carrollwood, Tampa",
+      local: {
+        heading: "Por qué los residentes de Carrollwood eligen Palm Wellness Center",
+        lead: "Los residentes de Carrollwood eligen Palm Wellness Center por su atención coordinada, cercana y enfocada en la recuperación tras un accidente de auto.",
+        paras: [
+          "Después de un accidente de auto, el acceso rápido a la atención es crucial. Nuestra clínica de Tampa Bay, ubicada convenientemente cerca de Carrollwood y South Tampa, ofrece rehabilitación personalizada para lesiones como latigazo cervical, dolor de espalda, dolor de cuello y lesiones de tejidos blandos.",
+          "Con un equipo de médicos fisioterapeutas autorizados y especialistas certificados, ofrecemos manejo del dolor personalizado, terapia manual y planes de ejercicios para recuperar la movilidad y mejorar tu rango de movimiento.",
+        ],
+        points: [
+          "Atención integral: accidentes de auto, lesiones deportivas y casos de resbalones y caídas, con fisioterapia, atención quiropráctica, terapia manual y masajes.",
+          "Equipo de expertos: médicos y especialistas certificados en fisioterapia que abordan esguinces de tobillo, ciática, artritis y recuperación posquirúrgica.",
+          "Asistencia legal: diagnóstico médico, documentación y derivaciones para resonancia magnética, trabajando con tu abogado de lesiones personales.",
+          "Atención accesible: servicios bilingües, horarios extendidos y opciones de telesalud para los residentes de Carrollwood.",
+          "Resultados compasivos: desde entrenamiento de la marcha hasta terapia de masajes, atención dedicada a recuperar la movilidad y el bienestar.",
+        ],
+      },
+      directions: {
+        steps: [
+          "Dirígete hacia el oeste por Valencia Rd hacia Nakora Dr (364 pies).",
+          "Gira a la izquierda en Orange Grove Dr (1.4 mi).",
+          "Gira a la izquierda nuevamente para continuar en Orange Grove Dr (0.3 mi).",
+          "Continúa por W Barclay Rd (0.1 mi).",
+          "Gira a la izquierda en N Armenia Ave, pasando el 7-Eleven a la izquierda (0.2 mi).",
+          "Continúa por W Linebaugh Ave (0.7 mi).",
+          "Gira a la derecha en N Edison Ave: el destino estará a tu derecha (108 pies).",
+        ],
+        driveNote: "Nuestra clínica está a poca distancia de Carrollwood, para que la atención experta esté cerca de casa.",
+      },
+      faq: {
+        items: [
+          { q: "¿Qué tan pronto debo comenzar la rehabilitación después de un accidente de auto?", a: "Lo ideal es comenzar la rehabilitación dentro de las 72 horas siguientes para garantizar una evaluación exhaustiva de lesiones como latigazo cervical, lesión de tejidos blandos o dolor de espalda. El tratamiento temprano puede prevenir complicaciones como dolor crónico o reducción del rango de movimiento." },
+          { q: "¿Qué lesiones tratan por accidentes de auto?", a: "Tratamos una amplia gama de lesiones por accidentes de auto, como latigazo cervical, dolor de espalda, hernias discales, lesiones de hombro y articulaciones y daño de tejidos blandos." },
+          { q: "¿Qué servicios incluye su programa de rehabilitación?", a: "Nuestro programa de rehabilitación combina atención quiropráctica, fisioterapia, terapia manual, terapia de masajes, ejercicios terapéuticos y terapia de ultrasonido." },
+          { q: "¿Mi seguro médico cubrirá el tratamiento?", a: "La mayoría de los planes de seguro médico, incluido el de Protección contra Lesiones Personales (PIP) en Florida, cubren la rehabilitación por lesiones de accidentes de auto. Nuestro equipo trabaja directamente con tu proveedor de seguros para ayudarte a maximizar tus beneficios." },
+          { q: "¿Cuánto tiempo durará mi recuperación?", a: "El tiempo de recuperación depende de la gravedad de la lesión. Las distensiones menores pueden resolverse en semanas, mientras que las lesiones más complejas pueden tardar meses. La terapia regular favorece una curación óptima." },
+          { q: "¿Qué pasa si retraso el tratamiento después de un accidente?", a: "Retrasar el tratamiento puede empeorar las lesiones o causar nuevos problemas, como dolor crónico, daño en los ligamentos o reducción del rango de movimiento. La atención temprana ayuda a prevenir complicaciones a largo plazo." },
+          { q: "¿Qué pasa si sigo sintiendo dolor semanas después del accidente?", a: "Nunca es demasiado tarde para buscar tratamiento. Lesiones como el latigazo cervical o las hernias discales pueden presentar síntomas semanas después. Nuestro equipo evaluará tu condición y recomendará la terapia adecuada." },
+          { q: "¿Ofrecen atención bilingüe?", a: "Sí. Nuestra clínica de Tampa Bay brinda atención en inglés y español." },
+        ],
+      },
+      thingsToDo: {
+        items: [
+          { title: "Explora los lagos cercanos", body: "La ubicación central de Carrollwood ofrece acceso rápido al lago Carroll y al lago Magdalene para pescar, andar en kayak y disfrutar al aire libre." },
+          { title: "Visita Carrollwood Village Park", body: "Disfruta de senderos para caminar, áreas de juego con agua, un parque para perros y eventos comunitarios durante todo el año." },
+          { title: "Juega en el campo de golf Babe Zaharias", body: "Este campo cercano ofrece una experiencia relajante y a la vez desafiante para los amantes del golf." },
+          { title: "Compra y cena localmente", body: "Descubre restaurantes como Noble Crust, Burger 21 y Cepas Wine & Tapas Bar, además de compras en Whole Foods y Sprouts." },
+          { title: "Visita el Centro Cultural de Carrollwood", body: "Disfruta de exhibiciones de arte, presentaciones en vivo y clases de música, danza y teatro." },
+        ],
+      },
+    },
+  },
+};
+
+const SHARED = {
+  en: {
+    subnav: [
+      { label: "Local care", href: "#local" },
+      { label: "Services", href: "#services" },
+      { label: "Injuries", href: "#injuries" },
+      { label: "Why us", href: "#why" },
+      { label: "Directions", href: "#directions" },
+      { label: "FAQ", href: "#faq" },
+    ],
+    services: {
+      eyebrow: "Our services",
+      heading: "Specialized auto accident rehabilitation services",
+      lead: "Targeted rehabilitation to help you recover from auto accident injuries, from chiropractic adjustments to therapeutic exercises, massage, and ultrasound therapy.",
+      items: [
+        { icon: "spine", title: "Chiropractic care", body: "Restores spinal alignment to relieve back and neck pain, improve posture, and support mobility.", href: "/chiropractor/" },
+        { icon: "activity", title: "Physical rehabilitation", body: "Rebuilds strength, flexibility, and range of motion with a plan tailored to your recovery.", href: "/physical-rehabilitation/" },
+        { icon: "hand", title: "Manual therapy", body: "Hands-on care that may reduce muscle tension and address areas of restricted movement.", href: "/car-accident-chiropractor/" },
+        { icon: "dumbbell", title: "Therapeutic exercises", body: "Guided movement to rebuild strength and prevent further injury after a collision.", href: "/therapeutic-exercises/" },
+        { icon: "hand-heart", title: "Massage therapy", body: "Reduces muscle tension, improves circulation, and eases inflammation in injured tissues.", href: "/massage-therapy/" },
+        { icon: "waves", title: "Ultrasound therapy", body: "Sound waves that support tissue healing, reduce swelling, and ease pain after injury.", href: "/therapeutic-ultrasound-treatment/" },
+      ],
+    },
+    injuries: {
+      eyebrow: "Injuries",
+      heading: "Common auto accident injuries we treat",
+      lead: "We treat a wide range of injuries from auto accidents, including whiplash, back pain, and soft tissue damage.",
+      items: [
+        { icon: "spine", title: "Whiplash and neck injuries", body: "Sudden impact can cause neck pain, stiffness, and headaches. Chiropractic care and manual therapy help reduce pain and restore range of motion." },
+        { icon: "activity", title: "Back pain and herniated discs", body: "Collisions can lead to low back pain and sciatica. Spinal manipulation, rehabilitation, and targeted therapy help improve function." },
+        { icon: "person-standing", title: "Shoulder and joint injuries", body: "Strains, bruises, and joint injuries can limit motion. Rehabilitation exercises and joint mobilization support recovery." },
+        { icon: "waves", title: "Soft tissue injuries and sprains", body: "Muscle strains, ligament sprains, and tendon damage cause swelling and weakness. Massage, ultrasound, and exercises promote healing." },
+      ],
+    },
+    why: {
+      eyebrow: "Timely care",
+      heading: "The importance of timely care after an accident",
+      lead: "In Florida, the 14-day rule requires accident victims to seek medical care within 14 days to qualify for Personal Injury Protection (PIP) benefits. Delaying treatment can lead to chronic pain, worsening injuries, and loss of access to essential insurance coverage.",
+      points: [
+        "Start care within 14 days to qualify for PIP coverage in Florida",
+        "Prevent chronic pain, stiffness, and reduced range of motion",
+        "Address hidden injuries like whiplash or soft tissue damage early",
+        "Document your injuries for insurance and legal claims",
+        "Lower the risk of needing more invasive treatment later",
+      ],
+    },
+    directionsLandmarks: [
+      "Located near Forest Hills United Methodist Church and Advantage of Life Home Health Care.",
+      "Free on-site parking is available.",
+      "Need help getting here? Ask about our transportation assistance.",
+    ],
+    trust: {
+      heading: "Professional and compassionate care you can trust",
+      paras: [
+        "Palm Wellness Center provides patient-centered rehabilitation focused on safe, coordinated care and long-term recovery support. Our team prioritizes clear communication, thoughtful treatment planning, and continuity of care.",
+        "Patients are seen in person at our Tampa clinic. Palm Wellness Center proudly serves Tampa and nearby communities from 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/therapist-examining-patient.jpg",
+      imageAlt: "A therapist guiding a patient through a mobility exercise at Palm Wellness Center in Tampa",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      locationLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Medical supervision",
+    },
+    transport: {
+      title: "Need a ride? We have got you covered.",
+      body: "Palm Wellness Center offers transportation assistance for eligible patients throughout the Tampa Bay area. If transportation is a concern, let our team know when you call or request an appointment, and we will help coordinate your visit.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Clinic staff member assisting a patient from a courtesy transportation SUV in Tampa Bay",
+    },
+    area: {
+      eyebrow: "Service Area",
+      heading: "Proudly serving Tampa and surrounding neighborhoods",
+      lead: "Palm Wellness Center is located in Tampa, FL, and serves patients from across the Tampa Bay area.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "And surrounding areas"],
+      note: "Need directions or a ride? Call (813) 443-5370 and our team will help you plan your visit.",
+      contactNote: "Free transportation for eligible patients - ask when you book.",
+    },
+    cta: {
+      title: "Schedule your auto accident rehabilitation in Tampa",
+      lead: "If pain, stiffness, or limited movement are still affecting your daily life after a car accident, early treatment can help reduce discomfort and improve daily function.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    subnav: [
+      { label: "Atención local", href: "#local" },
+      { label: "Servicios", href: "#services" },
+      { label: "Lesiones", href: "#injuries" },
+      { label: "Por qué elegirnos", href: "#why" },
+      { label: "Cómo llegar", href: "#directions" },
+      { label: "Preguntas", href: "#faq" },
+    ],
+    services: {
+      eyebrow: "Nuestros servicios",
+      heading: "Servicios especializados de rehabilitación por accidentes de auto",
+      lead: "Rehabilitación específica para ayudarte a recuperarte de lesiones por accidentes de auto, desde ajustes quiroprácticos hasta ejercicios terapéuticos, masajes y terapia de ultrasonido.",
+      items: [
+        { icon: "spine", title: "Atención quiropráctica", body: "Restaura la alineación espinal para aliviar el dolor de espalda y cuello, mejorar la postura y apoyar la movilidad.", href: "/es/quiropractico/" },
+        { icon: "activity", title: "Rehabilitación física", body: "Recupera fuerza, flexibilidad y rango de movimiento con un plan adaptado a tu recuperación.", href: "/es/fisioterapia/" },
+        { icon: "hand", title: "Terapia manual", body: "Atención práctica que puede reducir la tensión muscular y abordar zonas de movimiento restringido.", href: "/es/quiropractico-para-accidente-de-auto/" },
+        { icon: "dumbbell", title: "Ejercicios terapéuticos", body: "Movimiento guiado para recuperar fuerza y prevenir más lesiones después de una colisión.", href: "/es/ejercicios-terapeuticos/" },
+        { icon: "hand-heart", title: "Terapia de masajes", body: "Reduce la tensión muscular, mejora la circulación y alivia la inflamación de los tejidos lesionados.", href: "/es/terapia-de-masajes/" },
+        { icon: "waves", title: "Terapia de ultrasonido", body: "Ondas sonoras que apoyan la curación de los tejidos, reducen la hinchazón y alivian el dolor.", href: "/es/tratamiento-de-ultrasonido-terapeutico/" },
+      ],
+    },
+    injuries: {
+      eyebrow: "Lesiones",
+      heading: "Lesiones comunes por accidentes de auto que tratamos",
+      lead: "Tratamos una amplia variedad de lesiones por accidentes de auto, como latigazo cervical, dolor de espalda y daño de tejidos blandos.",
+      items: [
+        { icon: "spine", title: "Latigazo cervical y lesiones de cuello", body: "Un impacto repentino puede causar dolor de cuello, rigidez y dolores de cabeza. La atención quiropráctica y la terapia manual ayudan a reducir el dolor y recuperar el rango de movimiento." },
+        { icon: "activity", title: "Dolor de espalda y hernias discales", body: "Las colisiones pueden provocar dolor lumbar y ciática. La manipulación espinal, la rehabilitación y la terapia específica ayudan a mejorar la función." },
+        { icon: "person-standing", title: "Lesiones de hombro y articulaciones", body: "Las distensiones, los hematomas y las lesiones articulares pueden limitar el movimiento. Los ejercicios de rehabilitación y la movilización articular apoyan la recuperación." },
+        { icon: "waves", title: "Lesiones de tejidos blandos y esguinces", body: "Las distensiones musculares, los esguinces de ligamentos y el daño de tendones causan hinchazón y debilidad. El masaje, el ultrasonido y los ejercicios favorecen la curación." },
+      ],
+    },
+    why: {
+      eyebrow: "Atención oportuna",
+      heading: "La importancia de una atención oportuna después de un accidente",
+      lead: "En Florida, la regla de los 14 días exige que las víctimas de accidentes busquen atención médica dentro de los 14 días para calificar para los beneficios del seguro de Protección contra Lesiones Personales (PIP). Retrasar el tratamiento puede provocar dolor crónico, empeoramiento de lesiones y pérdida de acceso a la cobertura de seguro esencial.",
+      points: [
+        "Comenzar la atención dentro de los 14 días para calificar para la cobertura PIP en Florida",
+        "Prevenir el dolor crónico, la rigidez y la reducción del rango de movimiento",
+        "Abordar a tiempo las lesiones ocultas, como el latigazo cervical o el daño de tejidos blandos",
+        "Documentar tus lesiones para reclamos de seguros y legales",
+        "Reducir el riesgo de necesitar tratamientos más invasivos después",
+      ],
+    },
+    directionsLandmarks: [
+      "Ubicado cerca de la Iglesia Metodista Unida de Forest Hills y Advantage of Life Home Health Care.",
+      "Hay aparcamiento gratuito disponible en el establecimiento.",
+      "¿Necesitas ayuda para llegar? Pregunta por nuestra asistencia con el transporte.",
+    ],
+    trust: {
+      heading: "Atención profesional y compasiva en la que puedes confiar",
+      paras: [
+        "Palm Wellness Center ofrece rehabilitación centrada en el paciente, enfocada en atención segura y coordinada y apoyo para la recuperación a largo plazo. Nuestro equipo prioriza la comunicación clara, una planificación cuidadosa del tratamiento y la continuidad de la atención.",
+        "Los pacientes son atendidos en persona en nuestra clínica de Tampa. Palm Wellness Center atiende con orgullo a Tampa y comunidades cercanas desde 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.",
+      ],
+      image: "/images/therapist-examining-patient.jpg",
+      imageAlt: "Terapeuta guiando a un paciente en un ejercicio de movilidad en Palm Wellness Center en Tampa",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      locationLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      supervisorLabel: "Supervisión médica",
+    },
+    transport: {
+      title: "¿Necesitas transporte? Nosotros te ayudamos.",
+      body: "Palm Wellness Center ofrece asistencia de transporte para pacientes elegibles en toda el área de la Bahía de Tampa. Si el transporte es una preocupación, avísale a nuestro equipo cuando llames o solicites una cita, y te ayudaremos a coordinar tu visita.",
+      image: "/images/patient-transportation-assistance.webp",
+      imageAlt: "Miembro del personal ayudando a una paciente a bajar de un vehículo de transporte de cortesía en Tampa Bay",
+    },
+    area: {
+      eyebrow: "Área de Servicio",
+      heading: "Sirviendo con orgullo a Tampa y vecindarios circundantes",
+      lead: "Palm Wellness Center está ubicado en Tampa, FL, y atiende a pacientes de toda el área de la Bahía de Tampa.",
+      places: ["Seminole Heights", "Forest Hills", "Carrollwood", "Y áreas cercanas"],
+      note: "¿Necesitas indicaciones o transporte? Llama al (813) 443-5370 y nuestro equipo te ayudará a planificar tu visita.",
+      contactNote: "Transporte gratis para pacientes elegibles - pregúntalo al reservar.",
+    },
+    cta: {
+      title: "Programa tu rehabilitación por accidente de auto en Tampa",
+      lead: "Si el dolor, la rigidez o el movimiento limitado todavía afectan tu vida diaria después de un accidente de auto, el tratamiento temprano puede ayudar a reducir las molestias y mejorar la función diaria.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+};
+
+const c = CITIES[city][lang];
+const s = SHARED[lang];
+const l = s.labels;
+
+const hero = {
+  eyebrow: lang === "es" ? `Rehabilitación de Accidentes de Auto en ${c.name}` : `Auto Accident Rehabilitation in ${c.name}`,
+  title: lang === "es" ? `Rehabilitación de accidentes de auto en ${c.name}, Tampa` : `Auto accident rehabilitation in ${c.name}, Tampa`,
+  lead: lang === "es"
+    ? `Recuperación personalizada para lesiones por accidentes de auto en Palm Wellness Center, ubicado a ${c.driveEs} de ${c.name}.`
+    : `Personalized recovery for auto accident injuries at Palm Wellness Center, ${c.drive} from ${c.name}.`,
+  chips: lang === "es"
+    ? [
+        { icon: "car", label: "Atención de lesiones tras una colisión" },
+        { icon: "stethoscope", label: "Atención quiropráctica y rehabilitación" },
+        { icon: "shield-check", label: "PIP puede estar disponible" },
+        { icon: "map-pin", label: `Sirviendo a ${c.name}` },
+      ]
+    : [
+        { icon: "car", label: "Injury care after a crash" },
+        { icon: "stethoscope", label: "Chiropractic plus rehabilitation" },
+        { icon: "shield-check", label: "PIP may be available" },
+        { icon: "map-pin", label: `Serving ${c.name}` },
+      ],
+  note: lang === "es"
+    ? "Latigazo cervical · Dolor de espalda · Dolor de cuello · Lesiones de tejidos blandos · Movimiento limitado"
+    : "Whiplash · Back pain · Neck pain · Soft tissue injuries · Limited motion",
+  image: "/images/auto-accident-rehabilitation-in-tampa-fl.webp",
+  imageAlt: c.heroImageAlt,
+  rail: [
+    { value: "14 days", label: lang === "es" ? "Plazo PIP en Florida" : "PIP window in Florida" },
+    { value: "5 services", label: lang === "es" ? "Coordinados en una clínica" : "Coordinated in one clinic" },
+    { value: "EN / ES", label: lang === "es" ? "Atención bilingüe" : "Bilingual care" },
+  ],
+};
+
+const localEyebrow = lang === "es" ? "Atención local" : "Local care";
+const directionsHeading = lang === "es" ? `Cómo llegar desde ${c.name} a nuestra clínica` : `Directions from ${c.name} to our clinic`;
+const directionsLead = lang === "es"
+  ? "Nuestra clínica está ubicada en 1004 W Linebaugh Ave Ste A, Tampa, FL 33612."
+  : "Our clinic is located at 1004 W Linebaugh Ave Ste A, Tampa, FL 33612.";
+const directionsStepsLabel = lang === "es" ? "Indicaciones" : "Driving directions";
+const directionsLandmarksLabel = lang === "es" ? "Lugares de interés y estacionamiento" : "Landmarks and parking";
+const faqHeading = lang === "es" ? `Preguntas frecuentes: Rehabilitación de accidentes de auto en ${c.name}` : `FAQ: Auto accident rehabilitation in ${c.name}`;
+const thingsHeading = lang === "es" ? `Cosas que hacer en ${c.name}, Tampa, FL` : `Things to do in ${c.name}, Tampa, FL`;
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="map-pin" class="h-3.5 w-3.5" />{hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {hero.chips.map((ch) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={ch.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{ch.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={hero.image} width="560" height="440" alt={hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<AnchorNav label={l.onThisPage} items={s.subnav} />
+
+<!-- LOCAL -->
+<section id="local" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_480px] lg:items-center lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="map-pin" class="h-3.5 w-3.5" />{localEyebrow}</span>
+      <h2 class={h2Cls}>{c.local.heading}</h2>
+      <p class={leadCls}>{c.local.lead}</p>
+      {c.local.paras.map((p) => <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <ul class="grid gap-3 pt-1 sm:grid-cols-2">
+        {c.local.points.map((p) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{p}</li>
+        ))}
+      </ul>
+    </div>
+    <img src="/images/trust-palm-wellness-center-for-auto-accident-injuries.webp" width="480" height="520" alt={lang === "es" ? "Conductor al volante en Tampa, Florida" : "A driver behind the wheel in Tampa, Florida"} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[500px]" />
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="list-checks" class="h-3.5 w-3.5" />{s.services.eyebrow}</span>
+        <h2 class={h2Cls}>{s.services.heading}</h2>
+      </div>
+      <p class={leadCls}>{s.services.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {s.services.items.map((t) => (
+        <a href={t.href} class={`group flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name={t.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[19px] leading-[1.25] text-ink lg:text-[20px]">{t.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{t.body}</p>
+          <span class="mt-auto inline-flex items-center gap-2 pt-1 text-[14px] font-bold text-blue">{l.learn}<Icon name="arrow" class="h-[15px] w-[15px] transition-transform group-hover:translate-x-0.5" /></span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- INJURIES -->
+<section id="injuries" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="grid gap-6 lg:grid-cols-[1fr_420px] lg:items-end lg:gap-12">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="activity" class="h-3.5 w-3.5" />{s.injuries.eyebrow}</span>
+        <h2 class={h2Cls}>{s.injuries.heading}</h2>
+      </div>
+      <p class={leadCls}>{s.injuries.lead}</p>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {s.injuries.items.map((t) => (
+        <div class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+          <span class="grid h-12 w-12 place-items-center rounded-md bg-white text-blue-deep"><Icon name={t.icon} class="h-[22px] w-[22px]" /></span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink">{t.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{t.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- WHY (dark band) -->
+<section id="why" class="scroll-mt-24 lg:scroll-mt-[184px] bg-blue-deep">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_440px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowDarkCls}><Icon name="shield-check" class="h-3.5 w-3.5" />{s.why.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{s.why.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-blue-tint">{s.why.lead}</p>
+      <a href={PHONE_TEL} class="mt-1 inline-flex w-fit items-center gap-2 rounded-md bg-white px-6 py-3.5 font-bold text-blue-deep transition-colors hover:bg-blue-pale"><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+    <ul class="flex flex-col gap-4 rounded-lg border border-white/15 bg-white/5 p-7 lg:p-8">
+      {s.why.points.map((p) => (
+        <li class="flex items-start gap-3 text-[15px] leading-[1.55] text-blue-tint"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{p}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- DIRECTIONS -->
+<section id="directions" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_480px] lg:items-start lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="route" class="h-3.5 w-3.5" />{directionsHeading}</span>
+        <p class={leadCls}>{directionsLead}</p>
+      </div>
+      <div class="flex flex-col gap-4">
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{directionsStepsLabel}</p>
+        <ol class="flex flex-col gap-4">
+          {c.directions.steps.map((step, i) => (
+            <li class="flex items-start gap-4">
+              <span class="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-blue-deep font-titles text-[14px] font-bold text-white">{i + 1}</span>
+              <p class="pt-1 text-[15px] leading-[1.55] text-ink">{step}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div class="flex flex-col gap-3 rounded-lg border border-line bg-white p-6">
+        <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{directionsLandmarksLabel}</p>
+        <ul class="flex flex-col gap-3">
+          {s.directionsLandmarks.map((it) => (
+            <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{it}</li>
+          ))}
+        </ul>
+      </div>
+      <p class="text-[14px] leading-[1.6] text-muted">{c.directions.driveNote}</p>
+    </div>
+    <img src="/images/auto-accident-injury-background.webp" width="480" height="560" alt={lang === "es" ? `Mapa de cómo llegar desde ${c.name} a Palm Wellness Center` : `Map of the route from ${c.name} to Palm Wellness Center`} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[560px]" />
+  </div>
+</section>
+
+<!-- TRUST + HOURS -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_400px] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{s.trust.heading}</h2>
+      {s.trust.paras.map((p) => <p class="max-w-[68ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <img src={s.trust.image} width="560" height="320" alt={s.trust.imageAlt} loading="lazy" decoding="async" class="mt-2 h-[240px] w-full rounded-lg object-cover object-top lg:h-[300px]" />
+    </div>
+    <div class="flex flex-col gap-5">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">
+          <Icon name="clock" class="h-4 w-4" />{s.trust.hoursLabel}
+        </p>
+        <ul class="flex flex-col">
+          {s.trust.hours.map((h, i) => (
+            <li class={`flex items-center justify-between gap-4 py-3.5 text-[15px] ${i > 0 ? "border-t border-line" : ""}`}>
+              <span class="text-body">{h.day}</span>
+              <span class="text-right font-semibold text-ink">{h.time}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class={`flex flex-col gap-3 rounded-lg bg-blue-deep p-7 ${hover}`}>
+        <p class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint">{s.trust.locationLabel}</p>
+        <p class="whitespace-pre-line text-[16px] font-semibold leading-[1.5] text-white">{s.trust.address}</p>
+        <a href={PHONE_TEL} class="font-titles text-[22px] font-bold text-white underline-offset-4 transition-all duration-200 hover:-translate-y-0.5 hover:text-blue-tint">{l.call}</a>
+      </div>
+      <div class={`flex flex-col gap-1.5 rounded-lg border border-line bg-bg-alt p-7 ${hover}`}>
+        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-blue">{s.trust.supervisorLabel}</p>
+        <p class="font-titles text-[18px] font-bold text-ink">Dr. Arnaldo V. Orellana-Molina</p>
+        <p class="text-[13px] font-semibold leading-[1.4] text-blue">{lang === "es" ? "MD - Médico Supervisor" : "MD - Supervising Physician"}</p>
+        <p class="text-[14px] leading-[1.55] text-body">{lang === "es" ? "Brinda supervisión médica que mantiene cada plan seguro y alineado con las guías clínicas." : "Provides medical oversight that keeps every care plan safe and guideline-aligned."}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSPORT -->
+<section class="bg-bg-alt">
+  <div class="shell grid items-center gap-10 py-16 lg:grid-cols-[560px_1fr] lg:gap-16 lg:py-20">
+    <img src={s.transport.image} width="560" height="400" alt={s.transport.imageAlt} loading="lazy" decoding="async" class="h-[240px] w-full rounded-lg object-cover sm:h-[320px] lg:h-[400px]" />
+    <div class="flex flex-col items-start gap-5">
+      <h2 class={h2Cls}>{s.transport.title}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.6] text-body sm:text-[17px]">{s.transport.body}</p>
+      <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[400px_1fr] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{lang === "es" ? "Preguntas" : "FAQ"}</span>
+      <h2 class={h2Cls}>{faqHeading}</h2>
+      <p class="text-[15px] leading-[1.6] text-body">{lang === "es" ? "¿Aún tienes preguntas? Llámanos al (813) 443-5370 y nuestro equipo te explicará tus opciones y qué esperar." : "Still have questions? Call us at (813) 443-5370 and our team will walk you through your options and what to expect."}</p>
+    </div>
+    <div class="flex flex-col">
+      {c.faq.items.map((item, i) => (
+        <details class={`group ${i > 0 ? "border-t border-line" : ""}`} {...(i === 0 ? { open: true } : {})}>
+          <summary class="-mx-4 flex cursor-pointer list-none items-center justify-between gap-4 rounded-md px-4 py-5 text-[17px] font-bold text-ink transition-colors hover:bg-bg-alt [&::-webkit-details-marker]:hidden">
+            <span>{item.q}</span>
+            <Icon name="chevron-down" class="h-5 w-5 shrink-0 text-blue transition-transform group-open:rotate-180" />
+          </summary>
+          <p class="max-w-[62ch] pb-5 text-[15px] leading-[1.6] text-body">{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- THINGS TO DO -->
+<section class="bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="map-pin" class="h-3.5 w-3.5" />{c.name}</span>
+      <h2 class={h2Cls}>{thingsHeading}</h2>
+    </div>
+    <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {c.thingsToDo.items.map((t) => (
+        <li class={`flex flex-col gap-3 rounded-lg border border-line bg-white p-7 ${hover}`}>
+          <span class="grid h-11 w-11 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="map-pin" class="h-5 w-5" /></span>
+          <h3 class="font-titles text-[18px] leading-[1.25] text-ink">{t.title}</h3>
+          <p class="text-[15px] leading-[1.6] text-body">{t.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- SERVICE AREA -->
+<section class="bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}>{s.area.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-ink sm:text-[28px] lg:text-[32px]">{s.area.heading}</h2>
+      <p class="max-w-[60ch] text-[16px] leading-[1.62] text-body">{s.area.lead}</p>
+      <p class="max-w-[60ch] text-[15px] leading-[1.6] text-muted">{s.area.note}</p>
+    </div>
+    <div class={`flex flex-col gap-6 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      <ul class="flex flex-wrap gap-2.5">
+        {s.area.places.map((p) => (
+          <li class="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-2.5 text-[14px] font-semibold text-ink">
+            <Icon name="map-pin" class="h-4 w-4 text-blue" />{p}
+          </li>
+        ))}
+      </ul>
+      <div class="flex items-center gap-3 border-t border-line pt-5">
+        <Icon name="car" class="h-5 w-5 shrink-0 text-green-dark" />
+        <p class="text-[14px] font-semibold text-body">{s.area.contactNote}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{s.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{s.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

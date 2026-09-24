@@ -4,7 +4,7 @@ Memoria operativa de **palmwellness.center (v2)**. Léelo antes de tocar nada: c
 decisiones que ya se tomaron, por qué se tomaron, y los errores que ya se cometieron para no
 repetirlos. Si eres un agente nuevo, este archivo más `docs/` te ahorran empezar de cero.
 
-Última verificación de los datos de este archivo: **2026-09-23**.
+Última verificación de los datos de este archivo: **2026-09-24**.
 
 ---
 
@@ -336,6 +336,13 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   contenido** del catch-all: `src/data/therapeuticExercises.ts` se borró (ya no lo importaba nadie)
   y `[...slug].astro` dejó de mapear rutas a datos propios. El asset
   `muscle-strains-treated-physical-therapy.webp` lleva un watermark de marca: no se usa.
+- **Grupo 8 cerrado, EN+ES**: `/slip-and-fall-injury-treatment/`
+  (+ `/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/`) con `SlipAndFallInjuryPage.astro`, y
+  el clúster de ciudades de accidentes de auto
+  `/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/` (+ espejos ES) como
+  **una plantilla** (`CityCarAccidentRehabPage.astro`, prop `city`). Las 8 rutas estaban en
+  `richpages.json` → al `Set` `migrated`. El asset `slip-and-fall-injuries-different-types.webp`
+  trae texto y marca incrustados: no se usa.
 - Header, TopBar y Footer nuevos, con el contenedor único de 1200px; familia única de iconos
   (Lucide), `AnchorNav`, sistema de hover y primitivas de movimiento del hero, todo reutilizable.
 - Héroes con imagen a la derecha: entrada completa por desplazamiento de derecha a izquierda (no
@@ -346,15 +353,15 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 - Pencil: frame **`EnF3Q` (Primary Care Desktop)** construido y aprobado por el cliente.
 - `AGENTS.md`, `README.md`, `docs/` y el harness CDP versionado en `tools/qa/`.
 - Preview **no indexable**: `robots.txt` con `Disallow: /` + header `X-Robots-Tag` (ver § 9).
-- Último commit funcional publicado: `298c530` (docs) / `b68ac95` (páginas de accidentes).
+- Último commit funcional publicado: `767396d` (slip & fall, EN/ES); antes `b9a7ebe` (Grupos 3 y 4).
   Consulta `docs/PROJECT-HANDOFF.md` (estado canónico) y `docs/SESSION-HANDOFF.md` (brief de
   arranque de sesión) antes de tocar código.
 
 **Siguiente**
 
-1. **Grupo 8** de `docs/redesign-plan.md`: slip & fall + clúster de ciudades. Después, 9-12.
-   (Rehabilitación está cerrada: Grupos 2, 3 y 4 hechos.)
-2. Grupos 8-12 (slip & fall + clúster de ciudades, About/Contact, blog, legal).
+1. **Grupo 9** de `docs/redesign-plan.md`: `/about-us/` + `/contact/` (+ ES). Después, 10-12.
+   (Rehabilitación 2–4, accidentes 5–7 y slip & fall + ciudades 8 están cerrados.)
+2. Grupo 10 (blog + business profiles) y Grupo 11 (legal).
 
 **Pendiente / bloqueado**
 
