@@ -1,75 +1,286 @@
 ---
 import type { Lang } from "../i18n/ui";
-import { useTranslations, PHONE_TEL, FAX_DISPLAY, SOCIAL, APPOINTMENT_URL } from "../i18n/utils";
+import { PHONE_TEL, FAX_DISPLAY, SOCIAL, APPOINTMENT_URL } from "../i18n/utils";
 import ContactForm from "./ContactForm.astro";
 import Icon from "./Icon.astro";
+import AnchorNav from "./AnchorNav.astro";
+
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
-const t = useTranslations(lang);
-const bizHref = lang === "en" ? "/business-profiles/" : "/business-profiles/";
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "Contact",
+      title: "Contact Palm Wellness Center",
+      lead: "Get in touch with our team in Tampa, FL - by phone, online, or in person.",
+      chips: [
+        { icon: "phone", label: "(813) 443-5370" },
+        { icon: "map-pin", label: "1004 W Linebaugh Ave Ste A" },
+        { icon: "clock", label: "Mon-Fri 10 AM - 7 PM" },
+        { icon: "languages", label: "Bilingual EN/ES" },
+      ],
+      note: "Book online · Call · Visit our Tampa clinic",
+      image: "/images/primary-care-hero-female-provider.webp",
+      imageAlt: "A primary care provider with a tablet at Palm Wellness Center in Tampa",
+      rail: [
+        { value: "(813) 443-5370", label: "Call or text" },
+        { value: "Mon-Fri", label: "10 AM - 7 PM" },
+        { value: "EN / ES", label: "Bilingual team" },
+      ],
+    },
+    subnav: [
+      { label: "Contact info", href: "#info" },
+      { label: "Message", href: "#form" },
+      { label: "Location", href: "#map" },
+    ],
+    info: {
+      eyebrow: "Contact information",
+      heading: "Reach our team",
+      intro: "Have a question or want to schedule a visit? Reach our team using the details below, or send us a message and we will get back to you.",
+      addressLabel: "Visit us",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      phoneLabel: "Phone",
+      faxLabel: "Fax",
+      hoursLabel: "Hours",
+      hours: [
+        { day: "Monday - Friday", time: "10 AM - 7 PM" },
+        { day: "Saturday", time: "10 AM - 12 PM (by appointment)" },
+        { day: "Sunday", time: "Closed" },
+      ],
+      profiles: "Business Profiles",
+      form: {
+        heading: "Send us a message",
+        lead: "Fill out the form and our team will reply within one business day.",
+      },
+    },
+    map: {
+      eyebrow: "Our location",
+      heading: "Find us in Tampa",
+      note: "Need directions or a ride? Call (813) 443-5370 and our team will help you plan your visit.",
+    },
+    cta: {
+      title: "Prefer to book online?",
+      lead: "Request an appointment and our team will follow up to confirm your visit.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Contacto",
+      title: "Contacta a Palm Wellness Center",
+      lead: "Ponte en contacto con nuestro equipo en Tampa, FL: por teléfono, en línea o en persona.",
+      chips: [
+        { icon: "phone", label: "(813) 443-5370" },
+        { icon: "map-pin", label: "1004 W Linebaugh Ave Ste A" },
+        { icon: "clock", label: "Lun-Vie 10 AM - 7 PM" },
+        { icon: "languages", label: "Bilingüe EN/ES" },
+      ],
+      note: "Reserva en línea · Llama · Visita nuestra clínica en Tampa",
+      image: "/images/primary-care-hero-female-provider.webp",
+      imageAlt: "Proveedora de atención primaria con una tablet en Palm Wellness Center en Tampa",
+      rail: [
+        { value: "(813) 443-5370", label: "Llama o escribe" },
+        { value: "Lun-Vie", label: "10 AM - 7 PM" },
+        { value: "EN / ES", label: "Equipo bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Información", href: "#info" },
+      { label: "Mensaje", href: "#form" },
+      { label: "Ubicación", href: "#map" },
+    ],
+    info: {
+      eyebrow: "Información de contacto",
+      heading: "Comunícate con nuestro equipo",
+      intro: "¿Tienes una pregunta o quieres agendar una visita? Comunícate con nuestro equipo usando los datos a continuación, o envíanos un mensaje y te responderemos.",
+      addressLabel: "Visítanos",
+      address: "1004 W Linebaugh Ave Ste A\nTampa, FL 33612",
+      phoneLabel: "Teléfono",
+      faxLabel: "Fax",
+      hoursLabel: "Horario",
+      hours: [
+        { day: "Lunes - Viernes", time: "10 AM - 7 PM" },
+        { day: "Sábado", time: "10 AM - 12 PM (con cita previa)" },
+        { day: "Domingo", time: "Cerrado" },
+      ],
+      profiles: "Perfiles de negocio",
+      form: {
+        heading: "Envíanos un mensaje",
+        lead: "Completa el formulario y nuestro equipo te responderá en un día hábil.",
+      },
+    },
+    map: {
+      eyebrow: "Nuestra ubicación",
+      heading: "Encuéntranos en Tampa",
+      note: "¿Necesitas indicaciones o transporte? Llama al (813) 443-5370 y nuestro equipo te ayudará a planificar tu visita.",
+    },
+    cta: {
+      title: "¿Prefieres reservar en línea?",
+      lead: "Solicita una cita y nuestro equipo hará seguimiento para confirmar tu visita.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
 const mapSrc = "https://www.google.com/maps?q=1004+W+Linebaugh+Ave+Ste+A,+Tampa,+FL+33612&output=embed";
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
 ---
 
-<!-- Hero -->
-<section class="relative overflow-hidden bg-blue-deep text-white">
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_30%,rgba(255,255,255,0.10),transparent_55%)]"></div>
-  <div class="shell relative py-16 lg:py-20">
-    <h1 class="text-4xl text-white sm:text-5xl">{t("contact.h1")}</h1>
-    <p class="mt-3 text-lg text-white/85">{t("contact.lead")}</p>
-    <a href={APPOINTMENT_URL} target="_blank" rel="noopener" class="mt-6 inline-flex items-center gap-2 rounded-full bg-green px-7 py-3 font-bold text-white transition-colors hover:bg-green-dark"><Icon name="calendar" class="h-4 w-4" />{t("cta.appointment")}</a>
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
   </div>
-</section>
-
-<!-- Info + Form -->
-<section class="bg-[#b3cce8]">
-  <div class="shell grid gap-12 py-14 lg:grid-cols-2">
-    <div data-aos="fade-right">
-      <h2 class="text-2xl text-blue sm:text-3xl">{t("contact.infoTitle")}</h2>
-      <p class="mt-4 leading-relaxed text-body">{t("contact.infoIntro")}</p>
-      <ul class="mt-7 space-y-5">
-        <li class="flex items-start gap-4">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icon name="check" class="h-5 w-5" /></span>
-          <span class="text-[15px] text-body">1004 W Linebaugh Ave Ste A,<br />Tampa, FL 33612</span>
-        </li>
-        <li class="flex items-center gap-4">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icon name="phone" class="h-5 w-5" /></span>
-          <a href={PHONE_TEL} class="text-[15px] font-semibold text-blue hover:text-green-dark">{t("cta.phone")}</a>
-        </li>
-        <li class="flex items-center gap-4">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icon name="check" class="h-5 w-5" /></span>
-          <span class="text-[15px] text-body">Fax: {FAX_DISPLAY}</span>
-        </li>
-        <li class="flex items-start gap-4">
-          <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue/10 text-blue"><Icon name="calendar" class="h-5 w-5" /></span>
-          <span class="text-[15px] text-body">{t("footer.hours").split("\n").map((l, i) => (<>{i > 0 && <br />}{l}</>))}</span>
-        </li>
-      </ul>
-      <div class="mt-7 flex flex-wrap items-center gap-3">
-        <a href={bizHref} class="inline-flex items-center gap-2 rounded-full border-2 border-blue px-5 py-2 text-[14px] font-bold text-blue transition-colors hover:bg-blue hover:text-white">{t("contact.businessProfiles")}</a>
-        <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex h-9 w-9 items-center justify-center rounded-full bg-blue/10 text-blue transition-colors hover:bg-blue hover:text-white"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg></a>
-        <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex h-9 w-9 items-center justify-center rounded-full bg-blue/10 text-blue transition-colors hover:bg-blue hover:text-white"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zm0 5.04a4.8 4.8 0 100 9.6 4.8 4.8 0 000-9.6zm0 7.92a3.12 3.12 0 110-6.24 3.12 3.12 0 010 6.24zm6.12-8.16a1.12 1.12 0 11-2.24 0 1.12 1.12 0 012.24 0z"/></svg></a>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="phone" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-top-right" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
       </div>
     </div>
-    <div data-aos="fade-left" class="rounded-lg border border-line bg-bg-alt/50 p-6 sm:p-8">
-      <h2 class="text-2xl text-blue sm:text-3xl">{t("contact.formTitle")}</h2>
-      <div class="mt-5"><ContactForm lang={lang} /></div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- INFO + FORM -->
+<section id="info" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_1fr] lg:gap-14 lg:py-20">
+    <div class="flex flex-col gap-6">
+      <div class="flex flex-col gap-4">
+        <span class={eyebrowCls}><Icon name="map-pin" class="h-3.5 w-3.5" />{content.info.eyebrow}</span>
+        <h2 class={h2Cls}>{content.info.heading}</h2>
+        <p class={leadCls}>{content.info.intro}</p>
+      </div>
+      <div class={`flex flex-col gap-5 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+        <div class="flex items-start gap-4">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name="map-pin" class="h-5 w-5" /></span>
+          <div class="flex flex-col gap-0.5">
+            <span class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.info.addressLabel}</span>
+            <span class="whitespace-pre-line text-[15px] font-semibold leading-[1.5] text-ink">{content.info.address}</span>
+          </div>
+        </div>
+        <div class="flex items-start gap-4 border-t border-line pt-5">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name="phone" class="h-5 w-5" /></span>
+          <div class="flex flex-col gap-0.5">
+            <span class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.info.phoneLabel}</span>
+            <a href={PHONE_TEL} class="text-[16px] font-bold text-ink transition-colors hover:text-blue">{l.call}</a>
+            <span class="text-[13px] text-muted">{content.info.faxLabel}: {FAX_DISPLAY}</span>
+          </div>
+        </div>
+        <div class="flex items-start gap-4 border-t border-line pt-5">
+          <span class="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name="clock" class="h-5 w-5" /></span>
+          <div class="flex w-full flex-col gap-2">
+            <span class="text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.info.hoursLabel}</span>
+            {content.info.hours.map((h) => (
+              <div class="flex items-center justify-between gap-4 text-[14px]">
+                <span class="text-body">{h.day}</span>
+                <span class="text-right font-semibold text-ink">{h.time}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 border-t border-line pt-5">
+          <a href="/business-profiles/" class="inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue px-4 py-2.5 text-[14px] font-bold text-blue transition-colors hover:bg-blue hover:text-white">{content.info.profiles}</a>
+          <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-pale text-blue-deep transition-colors hover:bg-blue hover:text-white"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg></a>
+          <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="flex h-10 w-10 items-center justify-center rounded-full bg-blue-pale text-blue-deep transition-colors hover:bg-blue hover:text-white"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 01-1.38-.9 3.7 3.7 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07zm0 5.04a4.8 4.8 0 100 9.6 4.8 4.8 0 000-9.6zm0 7.92a3.12 3.12 0 110-6.24 3.12 3.12 0 010 6.24zm6.12-8.16a1.12 1.12 0 11-2.24 0 1.12 1.12 0 012.24 0z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div id="form" class="scroll-mt-24 lg:scroll-mt-[184px]">
+      <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+        <div class="flex flex-col gap-2">
+          <span class={eyebrowCls}><Icon name="mail" class="h-3.5 w-3.5" />{content.info.form.heading}</span>
+          <p class="text-[15px] leading-[1.6] text-body">{content.info.form.lead}</p>
+        </div>
+        <ContactForm lang={lang} />
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Map -->
-<section class="bg-bg-alt">
-  <div class="shell py-14">
-    <div class="text-center" data-aos="fade-up">
-      <h2 class="text-3xl text-blue sm:text-4xl">{t("contact.locationTitle")}</h2>
-      <div class="mx-auto mt-3 h-1 w-16 rounded bg-green"></div>
+<!-- MAP -->
+<section id="map" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-8 py-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="map-pin" class="h-3.5 w-3.5" />{content.map.eyebrow}</span>
+      <h2 class={h2Cls}>{content.map.heading}</h2>
+      <p class="max-w-[62ch] text-[15px] leading-[1.6] text-muted">{content.map.note}</p>
     </div>
-    <div class="mt-8 overflow-hidden rounded-lg border border-line">
+    <div class="overflow-hidden rounded-lg border border-line bg-white">
       <iframe
-        title="Palm Wellness Center — 1004 W Linebaugh Ave Ste A, Tampa, FL 33612"
+        title="Palm Wellness Center - 1004 W Linebaugh Ave Ste A, Tampa, FL 33612"
         src={mapSrc}
         width="100%" height="420" style="border:0; display:block;"
-        loading="eager" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
     </div>
   </div>
 </section>

@@ -54,7 +54,7 @@ flow), with pricing corrected to Optantra truth.
 | 6 | Auto accident II | `/car-accident-treatment/` (✅), `/car-accident-physical-therapy/` (✅) | `/es/tratamiento-de-accidentes-de-auto/` (✅), `/es/fisioterapia-para-accidente-de-auto/` (✅) |
 | 7 | Auto accident III | `/car-accident-chiropractor/` (✅), `/whiplash-treatment-tampa/` (✅) | `/es/quiropractico-para-accidente-de-auto/` (✅), `/es/tratamiento-latigazo-cervical-tampa/` (✅) |
 | 8 | Slip & fall + cities | `/slip-and-fall-injury-treatment/` (✅) + city cluster (`/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/`) as one template (✅) | ES cluster (✅) |
-| 9 | About + Contact | `/about-us/`, `/contact/` | `/es/acerca-de-nosotros/`, `/es/contacto/` |
+| 9 | About + Contact | `/about-us/` (✅), `/contact/` (✅) | `/es/acerca-de-nosotros/` (✅), `/es/contacto/` (✅) |
 | 10 | Blog + misc | `/news-blog/` (+ post template), `/business-profiles/` | `/es/blog-de-noticias/` |
 | 11 | Legal | `/hipaa-policy/`, `/privacy-policy/` | `/es/politica-de-hipaa/`, `/es/politica-de-privacidad/` |
 | 12 | New pages upgrade | ✅ done — `/chronic-condition-management/`, `/preventive-care/`, `/telemedicine/`, `/membership/` (flattened to top level, not nested) | ES mirrors ✅ |
@@ -100,7 +100,10 @@ flow), with pricing corrected to Optantra truth.
       city cluster `/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/` (+ ES)
       as one template (`CityCarAccidentRehabPage.astro`, `city` prop). All eight paths were in
       `richpages.json` → `migrated` `Set`.
-- [ ] Groups 9–12 — still on the legacy body.
+- [x] Group 9 — `/about-us/` (+ `/es/acerca-de-nosotros/`) with `AboutPage.astro` (added to the
+      `migrated` `Set`), and `/contact/` (+ `/es/contacto/`) rewritten in place in
+      `ContactPage.astro` (route already existed; keeps `ContactForm.astro` and the map embed).
+- [ ] Groups 10–12 — still on the legacy body.
 
 **Per-page workflow actually used** (repeat for the next groups):
 

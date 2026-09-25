@@ -343,6 +343,10 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   **una plantilla** (`CityCarAccidentRehabPage.astro`, prop `city`). Las 8 rutas estaban en
   `richpages.json` → al `Set` `migrated`. El asset `slip-and-fall-injuries-different-types.webp`
   trae texto y marca incrustados: no se usa.
+- **Grupo 9 cerrado, EN+ES**: `/about-us/` (+ `/es/acerca-de-nosotros/`) con `AboutPage.astro` (al
+  `Set` `migrated`), y `/contact/` (+ `/es/contacto/`) reescrita en sitio en `ContactPage.astro`
+  (la ruta ya existía; conserva `ContactForm.astro` y el mapa). Contenido corregido: IV Therapy ya
+  no dice "coming soon".
 - Header, TopBar y Footer nuevos, con el contenedor único de 1200px; familia única de iconos
   (Lucide), `AnchorNav`, sistema de hover y primitivas de movimiento del hero, todo reutilizable.
 - Héroes con imagen a la derecha: entrada completa por desplazamiento de derecha a izquierda (no
@@ -359,9 +363,10 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 
 **Siguiente**
 
-1. **Grupo 9** de `docs/redesign-plan.md`: `/about-us/` + `/contact/` (+ ES). Después, 10-12.
-   (Rehabilitación 2–4, accidentes 5–7 y slip & fall + ciudades 8 están cerrados.)
-2. Grupo 10 (blog + business profiles) y Grupo 11 (legal).
+1. **Grupo 10** de `docs/redesign-plan.md`: blog (`/news-blog/` + plantilla de post) y
+   `/business-profiles/`. Después, Grupo 11 (legal).
+   (Grupos 1-9 cerrados: rehabilitación, accidentes, slip & fall + ciudades, About y Contact.)
+2. Grupo 11 (legal: `/hipaa-policy/`, `/privacy-policy/` + ES).
 
 **Pendiente / bloqueado**
 

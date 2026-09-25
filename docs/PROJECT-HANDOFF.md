@@ -1,7 +1,7 @@
 # Palm Wellness Center — Project Handoff
 
 **Updated:** 2026-09-24  
-**Last published commit:** Groups 3, 4 and the slip-and-fall page (EN/ES) published on top of `b68ac95`; the Group 8 city cluster (Seminole Heights, Forest Hills, Carrollwood; EN/ES) built locally, on top of `767396d`  
+**Last published commit:** Groups 3, 4 and 8 (city cluster) plus the Group-8 rail fix published; Group 9 (About + Contact, EN/ES) built locally on top of `5bd09ec`  
 **Branch:** `main` · a push to `origin main` deploys automatically through Vercel.
 
 Read this after `AGENTS.md` at the beginning of a new session. It is the concise, current
@@ -102,8 +102,20 @@ real service pages. The legacy "slip and fall injuries — types" asset
 (`slip-and-fall-injuries-different-types.webp`) carries baked-in text and a brand watermark and is
 not used; the slip-and-fall hero is `common-injuries-after-falling-in-the-shower.webp`.
 
-The next planned migration is **Group 9**: `/about-us/` + `/contact/` (+ ES), then Groups 10 (blog
-and business profiles) and 11 (legal). See `docs/redesign-plan.md`.
+**Group 9 is closed** (EN + ES):
+
+| EN | ES | Component |
+|---|---|---|
+| `/about-us/` | `/es/acerca-de-nosotros/` | `AboutPage.astro` (added to `migrated`) |
+| `/contact/` | `/es/contacto/` | `ContactPage.astro` (rewritten in place) |
+
+The About page preserves the legacy content, corrected to OptiMantra truth (IV Therapy is live, not
+"coming soon"), with the leadership team as initials cards, the licenses and the commitment section.
+The Contact route already existed (`contact.astro`), so `ContactPage.astro` was rewritten in the new
+visual language while keeping `ContactForm.astro` and the Google map embed.
+
+The next planned migration is **Group 10**: the blog (`/news-blog/` + post template) and
+`/business-profiles/`, then Group 11 (legal). See `docs/redesign-plan.md`.
 
 ## 2. Approved global UI decisions
 
@@ -241,6 +253,10 @@ The full business name is immutable in title tags: **Palm Wellness Center**. Do 
   slip-and-fall pair and all six city routes show zero horizontal overflow, one H1, no clipped text
   and no images missing dimensions; anchor clicks resolve to the right target without writing a hash
   into the URL. Build stays at **273 pages**.
+- Group 9 (`AboutPage` + rewritten `ContactPage`, EN/ES) was audited at 360·412·768·1024·1440:
+  zero horizontal overflow, one H1, no clipped text, no images missing dimensions, and anchor clicks
+  resolve without writing a hash. Build stays at **273 pages** (`/about-us/` moved from the
+  catch-all to an explicit route; `/contact/` was already explicit).
 - The user reported PageSpeed Insights results of **97 mobile / 100 desktop** for the preview
   homepage. Treat those as the current performance reference. A local Lighthouse attempt was
   contaminated by the machine's AdBlock360 injection, so do not use it as a baseline or change
@@ -274,9 +290,9 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
 
 ## 8. Important unresolved work
 
-1. Redesign Groups 9–12 per `docs/redesign-plan.md`; the immediate work is Group 9 (`/about-us/` +
-   `/contact/` + ES). Groups 2–8 are closed: the whole rehabilitation, car accident, slip-and-fall
-   and city-cluster work is done.
+1. Redesign Groups 10–12 per `docs/redesign-plan.md`; the immediate work is Group 10 (blog +
+   business profiles). Groups 2–9 are closed: rehabilitation, car accident, slip-and-fall,
+   city cluster, About and Contact are done.
 2. Interior pages still rendered through `RichPage`/`RichSection` retain legacy body design even
    though they inherit the current header/footer and icons.
 3. The Contact form is **404 in Vercel production** because `functions/api/contact.ts` is a

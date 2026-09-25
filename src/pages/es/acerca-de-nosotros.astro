@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import AboutPage from "../../components/pages/AboutPage.astro";
+
+const path = "/es/acerca-de-nosotros/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Acerca de Palm Wellness Center | Clínica de Rehabilitación y Bienestar de Tampa"
+  description="Conozca al equipo médico autorizado detrás de Palm Wellness Center en Tampa, que brinda rehabilitación experta, quiropráctica y atención de bienestar para todas las edades."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <AboutPage lang="es" />
+  </main>
+  <Footer lang="es" />
+</Layout>

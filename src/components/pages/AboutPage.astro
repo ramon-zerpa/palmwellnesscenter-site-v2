@@ -1,0 +1,499 @@
+---
+import type { Lang } from "../../i18n/ui";
+import { APPOINTMENT_URL, PHONE_TEL } from "../../i18n/utils";
+import Icon from "../Icon.astro";
+import AnchorNav from "../AnchorNav.astro";
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+
+const content = {
+  en: {
+    hero: {
+      eyebrow: "About Palm Wellness Center",
+      title: "About Palm Wellness Center",
+      lead: "Your trusted rehabilitation and wellness clinic in Tampa, FL.",
+      chips: [
+        { icon: "calendar", label: "Serving Tampa Bay since 2011" },
+        { icon: "stethoscope", label: "Primary care and rehabilitation" },
+        { icon: "shield-check", label: "Licensed and medically supervised" },
+        { icon: "languages", label: "Bilingual care (EN/ES)" },
+      ],
+      note: "Primary care · Rehabilitation · Chiropractic · Massage · Auto accident recovery",
+      image: "/images/regular-therapy-sessions.webp",
+      imageAlt: "Therapist treating a patient's back at Palm Wellness Center in Tampa",
+      rail: [
+        { value: "Since 2011", label: "Serving Tampa Bay" },
+        { value: "One team", label: "Medical + rehabilitation" },
+        { value: "EN / ES", label: "Bilingual care" },
+      ],
+    },
+    subnav: [
+      { label: "Who we are", href: "#about" },
+      { label: "Our story", href: "#story" },
+      { label: "What to expect", href: "#expect" },
+      { label: "Team", href: "#team" },
+      { label: "Credentials", href: "#credentials" },
+      { label: "Commitment", href: "#commitment" },
+    ],
+    about: {
+      eyebrow: "Who we are",
+      heading: "A Tampa wellness clinic built around the whole person",
+      paras: [
+        "Palm Wellness Center is a wellness center in Tampa offering holistic health services including primary care, medical weight loss, physical rehabilitation, chiropractic care, massage therapy, and structured car accident rehabilitation.",
+        "Since 2011, we have helped patients across Tampa Bay reduce pain, restore stability, and return to healthier movement.",
+      ],
+      linksLabel: "Our services",
+      links: [
+        { label: "Primary care", href: "/primary-care/" },
+        { label: "Physical rehabilitation", href: "/physical-rehabilitation/" },
+        { label: "Chiropractic care", href: "/chiropractor/" },
+        { label: "Massage therapy", href: "/massage-therapy/" },
+        { label: "Medical weight loss", href: "/medical-weight-loss/" },
+        { label: "Car accident rehabilitation", href: "/car-accident-rehabilitation/" },
+      ],
+      image: "/images/integrated-care-coordinated-team.webp",
+      imageAlt: "A primary care provider and a rehabilitation clinician reviewing a plan with a patient at Palm Wellness Center",
+    },
+    story: {
+      eyebrow: "Our story",
+      heading: "From a simple purpose to a trusted Tampa clinic",
+      paras: [
+        "Founded in 2011, Palm Wellness Center began with a simple purpose: provide evidence-based, patient-centered rehabilitation that treats the person, not just the injury.",
+        "Over the years, the clinic has grown into one of Tampa's most trusted rehabilitation centers, known for hands-on therapy, clinical oversight, and transportation assistance for eligible patients.",
+        "From accident recovery to preventive wellness, every treatment plan is designed around your goals, your body, and your long-term health.",
+      ],
+      linksLabel: "Explore our most-used services",
+      links: [
+        { label: "Primary care in Tampa", href: "/primary-care/" },
+        { label: "Chiropractic care in Tampa", href: "/chiropractor/" },
+        { label: "Physical therapy in Tampa", href: "/physical-rehabilitation/" },
+        { label: "Medical weight loss in Tampa", href: "/medical-weight-loss/" },
+        { label: "Auto accident rehabilitation", href: "/car-accident-rehabilitation/" },
+        { label: "Slip and fall treatment", href: "/slip-and-fall-injury-treatment/" },
+        { label: "IV therapy and vitamin injections in Tampa", href: "/iv-therapy/" },
+      ],
+    },
+    mission: {
+      eyebrow: "Our mission",
+      heading: "Accessible, high-quality care for the Tampa Bay community",
+      body: "Our mission is to provide accessible, high-quality rehabilitation and medical care that reduces pain, restores mobility, and improves quality of life for every patient in the Tampa Bay community. We integrate primary care, medical weight loss, and wellness services with physical therapy, chiropractic rehabilitation, and therapeutic techniques - all supported by licensed medical oversight.",
+      points: [
+        "Licensed medical oversight on every care plan",
+        "Bilingual care in English and Spanish",
+        "Transportation assistance for eligible patients",
+      ],
+    },
+    expect: {
+      eyebrow: "What to expect",
+      heading: "What patients can expect",
+      lead: "During your care at Palm Wellness Center, you can expect:",
+      items: [
+        "A welcoming, bilingual, inclusive clinic environment",
+        "A detailed evaluation with clear next steps",
+        "A treatment plan based on your condition and goals",
+        "Evidence-based methods that support mobility and healing",
+        "Support for auto accident documentation and benefits",
+        "Optional transportation for eligible patients",
+      ],
+      note: { pre: "If your injury is accident-related, you may also be seen through our ", link: { label: "auto accident injury clinic", href: "/auto-accident-injury-clinic/" }, post: " for coordinated recovery." },
+      image: "/images/does-insurance-cover-chiropractic-in-florida.webp",
+      imageAlt: "A provider reviewing a care plan with a patient at Palm Wellness Center in Tampa",
+    },
+    team: {
+      eyebrow: "Our leadership team",
+      heading: "The people behind your care",
+      members: [
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Founder & Clinic Administrator", bio: "A Licensed Massage Therapist and the founder of Palm Wellness Center. As administrator, he oversees operations, patient support, and the coordination of our rehabilitation team." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Board-Certified Physician Assistant", bio: "Provides primary care, medical weight loss, and wellness services, working alongside our rehabilitation team for coordinated, long-term care. Fluent in English and Spanish." },
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Supervising Physician", bio: "Provides medical guidance for our rehabilitation programs and helps ensure patient care is delivered safely, appropriately, and in line with current standards." },
+      ],
+      footNote: "Your care is guided by a collaborative team focused on recovery, movement, and long-term function.",
+    },
+    credentials: {
+      eyebrow: "Licenses & credentials",
+      heading: "Licensed and compliant",
+      lead: "Palm Wellness Center LLC is fully licensed and compliant with state and federal healthcare regulations:",
+      items: [
+        "Florida Health Care Clinic License: HCCA10302 / AHCA License #13745",
+        "Massage Establishment License: MM28422",
+        "NPI: 1255736831 - Rehabilitation Agency (261QR0400X)",
+        "Florida Division of Corporations Registration: Document #L11000117320",
+      ],
+      note: "The clinic follows all AHCA, HIPAA, and federal privacy requirements with ongoing staff training.",
+    },
+    commitment: {
+      eyebrow: "Our commitment to Tampa",
+      heading: "Care that includes everyone",
+      paras: [
+        "Palm Wellness Center serves patients throughout Tampa Bay, including Seminole Heights, Forest Hills, and Carrollwood. We are Latino-owned, LGBTQ+ friendly, and fully wheelchair accessible.",
+        "We work closely with insurance carriers to simplify accident claims and offer free transportation for eligible patients to ensure access to essential rehabilitation services.",
+      ],
+      note: { pre: "For ongoing recovery advice and wellness education, visit our ", link: { label: "news blog", href: "/news-blog/" }, post: "." },
+    },
+    cta: {
+      title: "Get started today",
+      lead: "Recover with confidence at Palm Wellness Center in Tampa.",
+    },
+    labels: { book: "Book Appointment", call: "(813) 443-5370", learn: "Learn more", onThisPage: "On this page" },
+  },
+  es: {
+    hero: {
+      eyebrow: "Acerca de Palm Wellness Center",
+      title: "Acerca de Palm Wellness Center",
+      lead: "Su clínica de rehabilitación y bienestar de confianza en Tampa, FL.",
+      chips: [
+        { icon: "calendar", label: "Sirviendo a Tampa Bay desde 2011" },
+        { icon: "stethoscope", label: "Atención primaria y rehabilitación" },
+        { icon: "shield-check", label: "Autorizados y con supervisión médica" },
+        { icon: "languages", label: "Atención bilingüe (EN/ES)" },
+      ],
+      note: "Atención primaria · Rehabilitación · Quiropráctica · Masajes · Accidentes de auto",
+      image: "/images/regular-therapy-sessions.webp",
+      imageAlt: "Terapeuta tratando la espalda de un paciente en Palm Wellness Center en Tampa",
+      rail: [
+        { value: "Desde 2011", label: "Sirviendo a Tampa Bay" },
+        { value: "Un equipo", label: "Médico + rehabilitación" },
+        { value: "EN / ES", label: "Atención bilingüe" },
+      ],
+    },
+    subnav: [
+      { label: "Quiénes somos", href: "#about" },
+      { label: "Nuestra historia", href: "#story" },
+      { label: "Qué esperar", href: "#expect" },
+      { label: "Equipo", href: "#team" },
+      { label: "Credenciales", href: "#credentials" },
+      { label: "Compromiso", href: "#commitment" },
+    ],
+    about: {
+      eyebrow: "Quiénes somos",
+      heading: "Una clínica de bienestar en Tampa pensada para la persona completa",
+      paras: [
+        "Palm Wellness Center es un centro de bienestar en Tampa que ofrece servicios de salud integrales, incluidos atención primaria, pérdida de peso médica, rehabilitación física, atención quiropráctica, terapia de masajes y rehabilitación estructurada por accidentes de auto.",
+        "Desde 2011, hemos ayudado a pacientes de toda la Bahía de Tampa a reducir el dolor, recuperar la estabilidad y volver a un movimiento más saludable.",
+      ],
+      linksLabel: "Nuestros servicios",
+      links: [
+        { label: "Atención primaria", href: "/es/atencion-primaria/" },
+        { label: "Rehabilitación física", href: "/es/fisioterapia/" },
+        { label: "Atención quiropráctica", href: "/es/quiropractico/" },
+        { label: "Terapia de masajes", href: "/es/terapia-de-masajes/" },
+        { label: "Pérdida de peso médica", href: "/es/perdida-de-peso-medica/" },
+        { label: "Rehabilitación de accidentes de auto", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
+      ],
+      image: "/images/integrated-care-coordinated-team.webp",
+      imageAlt: "Un proveedor de atención primaria y un clínico de rehabilitación revisando un plan con una paciente en Palm Wellness Center",
+    },
+    story: {
+      eyebrow: "Nuestra historia",
+      heading: "De un propósito simple a una clínica de confianza en Tampa",
+      paras: [
+        "Fundado en 2011, Palm Wellness Center comenzó con un propósito simple: brindar rehabilitación basada en la evidencia y centrada en el paciente, que trata a la persona, no solo la lesión.",
+        "Con los años, la clínica se ha convertido en uno de los centros de rehabilitación más confiables de Tampa, reconocida por su terapia práctica, su supervisión clínica y la asistencia de transporte para pacientes elegibles.",
+        "Desde la recuperación de accidentes hasta el bienestar preventivo, cada plan de tratamiento se diseña en función de tus objetivos, tu cuerpo y tu salud a largo plazo.",
+      ],
+      linksLabel: "Explore nuestros servicios más utilizados",
+      links: [
+        { label: "Atención primaria en Tampa", href: "/es/atencion-primaria/" },
+        { label: "Atención quiropráctica en Tampa", href: "/es/quiropractico/" },
+        { label: "Fisioterapia en Tampa", href: "/es/fisioterapia/" },
+        { label: "Pérdida de peso médica en Tampa", href: "/es/perdida-de-peso-medica/" },
+        { label: "Rehabilitación de accidentes de auto", href: "/es/rehabilitacion-de-accidentes-automovilisticos/" },
+        { label: "Tratamiento de resbalones y caídas", href: "/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/" },
+        { label: "Terapia intravenosa e inyecciones de vitaminas en Tampa", href: "/es/terapia-iv/" },
+      ],
+    },
+    mission: {
+      eyebrow: "Nuestra misión",
+      heading: "Atención accesible y de alta calidad para la comunidad de Tampa Bay",
+      body: "Nuestra misión es brindar atención de rehabilitación y médica accesible y de alta calidad que reduzca el dolor, restaure la movilidad y mejore la calidad de vida de cada paciente en la comunidad de Tampa Bay. Integramos atención primaria, pérdida de peso médica y servicios de bienestar con fisioterapia, rehabilitación quiropráctica y técnicas terapéuticas, todo respaldado por supervisión médica autorizada.",
+      points: [
+        "Supervisión médica autorizada en cada plan",
+        "Atención bilingüe en inglés y español",
+        "Asistencia de transporte para pacientes elegibles",
+      ],
+    },
+    expect: {
+      eyebrow: "Qué esperar",
+      heading: "Qué pueden esperar los pacientes",
+      lead: "Durante tu atención en Palm Wellness Center, puedes esperar:",
+      items: [
+        "Un ambiente clínico acogedor, bilingüe e inclusivo",
+        "Una evaluación detallada con próximos pasos claros",
+        "Un plan de tratamiento basado en tu condición y objetivos",
+        "Métodos basados en evidencia que apoyan la movilidad y la curación",
+        "Apoyo para la documentación y los beneficios de accidentes de auto",
+        "Transporte opcional para pacientes elegibles",
+      ],
+      note: { pre: "Si tu lesión está relacionada con un accidente, también puedes ser atendido en nuestra ", link: { label: "clínica de lesiones por accidentes de auto", href: "/es/clinica-de-lesiones-por-accidentes-de-auto/" }, post: " para una recuperación coordinada." },
+      image: "/images/does-insurance-cover-chiropractic-in-florida.webp",
+      imageAlt: "Proveedor revisando un plan de atención con una paciente en Palm Wellness Center en Tampa",
+    },
+    team: {
+      eyebrow: "Nuestro equipo de liderazgo",
+      heading: "Las personas detrás de tu atención",
+      members: [
+        { initials: "MR", name: "Michel Reyes, LMT", cred: "Fundador y Administrador de la Clínica", bio: "Masajista terapéutico certificado y fundador de Palm Wellness Center. Como administrador, supervisa las operaciones, la atención al paciente y la coordinación de nuestro equipo de rehabilitación." },
+        { initials: "LM", name: "Leivys C. Marsall, PA, ACN", cred: "Asistente Médico Certificado", bio: "Brinda atención primaria, pérdida de peso médica y servicios de bienestar, trabajando junto a nuestro equipo de rehabilitación para una atención coordinada y a largo plazo. Habla inglés y español con fluidez." },
+        { initials: "AO", name: "Dr. Arnaldo V. Orellana-Molina", cred: "MD - Médico Supervisor", bio: "Brinda orientación médica para nuestros programas de rehabilitación y ayuda a garantizar que la atención se brinde de forma segura, adecuada y conforme a los estándares actuales." },
+      ],
+      footNote: "Tu atención es guiada por un equipo colaborativo enfocado en la recuperación, el movimiento y la función a largo plazo.",
+    },
+    credentials: {
+      eyebrow: "Licencias y credenciales",
+      heading: "Autorizados y en cumplimiento",
+      lead: "Palm Wellness Center LLC está totalmente autorizado y cumple con las regulaciones de atención médica estatales y federales:",
+      items: [
+        "Licencia de clínica de atención médica de Florida: HCCA10302 / Licencia AHCA #13745",
+        "Licencia de establecimiento de masajes: MM28422",
+        "NPI: 1255736831 - Agencia de Rehabilitación (261QR0400X)",
+        "Registro de la División de Corporaciones de Florida: Documento #L11000117320",
+      ],
+      note: "La clínica cumple con todos los requisitos de privacidad federales, de AHCA y HIPAA, con capacitación continua del personal.",
+    },
+    commitment: {
+      eyebrow: "Nuestro compromiso con Tampa",
+      heading: "Atención que incluye a todos",
+      paras: [
+        "Palm Wellness Center atiende a pacientes en toda la Bahía de Tampa, incluyendo Seminole Heights, Forest Hills y Carrollwood. Somos una organización de propietarios latinos, amigable con la comunidad LGBTQ+ y totalmente accesible para sillas de ruedas.",
+        "Trabajamos en estrecha colaboración con las compañías de seguros para simplificar los reclamos por accidentes y ofrecer transporte gratuito a los pacientes elegibles, para garantizar el acceso a los servicios esenciales de rehabilitación.",
+      ],
+      note: { pre: "Para consejos continuos de recuperación y educación sobre bienestar, visita nuestro ", link: { label: "blog de noticias", href: "/news-blog/" }, post: "." },
+    },
+    cta: {
+      title: "Empieza hoy",
+      lead: "Recupérate con confianza en Palm Wellness Center en Tampa.",
+    },
+    labels: { book: "Reservar cita", call: "(813) 443-5370", learn: "Ver más", onThisPage: "En esta página" },
+  },
+}[lang];
+
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const l = content.labels;
+
+const backToTop = lang === "es" ? "Volver arriba" : "Back to top";
+const hover = "hover-lift";
+
+const eyebrowCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const eyebrowDarkCls = "inline-flex w-fit items-center gap-1.5 rounded-full bg-white/10 px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-tint";
+const h2Cls = "font-titles text-[26px] leading-[1.15] text-ink sm:text-[30px] lg:text-[34px]";
+const leadCls = "text-[16px] leading-[1.6] text-body sm:text-[17px]";
+const btnBookCls = `inline-flex items-center gap-2 rounded-md bg-blue px-6 py-3.5 font-bold text-white hover:bg-blue-deep ${hover}`;
+const btnCallCls = `inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue bg-white px-6 py-3.5 font-bold text-blue hover:bg-blue-pale ${hover}`;
+---
+
+<!-- HERO -->
+<section class="relative isolate overflow-hidden bg-bg-alt">
+  <div class="hero-ambient" aria-hidden="true">
+    <span class="hero-pulse"></span>
+  </div>
+  <div class="shell relative flex flex-col gap-10 pt-12 pb-26 lg:gap-12 lg:pt-16 lg:pb-32">
+    <div class="grid items-center gap-10 lg:grid-cols-[1fr_560px] lg:gap-12">
+      <div class="flex flex-col items-start gap-5">
+        <span class={eyebrowCls}><Icon name="heart-handshake" class="h-3.5 w-3.5" />{content.hero.eyebrow}</span>
+        <h1 class="font-titles text-[32px] leading-[1.08] text-ink sm:text-[38px] lg:text-[46px]">{content.hero.title}</h1>
+        <p class="max-w-xl text-[17px] leading-[1.6] text-body sm:text-[18px]">{content.hero.lead}</p>
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {content.hero.chips.map((c) => (
+            <li class="flex items-center gap-2">
+              <span class="grid h-[30px] w-[30px] shrink-0 place-items-center rounded-full bg-blue-pale text-blue-deep"><Icon name={c.icon} class="h-4 w-4" /></span>
+              <span class="text-[14px] font-semibold text-ink">{c.label}</span>
+            </li>
+          ))}
+        </ul>
+        <div class="flex flex-wrap gap-3.5">
+          <a href={APPOINTMENT_URL} {...bookAttrs} class={btnBookCls}><Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}</a>
+          <a href={PHONE_TEL} class={btnCallCls}><Icon name="phone" class="h-[18px] w-[18px]" />{l.call}</a>
+        </div>
+        <p class="text-[13px] text-muted">{content.hero.note}</p>
+      </div>
+      <div class="hero-media-frame h-[280px] sm:h-[380px] lg:h-[440px]">
+        <div class="hero-media">
+          <img src={content.hero.image} width="560" height="440" alt={content.hero.imageAlt} fetchpriority="high" decoding="async" class="hero-media__img object-center" />
+          <span class="hero-heart h-12 w-12 lg:h-14 lg:w-14" aria-hidden="true">
+            <Icon name="heart-pulse" solid class="h-5 w-5 lg:h-6 lg:w-6" />
+          </span>
+        </div>
+      </div>
+    </div>
+    <dl class={`grid gap-8 rounded-lg border border-line bg-white px-7 py-7 sm:grid-cols-3 lg:px-10 ${hover}`}>
+      {content.hero.rail.map((r) => (
+        <div class="flex flex-col gap-1">
+          <dt class="font-titles text-[26px] font-bold leading-none text-blue-deep lg:text-[30px]">{r.value}</dt>
+          <dd class="text-[13px] text-muted">{r.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<!-- ANCHOR NAV -->
+<AnchorNav label={l.onThisPage} items={content.subnav} />
+
+<!-- WHO WE ARE -->
+<section id="about" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_480px] lg:items-center lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="users" class="h-3.5 w-3.5" />{content.about.eyebrow}</span>
+      <h2 class={h2Cls}>{content.about.heading}</h2>
+      {content.about.paras.map((p) => <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <p class="pt-1 text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.about.linksLabel}</p>
+      <ul class="flex flex-wrap gap-2.5">
+        {content.about.links.map((it) => (
+          <li>
+            <a href={it.href} class="inline-flex items-center gap-2 rounded-full border border-line bg-bg-alt px-4 py-2.5 text-[14px] font-semibold text-ink transition-colors hover:border-blue hover:text-blue">{it.label}<Icon name="arrow" class="h-[14px] w-[14px] text-blue" /></a>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <img src={content.about.image} width="480" height="520" alt={content.about.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[520px]" />
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section id="story" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_460px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="clock" class="h-3.5 w-3.5" />{content.story.eyebrow}</span>
+      <h2 class={h2Cls}>{content.story.heading}</h2>
+      {content.story.paras.map((p) => <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+    </div>
+    <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+      <p class="text-[13px] font-bold uppercase tracking-[0.1em] text-blue-deep">{content.story.linksLabel}</p>
+      <ul class="flex flex-col gap-3">
+        {content.story.links.map((it) => (
+          <li>
+            <a href={it.href} class="group inline-flex items-start gap-2.5 py-1 text-[15px] font-semibold leading-[1.45] text-ink transition-colors hover:text-blue">
+              <Icon name="circle-check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{it.label}
+              <Icon name="arrow" class="mt-1 h-[14px] w-[14px] shrink-0 text-blue opacity-0 transition-opacity group-hover:opacity-100" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION (dark band) -->
+<section class="bg-blue-deep">
+  <div class="shell grid items-start gap-10 py-16 lg:grid-cols-[1fr_440px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowDarkCls}><Icon name="target" class="h-3.5 w-3.5" />{content.mission.eyebrow}</span>
+      <h2 class="font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.mission.heading}</h2>
+      <p class="max-w-[62ch] text-[16px] leading-[1.62] text-blue-tint">{content.mission.body}</p>
+    </div>
+    <ul class="flex flex-col gap-4 rounded-lg border border-white/15 bg-white/5 p-7 lg:p-8">
+      {content.mission.points.map((p) => (
+        <li class="flex items-start gap-3 text-[15px] leading-[1.55] text-blue-tint"><Icon name="check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-bright" />{p}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- WHAT TO EXPECT -->
+<section id="expect" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_480px] lg:items-center lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="clipboard-list" class="h-3.5 w-3.5" />{content.expect.eyebrow}</span>
+      <h2 class={h2Cls}>{content.expect.heading}</h2>
+      <p class={leadCls}>{content.expect.lead}</p>
+      <ul class="grid gap-3 sm:grid-cols-2">
+        {content.expect.items.map((it) => (
+          <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{it}</li>
+        ))}
+      </ul>
+      <p class="text-[15px] leading-[1.6] text-body">
+        {content.expect.note.pre}<a href={content.expect.note.link.href} class="font-semibold text-blue underline-offset-4 hover:text-blue-deep hover:underline">{content.expect.note.link.label}</a>{content.expect.note.post}
+      </p>
+    </div>
+    <img src={content.expect.image} width="480" height="520" alt={content.expect.imageAlt} loading="lazy" decoding="async" class="h-[280px] w-full rounded-lg object-cover sm:h-[380px] lg:h-[480px]" />
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell flex flex-col gap-10 py-16 lg:py-20">
+    <div class="flex max-w-[720px] flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="users" class="h-3.5 w-3.5" />{content.team.eyebrow}</span>
+      <h2 class={h2Cls}>{content.team.heading}</h2>
+    </div>
+    <ul class="grid gap-6 md:grid-cols-3">
+      {content.team.members.map((m) => (
+        <li class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+          <span class="grid h-[74px] w-[74px] place-items-center rounded-full bg-blue-deep font-titles text-[26px] font-bold text-white">{m.initials}</span>
+          <div class="flex flex-col gap-1">
+            <h3 class="font-titles text-[19px] font-bold leading-[1.2] text-ink lg:text-[20px]">{m.name}</h3>
+            <p class="text-[13px] font-semibold leading-[1.4] text-blue">{m.cred}</p>
+          </div>
+          <p class="text-[15px] leading-[1.6] text-body">{m.bio}</p>
+        </li>
+      ))}
+    </ul>
+    <p class="max-w-[720px] text-[15px] leading-[1.6] text-body">{content.team.footNote}</p>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials" class="scroll-mt-24 lg:scroll-mt-[184px] bg-white">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_560px] lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-4">
+      <span class={eyebrowCls}><Icon name="shield-check" class="h-3.5 w-3.5" />{content.credentials.eyebrow}</span>
+      <h2 class={h2Cls}>{content.credentials.heading}</h2>
+      <p class="max-w-[58ch] text-[16px] leading-[1.62] text-body">{content.credentials.lead}</p>
+      <p class="max-w-[58ch] text-[15px] leading-[1.6] text-muted">{content.credentials.note}</p>
+    </div>
+    <ul class={`flex flex-col gap-4 rounded-lg border border-line bg-bg-alt p-7 lg:p-8 ${hover}`}>
+      {content.credentials.items.map((it) => (
+        <li class="flex items-start gap-3 text-[15px] leading-[1.5] text-ink"><Icon name="badge-check" class="mt-0.5 h-[18px] w-[18px] shrink-0 text-green-dark" />{it}</li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<!-- COMMITMENT -->
+<section id="commitment" class="scroll-mt-24 lg:scroll-mt-[184px] bg-bg-alt">
+  <div class="shell grid gap-10 py-16 lg:grid-cols-[1fr_460px] lg:items-center lg:gap-16 lg:py-20">
+    <div class="flex flex-col gap-5">
+      <span class={eyebrowCls}><Icon name="heart-handshake" class="h-3.5 w-3.5" />{content.commitment.eyebrow}</span>
+      <h2 class={h2Cls}>{content.commitment.heading}</h2>
+      {content.commitment.paras.map((p) => <p class="max-w-[62ch] text-[16px] leading-[1.62] text-body">{p}</p>)}
+      <p class="text-[15px] leading-[1.6] text-body">
+        {content.commitment.note.pre}<a href={content.commitment.note.link.href} class="font-semibold text-blue underline-offset-4 hover:text-blue-deep hover:underline">{content.commitment.note.link.label}</a>{content.commitment.note.post}
+      </p>
+    </div>
+    <div class={`flex flex-col gap-4 rounded-lg border border-line bg-white p-7 lg:p-8 ${hover}`}>
+      <span class="grid h-12 w-12 place-items-center rounded-md bg-blue-pale text-blue-deep"><Icon name="accessibility" class="h-[22px] w-[22px]" /></span>
+      <ul class="flex flex-col gap-3">
+        <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{lang === "es" ? "Propiedad latina" : "Latino-owned"}</li>
+        <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{lang === "es" ? "Amigable con la comunidad LGBTQ+" : "LGBTQ+ friendly"}</li>
+        <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{lang === "es" ? "Totalmente accesible para sillas de ruedas" : "Fully wheelchair accessible"}</li>
+        <li class="flex items-start gap-2.5 text-[15px] leading-[1.5] text-ink"><Icon name="check" class="mt-0.5 h-[17px] w-[17px] shrink-0 text-green-dark" />{lang === "es" ? "Transporte gratis para pacientes elegibles" : "Free transportation for eligible patients"}</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BACK TO TOP -->
+<div class="bg-white">
+  <div class="shell flex justify-end py-6">
+    <a href="#main" class="inline-flex items-center gap-2 text-[14px] font-semibold text-blue transition-colors hover:text-blue-deep">
+      <Icon name="chevron-down" class="h-4 w-4 rotate-180" />{backToTop}
+    </a>
+  </div>
+</div>
+
+<!-- FINAL CTA -->
+<section class="bg-blue-deep">
+  <div class="shell flex flex-col items-center gap-4 py-16 text-center lg:py-18">
+    <h2 class="max-w-[820px] font-titles text-[26px] leading-[1.15] text-white sm:text-[30px] lg:text-[34px]">{content.cta.title}</h2>
+    <p class="max-w-[640px] text-[16px] leading-[1.6] text-blue-tint sm:text-[17px]">{content.cta.lead}</p>
+    <div class="mt-2 flex flex-wrap justify-center gap-3">
+      <a href={APPOINTMENT_URL} {...bookAttrs} class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}>
+        <Icon name="calendar-check" class="h-[18px] w-[18px]" />{l.book}
+      </a>
+      <a href={PHONE_TEL} class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}>
+        <Icon name="phone" class="h-[18px] w-[18px]" />{l.call}
+      </a>
+    </div>
+  </div>
+</section>

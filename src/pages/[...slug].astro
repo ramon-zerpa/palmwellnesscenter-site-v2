@@ -46,6 +46,8 @@ export async function getStaticPaths() {
     "/es/rehabilitacion-de-accidentes-automovilisticos/seminole-heights/",
     "/es/rehabilitacion-de-accidentes-automovilisticos/forest-hills/",
     "/es/rehabilitacion-de-accidentes-automovilisticos/carrollwood/",
+    "/about-us/",
+    "/es/acerca-de-nosotros/",
   ]);
   const resolvedRichPages = (richpages as any[]).filter((page) => !migrated.has(page.path));
   const trim = (s: string) => s.replace(/^\/|\/$/g, "");

@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import AboutPage from "../components/pages/AboutPage.astro";
+
+const path = "/about-us/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="About Palm Wellness Center | Tampa Rehabilitation & Wellness Clinic"
+  description="Meet the licensed medical team behind Palm Wellness Center in Tampa - providing expert rehabilitation, chiropractic, and wellness care for all ages."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <AboutPage lang="en" />
+  </main>
+  <Footer lang="en" />
+</Layout>

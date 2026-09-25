@@ -1,6 +1,6 @@
 # SESSION-HANDOFF — brief de arranque
 
-**Snapshot: 2026-09-24** · Grupo 8 cerrado (slip & fall + clúster de ciudades, EN/ES); rehabilitación, accidentes de auto, slip & fall y ciudades completos · rama `main`
+**Snapshot: 2026-09-24** · Grupo 9 cerrado (About + Contact, EN/ES); grupos 1-9 hechos, quedan 10-12 · rama `main`
 
 > Pega este archivo (o su ruta) al empezar un chat nuevo. Es autosuficiente, pero **la referencia
 > vinculante es `AGENTS.md`** y el estado canónico está en `docs/PROJECT-HANDOFF.md`. Si algo
@@ -55,6 +55,8 @@ Cada página es un componente propio bajo `src/components/pages/`; las rutas EN/
 | `/car-accident-rehabilitation/seminole-heights/` | `/es/rehabilitacion-de-accidentes-automovilisticos/seminole-heights/` | `CityCarAccidentRehabPage.astro` (`city="seminole-heights"`) |
 | `/car-accident-rehabilitation/forest-hills/` | `/es/rehabilitacion-de-accidentes-automovilisticos/forest-hills/` | `CityCarAccidentRehabPage.astro` (`city="forest-hills"`) |
 | `/car-accident-rehabilitation/carrollwood/` | `/es/rehabilitacion-de-accidentes-automovilisticos/carrollwood/` | `CityCarAccidentRehabPage.astro` (`city="carrollwood"`) |
+| `/about-us/` | `/es/acerca-de-nosotros/` | `AboutPage.astro` |
+| `/contact/` | `/es/contacto/` | `ContactPage.astro` (reescrito en sitio) |
 
 Hitos recientes:
 
@@ -85,6 +87,10 @@ Hitos recientes:
   (+ ES) como **una plantilla** (`CityCarAccidentRehabPage.astro`, prop `city`). Las 8 rutas estaban
   en `richpages.json` → al `Set` `migrated`. El asset heredado
   `slip-and-fall-injuries-different-types.webp` trae texto y marca incrustados: no se usa.
+- **Grupo 9 cerrado, EN+ES**: `/about-us/` (+ `/es/acerca-de-nosotros/`) con `AboutPage.astro` (al
+  `Set` `migrated`), y `/contact/` (+ `/es/contacto/`) reescrita en sitio en `ContactPage.astro`
+  (la ruta ya existía; conserva `ContactForm.astro` y el mapa). Contenido corregido: IV Therapy ya
+  no dice "coming soon".
 - Las 4 rutas nuevas de esta ronda (y las de las rondas anteriores) están en el `Set` `migrated` de
   `src/pages/[...slug].astro` (×2 por idioma).
 - En el bloque de confianza ("Professional and compassionate care you can trust") la imagen va con
@@ -95,14 +101,13 @@ Hitos recientes:
 
 ## 3. Próximo paso exacto
 
-**Grupo 9 de `docs/redesign-plan.md`** (About + Contact), todavía con el cuerpo heredado:
+**Grupo 10 de `docs/redesign-plan.md`** (blog + business profiles), todavía con el cuerpo heredado:
 
-- `/about-us/` (+ `/es/acerca-de-nosotros/`).
-- `/contact/` (+ `/es/contacto/`).
+- `/news-blog/` (+ `/es/blog-de-noticias/`) y su plantilla de post (`[...slug].astro` → `BlogPost.astro`).
+- `/business-profiles/`.
 
-Ojo: comprueba si esas rutas existen en `richpages.json` antes de añadirlas al `Set` `migrated`
-(solo hace falta para rutas del JSON). Rehabilitación (2–4), accidentes de auto (5–7) y slip & fall
-+ ciudades (8) están cerrados. Después, 10-12.
+Ojo: comprueba si esas rutas existen en `richpages.json` antes de añadirlas al `Set` `migrated`.
+Grupos 1-9 cerrados. Después, Grupo 11 (legal).
 
 Procedimiento que funciona:
 
