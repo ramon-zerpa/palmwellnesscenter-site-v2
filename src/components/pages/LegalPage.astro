@@ -1,0 +1,693 @@
+---
+import type { Lang } from "../../i18n/ui";
+import Icon from "../Icon.astro";
+
+interface Props {
+  lang: Lang;
+  kind: "hipaa" | "privacy";
+}
+const { lang, kind } = Astro.props;
+
+type Block = { p?: string; ul?: string[]; ol?: string[] };
+type Section = { id: string; h: string; blocks: Block[]; card?: boolean };
+type Doc = {
+  eyebrow: string;
+  icon: string;
+  title: string;
+  subtitle?: string;
+  lead: string;
+  notice?: string;
+  sections: Section[];
+};
+type Docs = { hipaa: Doc; privacy: Doc };
+
+const docs: Record<Lang, Docs> = {
+  en: {
+    hipaa: {
+      eyebrow: "Legal · HIPAA",
+      icon: "shield-check",
+      title: "HIPAA Policy",
+      subtitle: "Notice of Privacy Practices",
+      lead: "How Palm Wellness Center may use and disclose the medical information we keep about you, and the rights you have over it.",
+      notice:
+        "This notice describes how medical information about you may be used and disclosed, and how you can get access to this information. Please review it carefully.",
+      sections: [
+        {
+          id: "use",
+          h: "Use of Data",
+          blocks: [
+            {
+              p: `We understand that your medical information is personal. We are committed to protecting your medical information. This Notice describes how Palm Wellness Center (the "Facility") may use your medical information and disclose it to others outside the Facility. The law requires the Facility to:`,
+            },
+            {
+              ul: [
+                "Make sure that medical information that identifies you is kept private;",
+                "Inform you of our legal duties and privacy practices concerning your medical information;",
+                "Follow the terms of the Notice that is currently in effect; and",
+                "Notify you if your medical information is affected by a breach.",
+              ],
+            },
+          ],
+        },
+        {
+          id: "who",
+          h: "Who Will Follow This Notice",
+          blocks: [
+            {
+              p: "The Facility and all of its sites and locations will follow the terms of this Notice. The following people will also follow the terms of this Notice:",
+            },
+            {
+              ul: [
+                `All employees, contractors, volunteers, and other agents ("authorized personnel") of the Facility.`,
+                "Health care professionals authorized to enter information into your medical records at the Facility.",
+                "Members of the Facility's medical staff and their authorized personnel.",
+              ],
+            },
+          ],
+        },
+        {
+          id: "disclose",
+          h: "How the Facility May Use and Disclose Your Medical Information",
+          blocks: [
+            { p: "We may use your medical information, or share it with others, for the following purposes:" },
+            {
+              ul: [
+                `<strong>Treatment.</strong> Your medical information may be used to provide you with medical treatment or services. It may be disclosed to doctors, interns, nurses, technicians, volunteers, students, and others involved in your care at the Facility. We may also share it with other health care providers and their staff outside the Facility, and use it to contact you with appointment reminders or information about treatment options and other health-related benefits and services that may interest you. For example: a doctor treating you for a broken leg may need to know if you have diabetes because diabetes may slow the healing process. The doctor may need to tell the dietitian about the diabetes so appropriate meals can be arranged. Different departments of the Facility may also share medical information about you to coordinate your different needs, such as prescriptions, lab work, and x-rays. The Facility may also disclose medical information about you to people outside the facility who may be involved in your medical care after you leave, such as family members, home health agencies, and others who provide services that are part of your care.`,
+                `<strong>Payment.</strong> Your medical information may be used and disclosed so that the treatment and services you receive at the Facility may be billed and payment may be collected from you, your insurance company, and/or a third party. We will comply with your request not to disclose your health information to your insurance company if the information relates solely to a healthcare item or service for which you have paid out of pocket and in full to us. For example: if insurance will be responsible for reimbursing the Facility for your care, the health plan or insurance company may need information about the treatment you received so they can pay for it. Information may also be given to someone who helps pay for your care. Your health plan or insurance company may also need information about a treatment you are going to receive to obtain prior approval or to determine whether they will cover it.`,
+                `<strong>Health Care Operations.</strong> Your medical information may be used and disclosed to further day-to-day Facility operations. These uses and disclosures are necessary to run the Facility and to monitor the quality of care our patients receive. We may also share it with outside companies that perform services for us such as accreditation, legal, computer, or auditing services. These outside companies are called "Business Associates" and are required by HIPAA to keep your medical information confidential. For example, your medical information may be:`,
+              ],
+            },
+            {
+              ol: [
+                "Reviewed to evaluate the treatment and services performed by our staff in caring for you. Combined with that of other Facility patients to decide what additional services the facility should offer, what services are not needed, and whether certain new treatments are effective. Disclosed to doctors, nurses, technicians, and other agents of the Facility for review and learning purposes. Disclosed to healthcare students, interns, and residents for educational purposes. Combined with information from other facilities to compare how we are doing and see where we can improve the care and services offered. Information that identifies you in this set of medical information may be removed so others may use it to study health care and health care delivery without knowing who the specific patients are.",
+              ],
+            },
+            {
+              ul: [
+                `<strong>Participation in a Shared Electronic Medical Record.</strong> The Facility participates in a shared electronic medical record with other health care providers in the community. We do this so that it is easier for your health care providers to access your health information and it improves the quality of your care.`,
+                `<strong>Facility Directory Information.</strong> If the Facility uses a Patient Directory, you will be asked if you would like to participate. Only limited information, including your general condition (e.g., good, fair, poor), will be disclosed to those who ask for you by name. If you provide a religious affiliation, it may be provided only to members of the clergy unless you object.`,
+                `<strong>Private Accreditation Organizations.</strong> Your medical information may be used to fulfill the facility's requirements to meet the guidelines of private facility accreditation organizations such as the Joint Commission, NCQA, etc.`,
+                `<strong>Participation in Health Information Exchanges.</strong> We may participate in one or more health information exchanges (HIEs) and may electronically share your health information for treatment, payment, and permitted healthcare operations with other HIE participants, including entities that may not be listed under "Who Will Follow This Notice" above. Depending on state law, you may be asked to "opt in" to share your information with HIEs, or you may be given the opportunity to "opt out" of HIE participation. HIEs allow your health care providers to efficiently access the medical information necessary to treat you and for other lawful purposes. We will not share your information with an HIE unless the HIE is subject to HIPAA's privacy and security requirements.`,
+                `<strong>Individuals Involved in Your Care.</strong> We may share your medical information with a family member, guardian, or other individuals involved in your care, or who help pay for your care. Your medical information may also be disclosed to an entity assisting in a disaster relief effort so your family can be notified about your condition, status, and location.`,
+                `<strong>Research.</strong> Under certain circumstances, your medical information may be used and disclosed for research purposes. All research projects involving patients' medical information must be approved through a special review process to protect patient confidentiality.`,
+              ],
+            },
+            {
+              p: "A researcher may have access to information that identifies you only through the special review process, or with your written permission. Researchers may contact patients about their interest in participating in certain research studies only if they have been given approval to do so through the special review process. You will only become part of one of these research projects if you agree to do so and sign a consent form.",
+            },
+            {
+              ul: [
+                `<strong>Marketing or Sale of Health Information.</strong> Most uses and disclosures of your medical information for marketing purposes, or any sale of your medical information, require your written permission. We may communicate with you about our own services.`,
+                `<strong>Appointment Reminders.</strong> Your medical information may be used to contact you as a reminder of an appointment you have for treatment or medical care at the Facility.`,
+                `<strong>Treatment Alternatives.</strong> Your medical information may be used to tell you about, or recommend, possible treatment options or alternatives that may interest you.`,
+                `<strong>Health-Related Benefits and Services.</strong> Your medical information may be used to tell you about health-related benefits or services that may interest you.`,
+                `<strong>As Required by Law.</strong> Your medical information will be disclosed when we are required to do so by federal, state, or local authorities, laws, rules, and/or regulations.`,
+                `<strong>Lawsuits and Disputes.</strong> If you are involved in a lawsuit or a dispute, your medical information may be disclosed in response to a court or administrative order, subpoena, discovery request, or other lawful process by someone else involved in the dispute.`,
+                `<strong>Law Enforcement.</strong> Your medical information may be released to law enforcement as authorized or required by law.`,
+              ],
+            },
+            { p: "For example, we may release your information:" },
+            {
+              ol: [
+                "In response to a court order, subpoena, warrant, summons, or similar process; to identify or locate a suspect, fugitive, material witness, or missing person; about the victim of a crime if, under certain limited circumstances, we are unable to obtain the victim's agreement; about a death we believe may be the result of criminal conduct.",
+              ],
+            },
+            {
+              ul: [
+                `<strong>To Prevent a Serious Threat to Health or Safety.</strong> We may use or share your medical information when necessary to prevent a serious threat to your health and safety, or to the health and safety of the public or another person. Any disclosure, however, would only be to someone able to help prevent the threat.`,
+                `<strong>Health Oversight Activities.</strong> We may disclose your medical information to a health oversight agency for activities authorized by law. These oversight activities include, for example, audits, investigations, inspections, and licensure. These activities are necessary for the government to monitor the health care system, government programs, and compliance with civil rights laws.`,
+                `<strong>Organ and Tissue Donation.</strong> If you are an organ or tissue donor, your medical information may be released to organizations that handle organ procurement or organ, eye, and tissue transplantation, or to an organ donation bank, as necessary to facilitate donation and transplantation.`,
+                `<strong>Military and Veterans.</strong> If you are a member of the armed forces, your medical information may be released as required by military command authorities. If you are a member of foreign military personnel, it may be released to the appropriate foreign military authority.`,
+                `<strong>National Security and Intelligence Activities.</strong> Your medical information will be released to authorized federal officials for intelligence, counterintelligence, and other national security activities authorized by law.`,
+                `<strong>Protective Services for the President and Others.</strong> Your medical information may be disclosed to authorized federal officials so they may provide protection to the President, other authorized persons, or foreign heads of state, or conduct special investigations.`,
+                `<strong>Workers' Compensation.</strong> If you seek treatment for a work-related illness or injury, we must provide full information in accordance with state-specific laws regarding workers' compensation claims. Once state-specific requirements are met and an appropriate written request is received, only the records pertaining to the work-related illness or injury may be disclosed.`,
+                `<strong>Public Health Purposes.</strong> We may release your medical information for public health activities, such as activities:`,
+              ],
+            },
+            {
+              ol: [
+                "To prevent or control disease, injury, or disability; to report births and deaths; to report child abuse or neglect; to report reactions to medications or problems with products; to notify people of recalls of products they may be using; to notify a person who may have been exposed to a disease or may be at risk for contracting or spreading a disease or condition; to notify the appropriate government authority if we believe a patient has been the victim of abuse, neglect, or domestic violence. We will only make this disclosure if you agree, or when required or authorized by law.",
+              ],
+            },
+            {
+              ul: [
+                `<strong>Coroners, Medical Examiners, and Funeral Directors.</strong> Your medical information may be released to a coroner or medical examiner. This may be necessary, for example, to identify a deceased person or determine the cause of death. We may also release medical information about patients of the Facility to funeral directors as necessary to carry out their duties.`,
+                `<strong>Inmates.</strong> If you are an inmate of a correctional institution or under the custody of a law enforcement official, we may release medical information about you to the correctional institution or law enforcement official. This release would be necessary for the following reasons:`,
+              ],
+            },
+            {
+              ol: [
+                "For the institution to provide you with health care; to protect the health and safety of you and others; for the safety and security of the correctional institution.",
+              ],
+            },
+            {
+              ul: [
+                `<strong>Information with Special Protection.</strong> HIPAA provides additional protection for psychotherapy notes, and most uses or disclosures of psychotherapy notes require your written permission. Psychotherapy notes are the personal notes of mental health professionals about a private or group counseling session. Other types of information may also have greater protection under federal or state law, such as certain drug and alcohol information, HIV/AIDS and other communicable disease information, genetic information, mental health information, or information about developmental disabilities. For this type of information, we may be required to get your written permission before disclosing it; we may seek that permission in the Facility's Condition of Admission form if permitted by law.`,
+                `<strong>Other Uses and Disclosures.</strong> If the Facility wants to use or disclose your medical information for a purpose that is not discussed in this notice, the Facility will ask for your written permission. If you give your permission, you may revoke (take back) that permission at any time, unless we have already relied on it to use or disclose the information. If you want to revoke your permission, please notify us immediately.`,
+              ],
+            },
+          ],
+        },
+        {
+          id: "rights",
+          h: "Your Rights Regarding Your Medical Information",
+          blocks: [
+            { p: "You have the following rights regarding your medical information:" },
+            {
+              ul: [
+                `<strong>Right to Request Access to Your Medical Information.</strong> With certain exceptions, you have the right to see and get a copy of your medical information that may be used to make decisions about your care. To see or get a copy, you must submit a written request. If you request a paper copy, we may charge a fee for the cost of copying, mailing, or other supplies associated with your request. There is no fee to see your medical information.`,
+                `<strong>Right to Request an Amendment of Your Medical Information.</strong> If you feel that the medical information we have about you is incorrect or incomplete, you may ask us to amend it. To request an amendment, you must submit a written request. Please be specific about the information you believe is incorrect or incomplete.`,
+                `<strong>Right to a List of Disclosures.</strong> You have the right to request a list of the disclosures we made of your medical information for purposes other than treatment, payment, and health care operations. The first list you request will be free. For additional lists requested within a 12-month period, we may charge you for the costs of providing the list. We will notify you of the cost in advance so that you can choose whether to get the list.`,
+                `<strong>Right to Request Restrictions on How Your Medical Information Is Used or Disclosed.</strong> You have the right to request that we change the way we use or disclose your medical information for treatment, payment, or health care operations. To request restrictions, you must make your request in writing. In your request, you must tell us:`,
+              ],
+            },
+            {
+              ol: [
+                "What information you want to limit; whether you want to limit our use, disclosure, or both; to whom you want the limits to apply, for example, disclosures to your spouse.",
+              ],
+            },
+            {
+              p: "We are not required to agree to your request, except that we will not share your medical information with your health insurance company if you pay for the entire amount due for the services you receive (unless we are required by law to share the information with your health insurance company).",
+            },
+            {
+              ul: [
+                `<strong>Right to Request Confidential Communication.</strong> You have the right to request that we communicate with you in a certain way or at a certain location that you think will be more confidential. For example, you can ask that we only contact you at work or by mail. To request confidential communications, you must make your request in writing. We will not ask you the reason for your request. We will accommodate all reasonable requests. Your request must specify how or where you wish to be contacted.`,
+                `<strong>Right to Be Notified of a Breach.</strong> We will notify you if we discover a breach of your unsecured protected health information.`,
+                `<strong>Right to a Paper Copy of This Notice.</strong> You have the right to a copy of this notice. You may ask us to give you a copy at any time. Even if you have agreed to receive this notice electronically, you are still entitled to a paper copy.`,
+              ],
+            },
+          ],
+        },
+        {
+          id: "additional",
+          h: "Additional Information Concerning This Notice",
+          blocks: [
+            {
+              ul: [
+                `<strong>Changes To This Notice.</strong> We reserve the right to change this notice and to make the revised notice effective for medical information we already have about you as well as any information we receive in the future. The facility will post a current copy of the notice with the effective date. In addition, each time you register at, or are admitted to, the Facility for treatment or health care services as a patient, we will offer you a copy of the current notice in effect.`,
+                `<strong>Complaints.</strong> You will not be penalized for filing a complaint. If you believe your privacy rights have been violated, you may file a complaint with the Facility or with the Secretary of the Department of Health and Human Services. Some states may allow you to file a complaint with the state's Attorney General, Office of Consumer Affairs, or other state agencies as specified by applicable state law.`,
+              ],
+            },
+          ],
+        },
+        {
+          id: "questions",
+          h: "For Questions and Complaints",
+          card: true,
+          blocks: [
+            {
+              p: "If you have questions about this notice, believe your privacy rights have been violated, or wish to exercise any of the rights listed above, please contact:",
+            },
+            {
+              p: `<strong>Palm Wellness Center LLC</strong><br>1004 W Linebaugh Ave Ste A<br>Tampa, FL 33612<br>Phone: <a href="tel:8134435370">(813) 443-5370</a>`,
+            },
+            {
+              p: "You may also file a written complaint with the U.S. Department of Health and Human Services. We will provide you with the address to file your complaint. We will not retaliate in any way if you choose to file a complaint.",
+            },
+            {
+              p: "Palm Wellness Center complies with applicable Federal civil rights laws and does not discriminate on the basis of race, color, national origin, age, disability, or sex.",
+            },
+            {
+              p: `<strong>ATTENTION:</strong> If you do not speak English, language assistance services, free of charge, are available to you. Call <a href="tel:8134435370">(813) 443-5370</a>.`,
+            },
+          ],
+        },
+      ],
+    },
+    privacy: {
+      eyebrow: "Legal · Privacy",
+      icon: "lock",
+      title: "Privacy Policy",
+      lead: "Palm Wellness Center LLC values your privacy. Below we explain how we collect, use, and share information about you, along with the choices you have concerning that information. By using our website, you agree to the terms and conditions of this Privacy Policy. In addition to this Privacy Policy, we fully comply with Palm Wellness Center's Notice of Privacy Practices as required by the Health Insurance Portability & Accountability Act of 1996 (HIPAA).",
+      sections: [
+        {
+          id: "collect",
+          h: "Information We Collect",
+          blocks: [
+            {
+              p: `<strong>Personally Identifiable Information.</strong> We only collect personally identifiable information ("PII") with your consent. Collection of PII occurs if you schedule an appointment on the website, subscribe to a newsletter, comment on our blogs, or use other features and resources on the website. The PII we collect may include your name, telephone number, and email address.`,
+            },
+            {
+              p: "You may visit our website anonymously, but that may prevent you from engaging in certain website features or services.",
+            },
+            {
+              p: `<strong>Cookie Data.</strong> A cookie is a string of information that a website stores on a visitor's computer, and that the visitor's browser provides to the website each time the visitor returns. Pixel tags (also called web beacons) are small blocks of code placed on websites and emails.`,
+            },
+            {
+              p: "Our website uses cookies and other technologies like pixel tags to help us identify and track visitors, usage, and access preferences for our services, as well as to track and understand email campaign effectiveness and to deliver targeted ads.",
+            },
+            { p: "Our website does not employ technology to override the privacy settings in your web browser." },
+            { p: "You can usually choose to set your browser to remove or reject browser cookies before using our website." },
+          ],
+        },
+        {
+          id: "use",
+          h: "Use of Data",
+          blocks: [
+            { p: "We use information about you for the purposes listed below:" },
+            {
+              ul: [
+                "To contact visitors who requested our services via our website.",
+                "To market our services.",
+                "To measure, gauge, and improve the effectiveness of our marketing.",
+                "To communicate with you if you sign up for our newsletters.",
+              ],
+            },
+            { p: "If you don't want to hear from us, you can opt out of marketing communications at any time." },
+          ],
+        },
+        {
+          id: "sharing",
+          h: "Sharing of Information",
+          blocks: [
+            {
+              p: "We share information about you in limited circumstances, and with appropriate safeguards on your privacy. These are spelled out below:",
+            },
+            {
+              ul: [
+                `<strong>Third-party vendors:</strong> We may share information about you with third-party vendors who need it in order to provide their services to us. This includes vendors that help us provide our services to you, those that assist us with our marketing efforts, those that make tools to help us run our operations, and other third-party tools that help us manage operations. We require vendors to agree to privacy commitments in order to share information with them.`,
+                `<strong>Legal and regulatory requirements:</strong> We may disclose information about you in response to a subpoena, court order, or other governmental request.`,
+                `<strong>To protect rights, property, and others:</strong> We may disclose information about you when we believe in good faith that disclosure is reasonably necessary to protect the property or rights of Palm Wellness Center, third parties, or the public at large. For example, if we have a good faith belief that there is an imminent danger of death or serious physical injury, we may disclose information related to the emergency without delay.`,
+              ],
+            },
+            {
+              p: "We have a long-standing policy that we do not sell our users' data. We aren't a data broker, we don't sell your personal information to data brokers, and we don't sell your information to other companies that want to spam you with marketing emails. We don't share information that identifies you personally, like your name or email address, as part of our advertising program. You have choices about these ads.",
+            },
+          ],
+        },
+        {
+          id: "retention",
+          h: "Retention of Information",
+          blocks: [
+            {
+              p: "We generally discard information about you when it is no longer needed for the purposes for which we collect and use it, as described in the section above.",
+            },
+          ],
+        },
+        {
+          id: "children",
+          h: "Children's Privacy",
+          blocks: [
+            {
+              p: "We do not intend to collect personally identifiable information from children under 13 years old. If you are under the age of 13, do not provide us with PII, use our services, or use the website. If we learn that we collected PII from a child under 13, we will promptly delete that information.",
+            },
+          ],
+        },
+        {
+          id: "security",
+          h: "Security",
+          blocks: [
+            {
+              p: "While no online service is 100% secure, we work very hard to protect information about you against unauthorized access, use, alteration, or destruction, and take reasonable measures to do so. We monitor our website and services for potential vulnerabilities and attacks.",
+            },
+          ],
+        },
+        {
+          id: "changes",
+          h: "Privacy Policy Changes",
+          blocks: [
+            {
+              p: "Although most changes are likely to be minor, Palm Wellness Center may change its Privacy Policy from time to time. Palm Wellness Center encourages visitors to frequently check this page for any changes.",
+            },
+            {
+              p: "If we make changes, we will notify you by adding a changelog on this page and, in some cases, we may provide additional notice (like adding a statement to our homepage or sending you a notification by email).",
+            },
+            {
+              p: "Your further use of the Services after a change to our Privacy Policy will be subject to the updated policy.",
+            },
+          ],
+        },
+        {
+          id: "reach",
+          h: "How to Reach Us",
+          card: true,
+          blocks: [
+            {
+              p: `If you have a question about this Privacy Policy, please contact us by telephone at <a href="tel:8134435370">(813) 443-5370</a>.`,
+            },
+          ],
+        },
+      ],
+    },
+  },
+  es: {
+    hipaa: {
+      eyebrow: "Legal · HIPAA",
+      icon: "shield-check",
+      title: "Política de HIPAA",
+      subtitle: "Aviso de prácticas de privacidad",
+      lead: "Cómo Palm Wellness Center puede usar y divulgar la información médica que conservamos sobre usted, y los derechos que tiene sobre ella.",
+      notice:
+        "Este aviso describe cómo se puede usar y divulgar su información médica y cómo puede acceder a ella. Por favor, revíselo detenidamente.",
+      sections: [
+        {
+          id: "use",
+          h: "Uso de datos",
+          blocks: [
+            {
+              p: `Entendemos que su información médica es personal. Estamos comprometidos a protegerla. Este Aviso describe cómo Palm Wellness Center (el "Centro") puede usar su información médica y divulgarla a otras personas fuera del Centro. La ley exige que el Centro:`,
+            },
+            {
+              ul: [
+                "Asegure que la información médica que lo identifica se mantenga privada;",
+                "Le informe de nuestros deberes legales y prácticas de privacidad con respecto a su información médica;",
+                "Cumpla con los términos del Aviso que está actualmente en vigor; y",
+                "Le notifique si su información médica se ve afectada por una brecha.",
+              ],
+            },
+          ],
+        },
+        {
+          id: "who",
+          h: "Quién seguirá este aviso",
+          blocks: [
+            {
+              p: "El Centro y todas sus sedes y ubicaciones seguirán los términos de este Aviso. Las siguientes personas también seguirán los términos de este Aviso:",
+            },
+            {
+              ul: [
+                `Todos los empleados, contratistas, voluntarios y otros agentes ("personal autorizado") del Centro.`,
+                "Profesionales de la salud autorizados a ingresar información en sus registros médicos en el Centro.",
+                "Miembros del personal médico del Centro y su personal autorizado.",
+              ],
+            },
+          ],
+        },
+        {
+          id: "disclose",
+          h: "Cómo el Centro puede usar y divulgar su información médica",
+          blocks: [
+            { p: "Podemos usar su información médica o compartirla con otros para los siguientes propósitos:" },
+            {
+              ul: [
+                `<strong>Tratamiento.</strong> Su información médica puede usarse para brindarle tratamiento o servicios médicos. Puede divulgarse a médicos, pasantes, enfermeras, técnicos, voluntarios, estudiantes y otras personas involucradas en su atención en el Centro. También podemos compartirla con otros proveedores de atención médica y su personal fuera del Centro, y usarla para contactarlo con recordatorios de citas o información sobre opciones de tratamiento y otros beneficios y servicios relacionados con la salud que puedan interesarle. Por ejemplo: un médico que lo esté tratando por una pierna rota puede necesitar saber si usted tiene diabetes, porque la diabetes puede retrasar el proceso de curación. Es posible que el médico deba informar al dietista sobre la diabetes para que se puedan organizar las comidas adecuadas. Los diferentes departamentos del Centro también pueden compartir información médica sobre usted para coordinar sus diferentes necesidades, como recetas, análisis de laboratorio y radiografías. El Centro también puede divulgar información médica sobre usted a personas ajenas al centro que puedan estar involucradas en su atención médica después de que usted lo abandone, como miembros de la familia, agencias de salud en el hogar y otras personas que brindan servicios que son parte de su atención.`,
+                `<strong>Pago.</strong> Su información médica puede usarse y divulgarse para que el tratamiento y los servicios recibidos en el Centro puedan facturarse y el pago pueda cobrarse a usted, a su compañía de seguros y/o a un tercero. Cumpliremos con su solicitud de no divulgar su información médica a su compañía de seguros si la información se relaciona únicamente con un artículo o servicio de atención médica por el cual nos ha pagado de su bolsillo y en su totalidad. Por ejemplo: si el seguro será responsable de reembolsar al Centro por su atención, el plan de salud o la compañía de seguros pueden necesitar información sobre el tratamiento que recibió para poder pagarlo. También se le puede dar información a alguien que ayude a pagar su atención. Su plan de salud o compañía de seguros también puede necesitar información sobre un tratamiento que va a recibir para obtener una aprobación previa o para determinar si lo cubrirá.`,
+                `<strong>Operaciones de atención médica.</strong> Su información médica puede usarse y divulgarse para promover las operaciones diarias del Centro. Estos usos y divulgaciones son necesarios para administrar el Centro y monitorear la calidad de la atención que reciben nuestros pacientes. También podemos compartirla con compañías externas que prestan servicios para nosotros, como acreditación, servicios legales, informáticos o de auditoría. Estas empresas externas se denominan "Asociados comerciales" y la HIPAA les exige mantener la confidencialidad de su información médica. Por ejemplo, su información médica puede ser:`,
+              ],
+            },
+            {
+              ol: [
+                "Revisada para evaluar el tratamiento y los servicios realizados por nuestro personal en su atención. Combinada con la de otros pacientes del centro para decidir qué servicios adicionales debe ofrecer el centro, qué servicios no son necesarios y si ciertos tratamientos nuevos son efectivos. Divulgada a médicos, enfermeras, técnicos y otros agentes del Centro con fines de revisión y aprendizaje. Divulgada a estudiantes de salud, pasantes y residentes con fines educativos. Combinada con información de otros centros para comparar cómo lo estamos haciendo y ver dónde podemos mejorar la atención y los servicios ofrecidos. La información que lo identifica en este conjunto de información médica puede eliminarse para que otros puedan usarla para estudiar la atención médica y la prestación de servicios sin saber quiénes son los pacientes específicos.",
+              ],
+            },
+            {
+              ul: [
+                `<strong>Participación en un expediente médico electrónico compartido.</strong> El Centro participa en un registro médico electrónico compartido con otros proveedores de atención médica de la comunidad. Lo hacemos para que sea más fácil para sus proveedores acceder a su información médica y para mejorar la calidad de su atención.`,
+                `<strong>Información del directorio del centro.</strong> Si el Centro utiliza un Directorio de pacientes, se le preguntará si desea participar. Solo se divulgará información limitada, incluida su condición general (por ejemplo, buena, regular o mala), a quienes pregunten por usted por su nombre. Si proporciona una afiliación religiosa, solo podrá proporcionarse a miembros del clero, a menos que usted se oponga.`,
+                `<strong>Organizaciones de acreditación privadas.</strong> Su información médica puede usarse para cumplir con los requisitos de este centro para satisfacer las pautas de organizaciones privadas de acreditación, como la Comisión Conjunta, NCQA, etc.`,
+                `<strong>Participación en intercambios de información médica.</strong> Podemos participar en uno o más intercambios de información médica (HIE) y compartir electrónicamente su información médica con fines de tratamiento, pago y operaciones de atención médica permitidas con otros participantes del HIE, incluidas entidades que pueden no estar listadas en "Quién seguirá este aviso". Según los requisitos de la ley estatal, es posible que se le pida "inscribirse" para compartir su información con los HIE, o se le puede dar la oportunidad de "excluirse" de la participación en HIE. Los HIE permiten a sus proveedores acceder de manera eficiente a la información médica necesaria para tratarlo y para otros fines legales. No compartiremos su información con un HIE a menos que el HIE esté sujeto a los requisitos de privacidad y seguridad de HIPAA.`,
+                `<strong>Personas involucradas en su cuidado.</strong> Podemos compartir su información médica con un familiar, tutor u otras personas involucradas en su atención, o que ayuden a pagar su atención. Su información médica también puede divulgarse a una entidad que ayude en un esfuerzo de socorro en caso de desastre para que su familia pueda ser notificada sobre su condición, estado y ubicación.`,
+                `<strong>Investigación.</strong> En determinadas circunstancias, su información médica puede usarse y divulgarse con fines de investigación. Todos los proyectos de investigación relacionados con la información médica de los pacientes deben aprobarse mediante un proceso de revisión especial para proteger la confidencialidad del paciente.`,
+              ],
+            },
+            {
+              p: "Un investigador puede tener acceso a la información que lo identifica solo a través del proceso de revisión especial o con su permiso por escrito. Los investigadores solo pueden comunicarse con usted si han recibido la aprobación para hacerlo mediante el proceso de revisión especial. Solo formará parte de uno de estos proyectos si acepta hacerlo y firma un formulario de consentimiento.",
+            },
+            {
+              ul: [
+                `<strong>Comercialización o venta de información médica.</strong> La mayoría de los usos y divulgaciones de su información médica con fines de marketing, o cualquier venta de su información médica, requerirán su permiso por escrito. Podemos comunicarnos con usted acerca de nuestros propios servicios.`,
+                `<strong>Recordatorios de citas.</strong> Su información médica puede usarse para contactarlo como recordatorio de una cita que tiene para tratamiento o atención médica en el Centro.`,
+                `<strong>Alternativas de tratamiento.</strong> Su información médica puede usarse para informarle o recomendarle posibles opciones o alternativas de tratamiento que puedan interesarle.`,
+                `<strong>Beneficios y servicios relacionados con la salud.</strong> Su información médica puede usarse para informarle sobre beneficios o servicios relacionados con la salud que puedan interesarle.`,
+                `<strong>Según lo requiera la ley.</strong> Su información médica se divulgará cuando así lo requieran las autoridades, leyes, reglas y/o regulaciones federales, estatales o locales.`,
+                `<strong>Litigios y disputas.</strong> Si está involucrado en una demanda o disputa, su información médica puede divulgarse en respuesta a una orden judicial o administrativa, una citación, una solicitud de descubrimiento u otros procesos legales por parte de otra persona involucrada en la disputa.`,
+                `<strong>Cumplimiento de la ley.</strong> Su información médica puede entregarse a las fuerzas del orden según lo autorice o exija la ley.`,
+              ],
+            },
+            { p: "Por ejemplo, podemos divulgar su información:" },
+            {
+              ol: [
+                "En respuesta a una orden judicial, citación, orden de registro, citatorio o proceso similar; para identificar o localizar a un sospechoso, fugitivo, testigo material o persona desaparecida; sobre la víctima de un delito si, bajo ciertas circunstancias limitadas, no podemos obtener el consentimiento de la víctima; sobre una muerte que creemos que puede ser el resultado de una conducta delictiva.",
+              ],
+            },
+            {
+              ul: [
+                `<strong>Para prevenir una amenaza grave para la salud o la seguridad.</strong> Podemos usar o compartir su información médica cuando sea necesario para prevenir una amenaza grave para su salud y seguridad, o para la del público o de otra persona. Sin embargo, cualquier divulgación se hará únicamente a alguien capaz de ayudar a prevenir la amenaza.`,
+                `<strong>Actividades de supervisión de la salud.</strong> Podemos divulgar su información médica a una agencia de supervisión de la salud para actividades autorizadas por la ley. Estas incluyen, por ejemplo, auditorías, investigaciones, inspecciones y licencias. Son necesarias para que el gobierno supervise el sistema de atención médica, los programas gubernamentales y el cumplimiento de las leyes de derechos civiles.`,
+                `<strong>Donación de órganos y tejidos.</strong> Si usted es donante de órganos o tejidos, su información médica puede entregarse a organizaciones que se ocupan de la obtención de órganos o del trasplante de órganos, ojos y tejidos, o a un banco de donación de órganos, según sea necesario para facilitar la donación y el trasplante.`,
+                `<strong>Militares y veteranos.</strong> Si es miembro de las fuerzas armadas, su información médica puede divulgarse según lo requieran las autoridades del mando militar. Si es miembro del personal militar extranjero, puede divulgarse a la autoridad militar extranjera correspondiente.`,
+                `<strong>Actividades de inteligencia y seguridad nacional.</strong> Su información médica se divulgará a funcionarios federales autorizados para actividades de inteligencia, contrainteligencia y otras actividades de seguridad nacional autorizadas por la ley.`,
+                `<strong>Servicios de protección para el presidente y otros.</strong> Su información médica puede divulgarse a funcionarios federales autorizados para que puedan brindar protección al presidente, a otras personas autorizadas o a jefes de estado extranjeros, o realizar investigaciones especiales.`,
+                `<strong>Compensación para trabajadores.</strong> Si busca tratamiento para una enfermedad o lesión relacionada con el trabajo, debemos proporcionar información completa de acuerdo con las leyes estatales específicas sobre reclamaciones de compensación para trabajadores. Una vez cumplidos los requisitos estatales y recibida una solicitud por escrito adecuada, solo podrán divulgarse los registros relacionados con la enfermedad o lesión laboral.`,
+                `<strong>Fines de salud pública.</strong> Podemos divulgar su información médica para actividades de salud pública, como actividades:`,
+              ],
+            },
+            {
+              ol: [
+                "Para prevenir o controlar enfermedades, lesiones o discapacidades; para informar nacimientos y defunciones; para reportar abuso o negligencia infantil; para informar reacciones a medicamentos o problemas con productos; para notificar a las personas sobre retiros de productos que puedan estar usando; para notificar a una persona que pueda haber estado expuesta a una enfermedad o que pueda estar en riesgo de contraerla o propagarla; para notificar a la autoridad gubernamental correspondiente si creemos que un paciente ha sido víctima de abuso, negligencia o violencia doméstica. Solo haremos esta divulgación si usted está de acuerdo o cuando la ley lo requiera o autorice.",
+              ],
+            },
+            {
+              ul: [
+                `<strong>Médicos forenses, examinadores médicos y directores de funerarias.</strong> Su información médica puede entregarse a un médico forense o examinador médico. Esto puede ser necesario, por ejemplo, para identificar a una persona fallecida o determinar la causa de la muerte. También podemos divulgar información médica sobre los pacientes del Centro a los directores de funerarias según sea necesario para cumplir con sus funciones.`,
+                `<strong>Reclusos.</strong> Si usted es recluso de una institución correccional o está bajo la custodia de un funcionario del orden, podemos divulgar su información médica a la institución correccional o al funcionario. Esta divulgación sería necesaria por las siguientes razones:`,
+              ],
+            },
+            {
+              ol: [
+                "Para que la institución le brinde atención médica; para proteger su salud y seguridad y la de los demás; por la seguridad y protección de la institución correccional.",
+              ],
+            },
+            {
+              ul: [
+                `<strong>Información con protección especial.</strong> La HIPAA brinda protección adicional a las notas de psicoterapia, y la mayoría de los usos o divulgaciones de estas notas requieren su permiso por escrito. Otros tipos de información también pueden tener mayor protección bajo la ley federal o estatal, como cierta información sobre drogas y alcohol, VIH/SIDA y otras enfermedades transmisibles, información genética, información de salud mental o información sobre discapacidades del desarrollo. Para este tipo de información, es posible que debamos obtener su permiso por escrito antes de divulgarla; podemos solicitar ese permiso en el formulario de Condiciones de admisión del centro si la ley lo permite.`,
+                `<strong>Otros usos y divulgaciones.</strong> Si el Centro desea usar o divulgar su información médica para un propósito que no se menciona en este aviso, le pedirá su permiso por escrito. Si otorga su permiso, puede revocarlo en cualquier momento, a menos que ya hayamos confiado en él para usar o divulgar la información. Si desea revocar su permiso, avísenos de inmediato.`,
+              ],
+            },
+          ],
+        },
+        {
+          id: "rights",
+          h: "Sus derechos con respecto a su información médica",
+          blocks: [
+            { p: "Usted tiene los siguientes derechos con respecto a su información médica:" },
+            {
+              ul: [
+                `<strong>Derecho a solicitar acceso a su información médica.</strong> Con ciertas excepciones, tiene derecho a ver y obtener una copia de su información médica que pueda usarse para tomar decisiones sobre su atención. Para verla u obtener una copia, debe enviar una solicitud por escrito. Si solicita una copia impresa, es posible que le cobremos una tarifa por el costo de copia, envío u otros suministros asociados con su solicitud. Ver su información médica no tiene costo.`,
+                `<strong>Derecho a solicitar una modificación de su información médica.</strong> Si cree que la información médica que tenemos sobre usted es incorrecta o está incompleta, puede pedirnos que la modifiquemos. Para solicitarlo, debe enviar una solicitud por escrito. Sea específico sobre la información que cree que es incorrecta o incompleta.`,
+                `<strong>Derecho a una lista de divulgaciones.</strong> Tiene derecho a solicitar una lista de las divulgaciones que hicimos de su información médica para fines distintos al tratamiento, el pago y las operaciones de atención médica. La primera lista será gratuita. Para listas adicionales dentro de un período de 12 meses, podemos cobrarle los costos de proporcionarla. Le notificaremos el costo con anticipación para que pueda decidir si desea obtenerla.`,
+                `<strong>Derecho a solicitar restricciones sobre cómo se usa o divulga su información médica.</strong> Tiene derecho a solicitar que cambiemos la forma en que usamos o divulgamos su información médica para tratamiento, pago u operaciones de atención médica. Para solicitarlo, debe hacer su solicitud por escrito. En su solicitud, debe indicarnos:`,
+              ],
+            },
+            {
+              ol: [
+                "Qué información desea limitar; si desea limitar nuestro uso, la divulgación o ambos; a quién desea que se apliquen los límites, por ejemplo, divulgaciones a su cónyuge.",
+              ],
+            },
+            {
+              p: "No estamos obligados a aceptar su solicitud, salvo que no compartiremos su información médica con su compañía de seguro médico si paga el monto total adeudado por los servicios que recibe (a menos que la ley nos exija compartirla con su compañía de seguro de salud).",
+            },
+            {
+              ul: [
+                `<strong>Derecho a solicitar comunicación confidencial.</strong> Tiene derecho a solicitar que nos comuniquemos con usted de una manera o en un lugar que considere más confidencial. Por ejemplo, puede pedir que solo lo contactemos en el trabajo o por correo. Para solicitarlo, debe hacer su solicitud por escrito. No le preguntaremos el motivo. Atenderemos todas las solicitudes razonables. Su solicitud debe especificar cómo o dónde desea ser contactado.`,
+                `<strong>Derecho a ser notificado de una brecha.</strong> Le notificaremos si descubrimos una brecha de su información de salud protegida no asegurada.`,
+                `<strong>Derecho a una copia impresa de este aviso.</strong> Tiene derecho a una copia de este aviso y puede pedirla en cualquier momento. Aunque haya aceptado recibirlo electrónicamente, sigue teniendo derecho a una copia impresa.`,
+              ],
+            },
+          ],
+        },
+        {
+          id: "additional",
+          h: "Información adicional sobre este aviso",
+          blocks: [
+            {
+              ul: [
+                `<strong>Cambios a este aviso.</strong> Nos reservamos el derecho de cambiar este aviso y hacer que el aviso revisado sea efectivo para la información médica que ya tenemos sobre usted y para cualquier información que recibamos en el futuro. El centro publicará una copia vigente del aviso con la fecha de vigencia. Además, cada vez que se registre o sea admitido en el Centro para tratamiento o servicios de atención médica como paciente, le ofreceremos una copia del aviso vigente.`,
+                `<strong>Quejas.</strong> No será penalizado por presentar una queja. Si cree que se han violado sus derechos de privacidad, puede presentar una queja ante el Centro o ante el Secretario del Departamento de Salud y Servicios Humanos. Algunos estados pueden permitirle presentarla ante el Fiscal General del Estado, la Oficina de Asuntos del Consumidor u otras agencias estatales según lo especifique la ley estatal aplicable.`,
+              ],
+            },
+          ],
+        },
+        {
+          id: "questions",
+          h: "Para preguntas y quejas",
+          card: true,
+          blocks: [
+            {
+              p: "Si tiene preguntas sobre este aviso, cree que se han violado sus derechos de privacidad o desea ejercer alguno de los derechos enumerados anteriormente, comuníquese con:",
+            },
+            {
+              p: `<strong>Palm Wellness Center LLC</strong><br>1004 W Linebaugh Ave Ste A<br>Tampa, FL 33612<br>Teléfono: <a href="tel:8134435370">(813) 443-5370</a>`,
+            },
+            {
+              p: "También puede presentar una queja por escrito ante el Departamento de Salud y Servicios Humanos de EE. UU. Le proporcionaremos la dirección para presentarla. No tomaremos represalias de ninguna manera si decide presentar una queja.",
+            },
+            {
+              p: "Palm Wellness Center cumple con las leyes federales de derechos civiles aplicables y no discrimina por motivos de raza, color, nacionalidad, edad, discapacidad o sexo.",
+            },
+            {
+              p: `<strong>ATENCIÓN:</strong> Si no habla inglés, dispone de servicios de asistencia lingüística gratuitos. Llame al <a href="tel:8134435370">(813) 443-5370</a>.`,
+            },
+          ],
+        },
+      ],
+    },
+    privacy: {
+      eyebrow: "Legal · Privacidad",
+      icon: "lock",
+      title: "Política de privacidad",
+      lead: "Palm Wellness Center LLC valora su privacidad. A continuación explicamos cómo recopilamos, usamos y compartimos información sobre usted, junto con las opciones que tiene al respecto. Al utilizar nuestro sitio web, acepta los términos y condiciones de esta Política de privacidad. Además de esta Política de privacidad, cumplimos plenamente con el Aviso de prácticas de privacidad de Palm Wellness Center, según lo exige la Ley de Portabilidad y Responsabilidad de Seguros de Salud de 1996 (HIPAA).",
+      sections: [
+        {
+          id: "collect",
+          h: "Información que recopilamos",
+          blocks: [
+            {
+              p: `<strong>Información de identificación personal.</strong> Solo recopilamos información de identificación personal ("PII") con su consentimiento. La recopilación de PII ocurre si programa una cita en el sitio web, se suscribe a un boletín, comenta en nuestros blogs o utiliza otras funciones y recursos del sitio. La PII que recopilamos puede incluir su nombre, número de teléfono y dirección de correo electrónico.`,
+            },
+            {
+              p: "Puede visitar nuestro sitio web de forma anónima, pero eso puede impedirle participar en determinadas funciones o servicios.",
+            },
+            {
+              p: `<strong>Datos de cookies.</strong> Una cookie es una cadena de información que un sitio web almacena en la computadora de un visitante y que el navegador del visitante proporciona al sitio cada vez que regresa. Las etiquetas de píxeles (también llamadas balizas web) son pequeños bloques de código colocados en sitios web y correos electrónicos.`,
+            },
+            {
+              p: "Nuestro sitio web utiliza cookies y otras tecnologías, como etiquetas de píxeles, para ayudarnos a identificar y rastrear visitantes, uso y preferencias de acceso a nuestros servicios, así como para rastrear y comprender la efectividad de las campañas de correo electrónico y entregar anuncios dirigidos.",
+            },
+            { p: "Nuestro sitio web no emplea tecnología para anular la configuración de privacidad de su navegador." },
+            { p: "Por lo general, puede configurar su navegador para eliminar o rechazar las cookies antes de utilizar nuestro sitio web." },
+          ],
+        },
+        {
+          id: "use",
+          h: "Uso de datos",
+          blocks: [
+            { p: "Usamos su información para los fines que se enumeran a continuación:" },
+            {
+              ul: [
+                "Para contactar a los visitantes que solicitaron nuestros servicios a través del sitio web.",
+                "Para comercializar nuestros servicios.",
+                "Para medir, evaluar y mejorar la efectividad de nuestro marketing.",
+                "Para comunicarnos con usted si se suscribe a nuestros boletines.",
+              ],
+            },
+            { p: "Si no desea recibir noticias nuestras, puede darse de baja de las comunicaciones de marketing en cualquier momento." },
+          ],
+        },
+        {
+          id: "sharing",
+          h: "Intercambio de información",
+          blocks: [
+            {
+              p: "Compartimos información sobre usted en circunstancias limitadas y con las debidas garantías de privacidad. Se detallan a continuación:",
+            },
+            {
+              ul: [
+                `<strong>Proveedores externos:</strong> podemos compartir información sobre usted con proveedores externos que necesitan la información para brindarnos sus servicios. Esto incluye proveedores que nos ayudan a brindarle nuestros servicios, los que nos asisten con nuestros esfuerzos de marketing, los que crean herramientas para ayudarnos a ejecutar nuestras operaciones y otras herramientas de terceros que nos ayudan a gestionarlas. Exigimos a los proveedores que acepten compromisos de privacidad para compartir información con ellos.`,
+                `<strong>Requisitos legales y reglamentarios:</strong> podemos divulgar información sobre usted en respuesta a una citación, orden judicial u otra solicitud gubernamental.`,
+                `<strong>Para proteger derechos, propiedad y a otros:</strong> podemos divulgar información sobre usted cuando creamos de buena fe que la divulgación es razonablemente necesaria para proteger la propiedad o los derechos de Palm Wellness Center, de terceros o del público en general. Por ejemplo, si creemos de buena fe que existe un peligro inminente de muerte o lesiones físicas graves, podemos divulgar la información relacionada con la emergencia sin demora.`,
+              ],
+            },
+            {
+              p: "Tenemos una política de larga data de no vender los datos de nuestros usuarios. No somos un intermediario de datos, no vendemos su información personal a intermediarios de datos ni a otras empresas que quieran enviarle spam con correos de marketing. No compartimos información que lo identifique personalmente, como su nombre o correo electrónico, como parte de nuestro programa de publicidad. Usted tiene opciones sobre estos anuncios.",
+            },
+          ],
+        },
+        {
+          id: "retention",
+          h: "Retención de información",
+          blocks: [
+            {
+              p: "Por lo general, descartamos información sobre usted cuando ya no es necesaria para los fines para los que la recopilamos y usamos, como se describe en la sección anterior.",
+            },
+          ],
+        },
+        {
+          id: "children",
+          h: "Privacidad de los niños",
+          blocks: [
+            {
+              p: "No tenemos la intención de recopilar información de identificación personal de niños menores de 13 años. Si es menor de 13 años, no nos proporcione PII, no utilice nuestros servicios ni el sitio web. Si nos enteramos de que recopilamos PII de un niño menor de 13 años, eliminaremos esa información de inmediato.",
+            },
+          ],
+        },
+        {
+          id: "security",
+          h: "Seguridad",
+          blocks: [
+            {
+              p: "Si bien ningún servicio en línea es 100% seguro, trabajamos arduamente para proteger su información contra el acceso, uso, alteración o destrucción no autorizados, y tomamos medidas razonables para lograrlo. Supervisamos nuestro sitio web y nuestros servicios en busca de posibles vulnerabilidades y ataques.",
+            },
+          ],
+        },
+        {
+          id: "changes",
+          h: "Cambios en la política de privacidad",
+          blocks: [
+            {
+              p: "Aunque es probable que la mayoría de los cambios sean menores, Palm Wellness Center puede cambiar su Política de privacidad de vez en cuando. Alentamos a los visitantes a consultar con frecuencia esta página para ver si hay cambios.",
+            },
+            {
+              p: "Si realizamos cambios, se lo notificaremos agregando un registro de cambios en esta página y, en algunos casos, podemos brindarle un aviso adicional (como agregar una declaración en nuestra página de inicio o enviarle una notificación por correo electrónico).",
+            },
+            {
+              p: "Su uso posterior de los Servicios después de un cambio en nuestra Política de privacidad estará sujeto a la política actualizada.",
+            },
+          ],
+        },
+        {
+          id: "reach",
+          h: "Cómo comunicarse con nosotros",
+          card: true,
+          blocks: [
+            {
+              p: `Si tiene alguna pregunta sobre esta Política de privacidad, comuníquese con nosotros por teléfono al <a href="tel:8134435370">(813) 443-5370</a>.`,
+            },
+          ],
+        },
+      ],
+    },
+  },
+};
+
+const doc = docs[lang][kind];
+
+const eyebrowCls =
+  "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+---
+
+<!-- HEADER -->
+<section class="border-b border-line bg-bg-alt">
+  <div class="shell py-14 lg:py-20">
+    <div class="flex max-w-[820px] flex-col gap-5">
+      <span class={eyebrowCls}><Icon name={doc.icon} class="h-3.5 w-3.5" />{doc.eyebrow}</span>
+      <div class="flex flex-col gap-2">
+        <h1 class="font-titles text-[32px] leading-[1.1] text-ink sm:text-[38px] lg:text-[44px]">{doc.title}</h1>
+        {doc.subtitle && <p class="font-titles text-[18px] text-blue-deep lg:text-[20px]">{doc.subtitle}</p>}
+      </div>
+      <p class="max-w-[68ch] text-[16px] leading-[1.7] text-body sm:text-[17px]">{doc.lead}</p>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<section class="bg-white">
+  <div class="shell py-14 lg:py-20">
+    {doc.notice && (
+      <div class="mb-12 flex max-w-[75ch] gap-3 rounded-lg border border-blue-tint bg-blue-pale/50 p-5 lg:p-6">
+        <Icon name="info" class="mt-0.5 h-5 w-5 shrink-0 text-blue-deep" />
+        <p class="text-[13px] font-semibold uppercase leading-[1.6] tracking-[0.04em] text-blue-deep lg:text-[13.5px]">
+          {doc.notice}
+        </p>
+      </div>
+    )}
+    <div class="flex max-w-[75ch] flex-col gap-12">
+      {doc.sections.map((s) => (
+        <section id={s.id} class="scroll-mt-24">
+          <h2 class="font-titles text-[22px] leading-[1.2] text-ink lg:text-[26px]">{s.h}</h2>
+          <div class={`prose mt-4${s.card ? " rounded-lg border border-line bg-bg-alt p-6 lg:p-7" : ""}`}>
+            {s.blocks.map((b) =>
+              b.p ? (
+                <p set:html={b.p} />
+              ) : b.ul ? (
+                <ul>{b.ul.map((it) => <li set:html={it} />)}</ul>
+              ) : b.ol ? (
+                <ol>{b.ol.map((it) => <li set:html={it} />)}</ol>
+              ) : null
+            )}
+          </div>
+        </section>
+      ))}
+    </div>
+  </div>
+</section>

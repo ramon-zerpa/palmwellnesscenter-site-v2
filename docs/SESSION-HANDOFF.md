@@ -1,6 +1,6 @@
 # SESSION-HANDOFF — brief de arranque
 
-**Snapshot: 2026-09-24** · Grupo 9 cerrado (About + Contact, EN/ES); grupos 1-9 hechos, quedan 10-12 · rama `main`
+**Snapshot: 2026-09-24** · Grupos 9 y 11 cerrados (About + Contact y legal HIPAA/Privacidad, EN/ES); grupos 1-11 hechos, solo queda el blog (10) · rama `main`
 
 > **Destino final (clave):** producción en **Cloudflare Pages** desde el repo antiguo
 > `TrueWebmaster6/palmwellnesscenter-site`. El Vercel actual (`ramon-zerpa/palmwellnesscenter-site-v2`)
@@ -64,6 +64,8 @@ Cada página es un componente propio bajo `src/components/pages/`; las rutas EN/
 | `/car-accident-rehabilitation/carrollwood/` | `/es/rehabilitacion-de-accidentes-automovilisticos/carrollwood/` | `CityCarAccidentRehabPage.astro` (`city="carrollwood"`) |
 | `/about-us/` | `/es/acerca-de-nosotros/` | `AboutPage.astro` |
 | `/contact/` | `/es/contacto/` | `ContactPage.astro` (reescrito en sitio) |
+| `/hipaa-policy/` | `/es/politica-de-hipaa/` | `LegalPage.astro` (`kind="hipaa"`) |
+| `/privacy-policy/` | `/es/politica-de-privacidad/` | `LegalPage.astro` (`kind="privacy"`) |
 
 Hitos recientes:
 
@@ -109,6 +111,9 @@ Hitos recientes:
   footer.
 - **Destino confirmado por el cliente:** el proyecto vuelve a **Cloudflare Pages** + repo
   `TrueWebmaster6/palmwellnesscenter-site` al aprobarse; Vercel/`ramon-zerpa` es solo el preview.
+- **Grupo 11 (legal) cerrado, EN+ES:** `/hipaa-policy/` + `/privacy-policy` (+ ES) con
+  `LegalPage.astro` (`kind`). Documento limpio: header + aviso + prosa + tarjeta de contacto, sin
+  hero comercial. Dirección heredada corregida al NAP canónico. Las 4 al `Set` `migrated`.
 - Las 4 rutas nuevas de esta ronda (y las de las rondas anteriores) están en el `Set` `migrated` de
   `src/pages/[...slug].astro` (×2 por idioma).
 - En el bloque de confianza ("Professional and compassionate care you can trust") la imagen va con
@@ -125,7 +130,7 @@ Hitos recientes:
 
 Ojo: comprueba si esas rutas existen en `richpages.json` antes de añadirlas al `Set` `migrated`.
 (`/business-profiles/` **se retiró** con 301 al Brand Hub externo; no se rediseña.)
-Grupos 1-9 cerrados. Después, Grupo 11 (legal).
+Grupos 1-11 cerrados; solo queda el blog (Grupo 10).
 
 Procedimiento que funciona:
 

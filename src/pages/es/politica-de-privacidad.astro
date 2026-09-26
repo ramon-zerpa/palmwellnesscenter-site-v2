@@ -1,0 +1,23 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import TopBar from "../../components/TopBar.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import LegalPage from "../../components/pages/LegalPage.astro";
+
+const path = "/es/politica-de-privacidad/";
+---
+
+<Layout
+  lang="es"
+  path={path}
+  title="Política de Privacidad - Palm Wellness Center"
+  description="Cómo Palm Wellness Center recopila, usa y comparte información sobre usted, y las opciones que tiene sobre su privacidad."
+>
+  <TopBar lang="es" />
+  <Header lang="es" path={path} />
+  <main id="main">
+    <LegalPage lang="es" kind="privacy" />
+  </main>
+  <Footer lang="es" />
+</Layout>

@@ -360,6 +360,11 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   enlace "Business Profiles" de `/contact/` apunta ya a ese mismo Brand Hub (como el del footer).
 - **Sveltia CMS**: `backend.repo` apunta al repo final `TrueWebmaster6/palmwellnesscenter-site`
   (destino Cloudflare, § 9).
+- **Grupo 11 (legal) cerrado, EN+ES**: `/hipaa-policy/` + `/privacy-policy/`
+  (+ `/es/politica-de-hipaa/`, `/es/politica-de-privacidad/`) con `LegalPage.astro` (prop `kind`),
+  las cuatro al `Set` `migrated`. Son páginas de documento (header + aviso + prosa + tarjeta de
+  contacto), sin hero comercial. Corregida la dirección heredada (`8900 N. Armenia Ave` →
+  NAP canónico `1004 W Linebaugh Ave Ste A`).
 - Header, TopBar y Footer nuevos, con el contenedor único de 1200px; familia única de iconos
   (Lucide), `AnchorNav`, sistema de hover y primitivas de movimiento del hero, todo reutilizable.
 - Héroes con imagen a la derecha: entrada completa por desplazamiento de derecha a izquierda (no
@@ -377,11 +382,10 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 
 **Siguiente**
 
-1. **Grupo 10** de `docs/redesign-plan.md`: blog (`/news-blog/` + plantilla de post).
-   (`/business-profiles/` **se retiró** con 301 al Brand Hub, no se rediseña — ver § 4.1 y § 9.)
-   Después, Grupo 11 (legal).
-   (Grupos 1-9 cerrados: rehabilitación, accidentes, slip & fall + ciudades, About y Contact.)
-2. Grupo 11 (legal: `/hipaa-policy/`, `/privacy-policy/` + ES).
+1. **Grupo 10** de `docs/redesign-plan.md`: blog (`/news-blog/` + plantilla de post). Es lo único
+   que queda (`/business-profiles/` se retiró con 301 al Brand Hub, no se rediseña).
+2. **Grupos 1-11 cerrados**: rehabilitación, accidentes, slip & fall + ciudades, About, Contact y
+   legal (HIPAA + Privacidad, EN/ES).
 
 **Pendiente / bloqueado**
 

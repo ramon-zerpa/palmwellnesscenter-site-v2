@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import TopBar from "../components/TopBar.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import LegalPage from "../components/pages/LegalPage.astro";
+
+const path = "/hipaa-policy/";
+---
+
+<Layout
+  lang="en"
+  path={path}
+  title="HIPAA Policy - Palm Wellness Center"
+  description="How Palm Wellness Center may use and disclose your medical information, and the privacy rights you have under HIPAA."
+>
+  <TopBar lang="en" />
+  <Header lang="en" path={path} />
+  <main id="main">
+    <LegalPage lang="en" kind="hipaa" />
+  </main>
+  <Footer lang="en" />
+</Layout>

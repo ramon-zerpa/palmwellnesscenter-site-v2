@@ -1,7 +1,7 @@
 # Palm Wellness Center — Project Handoff
 
 **Updated:** 2026-09-24  
-**Last published commit:** `3703a3c` (Group 9: About + Contact, EN/ES); since then `/business-profiles/` was retired and `/contact/` trimmed locally  
+**Last published commit:** the legal pages (Group 11, EN/ES) and the `/business-profiles/` retirement published on top of `3703a3c` (Group 9)  
 **Branch:** `main` · a push to `origin main` deploys automatically through Vercel (preview).  
 **Final target (key):** **Cloudflare Pages**, from the old repo `TrueWebmaster6/palmwellnesscenter-site`. The Vercel preview (`ramon-zerpa/palmwellnesscenter-site-v2`) is temporary — see `AGENTS.md` § 9.
 
@@ -120,9 +120,14 @@ The About page preserves the legacy content, corrected to OptiMantra truth (IV T
 The Contact route already existed (`contact.astro`), so `ContactPage.astro` was rewritten in the new
 visual language while keeping `ContactForm.astro` and the Google map embed.
 
-The next planned migration is **Group 10**: the blog (`/news-blog/` + post template), then Group 11
-(legal). `/business-profiles/` was **retired** (client decision): it is no longer generated and 301s
-to the external Brand Hub; the "Business Profiles" link on `/contact/` now points to that same Brand
+**Group 11 (legal) is closed too** (EN + ES): `/hipaa-policy/` + `/privacy-policy` (and their ES
+mirrors `/es/politica-de-hipaa/`, `/es/politica-de-privacidad/`) use a shared `LegalPage.astro`
+(`kind` prop) — a document-style layout (header, notice, prose, contact card), no commercial hero,
+with the legacy address corrected to the canonical NAP.
+
+The next planned migration is **Group 10**: the blog (`/news-blog/` + post template) — the only group
+left. `/business-profiles/` was **retired** (client decision): it is no longer generated and 301s to
+the external Brand Hub; the "Business Profiles" link on `/contact/` now points to that same Brand
 Hub. See `docs/redesign-plan.md`.
 
 ## 2. Approved global UI decisions
@@ -265,6 +270,10 @@ The full business name is immutable in title tags: **Palm Wellness Center**. Do 
   zero horizontal overflow, one H1, no clipped text, no images missing dimensions, and anchor clicks
   resolve without writing a hash. Build stays at **273 pages** (`/about-us/` moved from the
   catch-all to an explicit route; `/contact/` was already explicit).
+- Group 11 (`LegalPage` for HIPAA + Privacy, EN/ES) was audited at 360·768·1440: zero horizontal
+  overflow, one H1, no clipped text, no images missing dimensions. The four legal paths moved from
+  the catch-all to explicit routes, so the build stays at **272 pages**. The legacy HIPAA address
+  was corrected to the canonical NAP.
 - The user reported PageSpeed Insights results of **97 mobile / 100 desktop** for the preview
   homepage. Treat those as the current performance reference. A local Lighthouse attempt was
   contaminated by the machine's AdBlock360 injection, so do not use it as a baseline or change
@@ -298,10 +307,10 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
 
 ## 8. Important unresolved work
 
-1. Redesign Groups 10–12 per `docs/redesign-plan.md`; the immediate work is Group 10 (blog).
-   Groups 2–9 are closed: rehabilitation, car accident, slip-and-fall, city cluster, About and
-   Contact are done. `/business-profiles/` is retired (301 to the external Brand Hub), not
-   redesigned.
+1. Redesign Groups 10–12 per `docs/redesign-plan.md`; the only group left is Group 10 (blog).
+   Groups 2–11 are closed: rehabilitation, car accident, slip-and-fall, city cluster, About,
+   Contact and legal (HIPAA + Privacy) are done. `/business-profiles/` is retired (301 to the
+   external Brand Hub), not redesigned.
 2. Interior pages still rendered through `RichPage`/`RichSection` retain legacy body design even
    though they inherit the current header/footer and icons.
 3. The Contact form **404s on the Vercel preview** because `functions/api/contact.ts` is a

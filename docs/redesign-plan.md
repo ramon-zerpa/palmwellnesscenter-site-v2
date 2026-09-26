@@ -56,7 +56,7 @@ flow), with pricing corrected to Optantra truth.
 | 8 | Slip & fall + cities | `/slip-and-fall-injury-treatment/` (✅) + city cluster (`/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/`) as one template (✅) | ES cluster (✅) |
 | 9 | About + Contact | `/about-us/` (✅), `/contact/` (✅) | `/es/acerca-de-nosotros/` (✅), `/es/contacto/` (✅) |
 | 10 | Blog | `/news-blog/` (+ post template) | `/es/blog-de-noticias/` |
-| 11 | Legal | `/hipaa-policy/`, `/privacy-policy/` | `/es/politica-de-hipaa/`, `/es/politica-de-privacidad/` |
+| 11 | Legal | `/hipaa-policy/` (✅), `/privacy-policy/` (✅) | `/es/politica-de-hipaa/`, `/es/politica-de-privacidad/` (✅) |
 | 12 | New pages upgrade | ✅ done — `/chronic-condition-management/`, `/preventive-care/`, `/telemedicine/`, `/membership/` (flattened to top level, not nested) | ES mirrors ✅ |
 
 ## Per-group workflow
@@ -103,7 +103,10 @@ flow), with pricing corrected to Optantra truth.
 - [x] Group 9 — `/about-us/` (+ `/es/acerca-de-nosotros/`) with `AboutPage.astro` (added to the
       `migrated` `Set`), and `/contact/` (+ `/es/contacto/`) rewritten in place in
       `ContactPage.astro` (route already existed; keeps `ContactForm.astro` and the map embed).
-- [ ] Groups 10–12 — still on the legacy body.
+- [x] Group 11 — `/hipaa-policy/` + `/privacy-policy/` (+ ES) with a shared `LegalPage.astro`
+      (`kind` prop). Document-style layout (header + notice + prose + contact card), no commercial
+      hero. The legacy HIPAA address was corrected to the canonical NAP.
+- [ ] Group 10 — blog (`/news-blog/` + post template) still on the legacy body.
 - **Retired (client decision, 2026-09-24):** `/business-profiles/` is removed from the site and 301s
   to the external Brand Hub (see `vercel.json` + `public/_redirects`). It is skipped by a `removed`
   `Set` in `[...slug].astro` (not `migrated`, since it was not rebuilt). This is the one intentional
