@@ -1,7 +1,8 @@
 # Palm Wellness Center — Project Handoff
 
 **Updated:** 2026-09-24  
-**Last published commit:** the legal pages (Group 11, EN/ES) and the `/business-profiles/` retirement published on top of `3703a3c` (Group 9)  
+**Last published commit:** `4e6b9ed` (Group 11 legal, EN/ES) on top of the `/business-profiles/`
+retirement and Contact cleanup; docs up to date in `33caf9f`.  
 **Branch:** `main` · a push to `origin main` deploys automatically through Vercel (preview).  
 **Final target (key):** **Cloudflare Pages**, from the old repo `TrueWebmaster6/palmwellnesscenter-site`. The Vercel preview (`ramon-zerpa/palmwellnesscenter-site-v2`) is temporary — see `AGENTS.md` § 9.
 
@@ -311,8 +312,9 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
    Groups 2–11 are closed: rehabilitation, car accident, slip-and-fall, city cluster, About,
    Contact and legal (HIPAA + Privacy) are done. `/business-profiles/` is retired (301 to the
    external Brand Hub), not redesigned.
-2. Interior pages still rendered through `RichPage`/`RichSection` retain legacy body design even
-   though they inherit the current header/footer and icons.
+2. All 41 `richpages.json` entries are migrated or retired, so `RichPage`/`RichSection` are unused
+   and the catch-all only serves the blog. The only legacy body left is the **blog** (list + post),
+   which is Group 10.
 3. The Contact form **404s on the Vercel preview** because `functions/api/contact.ts` is a
    Cloudflare Pages function. On the final Cloudflare Pages target it works with **no code change**;
    just load its env vars in the Cloudflare dashboard before the DNS cutover.

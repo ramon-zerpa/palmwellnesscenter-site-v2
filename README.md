@@ -117,8 +117,9 @@ Hay tres vías de render:
 1. **Rutas explícitas** en `src/pages/` — páginas rediseñadas y páginas nuevas
    (`primary-care/index.astro`, `iv-therapy.astro`, `contact.astro`…).
 2. **Blog** — markdown de `src/content/blog/`, resuelto por la colección en `[...slug].astro`.
-3. **Catch-all** `src/pages/[...slug].astro` — lee `src/data/richpages.json` y lo pinta con
-   `RichPage.astro`.
+3. **Catch-all** `src/pages/[...slug].astro` — históricamente leía `src/data/richpages.json` y lo
+   pintaba con `RichPage.astro`. Hoy **no queda ninguna richpage viva**: las 41 entradas están
+   migradas o retiradas, así que el catch-all solo sirve el **blog** (`BlogPost.astro`).
 
 **Migrar una página al diseño nuevo no borra su entrada del JSON.** Se añade la ruta al `Set`
 `migrated` dentro de `getStaticPaths()` de `[...slug].astro`; así el contenido viejo queda como

@@ -4,7 +4,7 @@ Memoria operativa de **palmwellness.center (v2)**. Léelo antes de tocar nada: c
 decisiones que ya se tomaron, por qué se tomaron, y los errores que ya se cometieron para no
 repetirlos. Si eres un agente nuevo, este archivo más `docs/` te ahorran empezar de cero.
 
-Última verificación de los datos de este archivo: **2026-09-24**.
+Última verificación de los datos de este archivo: **2026-09-25**.
 
 ---
 
@@ -376,7 +376,7 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 - Pencil: frame **`EnF3Q` (Primary Care Desktop)** construido y aprobado por el cliente.
 - `AGENTS.md`, `README.md`, `docs/` y el harness CDP versionado en `tools/qa/`.
 - Preview **no indexable**: `robots.txt` con `Disallow: /` + header `X-Robots-Tag` (ver § 9).
-- Último commit funcional publicado: `3703a3c` (Grupo 9: About + Contact, EN/ES).
+- Último commit funcional publicado: `4e6b9ed` (Grupo 11 legal, EN/ES); docs al día en `33caf9f`.
   Consulta `docs/PROJECT-HANDOFF.md` (estado canónico) y `docs/SESSION-HANDOFF.md` (brief de
   arranque de sesión) antes de tocar código.
 
@@ -395,14 +395,14 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   marcador de esas carencias.
 - El logo es `public/images/logo.webp`, 120×60 y de baja resolución. El cliente debe entregar
   SVG o 2×. Es inmutable: no lo rediseñes.
-- Las páginas de rehabilitación y el resto del interior aún usan el cuerpo heredado
-  (`RichPage`/`RichSection`): ya heredan header/footer e iconos nuevos, pero su contenido no está
-  en el lenguaje visual nuevo.
+- **Ya no queda ninguna página heredada**: las 41 entradas de `richpages.json` están migradas o
+  retiradas, así que `RichPage`/`RichSection` quedan **sin uso** (el catch-all solo sirve el blog).
+  Lo único heredado que queda es el **cuerpo del blog** (vista de lista y post, Grupo 10).
 - **El frame `EnF3Q` y el código divergen en 2 puntos**: Pencil todavía muestra el separador del
   bloque de Related Services (eliminado en código) y el orden viejo del nav de anclas. El código
   aprobado prevalece; sincronizar Pencil si se vuelve a editar ese frame.
-- **El formulario de contacto está muerto en producción** (§ 10). Es lo único que hoy pierde
-  leads de verdad.
+- **El formulario de contacto no funciona en el preview de Vercel** (en Cloudflare funciona solo,
+  § 10): mientras el DNS no apunte a Cloudflare, el preview no captura leads del formulario.
 - **Sveltia CMS — auth pendiente**: falta desplegar el worker `sveltia-cms-auth` (GitHub OAuth) y
   poner su URL en `backend.base_url` (hoy el placeholder `https://YOUR-SVELTIA-AUTH.workers.dev`).
   Sin eso el editor no puede iniciar sesión. **El "deber ser", paso a paso, está en

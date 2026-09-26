@@ -7,6 +7,10 @@
 > es **solo preview**. En Cloudflare sí funcionan el formulario de contacto y `_redirects`/`_headers`.
 > Ver `AGENTS.md` § 9.
 
+> **Pendiente antes de publicar contenido:** conectar la **auth de Sveltia** (GitHub OAuth App +
+> worker `sveltia-cms-auth` en Cloudflare y su URL en `backend.base_url`). Paso a paso y "deber ser"
+> en **`docs/sveltia-auth-setup.md`**. Recordar este pendiente cuando toque editar el blog.
+
 > Pega este archivo (o su ruta) al empezar un chat nuevo. Es autosuficiente, pero **la referencia
 > vinculante es `AGENTS.md`** y el estado canónico está en `docs/PROJECT-HANDOFF.md`. Si algo
 > aquí contradice `AGENTS.md`, manda `AGENTS.md`.
