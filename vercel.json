@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/business-profiles",
+      "destination": "https://palmwellnesscenter.blob.core.windows.net/brand/palm-wellness-center-brand-hub.html",
+      "permanent": true
+    },
+    {
+      "source": "/business-profiles/",
+      "destination": "https://palmwellnesscenter.blob.core.windows.net/brand/palm-wellness-center-brand-hub.html",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

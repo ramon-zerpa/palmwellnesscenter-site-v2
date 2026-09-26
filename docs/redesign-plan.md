@@ -55,7 +55,7 @@ flow), with pricing corrected to Optantra truth.
 | 7 | Auto accident III | `/car-accident-chiropractor/` (✅), `/whiplash-treatment-tampa/` (✅) | `/es/quiropractico-para-accidente-de-auto/` (✅), `/es/tratamiento-latigazo-cervical-tampa/` (✅) |
 | 8 | Slip & fall + cities | `/slip-and-fall-injury-treatment/` (✅) + city cluster (`/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/`) as one template (✅) | ES cluster (✅) |
 | 9 | About + Contact | `/about-us/` (✅), `/contact/` (✅) | `/es/acerca-de-nosotros/` (✅), `/es/contacto/` (✅) |
-| 10 | Blog + misc | `/news-blog/` (+ post template), `/business-profiles/` | `/es/blog-de-noticias/` |
+| 10 | Blog | `/news-blog/` (+ post template) | `/es/blog-de-noticias/` |
 | 11 | Legal | `/hipaa-policy/`, `/privacy-policy/` | `/es/politica-de-hipaa/`, `/es/politica-de-privacidad/` |
 | 12 | New pages upgrade | ✅ done — `/chronic-condition-management/`, `/preventive-care/`, `/telemedicine/`, `/membership/` (flattened to top level, not nested) | ES mirrors ✅ |
 
@@ -104,6 +104,10 @@ flow), with pricing corrected to Optantra truth.
       `migrated` `Set`), and `/contact/` (+ `/es/contacto/`) rewritten in place in
       `ContactPage.astro` (route already existed; keeps `ContactForm.astro` and the map embed).
 - [ ] Groups 10–12 — still on the legacy body.
+- **Retired (client decision, 2026-09-24):** `/business-profiles/` is removed from the site and 301s
+  to the external Brand Hub (see `vercel.json` + `public/_redirects`). It is skipped by a `removed`
+  `Set` in `[...slug].astro` (not `migrated`, since it was not rebuilt). This is the one intentional
+  drop in the page count.
 
 **Per-page workflow actually used** (repeat for the next groups):
 
@@ -113,6 +117,6 @@ flow), with pricing corrected to Optantra truth.
    alternating light and `blue-deep` bands, FAQ, transport, final CTA).
 4. Wrap EN/ES routes as ~23-line files (`Layout` → `TopBar` → `Header` → `main` → `Footer`), and add
    the paths to the `migrated` `Set` in `[...slug].astro` when the path exists in `richpages.json`.
-5. `npm run build` → **273 pages**; audit EN/ES at 360·412·768·1024·1440 with `tools/qa/cdp-pc.ps1`
+5. `npm run build` → **272 pages**; audit EN/ES at 360·412·768·1024·1440 with `tools/qa/cdp-pc.ps1`
    (overflow, H1, image dimensions, clipped text, anchor clicks); review screenshots.
 6. Commit + push (Vercel deploys), then verify the live pages over HTTP.

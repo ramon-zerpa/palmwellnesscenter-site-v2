@@ -13,3 +13,7 @@
 /feed/     /             301
 /home      /             301
 /home/     /             301
+
+# Business Profiles retired -> external Brand Hub
+/business-profiles    https://palmwellnesscenter.blob.core.windows.net/brand/palm-wellness-center-brand-hub.html   301
+/business-profiles/   https://palmwellnesscenter.blob.core.windows.net/brand/palm-wellness-center-brand-hub.html   301

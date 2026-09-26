@@ -1,8 +1,9 @@
 # Palm Wellness Center — Project Handoff
 
 **Updated:** 2026-09-24  
-**Last published commit:** Groups 3, 4 and 8 (city cluster) plus the Group-8 rail fix published; Group 9 (About + Contact, EN/ES) built locally on top of `5bd09ec`  
-**Branch:** `main` · a push to `origin main` deploys automatically through Vercel.
+**Last published commit:** `3703a3c` (Group 9: About + Contact, EN/ES); since then `/business-profiles/` was retired and `/contact/` trimmed locally  
+**Branch:** `main` · a push to `origin main` deploys automatically through Vercel (preview).  
+**Final target (key):** **Cloudflare Pages**, from the old repo `TrueWebmaster6/palmwellnesscenter-site`. The Vercel preview (`ramon-zerpa/palmwellnesscenter-site-v2`) is temporary — see `AGENTS.md` § 9.
 
 Read this after `AGENTS.md` at the beginning of a new session. It is the concise, current
 handoff; `AGENTS.md` remains the binding technical and operational reference. For a paste-in
@@ -13,8 +14,13 @@ brief to start a brand-new chat, use `docs/SESSION-HANDOFF.md`.
 ## 1. Where the project stands
 
 The current preview is a bilingual Astro 5 rebuild of Palm Wellness Center. EN routes are at the
-root and ES routes use `/es/` with translated slugs. Production preview is
+root and ES routes use `/es/` with translated slugs. The preview is
 `https://palmwellnesscenter-site-v2.vercel.app/`; the final domain still serves the old site.
+
+**Final destination:** when approved, the site is deployed on **Cloudflare Pages** from the old repo
+`TrueWebmaster6/palmwellnesscenter-site`. There, `public/_redirects`, `public/_headers` and the
+`functions/api/contact.ts` contact form work natively; on the Vercel preview they are inert (the form
+404s). Sveltia authors into that final repo. See `AGENTS.md` § 9.
 
 **The Primary Care family is closed in EN + ES.** Every page is bespoke, built in the approved
 visual language, with its own content and photography:
@@ -114,8 +120,10 @@ The About page preserves the legacy content, corrected to OptiMantra truth (IV T
 The Contact route already existed (`contact.astro`), so `ContactPage.astro` was rewritten in the new
 visual language while keeping `ContactForm.astro` and the Google map embed.
 
-The next planned migration is **Group 10**: the blog (`/news-blog/` + post template) and
-`/business-profiles/`, then Group 11 (legal). See `docs/redesign-plan.md`.
+The next planned migration is **Group 10**: the blog (`/news-blog/` + post template), then Group 11
+(legal). `/business-profiles/` was **retired** (client decision): it is no longer generated and 301s
+to the external Brand Hub; the "Business Profiles" link on `/contact/` now points to that same Brand
+Hub. See `docs/redesign-plan.md`.
 
 ## 2. Approved global UI decisions
 
@@ -229,7 +237,7 @@ The full business name is immutable in title tags: **Palm Wellness Center**. Do 
 
 ## 6. Recent verification and performance context
 
-- `npm run build` passes with **273 pages**.
+- `npm run build` passes with **272 pages** (273 before `/business-profiles/` was retired).
 - Every page of the Primary Care family, Physical Rehabilitation and the car accident family was
   audited in EN/ES at 360·412·768·1024·1440: zero horizontal overflow, one H1, no clipped text, no
   images missing dimensions, anchor clicks never write a hash into the URL.
@@ -269,7 +277,7 @@ The full business name is immutable in title tags: **Palm Wellness Center**. Do 
 # Always use IPv4; localhost fails on this machine.
 npm run dev -- --host 127.0.0.1
 
-# Required validation: expected output is 273 pages.
+# Required validation: expected output is 272 pages.
 npm run build
 
 # Responsive audit with the dev server running.
@@ -290,16 +298,19 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
 
 ## 8. Important unresolved work
 
-1. Redesign Groups 10–12 per `docs/redesign-plan.md`; the immediate work is Group 10 (blog +
-   business profiles). Groups 2–9 are closed: rehabilitation, car accident, slip-and-fall,
-   city cluster, About and Contact are done.
+1. Redesign Groups 10–12 per `docs/redesign-plan.md`; the immediate work is Group 10 (blog).
+   Groups 2–9 are closed: rehabilitation, car accident, slip-and-fall, city cluster, About and
+   Contact are done. `/business-profiles/` is retired (301 to the external Brand Hub), not
+   redesigned.
 2. Interior pages still rendered through `RichPage`/`RichSection` retain legacy body design even
    though they inherit the current header/footer and icons.
-3. The Contact form is **404 in Vercel production** because `functions/api/contact.ts` is a
-   Cloudflare Pages function. Move it to Vercel's `/api` convention or migrate hosting before the
-   final DNS cutover.
-4. `public/_redirects` and `public/_headers` are Cloudflare artifacts ignored by Vercel. Port
-   required redirects/security headers to `vercel.json` before launch.
+3. The Contact form **404s on the Vercel preview** because `functions/api/contact.ts` is a
+   Cloudflare Pages function. On the final Cloudflare Pages target it works with **no code change**;
+   just load its env vars in the Cloudflare dashboard before the DNS cutover.
+4. `public/_redirects` and `public/_headers` are ignored by Vercel but active on Cloudflare. The
+   `/business-profiles/` 301 lives in both `vercel.json` (preview) and `public/_redirects` (final).
+   On Cloudflare there is nothing to port; on Vercel, keep the `redirects` block when removing the
+   `noindex` header.
 5. The preview is intentionally noindex (`public/robots.txt` + `vercel.json` header). Remove both
    only as part of the final launch checklist in `AGENTS.md` §9.
 6. The immutable logo remains low resolution (`public/images/logo.webp`, 120×60). The client must

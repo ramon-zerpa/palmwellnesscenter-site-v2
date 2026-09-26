@@ -2,6 +2,11 @@
 
 **Snapshot: 2026-09-24** · Grupo 9 cerrado (About + Contact, EN/ES); grupos 1-9 hechos, quedan 10-12 · rama `main`
 
+> **Destino final (clave):** producción en **Cloudflare Pages** desde el repo antiguo
+> `TrueWebmaster6/palmwellnesscenter-site`. El Vercel actual (`ramon-zerpa/palmwellnesscenter-site-v2`)
+> es **solo preview**. En Cloudflare sí funcionan el formulario de contacto y `_redirects`/`_headers`.
+> Ver `AGENTS.md` § 9.
+
 > Pega este archivo (o su ruta) al empezar un chat nuevo. Es autosuficiente, pero **la referencia
 > vinculante es `AGENTS.md`** y el estado canónico está en `docs/PROJECT-HANDOFF.md`. Si algo
 > aquí contradice `AGENTS.md`, manda `AGENTS.md`.
@@ -16,10 +21,12 @@ como segunda línea. El sitio viejo (WordPress/Oxygen) sigue en el dominio final
 
 | | |
 |---|---|
-| Producción (preview, **noindex**) | `https://palmwellnesscenter-site-v2.vercel.app/` |
+| Preview (**noindex**) | `https://palmwellnesscenter-site-v2.vercel.app/` |
+| **Destino final** | **Cloudflare Pages** desde `TrueWebmaster6/palmwellnesscenter-site` (ver AGENTS § 9) |
 | Dominio final (aún sitio viejo) | `https://www.palmwellness.center/` |
-| Repo | `github.com/ramon-zerpa/palmwellnesscenter-site-v2` |
-| Build | **273 páginas** — si cambia sin añadir/quitar ruta, es un bug |
+| Repo (preview) | `github.com/ramon-zerpa/palmwellnesscenter-site-v2` |
+| Repo (final) | `github.com/TrueWebmaster6/palmwellnesscenter-site` |
+| Build | **272 páginas** — si cambia sin añadir/quitar ruta, es un bug (`/business-profiles/` retirada) |
 | Herramientas | Astro 5, Tailwind v4 (`src/styles/global.css`), Lucide, Vercel |
 | Entorno | Windows + **PowerShell 5.1** (no bash), dev en `http://127.0.0.1:4321/` |
 
@@ -91,6 +98,17 @@ Hitos recientes:
   `Set` `migrated`), y `/contact/` (+ `/es/contacto/`) reescrita en sitio en `ContactPage.astro`
   (la ruta ya existía; conserva `ContactForm.astro` y el mapa). Contenido corregido: IV Therapy ya
   no dice "coming soon".
+- **`/business-profiles/` retirada** (decisión del cliente): no se genera (Set `removed`) y
+  `vercel.json` + `public/_redirects` la mandan con **301** al Brand Hub externo. El enlace
+  "Business Profiles" de `/contact/` apunta a ese mismo Brand Hub (como el del footer).
+- **Sveltia CMS**: `backend.repo` apunta al repo final `TrueWebmaster6/palmwellnesscenter-site`;
+  falta desplegar/configurar `backend.base_url` (worker de auth) para que el editor pueda iniciar
+  sesión.
+- **Contact (ajuste pedido):** se quitó el rail del hero (teléfono/horario/bilingüe), el nav de
+  anclas "On this page" y el back-to-top. El enlace "Business Profiles" apunta al Brand Hub del
+  footer.
+- **Destino confirmado por el cliente:** el proyecto vuelve a **Cloudflare Pages** + repo
+  `TrueWebmaster6/palmwellnesscenter-site` al aprobarse; Vercel/`ramon-zerpa` es solo el preview.
 - Las 4 rutas nuevas de esta ronda (y las de las rondas anteriores) están en el `Set` `migrated` de
   `src/pages/[...slug].astro` (×2 por idioma).
 - En el bloque de confianza ("Professional and compassionate care you can trust") la imagen va con
@@ -101,12 +119,12 @@ Hitos recientes:
 
 ## 3. Próximo paso exacto
 
-**Grupo 10 de `docs/redesign-plan.md`** (blog + business profiles), todavía con el cuerpo heredado:
+**Grupo 10 de `docs/redesign-plan.md`** (blog), todavía con el cuerpo heredado:
 
 - `/news-blog/` (+ `/es/blog-de-noticias/`) y su plantilla de post (`[...slug].astro` → `BlogPost.astro`).
-- `/business-profiles/`.
 
 Ojo: comprueba si esas rutas existen en `richpages.json` antes de añadirlas al `Set` `migrated`.
+(`/business-profiles/` **se retiró** con 301 al Brand Hub externo; no se rediseña.)
 Grupos 1-9 cerrados. Después, Grupo 11 (legal).
 
 Procedimiento que funciona:
@@ -122,7 +140,7 @@ Procedimiento que funciona:
 4. **Wrappers**: crea/reescribe las rutas EN y ES como archivos de ~23 líneas.
 5. **Catch-all**: añade las rutas al `Set` `migrated` de `[...slug].astro` **solo si la ruta existe
    en `richpages.json`**.
-6. **Build** → debe dar **273**. **QA**: auditoría EN/ES a 360·412·768·1024·1440 + click + capturas.
+6. **Build** → debe dar **272**. **QA**: auditoría EN/ES a 360·412·768·1024·1440 + click + capturas.
 7. **Commit y push** → Vercel despliega solo; verifica con `vercel ls` y por HTTP.
 
 ---
@@ -131,7 +149,7 @@ Procedimiento que funciona:
 
 ```powershell
 npm run dev -- --host 127.0.0.1     # SIEMPRE 127.0.0.1; "localhost" FALLA en esta máquina
-npm run build                        # debe dar 273 páginas
+npm run build                        # debe dar 272 páginas
 npm run preview
 
 # QA (requiere el dev server levantado)

@@ -10,10 +10,12 @@ un design system propio, conservando **todas** las URLs indexadas del sitio viej
 
 | | |
 |---|---|
-| **Producción (v2)** | https://palmwellnesscenter-site-v2.vercel.app/ |
+| **Preview actual (Vercel)** | https://palmwellnesscenter-site-v2.vercel.app/ |
+| **Destino final** | **Cloudflare Pages**, desde el repo `TrueWebmaster6/palmwellnesscenter-site` (ver `AGENTS.md` § 9) |
 | **Dominio final** | https://www.palmwellness.center/ — todavía sirve el sitio viejo, el DNS no se ha cortado |
-| **Repositorio** | https://github.com/ramon-zerpa/palmwellnesscenter-site-v2 |
-| **Páginas** | 273 |
+| **Repositorio (preview)** | https://github.com/ramon-zerpa/palmwellnesscenter-site-v2 |
+| **Repositorio (final)** | https://github.com/TrueWebmaster6/palmwellnesscenter-site |
+| **Páginas** | 272 |
 | **Idiomas** | EN en la raíz · ES en `/es/` con slugs traducidos |
 
 > **¿Eres un agente o vienes a tocar código?** Lee en este orden
@@ -52,15 +54,16 @@ npm run dev -- --host 127.0.0.1     # http://127.0.0.1:4321/
 IPv6 (`::1`) y el dev server escucha solo en IPv4, así que `localhost` falla.
 
 ```powershell
-npm run build      # debe dar 273 páginas
+npm run build      # debe dar 272 páginas
 npm run preview    # sirve dist/ localmente
 ```
 
 El build **es** la verificación: no hay `lint`, `typecheck` ni `test`. Rompe a propósito si
 aparece un icono no reconocido o una referencia mal formada.
 
-> Regla de oro: si el build deja de dar **273** páginas sin que hayas añadido o quitado una ruta
-> a propósito, has perdido o duplicado una ruta.
+> Regla de oro: si el build deja de dar **272** páginas sin que hayas añadido o quitado una ruta
+> a propósito, has perdido o duplicado una ruta. (`/business-profiles/` está retirada con 301 al
+> Brand Hub externo: es el único descenso intencional del conteo.)
 
 ## Estructura
 

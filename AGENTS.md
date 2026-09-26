@@ -15,7 +15,10 @@ como sitio **Astro 5 estático**, con **reposicionamiento: Atención Primaria pa
 servicio bandera**; rehabilitación (quiropráctica, fisioterapia, accidentes, masajes,
 ultrasonido, ejercicios terapéuticos) baja a sección secundaria. Bilingüe EN/ES.
 
-- **Producción actual (v2):** `https://palmwellnesscenter-site-v2.vercel.app/`
+- **Producción actual (v2):** `https://palmwellnesscenter-site-v2.vercel.app/` — **preview temporal
+  en Vercel**.
+- **Destino final:** **Cloudflare Pages**, desde el repo antiguo
+  `TrueWebmaster6/palmwellnesscenter-site`. Es la decisión clave del proyecto: ver § 9.
 - **Dominio final:** `https://www.palmwellness.center/` (todavía sirve el sitio viejo — el
   corte de DNS no se ha hecho).
 - **Referencia heredada:** carpeta `legacy/` (clon de `TrueWebmaster6/palmwellnesscenter-site`).
@@ -27,7 +30,7 @@ ultrasonido, ejercicios terapéuticos) baja a sección secundaria. Bilingüe EN/
 
 ```powershell
 npm run dev -- --host 127.0.0.1   # dev en http://127.0.0.1:4321/
-npm run build                      # debe dar 273 páginas
+npm run build                      # debe dar 272 páginas
 npm run preview
 ```
 
@@ -50,7 +53,7 @@ salió, usa `vercel ls palmwellnesscenter-site-v2` (ver sección 9) en vez de fi
 `npm run build` (el build **rompe** ante un icono desconocido y ante referencias mal formadas)
 más el harness CDP de `tools/qa/` (sección 7).
 
-Regla de oro del build: **273 páginas**. Si el número cambia sin que hayas añadido o quitado
+Regla de oro del build: **272 páginas**. Si el número cambia sin que hayas añadido o quitado
 una ruta a propósito, es un bug: alguna ruta se perdió o se duplicó.
 
 ---
@@ -123,6 +126,11 @@ entrada en el JSON, la ruta explícita es la única que existe.
 El catch-all **ya no hace sustitución de contenido**: los archivos de sustitución
 (`physicalRehabilitation.ts`, `therapeuticExercises.ts`) se eliminaron y esas rutas ya son páginas
 propias. `richpages.json` queda solo como archivo histórico del resto.
+
+Hay además un `Set` **`removed`** (distinto de `migrated`) para rutas **retiradas del sitio** que no
+se reconstruyen: hoy solo `/business-profiles/`, que deja de generarse y pasa a un **301** hacia el
+Brand Hub externo (en `vercel.json` y `public/_redirects`). Cuando una ruta se retire con 301
+aprobado, va aquí, no a `migrated`.
 
 ### 4.2 i18n
 
@@ -347,24 +355,31 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   `Set` `migrated`), y `/contact/` (+ `/es/contacto/`) reescrita en sitio en `ContactPage.astro`
   (la ruta ya existía; conserva `ContactForm.astro` y el mapa). Contenido corregido: IV Therapy ya
   no dice "coming soon".
+- **`/business-profiles/` retirada** (decisión del cliente, 2026-09-24): ya no se genera (Set
+  `removed`) y `vercel.json` + `public/_redirects` la mandan con **301** al Brand Hub externo. El
+  enlace "Business Profiles" de `/contact/` apunta ya a ese mismo Brand Hub (como el del footer).
+- **Sveltia CMS**: `backend.repo` apunta al repo final `TrueWebmaster6/palmwellnesscenter-site`
+  (destino Cloudflare, § 9).
 - Header, TopBar y Footer nuevos, con el contenedor único de 1200px; familia única de iconos
   (Lucide), `AnchorNav`, sistema de hover y primitivas de movimiento del hero, todo reutilizable.
 - Héroes con imagen a la derecha: entrada completa por desplazamiento de derecha a izquierda (no
   wipe), sombra, leve deriva, corazón pulsante y línea vital dinámica. Para cada nueva foto,
   verifica el `object-position` en el contenedor real; no asumas `center`.
 - Todas las páginas del grupo auditadas en EN/ES a 360·412·768·1024·1440: sin overflow, 1 H1, sin
-  texto recortado y sin imágenes sin dimensiones. El build sigue produciendo **273 páginas**.
+  texto recortado y sin imágenes sin dimensiones. El build sigue produciendo **272 páginas** (273
+  menos `/business-profiles/`, retirada — ver § 4.1 y § 9).
 - Pencil: frame **`EnF3Q` (Primary Care Desktop)** construido y aprobado por el cliente.
 - `AGENTS.md`, `README.md`, `docs/` y el harness CDP versionado en `tools/qa/`.
 - Preview **no indexable**: `robots.txt` con `Disallow: /` + header `X-Robots-Tag` (ver § 9).
-- Último commit funcional publicado: `767396d` (slip & fall, EN/ES); antes `b9a7ebe` (Grupos 3 y 4).
+- Último commit funcional publicado: `3703a3c` (Grupo 9: About + Contact, EN/ES).
   Consulta `docs/PROJECT-HANDOFF.md` (estado canónico) y `docs/SESSION-HANDOFF.md` (brief de
   arranque de sesión) antes de tocar código.
 
 **Siguiente**
 
-1. **Grupo 10** de `docs/redesign-plan.md`: blog (`/news-blog/` + plantilla de post) y
-   `/business-profiles/`. Después, Grupo 11 (legal).
+1. **Grupo 10** de `docs/redesign-plan.md`: blog (`/news-blog/` + plantilla de post).
+   (`/business-profiles/` **se retiró** con 301 al Brand Hub, no se rediseña — ver § 4.1 y § 9.)
+   Después, Grupo 11 (legal).
    (Grupos 1-9 cerrados: rehabilitación, accidentes, slip & fall + ciudades, About y Contact.)
 2. Grupo 11 (legal: `/hipaa-policy/`, `/privacy-policy/` + ES).
 
@@ -384,16 +399,36 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   aprobado prevalece; sincronizar Pencil si se vuelve a editar ese frame.
 - **El formulario de contacto está muerto en producción** (§ 10). Es lo único que hoy pierde
   leads de verdad.
+- **Sveltia CMS**: `backend.base_url` sigue siendo el placeholder
+  `https://YOUR-SVELTIA-AUTH.workers.dev`; sin desplegar el worker de auth (GitHub OAuth) el editor
+  no puede iniciar sesión. El resto de `config.yml` ya coincide con `src/content.config.ts`.
 - El `noindex` del preview **hay que retirarlo antes de apuntar el dominio real** (§ 9).
 
 ---
 
 ## 9. Despliegue y privacidad del preview
 
-**Vercel, no Cloudflare.** Proyecto `palmwellnesscenter-site-v2`
+> ### ⚠️ CLAVE — destino final (no confundir con el preview)
+>
+> **El sitio de producción se despliega en Cloudflare Pages, desde el repo
+> `TrueWebmaster6/palmwellnesscenter-site`.** El despliegue actual en Vercel
+> (`ramon-zerpa/palmwellnesscenter-site-v2`) es **solo la etapa de preview/revisión**. Cuando el
+> cliente apruebe, el proyecto vuelve a Cloudflare Pages y al repo antiguo.
+>
+> Consecuencias que hay que tener presentes en todo momento:
+> - En Cloudflare **sí funcionan** `public/_redirects`, `public/_headers` y
+>   `functions/api/contact.ts` (Pages Functions). En Vercel eran inertes (ver § 10).
+> - El mecanismo de redirects/headers de producción es `_redirects`/`_headers`, **no**
+>   `vercel.json`. `vercel.json` existe solo para que el preview de Vercel se comporte igual
+>   (mismo `noindex` y mismo 301).
+> - Sveltia (`public/admin/config.yml`) apunta al repo final `TrueWebmaster6/palmwellnesscenter-site`.
+> - Portar el repo a `TrueWebmaster6` no exige reescribir código: es el mismo proyecto.
+
+**Preview actual: Vercel.** Proyecto `palmwellnesscenter-site-v2`
 (`prj_l32giQYMr5T4uzRUpAdb9UOWUILL`, equipo `team_20lg2lbCnRL6X3nNjhWG2ovW` = `ramon-zerpa-projects`,
 plan **hobby**), framework `astro`, rama de producción `main`. Conectado a
-`github.com/ramon-zerpa/palmwellnesscenter-site-v2`.
+`github.com/ramon-zerpa/palmwellnesscenter-site-v2`. **Esto es temporal** (ver el recuadro CLAVE):
+el destino final es Cloudflare Pages + `TrueWebmaster6/palmwellnesscenter-site`.
 
 Comprobar el último deploy sin fiarse de la consola:
 
@@ -448,6 +483,9 @@ Dos piezas, y **las dos** hay que revertir antes de apuntar el dominio real:
    propio archivo, para que quien lo abra lo vea antes de tocarlo.
 2. `vercel.json` → header `X-Robots-Tag: noindex, nofollow, noarchive` en `/(.*)`. Es JSON
    estricto, **no admite comentarios**, así que la advertencia vive aquí y en `robots.txt`.
+   **Ojo:** ese mismo archivo lleva ya el bloque `redirects` con el 301 de `/business-profiles/` →
+   Brand Hub (ver § 4.1): al revertir el `noindex` borra **solo el bloque `headers`**, no el archivo
+   entero.
 
 Comprobar que sigue activo en producción:
 
@@ -458,15 +496,22 @@ Comprobar que sigue activo en producción:
 
 ### Checklist antes de apuntar el dominio real (www.palmwellness.center)
 
+**Destino final: Cloudflare Pages**, donde `public/_headers` y `public/_redirects` **sí** se aplican.
+
 1. Revertir `public/robots.txt` a `Allow: /` + la línea `Sitemap:` (el texto exacto está en el
    comentario del archivo).
-2. Borrar `vercel.json`, o solo su bloque `headers`.
-3. Resolver el formulario de contacto: **sigue muerto** (§ 10).
-4. Portar a `vercel.json` los headers de seguridad de `public/_headers` (HSTS, nosniff, etc.),
-   hoy inertes.
+2. Quitar el `noindex` del preview. En **Vercel** es borrar **solo el bloque `headers`** de
+   `vercel.json` (conserva el bloque `redirects` con el 301 de `/business-profiles/`). En
+   **Cloudflare** `vercel.json` no se usa: basta con que `public/_headers` no traiga `X-Robots-Tag`
+   (hoy no lo trae) y con haber revertido `robots.txt`.
+3. Formulario de contacto: en **Cloudflare funciona solo** (es una Pages Function), pero hay que
+   cargar las variables de entorno en el dashboard (§ 10). En Vercel está muerto.
+4. Headers de seguridad: en **Cloudflare** los aplica `public/_headers` (HSTS, nosniff, etc.). En
+   Vercel habría que portarlos a `vercel.json` solo si se quiere paridad durante el preview.
 
-Saltarse el paso 1 o el 2 deja el sitio de producción con `noindex`: **no se indexaría nunca**.
-Es el riesgo principal de esta opción y ya está aceptado por el cliente.
+Saltarse el paso 1 (o no quitar el `noindex`) deja el sitio de producción sin indexar: es el riesgo
+principal de esta opción y ya está aceptado por el cliente. **En Cloudflare el peligro real es
+`robots.txt`**, porque el `X-Robots-Tag` vive en `vercel.json`, que Cloudflare ignora.
 
 **Por qué no el Tier 1**: habría bloqueado también a las personas (gratis), pero obliga a que el
 jefe y el cliente creen cuenta de Vercel y acepten una invitación al equipo. Se eligió el Tier 3
@@ -474,7 +519,11 @@ para no añadir esa fricción. Consecuencia aceptada: cualquiera con el enlace p
 
 ---
 
-## 10. Bugs conocidos en producción (verificados 2026-09-20)
+## 10. Bugs conocidos en el preview (verificados 2026-09-20)
+
+> **Son artefactos de Vercel, no del código.** En el destino final (**Cloudflare Pages**)
+> desaparecen: el formulario funciona (Pages Function) y `_redirects`/`_headers` se aplican. La
+> tabla describe lo que se ve **en el preview actual**.
 
 **El sitio se despliega en Vercel, pero el repo trae artefactos de Cloudflare Pages.**
 `public/_redirects`, `public/_headers` y `functions/api/contact.ts` son convenciones de
@@ -487,9 +536,11 @@ para no añadir esa fricción. Consecuencia aceptada: cualquiera con el enlace p
 | `/sitemap.xml` | 404 (existe en `/sitemap-index.xml`) | Menor |
 | `/home`, `/feed` | 404 | Menor (rutas de WordPress) |
 
-- El formulario no funciona porque Vercel no compila `functions/` (busca `/api/`). Necesita:
-  una función en `/api`, o volver a Cloudflare Pages como destino.
-- Ni `_redirects` ni `_headers` se aplican: **los headers de seguridad no están activos**.
+- El formulario no funciona porque Vercel no compila `functions/` (busca `/api/`). En el destino
+  final (Cloudflare Pages) **funciona sin cambios**: `functions/api/contact.ts` es una Pages
+  Function. En Vercel necesitaría una función en `/api/`.
+- Ni `_redirects` ni `_headers` se aplican: **los headers de seguridad no están activos** en el
+  preview. En Cloudflare sí se aplican.
 - Ninguna de las rutas caídas está en el sitemap heredado (262 URLs), así que no hay URL
   indexada perdida. Pero **antes de apuntar el dominio real hay que resolverlo**, o el corte de
   DNS deja el formulario y los redirects sin funcionar en el dominio nuevo.

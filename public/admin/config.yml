@@ -3,6 +3,10 @@
 
 backend:
   name: github
+  # FINAL home: the client confirmed the site ends up in the old repo, deployed on
+  # Cloudflare Pages. The current Vercel preview builds from
+  # ramon-zerpa/palmwellnesscenter-site-v2, but Sveltia should author into the
+  # repo that production will deploy from.
   repo: TrueWebmaster6/palmwellnesscenter-site
   branch: main
   # >>> FILL IN: your deployed sveltia-cms-auth Worker URL (no trailing slash) <<<

@@ -49,7 +49,14 @@ export async function getStaticPaths() {
     "/about-us/",
     "/es/acerca-de-nosotros/",
   ]);
-  const resolvedRichPages = (richpages as any[]).filter((page) => !migrated.has(page.path));
+  // Paths retired from the site entirely. They are not generated; instead they
+  // 301 to external destinations via vercel.json and public/_redirects.
+  const removed = new Set([
+    "/business-profiles/",
+  ]);
+  const resolvedRichPages = (richpages as any[]).filter(
+    (page) => !migrated.has(page.path) && !removed.has(page.path)
+  );
   const trim = (s: string) => s.replace(/^\/|\/$/g, "");
   const rich = resolvedRichPages.map((p) => ({
     params: { slug: trim(p.path) },

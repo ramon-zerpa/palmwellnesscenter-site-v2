@@ -13,9 +13,12 @@
 #
 #   Sitemap: https://www.palmwellness.center/sitemap-index.xml
 #
-# Y QUITAR el archivo vercel.json (o al menos su bloque de headers), que fuerza
-# el header X-Robots-Tag: noindex. Si no se revierten los dos, el sitio de
-# produccion nacera con noindex y no se indexara nunca.
+# Y QUITAR el bloque de headers de vercel.json (el que fuerza el header
+# X-Robots-Tag: noindex), CONSERVANDO su bloque redirects (el 301 de
+# /business-profiles/). Nota: el destino final es Cloudflare Pages, donde
+# vercel.json no se usa; alli el noindex depende SOLO de este robots.txt.
+# Si no se revierte el noindex, el sitio de produccion nacera con noindex y no
+# se indexara nunca.
 #
 # Comprobacion: curl -sI https://palmwellnesscenter-site-v2.vercel.app/ | findstr -i robots
 # ---------------------------------------------------------------------------
