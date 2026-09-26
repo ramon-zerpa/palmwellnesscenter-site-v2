@@ -403,9 +403,10 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   aprobado prevalece; sincronizar Pencil si se vuelve a editar ese frame.
 - **El formulario de contacto está muerto en producción** (§ 10). Es lo único que hoy pierde
   leads de verdad.
-- **Sveltia CMS**: `backend.base_url` sigue siendo el placeholder
-  `https://YOUR-SVELTIA-AUTH.workers.dev`; sin desplegar el worker de auth (GitHub OAuth) el editor
-  no puede iniciar sesión. El resto de `config.yml` ya coincide con `src/content.config.ts`.
+- **Sveltia CMS — auth pendiente**: falta desplegar el worker `sveltia-cms-auth` (GitHub OAuth) y
+  poner su URL en `backend.base_url` (hoy el placeholder `https://YOUR-SVELTIA-AUTH.workers.dev`).
+  Sin eso el editor no puede iniciar sesión. **El "deber ser", paso a paso, está en
+  `docs/sveltia-auth-setup.md`.** El resto de `config.yml` ya coincide con `src/content.config.ts`.
 - El `noindex` del preview **hay que retirarlo antes de apuntar el dominio real** (§ 9).
 
 ---
@@ -582,6 +583,7 @@ para no añadir esa fricción. Consecuencia aceptada: cualquiera con el enlace p
 | `docs/redesign-plan.md` | los 12 grupos de migración |
 | `docs/PROJECT-HANDOFF.md` | estado aprobado, decisiones recientes, QA y próxima fase |
 | `docs/optimantra-services.md` | precios y servicios reales: la verdad del negocio |
+| `docs/sveltia-auth-setup.md` | **pendiente**: cómo desplegar el worker de auth de Sveltia y conectar el CMS |
 | `docs/ux-ui-brief.md` | brief de diseño que guio Pencil |
 | `seo/url-inventory.md` | las 262 URLs heredadas y su política |
 | `seo/FULL-AUDIT-REPORT.md`, `seo/ACTION-PLAN.md` | auditorías SEO |

@@ -326,6 +326,9 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
    supply an SVG or 2× asset; do not redraw it.
 7. No dedicated photography exists for IV Therapy, Telemedicine, Chronic Condition Management or
    Preventive Care; they reuse approved photos until the client delivers new assets.
+8. Sveltia CMS login is **not wired**: `backend.base_url` is still the placeholder worker URL. The
+   GitHub OAuth app + `sveltia-cms-auth` Cloudflare Worker must be deployed and its URL set in
+   `public/admin/config.yml`. Step-by-step in `docs/sveltia-auth-setup.md`.
 
 ## 9. Non-negotiable source of truth
 

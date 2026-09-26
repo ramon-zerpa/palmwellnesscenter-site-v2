@@ -104,8 +104,8 @@ Hitos recientes:
   `vercel.json` + `public/_redirects` la mandan con **301** al Brand Hub externo. El enlace
   "Business Profiles" de `/contact/` apunta a ese mismo Brand Hub (como el del footer).
 - **Sveltia CMS**: `backend.repo` apunta al repo final `TrueWebmaster6/palmwellnesscenter-site`;
-  falta desplegar/configurar `backend.base_url` (worker de auth) para que el editor pueda iniciar
-  sesión.
+  falta desplegar/configurar el worker de auth (`backend.base_url`) para que el editor pueda iniciar
+  sesión. **Pasos exactos: `docs/sveltia-auth-setup.md`.**
 - **Contact (ajuste pedido):** se quitó el rail del hero (teléfono/horario/bilingüe), el nav de
   anclas "On this page" y el back-to-top. El enlace "Business Profiles" apunta al Brand Hub del
   footer.
