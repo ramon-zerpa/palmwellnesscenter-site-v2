@@ -3,12 +3,12 @@
     {
       "source": "/business-profiles",
       "destination": "https://palmwellnesscenter.blob.core.windows.net/brand/palm-wellness-center-brand-hub.html",
-      "permanent": true
+      "statusCode": 301
     },
     {
       "source": "/business-profiles/",
       "destination": "https://palmwellnesscenter.blob.core.windows.net/brand/palm-wellness-center-brand-hub.html",
-      "permanent": true
+      "statusCode": 301
     }
   ],
   "headers": [
