@@ -642,8 +642,28 @@ const docs: Record<Lang, Docs> = {
 
 const doc = docs[lang][kind];
 
+// Legal docs read as a document: lists are plain ULs (never OL), and lists that
+// sit back-to-back are merged into one so the markup has no split lists.
+type OutBlock = { p?: string; ul?: string[] };
+function normalizeBlocks(blocks: Block[]): OutBlock[] {
+  const out: OutBlock[] = [];
+  for (const b of blocks) {
+    const items = b.ul ?? b.ol;
+    if (items) {
+      const last = out[out.length - 1];
+      if (last && last.ul) last.ul.push(...items);
+      else out.push({ ul: [...items] });
+    } else if (b.p) {
+      out.push({ p: b.p });
+    }
+  }
+  return out;
+}
+const sections = doc.sections.map((s) => ({ ...s, blocks: normalizeBlocks(s.blocks) }));
+
 const eyebrowCls =
   "inline-flex w-fit items-center gap-1.5 rounded-full bg-blue-pale px-3 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] text-blue-deep";
+const cardCls = "rounded-lg border border-line bg-bg-alt p-6 lg:p-7 [&>p:last-child]:mb-0";
 ---
 
 <!-- HEADER -->
@@ -671,23 +691,17 @@ const eyebrowCls =
         </p>
       </div>
     )}
-    <div class="flex max-w-[75ch] flex-col gap-12">
-      {doc.sections.map((s) => (
-        <section id={s.id} class="scroll-mt-24">
-          <h2 class="font-titles text-[22px] leading-[1.2] text-ink lg:text-[26px]">{s.h}</h2>
-          <div class={`prose mt-4${s.card ? " rounded-lg border border-line bg-bg-alt p-6 lg:p-7" : ""}`}>
+    <article class="prose max-w-[75ch]">
+      {sections.map((s) => (
+        <>
+          <h2 id={s.id} class="scroll-mt-24">{s.h}</h2>
+          <div class={s.card ? cardCls : undefined}>
             {s.blocks.map((b) =>
-              b.p ? (
-                <p set:html={b.p} />
-              ) : b.ul ? (
-                <ul>{b.ul.map((it) => <li set:html={it} />)}</ul>
-              ) : b.ol ? (
-                <ol>{b.ol.map((it) => <li set:html={it} />)}</ol>
-              ) : null
+              b.p ? <p set:html={b.p} /> : b.ul ? <ul>{b.ul.map((it) => <li set:html={it} />)}</ul> : null
             )}
           </div>
-        </section>
+        </>
       ))}
-    </div>
+    </article>
   </div>
 </section>
