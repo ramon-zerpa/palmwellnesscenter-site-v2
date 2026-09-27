@@ -4,7 +4,7 @@ Memoria operativa de **palmwellness.center (v2)**. Léelo antes de tocar nada: c
 decisiones que ya se tomaron, por qué se tomaron, y los errores que ya se cometieron para no
 repetirlos. Si eres un agente nuevo, este archivo más `docs/` te ahorran empezar de cero.
 
-Última verificación de los datos de este archivo: **2026-09-25**.
+Última verificación de los datos de este archivo: **2026-09-26**.
 
 ---
 
@@ -300,7 +300,7 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 
 ---
 
-## 8. Estado actual (2026-09-22)
+## 8. Estado actual (2026-09-26)
 
 **Hecho**
 
@@ -365,6 +365,14 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   las cuatro al `Set` `migrated`. Son páginas de documento (header + aviso + prosa + tarjeta de
   contacto), sin hero comercial. Corregida la dirección heredada (`8900 N. Armenia Ave` →
   NAP canónico `1004 W Linebaugh Ave Ste A`).
+- **Grupo 10 (blog) cerrado, EN+ES** (`a80aa1b`), portando la estructura del `learn/` de
+  `affordable-roofing-astro` con nuestra identidad: listing (`BlogIndex.astro`) con hero full-bleed,
+  grid de cards y paginación en ventana; post (`BlogPost.astro`) con breadcrumb, masthead + share,
+  TOC, cuerpo, sidebar de recientes sticky y CTA. Se mantienen las URLs heredadas de paginación
+  (`/news-blog/N/`, 6 por página) y los posts en la raíz. Nuevos: `src/lib/structured-data.ts`,
+  `src/lib/rehype-table-labels.mjs` y `src/components/blog/*`; `Layout` acepta `structuredData`.
+  Tablas responsive (cards por debajo de `md`), TOC que no escribe hash. El modelo de contenido
+  sigue siendo **markdown** (CMS), no JSON con bloques. **Con esto se cierra todo el rediseño.**
 - Header, TopBar y Footer nuevos, con el contenedor único de 1200px; familia única de iconos
   (Lucide), `AnchorNav`, sistema de hover y primitivas de movimiento del hero, todo reutilizable.
 - Héroes con imagen a la derecha: entrada completa por desplazamiento de derecha a izquierda (no
@@ -376,16 +384,16 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
 - Pencil: frame **`EnF3Q` (Primary Care Desktop)** construido y aprobado por el cliente.
 - `AGENTS.md`, `README.md`, `docs/` y el harness CDP versionado en `tools/qa/`.
 - Preview **no indexable**: `robots.txt` con `Disallow: /` + header `X-Robots-Tag` (ver § 9).
-- Último commit funcional publicado: `4e6b9ed` (Grupo 11 legal, EN/ES); docs al día en `33caf9f`.
-  Consulta `docs/PROJECT-HANDOFF.md` (estado canónico) y `docs/SESSION-HANDOFF.md` (brief de
-  arranque de sesión) antes de tocar código.
+- Último commit funcional publicado: `a80aa1b` (Grupo 10 blog, EN/ES); docs al día en el commit
+  siguiente. Consulta `docs/PROJECT-HANDOFF.md` (estado canónico) y `docs/SESSION-HANDOFF.md`
+  (brief de arranque de sesión) antes de tocar código.
 
 **Siguiente**
 
-1. **Grupo 10** de `docs/redesign-plan.md`: blog (`/news-blog/` + plantilla de post). Es lo único
-   que queda (`/business-profiles/` se retiró con 301 al Brand Hub, no se rediseña).
-2. **Grupos 1-11 cerrados**: rehabilitación, accidentes, slip & fall + ciudades, About, Contact y
-   legal (HIPAA + Privacidad, EN/ES).
+- **No quedan grupos de migración** (1-12 cerrados, blog incluido). Lo que resta es **lanzamiento**,
+  no maquetación: conectar la auth de Sveltia (`docs/sveltia-auth-setup.md`), revertir el `noindex`
+  del preview y cargar las env vars del formulario en Cloudflare antes de apuntar el dominio real.
+  Ver `docs/SESSION-HANDOFF.md` §3.
 
 **Pendiente / bloqueado**
 
@@ -397,7 +405,7 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   SVG o 2×. Es inmutable: no lo rediseñes.
 - **Ya no queda ninguna página heredada**: las 41 entradas de `richpages.json` están migradas o
   retiradas, así que `RichPage`/`RichSection` quedan **sin uso** (el catch-all solo sirve el blog).
-  Lo único heredado que queda es el **cuerpo del blog** (vista de lista y post, Grupo 10).
+  El blog (lista + post) también está rediseñado: no queda cuerpo heredado.
 - **El frame `EnF3Q` y el código divergen en 2 puntos**: Pencil todavía muestra el separador del
   bloque de Related Services (eliminado en código) y el orden viejo del nav de anclas. El código
   aprobado prevalece; sincronizar Pencil si se vuelve a editar ese frame.

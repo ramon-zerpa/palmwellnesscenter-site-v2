@@ -1,8 +1,8 @@
 # Palm Wellness Center — Project Handoff
 
-**Updated:** 2026-09-24  
-**Last published commit:** `4e6b9ed` (Group 11 legal, EN/ES) on top of the `/business-profiles/`
-retirement and Contact cleanup; docs up to date in `33caf9f`.  
+**Updated:** 2026-09-26  
+**Last published commit:** `a80aa1b` (Group 10 blog, EN/ES) on top of the Group 11 legal pages,
+the `/business-profiles/` retirement and the Contact cleanup.  
 **Branch:** `main` · a push to `origin main` deploys automatically through Vercel (preview).  
 **Final target (key):** **Cloudflare Pages**, from the old repo `TrueWebmaster6/palmwellnesscenter-site`. The Vercel preview (`ramon-zerpa/palmwellnesscenter-site-v2`) is temporary — see `AGENTS.md` § 9.
 
@@ -126,10 +126,20 @@ mirrors `/es/politica-de-hipaa/`, `/es/politica-de-privacidad/`) use a shared `L
 (`kind` prop) — a document-style layout (header, notice, prose, contact card), no commercial hero,
 with the legacy address corrected to the canonical NAP.
 
-The next planned migration is **Group 10**: the blog (`/news-blog/` + post template) — the only group
-left. `/business-profiles/` was **retired** (client decision): it is no longer generated and 301s to
-the external Brand Hub; the "Business Profiles" link on `/contact/` now points to that same Brand
-Hub. See `docs/redesign-plan.md`.
+**Group 10 (blog) is closed too** (EN + ES, `a80aa1b`). The listing (`/news-blog/` +
+`/es/blog-de-noticias/`, with the paginated `/N/` pages) is `BlogIndex.astro`; the post template is
+`BlogPost.astro`, reached through the `[...slug].astro` catch-all. It ports the structure of the
+reference project's `learn/` archive with our visual language: full-bleed hero, card grid, windowed
+pagination and a CTA band on the listing; breadcrumb, masthead (dates + byline + share), responsive
+table of contents, body, sticky recent-posts sidebar and final CTA on the post. Legacy pagination
+URLs and the 6-per-page size are preserved, and posts stay at the root. New building blocks:
+`src/lib/structured-data.ts`, `src/lib/rehype-table-labels.mjs` and `src/components/blog/*`; `Layout`
+gains a `structuredData` prop. Blog tables become labelled cards below `md`, and the table of contents
+scrolls without writing the hash. Content model is unchanged: **markdown posts**, not JSON blocks.
+
+With Group 10 closed, **every redesign group (1-12) is done**. `/business-profiles/` was **retired**
+(client decision): it is no longer generated and 301s to the external Brand Hub; the "Business
+Profiles" link on `/contact/` now points to that same Brand Hub. See `docs/redesign-plan.md`.
 
 ## 2. Approved global UI decisions
 
@@ -308,13 +318,11 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
 
 ## 8. Important unresolved work
 
-1. Redesign Groups 10–12 per `docs/redesign-plan.md`; the only group left is Group 10 (blog).
-   Groups 2–11 are closed: rehabilitation, car accident, slip-and-fall, city cluster, About,
-   Contact and legal (HIPAA + Privacy) are done. `/business-profiles/` is retired (301 to the
-   external Brand Hub), not redesigned.
-2. All 41 `richpages.json` entries are migrated or retired, so `RichPage`/`RichSection` are unused
-   and the catch-all only serves the blog. The only legacy body left is the **blog** (list + post),
-   which is Group 10.
+1. **All redesign groups (1–12) are closed.** No migration work remains; what is left is launch prep,
+   not layout. `/business-profiles/` is retired (301 to the external Brand Hub), not redesigned.
+2. All 41 `richpages.json` entries are migrated or retired, so `RichPage`/`RichSection` are
+   effectively unused: the `[...slug].astro` catch-all now only serves the blog. Leaving them in
+   place is intentional (historical fallback); do not revive them.
 3. The Contact form **404s on the Vercel preview** because `functions/api/contact.ts` is a
    Cloudflare Pages function. On the final Cloudflare Pages target it works with **no code change**;
    just load its env vars in the Cloudflare dashboard before the DNS cutover.

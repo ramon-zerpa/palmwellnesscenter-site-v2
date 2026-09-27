@@ -55,7 +55,7 @@ flow), with pricing corrected to Optantra truth.
 | 7 | Auto accident III | `/car-accident-chiropractor/` (✅), `/whiplash-treatment-tampa/` (✅) | `/es/quiropractico-para-accidente-de-auto/` (✅), `/es/tratamiento-latigazo-cervical-tampa/` (✅) |
 | 8 | Slip & fall + cities | `/slip-and-fall-injury-treatment/` (✅) + city cluster (`/car-accident-rehabilitation/{seminole-heights,forest-hills,carrollwood}/`) as one template (✅) | ES cluster (✅) |
 | 9 | About + Contact | `/about-us/` (✅), `/contact/` (✅) | `/es/acerca-de-nosotros/` (✅), `/es/contacto/` (✅) |
-| 10 | Blog | `/news-blog/` (+ post template) | `/es/blog-de-noticias/` |
+| 10 | Blog | `/news-blog/` (+ post template) (✅) | `/es/blog-de-noticias/` (✅) |
 | 11 | Legal | `/hipaa-policy/` (✅), `/privacy-policy/` (✅) | `/es/politica-de-hipaa/`, `/es/politica-de-privacidad/` (✅) |
 | 12 | New pages upgrade | ✅ done — `/chronic-condition-management/`, `/preventive-care/`, `/telemedicine/`, `/membership/` (flattened to top level, not nested) | ES mirrors ✅ |
 
@@ -106,7 +106,13 @@ flow), with pricing corrected to Optantra truth.
 - [x] Group 11 — `/hipaa-policy/` + `/privacy-policy/` (+ ES) with a shared `LegalPage.astro`
       (`kind` prop). Document-style layout (header + notice + prose + contact card), no commercial
       hero. The legacy HIPAA address was corrected to the canonical NAP.
-- [ ] Group 10 — blog (`/news-blog/` + post template) still on the legacy body.
+- [x] Group 10 — blog closed, EN/ES (`a80aa1b`): listing (`BlogIndex.astro`) with a full-bleed
+      hero, card grid and windowed pagination, plus the post template (`BlogPost.astro`) with
+      breadcrumb, masthead + share, TOC, body, sticky recent-posts sidebar and CTA. Kept the legacy
+      pagination URLs (`/news-blog/N/`, 6 per page) and the root-level post URLs. New:
+      `src/lib/structured-data.ts`, `src/lib/rehype-table-labels.mjs`, `src/components/blog/*`.
+      Responsive tables (cards below `md`) and TOC links that never write the hash. **This closes
+      the redesign: every group is done.**
 - **Retired (client decision, 2026-09-24):** `/business-profiles/` is removed from the site and 301s
   to the external Brand Hub (see `vercel.json` + `public/_redirects`). It is skipped by a `removed`
   `Set` in `[...slug].astro` (not `migrated`, since it was not rebuilt). This is the one intentional

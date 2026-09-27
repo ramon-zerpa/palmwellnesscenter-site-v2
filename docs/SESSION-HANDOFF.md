@@ -1,6 +1,6 @@
 # SESSION-HANDOFF — brief de arranque
 
-**Snapshot: 2026-09-24** · Grupos 9 y 11 cerrados (About + Contact y legal HIPAA/Privacidad, EN/ES); grupos 1-11 hechos, solo queda el blog (10) · rama `main`
+**Snapshot: 2026-09-26** · **Todos los grupos (1-12) cerrados**, incluido el blog (Grupo 10, EN/ES) · rama `main`
 
 > **Destino final (clave):** producción en **Cloudflare Pages** desde el repo antiguo
 > `TrueWebmaster6/palmwellnesscenter-site`. El Vercel actual (`ramon-zerpa/palmwellnesscenter-site-v2`)
@@ -70,6 +70,8 @@ Cada página es un componente propio bajo `src/components/pages/`; las rutas EN/
 | `/contact/` | `/es/contacto/` | `ContactPage.astro` (reescrito en sitio) |
 | `/hipaa-policy/` | `/es/politica-de-hipaa/` | `LegalPage.astro` (`kind="hipaa"`) |
 | `/privacy-policy/` | `/es/politica-de-privacidad/` | `LegalPage.astro` (`kind="privacy"`) |
+| `/news-blog/` (+ `/news-blog/N/`) | `/es/blog-de-noticias/` (+ `/N/`) | `BlogIndex.astro` |
+| `/slug/` (185 posts) | `/es/slug/` | `BlogPost.astro` (vía `[...slug].astro`) |
 
 Hitos recientes:
 
@@ -118,6 +120,14 @@ Hitos recientes:
 - **Grupo 11 (legal) cerrado, EN+ES:** `/hipaa-policy/` + `/privacy-policy` (+ ES) con
   `LegalPage.astro` (`kind`). Documento limpio: header + aviso + prosa + tarjeta de contacto, sin
   hero comercial. Dirección heredada corregida al NAP canónico. Las 4 al `Set` `migrated`.
+- **Grupo 10 (blog) cerrado, EN+ES** (`a80aa1b`), portando la estructura del `learn/` de
+  `affordable-roofing-astro` con nuestra identidad: listing (`BlogIndex.astro`) con hero full-bleed,
+  grid de cards y paginación en ventana; post (`BlogPost.astro`) con breadcrumb, masthead + share,
+  TOC, cuerpo, sidebar de recientes sticky y CTA. **Se mantienen** las URLs heredadas de paginación
+  (`/news-blog/N/`) a 6 por página y los posts en la raíz. Nuevos: `src/lib/structured-data.ts`,
+  `src/lib/rehype-table-labels.mjs`, `src/components/blog/*`. Tablas responsive (cards por debajo de
+  `md`), el TOC no escribe hash, y `Layout` acepta `structuredData` (Article/BreadcrumbList/ItemList).
+  **No se cambió el modelo de contenido**: los posts siguen en markdown (CMS), no en JSON con bloques.
 - Las 4 rutas nuevas de esta ronda (y las de las rondas anteriores) están en el `Set` `migrated` de
   `src/pages/[...slug].astro` (×2 por idioma).
 - En el bloque de confianza ("Professional and compassionate care you can trust") la imagen va con
@@ -128,15 +138,18 @@ Hitos recientes:
 
 ## 3. Próximo paso exacto
 
-**Grupo 10 de `docs/redesign-plan.md`** (blog), todavía con el cuerpo heredado:
+**No quedan grupos de migración pendientes** (1-12 cerrados, blog incluido). Lo que resta es
+**lanzamiento**, no maquetación:
 
-- `/news-blog/` (+ `/es/blog-de-noticias/`) y su plantilla de post (`[...slug].astro` → `BlogPost.astro`).
+- Conectar la **auth de Sveltia** (`docs/sveltia-auth-setup.md`) para poder editar el blog desde el CMS.
+- Antes de apuntar `www.palmwellness.center`: revertir el `noindex` (`public/robots.txt` + el bloque
+  `headers` de `vercel.json`) y cargar las env vars del formulario en Cloudflare (ver §8 y `AGENTS.md` §9).
+- Sustituir fotografía provisional cuando el cliente la entregue (IV, telemedicina, crónico,
+  preventiva) y el logo a 2×/SVG.
 
-Ojo: comprueba si esas rutas existen en `richpages.json` antes de añadirlas al `Set` `migrated`.
-(`/business-profiles/` **se retiró** con 301 al Brand Hub externo; no se rediseña.)
-Grupos 1-11 cerrados; solo queda el blog (Grupo 10).
+`/business-profiles/` **se retiró** con 301 al Brand Hub externo; no se rediseña.
 
-Procedimiento que funciona:
+Procedimiento que funciona (para cualquier página nueva que se añada en el futuro):
 
 1. **Investigación**: abre 2 competidores directos de Tampa del mismo servicio (estructura e
    intención; nunca copiar diseño).
