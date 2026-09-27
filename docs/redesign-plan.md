@@ -19,12 +19,9 @@ images and content decisions.
 2. **Content is preserved** from the legacy page, but **corrected to Optantra truth**
    (`docs/optimantra-services.md`): membership **$99 initial + $39/mo**, office $39,
    new patient $65, telehealth $55, IV Therapy is **live** (not "coming soon").
-3. Migrating a "rich" page = create a dedicated Astro page and add its path to the `migrated`
-   `Set` in `getStaticPaths()` of `src/pages/[...slug].astro`. **Do not delete the entry from
-   `richpages.json`**: it stays as a historical record and the catch-all filters it out. This step
-   **only applies to paths that exist in `richpages.json`** (today: the Primary Care, Physical
-   Rehabilitation and Car Accident families). Pages that were never in the JSON (the Primary Care
-   children) need no `migrated` entry: their explicit route is the only one that exists.
+3. Every URL has an explicit route (or a 301). The legacy `richpages.json` renderer
+   (`RichPage`/`RichSection`/`BlockList`) was removed once all 41 entries were migrated or retired,
+   so there is no `Set` to maintain: a new page is just its bespoke component plus its EN/ES route.
 4. Bilingual: every group ships EN + ES.
 5. One H1; keep title/meta/canonical/hreflang intact; images keep alt + dimensions.
 6. Build must stay green and page count stable (no lost routes) after each group.
@@ -61,14 +58,13 @@ flow), with pricing corrected to Optantra truth.
 
 ## Per-group workflow
 
-1. Read the legacy content (`richpages.json` blocks) for the pages, plus `docs/optimantra-services.md`.
+1. Read the legacy content for the pages (from `seo/` or the live site) plus `docs/optimantra-services.md`.
 2. Build the bespoke component under `src/components/pages/<Page>.astro`, holding the bilingual
    copy inline in its `content` object (EN + ES).
 3. Create/wrap the dedicated Astro routes (EN + ES).
-4. Add the pages' paths to the `migrated` `Set` in `[...slug].astro` when they exist in `richpages.json`.
-5. `npm run build` → verify routes still 200, no orphan/broken links, hreflang intact.
-6. Screenshot/QA pass (desktop + mobile) in one batched round.
-7. Report + move to next group.
+4. `npm run build` → verify routes still 200, no orphan/broken links, hreflang intact.
+5. Screenshot/QA pass (desktop + mobile) in one batched round.
+6. Report + move to next group.
 
 ## Status
 
@@ -114,18 +110,21 @@ flow), with pricing corrected to Optantra truth.
       Responsive tables (cards below `md`) and TOC links that never write the hash. **This closes
       the redesign: every group is done.**
 - **Retired (client decision, 2026-09-24):** `/business-profiles/` is removed from the site and 301s
-  to the external Brand Hub (see `vercel.json` + `public/_redirects`). It is skipped by a `removed`
-  `Set` in `[...slug].astro` (not `migrated`, since it was not rebuilt). This is the one intentional
+  to the external Brand Hub (see `vercel.json` + `public/_redirects`). This is the one intentional
   drop in the page count.
+- **Legacy renderer deleted:** once all 41 `richpages.json` entries were migrated or retired,
+  `src/data/richpages.json`, `RichPage.astro`, `RichSection.astro` and `BlockList.astro` were removed.
+  The `[...slug].astro` catch-all now only serves the blog.
 
 **Per-page workflow actually used** (repeat for the next groups):
 
 1. Research two direct Tampa competitors for that service (structure and intent, never copy).
-2. Read the legacy content for the page (`richpages.json`) + `docs/optimantra-services.md` for prices.
+2. Read the legacy content for the page (from `seo/` or the live site) + `docs/optimantra-services.md`
+   for prices.
 3. Build the bespoke EN component in the approved language (hero + `AnchorNav` + 11–15 sections,
    alternating light and `blue-deep` bands, FAQ, transport, final CTA).
-4. Wrap EN/ES routes as ~23-line files (`Layout` → `TopBar` → `Header` → `main` → `Footer`), and add
-   the paths to the `migrated` `Set` in `[...slug].astro` when the path exists in `richpages.json`.
+4. Wrap EN/ES routes as ~23-line files (`Layout` → `TopBar` → `Header` → `main` → `Footer`). No
+   `Set` to update: each URL has its own explicit route.
 5. `npm run build` → **272 pages**; audit EN/ES at 360·412·768·1024·1440 with `tools/qa/cdp-pc.ps1`
    (overflow, H1, image dimensions, clipped text, anchor clicks); review screenshots.
 6. Commit + push (Vercel deploys), then verify the live pages over HTTP.

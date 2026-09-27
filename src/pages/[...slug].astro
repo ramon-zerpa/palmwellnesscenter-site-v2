@@ -3,129 +3,62 @@ import Layout from "../layouts/Layout.astro";
 import TopBar from "../components/TopBar.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import RichPage from "../components/RichPage.astro";
 import BlogPost from "../components/BlogPost.astro";
 import type { Lang } from "../i18n/ui";
 import { route } from "../i18n/utils";
-import richpages from "../data/richpages.json";
 import { getCollection, render } from "astro:content";
 import { createArticleSchema, createBreadcrumbSchema } from "../lib/structured-data";
 
+// This catch-all now only builds the blog posts (md under src/content/blog).
+// The legacy rich pages and their `richpages.json` renderer were retired once
+// every entry was migrated to a dedicated page or removed from the site.
 export async function getStaticPaths() {
-  // Paths migrated to dedicated new-design pages (removed from the legacy rich renderer).
-  const migrated = new Set([
-    "/primary-care/",
-    "/es/atencion-primaria/",
-    "/medical-weight-loss/",
-    "/es/perdida-de-peso-medica/",
-    "/physical-rehabilitation/",
-    "/es/fisioterapia/",
-    "/car-accident-rehabilitation/",
-    "/es/rehabilitacion-de-accidentes-automovilisticos/",
-    "/car-accident-treatment/",
-    "/es/tratamiento-de-accidentes-de-auto/",
-    "/auto-accident-injury-clinic/",
-    "/es/clinica-de-lesiones-por-accidentes-de-auto/",
-    "/car-accident-chiropractor/",
-    "/es/quiropractico-para-accidente-de-auto/",
-    "/car-accident-physical-therapy/",
-    "/es/fisioterapia-para-accidente-de-auto/",
-    "/whiplash-treatment-tampa/",
-    "/es/tratamiento-latigazo-cervical-tampa/",
-    "/chiropractor/",
-    "/es/quiropractico/",
-    "/massage-therapy/",
-    "/es/terapia-de-masajes/",
-    "/therapeutic-exercises/",
-    "/es/ejercicios-terapeuticos/",
-    "/therapeutic-ultrasound-treatment/",
-    "/es/tratamiento-de-ultrasonido-terapeutico/",
-    "/slip-and-fall-injury-treatment/",
-    "/es/rehabilitacion-de-lesiones-por-resbalones-y-caidas/",
-    "/car-accident-rehabilitation/seminole-heights/",
-    "/car-accident-rehabilitation/forest-hills/",
-    "/car-accident-rehabilitation/carrollwood/",
-    "/es/rehabilitacion-de-accidentes-automovilisticos/seminole-heights/",
-    "/es/rehabilitacion-de-accidentes-automovilisticos/forest-hills/",
-    "/es/rehabilitacion-de-accidentes-automovilisticos/carrollwood/",
-    "/about-us/",
-    "/es/acerca-de-nosotros/",
-    "/hipaa-policy/",
-    "/es/politica-de-hipaa/",
-    "/privacy-policy/",
-    "/es/politica-de-privacidad/",
-  ]);
-  // Paths retired from the site entirely. They are not generated; instead they
-  // 301 to external destinations via vercel.json and public/_redirects.
-  const removed = new Set([
-    "/business-profiles/",
-  ]);
-  const resolvedRichPages = (richpages as any[]).filter(
-    (page) => !migrated.has(page.path) && !removed.has(page.path)
-  );
   const trim = (s: string) => s.replace(/^\/|\/$/g, "");
-  const rich = resolvedRichPages.map((p) => ({
-    params: { slug: trim(p.path) },
-    props: { ...p, type: "rich" },
-  }));
   const posts = await getCollection("blog");
-  const postPaths = posts.map((entry) => {
+  return posts.map((entry) => {
     const slug = String(entry.id).split("/").pop();
     const url = entry.data.path || (entry.data.lang === "en" ? `/${slug}/` : `/es/${slug}/`);
-    return { params: { slug: trim(url) }, props: { type: "post", entry } };
+    return { params: { slug: trim(url as string) }, props: { entry } };
   });
-  return [...rich, ...postPaths];
 }
 
-const props = Astro.props as any;
-let Content: any = null;
-let headings: any[] = [];
-if (props.type === "post") {
-  const r = await render(props.entry);
-  Content = r.Content;
-  headings = r.headings ?? [];
-}
-
-const isPost = props.type === "post";
-const data = isPost ? props.entry.data : props;
+const { entry } = Astro.props;
+const { Content, headings } = await render(entry);
+const data = entry.data;
 const lang: Lang = data.lang;
-// Posts: derive the URL from the file's slug + language (so the CMS editor only
-// sets a slug, never a raw path). Rich pages keep their explicit path.
-const postSlug = isPost ? String(props.entry.id).split("/").pop() : "";
-const path: string = isPost ? data.path || (lang === "en" ? `/${postSlug}/` : `/es/${postSlug}/`) : data.path;
-const altPath = isPost ? data.altPath || undefined : undefined;
-const seoTitle = isPost ? data.seoTitle || data.title : data.title;
+// Derive the URL from the file's slug + language, so the CMS editor only sets a
+// slug and never a raw path.
+const postSlug = String(entry.id).split("/").pop() as string;
+const path: string = data.path || (lang === "en" ? `/${postSlug}/` : `/es/${postSlug}/`);
+const altPath = data.altPath || undefined;
+const seoTitle = data.seoTitle || data.title;
 const description = data.description;
-const socialDescription = isPost ? data.socialDescription || description : data.socialDescription || description;
-const og = isPost ? data.heroImage : props.ogImage;
+const socialDescription = data.socialDescription || description;
+const og = data.heroImage;
 
-const structuredData = isPost
-  ? [
-      createArticleSchema({
-        headline: data.title,
-        description: description || "",
-        path,
-        image: data.heroImage || undefined,
-        authorName: "Palm Wellness Center",
-        publishedAt: data.pubDate,
-        updatedAt: data.updatedDate,
-      }),
-      createBreadcrumbSchema([
-        { name: lang === "es" ? "Inicio" : "Home", path: lang === "es" ? "/es/inicio/" : "/" },
-        { name: lang === "es" ? "Noticias y Blog" : "News & Blog", path: route(lang, "blog") },
-        { name: data.title, path },
-      ]),
-    ]
-  : [];
+const structuredData = [
+  createArticleSchema({
+    headline: data.title,
+    description: description || "",
+    path,
+    image: data.heroImage || undefined,
+    authorName: "Palm Wellness Center",
+    publishedAt: data.pubDate,
+    updatedAt: data.updatedDate,
+  }),
+  createBreadcrumbSchema([
+    { name: lang === "es" ? "Inicio" : "Home", path: lang === "es" ? "/es/inicio/" : "/" },
+    { name: lang === "es" ? "Noticias y Blog" : "News & Blog", path: route(lang, "blog") },
+    { name: data.title, path },
+  ]),
+];
 ---
 
-<Layout lang={lang} path={path} altPath={altPath} title={seoTitle} description={description} socialDescription={socialDescription} ogImage={og} ogType={isPost ? "article" : "website"} structuredData={structuredData}>
+<Layout lang={lang} path={path} altPath={altPath} title={seoTitle} description={description} socialDescription={socialDescription} ogImage={og} ogType="article" structuredData={structuredData}>
   <TopBar lang={lang} />
   <Header lang={lang} path={path} altPath={altPath} />
   <main id="main">
-    {isPost
-      ? <BlogPost lang={lang} title={data.title} date={data.pubDate} updatedDate={data.updatedDate} description={description} image={data.heroImage} slug={postSlug} headings={headings} Content={Content} />
-      : <RichPage lang={lang} blocks={props.blocks} styles={props.styles} />}
+    <BlogPost lang={lang} title={data.title} date={data.pubDate} updatedDate={data.updatedDate} description={description} image={data.heroImage} slug={postSlug} headings={headings} Content={Content} />
   </main>
   <Footer lang={lang} />
 </Layout>

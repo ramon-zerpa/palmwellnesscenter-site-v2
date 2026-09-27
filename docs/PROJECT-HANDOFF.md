@@ -320,9 +320,9 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
 
 1. **All redesign groups (1–12) are closed.** No migration work remains; what is left is launch prep,
    not layout. `/business-profiles/` is retired (301 to the external Brand Hub), not redesigned.
-2. All 41 `richpages.json` entries are migrated or retired, so `RichPage`/`RichSection` are
-   effectively unused: the `[...slug].astro` catch-all now only serves the blog. Leaving them in
-   place is intentional (historical fallback); do not revive them.
+2. All 41 `richpages.json` entries are migrated or retired, so the legacy renderer was **deleted**
+   (`src/data/richpages.json`, `RichPage.astro`, `RichSection.astro`, `BlockList.astro`). The
+   `[...slug].astro` catch-all now only serves the blog; do not revive the legacy renderer.
 3. The Contact form **404s on the Vercel preview** because `functions/api/contact.ts` is a
    Cloudflare Pages function. On the final Cloudflare Pages target it works with **no code change**;
    just load its env vars in the Cloudflare dashboard before the DNS cutover.
@@ -348,9 +348,9 @@ For the broad checklist, required breakpoints and Windows/PowerShell gotchas, fo
   from the client's OptiMantra patient portal, `servicesallV2`, 2026-09-19). Membership = $99
   initial + $39/month; IV Therapy is active.
 - Appointment link: `APPOINTMENT_URL` in `src/i18n/utils.ts` is the **only** source. Import it;
-  never hardcode the URL in components or data. Data files that cannot import it
-  (`richpages.json`, blog markdown) must be updated and then re-checked with `Select-String` so no
-  stale value survives in `src` or `dist`.
+  never hardcode the URL in components or data. Data files that cannot import it (blog markdown)
+  must be updated and then re-checked with `Select-String` so no stale value survives in `src` or
+  `dist`.
 - Bilingual routes and language switcher: update `src/i18n/altmap.ts` when a new page pair is
   added.
 - Icons: Lucide only through `src/lib/lucide.ts` and `src/components/Icon.astro`; never hand-code

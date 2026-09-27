@@ -75,7 +75,7 @@ src/
     TopBar.astro        barra superior (dirección, horario, licencias)
     Header.astro        nav principal (megamenú por desplegables) + CTA
     Footer.astro
-    Icon.astro          renderiza Lucide; FaIcon.astro delega en él
+    Icon.astro          renderiza Lucide (fuente: src/lib/lucide.ts)
     AnchorNav.astro     nav de anclas de página (sin hash en la URL)
     HomePage.astro      homepage
     pages/              páginas rediseñadas a medida (PrimaryCarePage, MedicalWeightLossPage,
@@ -84,24 +84,20 @@ src/
                         CarAccidentRehabilitationPage, CarAccidentTreatmentPage,
                         AutoAccidentInjuryClinicPage, CarAccidentChiropractorPage,
                         CarAccidentPhysicalTherapyPage, WhiplashTreatmentPage)
-    RichPage.astro      renderizador del cuerpo heredado (richpages.json)
-    RichSection.astro   primitivas del cuerpo heredado
     BlogIndex.astro, BlogPost.astro, ContactPage.astro, ContactForm.astro
+    blog/               PostTableOfContents.astro, PostShare.astro, PostRecent.astro
   layouts/
     Layout.astro        <head>, meta, hreflang, JSON-LD
   data/
-    richpages.json         41 páginas heredadas (contenido en bloques)
     home.ts                contenido de la homepage
-    physicalRehabilitation.ts, therapeuticExercises.ts   sustituciones de contenido heredado
-    blogArchive.ts         paginación del blog (6 por página)
+    blogArchive.ts         paginación/orden del blog (6 por página)
   i18n/
     ui.ts                  nav + diccionario de cadenas
     utils.ts               rutas, traducciones, APPOINTMENT_URL, PHONE_TEL, SOCIAL
     altmap.ts              mapa hreflang EN↔ES
   content/blog/           185 posts markdown (92 EN / 93 ES)
-  layouts/Layout.astro
-  lib/lucide.ts           única fuente de iconos
-  pages/                  rutas explícitas + catch-all [...slug].astro
+  lib/                    lucide.ts (iconos), structured-data.ts (JSON-LD), rehype-table-labels.mjs
+  pages/                  rutas explícitas + catch-all [...slug].astro (solo blog)
   styles/global.css       design system completo
 public/                   imágenes, fuentes, robots.txt, admin/ (CMS), llms.txt
 functions/api/contact.ts  función del formulario de contacto (ver "Bugs conocidos")
@@ -112,20 +108,17 @@ legacy/                   sitio viejo, SOLO LECTURA (gitignoreado)
 
 ## Cómo funciona el routing
 
-Hay tres vías de render:
+Hay dos vías de render:
 
 1. **Rutas explícitas** en `src/pages/` — páginas rediseñadas y páginas nuevas
-   (`primary-care/index.astro`, `iv-therapy.astro`, `contact.astro`…).
-2. **Blog** — markdown de `src/content/blog/`, resuelto por la colección en `[...slug].astro`.
-3. **Catch-all** `src/pages/[...slug].astro` — históricamente leía `src/data/richpages.json` y lo
-   pintaba con `RichPage.astro`. Hoy **no queda ninguna richpage viva**: las 41 entradas están
-   migradas o retiradas, así que el catch-all solo sirve el **blog** (`BlogPost.astro`).
+   (`primary-care/index.astro`, `iv-therapy.astro`, `contact.astro`, `news-blog.astro`…).
+2. **Blog** — markdown de `src/content/blog/`, resuelto por la colección en el catch-all
+   `src/pages/[...slug].astro`, que **solo** sirve el blog (`BlogPost.astro`).
 
-**Migrar una página al diseño nuevo no borra su entrada del JSON.** Se añade la ruta al `Set`
-`migrated` dentro de `getStaticPaths()` de `[...slug].astro`; así el contenido viejo queda como
-archivo histórico y el catch-all lo ignora. El `Set` **solo hace falta para rutas que existen en
-`richpages.json`**: las páginas nuevas que nunca estuvieron ahí (IV Therapy, manejo crónico,
-preventiva, telemedicina, membresía) solo necesitan su ruta explícita. Los detalles están en
+El renderer heredado (`richpages.json`, `RichPage.astro`, `RichSection.astro`, `BlockList.astro`) se
+**eliminó** cuando las 41 entradas quedaron migradas a páginas propias o retiradas. **Cada URL tiene
+hoy su ruta explícita** (o un 301, como `/business-profiles/`). Para una página nueva: crea su
+componente en `src/components/pages/` y su ruta EN/ES; no hay ningún `Set` que tocar. Detalles en
 `AGENTS.md` § 4.1.
 
 ## Cómo funciona el i18n
@@ -135,8 +128,8 @@ preventiva, telemedicina, membresía) solo necesitan su ruta explícita. Los det
 - El nav y las cadenas salen de `src/i18n/ui.ts`; las rutas compartidas y el enlace de reserva
   (`APPOINTMENT_URL`, OptiMantra V2) de `src/i18n/utils.ts`.
 - **`APPOINTMENT_URL` es la única fuente del link de reserva: impórtala, nunca la copies.** Si hay
-  que cambiarla, se cambia solo ahí; los datos que no admiten `import` (`richpages.json`,
-  markdown) se editan aparte y luego se verifica que no queda el valor viejo en `src` ni en `dist`.
+  que cambiarla, se cambia solo ahí; los datos que no admiten `import` (markdown) se editan aparte
+  y luego se verifica que no queda el valor viejo en `src` ni en `dist`.
 - El mapa hreflang EN↔ES está en `src/i18n/altmap.ts`. **Al añadir una página, añade su par
   ahí**, o el switcher de idioma y los `<link rel="alternate">` no la encontrarán.
 

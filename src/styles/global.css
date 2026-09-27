@@ -366,11 +366,11 @@
 }
 
 /* ============================================================
-   Interior migration layer
-   Bridges the legacy interior components (RichPage/RichSection,
-   blog, contact) to the new visual language without rewriting
-   them: primary CTAs adopt brand blue, buttons share the md
-   radius, and legacy italic accents are normalized.
+   Legacy class normalization
+   Keeps the few components that still use migration-era classes
+   (bg-green, rounded-full, italic) rendering in the new visual
+   language: primary CTAs adopt brand blue, buttons share the md
+   radius, and italic accents are normalized.
    ============================================================ */
 a.bg-green { background-color: var(--color-blue); }
 a.bg-green:hover { background-color: var(--color-blue-deep); }

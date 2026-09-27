@@ -128,8 +128,8 @@ Hitos recientes:
   `src/lib/rehype-table-labels.mjs`, `src/components/blog/*`. Tablas responsive (cards por debajo de
   `md`), el TOC no escribe hash, y `Layout` acepta `structuredData` (Article/BreadcrumbList/ItemList).
   **No se cambió el modelo de contenido**: los posts siguen en markdown (CMS), no en JSON con bloques.
-- Las 4 rutas nuevas de esta ronda (y las de las rondas anteriores) están en el `Set` `migrated` de
-  `src/pages/[...slug].astro` (×2 por idioma).
+- El renderer heredado se eliminó (`src/data/richpages.json`, `RichPage.astro`, `RichSection.astro`,
+  `BlockList.astro`): `src/pages/[...slug].astro` solo sirve el blog y cada URL tiene ruta explícita.
 - En el bloque de confianza ("Professional and compassionate care you can trust") la imagen va con
   **`object-top`** en todas las páginas: es bajo (240/300px) y un `object-center` cortaba las
   cabezas. Ver `AGENTS.md` § 6.
@@ -153,17 +153,15 @@ Procedimiento que funciona (para cualquier página nueva que se añada en el fut
 
 1. **Investigación**: abre 2 competidores directos de Tampa del mismo servicio (estructura e
    intención; nunca copiar diseño).
-2. **Contenido**: lee el contenido heredado de la página (`richpages.json`) + `docs/optimantra-services.md` (precios).
+2. **Contenido**: lee el contenido heredado de la página (del sitio viejo o de `seo/`) + `docs/optimantra-services.md` (precios).
 3. **Componente**: crea `src/components/pages/<X>Page.astro` con `lang` y un objeto `content` con
    `en`/`es`. Estructura probada: hero (contenido izq. / imagen der. + rail) → `AnchorNav` →
    secciones alternando `bg-white`/`bg-bg-alt`/`bg-blue-deep` (≈3 claras por cada oscura) →
    confianza+horario+ubicación+supervisor → transporte → FAQ → área → CTA final. Las secciones con
    `id` usan `scroll-mt-24 lg:scroll-mt-[184px]`.
 4. **Wrappers**: crea/reescribe las rutas EN y ES como archivos de ~23 líneas.
-5. **Catch-all**: añade las rutas al `Set` `migrated` de `[...slug].astro` **solo si la ruta existe
-   en `richpages.json`**.
-6. **Build** → debe dar **272**. **QA**: auditoría EN/ES a 360·412·768·1024·1440 + click + capturas.
-7. **Commit y push** → Vercel despliega solo; verifica con `vercel ls` y por HTTP.
+5. **Build** → debe dar **272**. **QA**: auditoría EN/ES a 360·412·768·1024·1440 + click + capturas.
+6. **Commit y push** → Vercel despliega solo; verifica con `vercel ls` y por HTTP.
 
 ---
 
@@ -204,7 +202,7 @@ Nunca `vercel deploy` a mano. Para comprobar el deploy usa `vercel ls palmwellne
   $25. **IV Therapy está ACTIVO** (el contenido viejo dice "coming soon": está mal).
 - **Link de reserva**: `APPOINTMENT_URL` en `src/i18n/utils.ts` es la **única** fuente.
   **Impórtala, nunca la copies.** Si hay que cambiarla en datos que no admiten `import`
-  (`richpages.json`, markdown), edítalos y luego verifica con `Select-String` que no queda el valor
+  (markdown), edítalos y luego verifica con `Select-String` que no queda el valor
   viejo **ni en `src` ni en `dist`**.
 - **URLs**: se conservan las 262 del sitemap heredado (`seo/sitemap-baseline.xml`). Solo se añaden.
   `/pricing/` y `/locations/` se retiraron por decisión del cliente: no recrearlos.
@@ -239,9 +237,8 @@ Nunca `vercel deploy` a mano. Para comprobar el deploy usa `vercel ls palmwellne
   mutación; y `pencil_browser` falla de forma intermitente. Cuando pase, usa el harness CDP.
 - **`Set-Content -Encoding UTF8` escribe BOM** → nunca lo uses para archivos fuente.
 - **`rg` no está instalado** → usa `Select-String`.
-- **Páginas legacy de anclas**: el `Set` `migrated` de `[...slug].astro` **solo** hace falta para
-  rutas que existen en `richpages.json` (hoy: las familias de Primary Care, Physical Rehabilitation
-  y Car Accident). Las páginas nuevas que nunca estuvieron en el JSON no lo necesitan.
+- **Renderer heredado eliminado**: `richpages.json`, `RichPage`, `RichSection` y `BlockList` se
+  borraron; el catch-all `[...slug].astro` solo sirve el blog. Cada URL tiene hoy su ruta explícita.
 - **Comprobar el deploy**: `vercel ls`, no la REST API con el token de `auth.json` (ver §4).
 
 ---
@@ -273,5 +270,5 @@ Nunca `vercel deploy` a mano. Para comprobar el deploy usa `vercel ls palmwellne
 - `src/components/AnchorNav.astro`, `src/components/Icon.astro`, `src/lib/lucide.ts`.
 - `src/i18n/{ui,utils,altmap}.ts` — nav, rutas/`APPOINTMENT_URL`, mapa hreflang.
 - `src/styles/global.css` — tokens, breakpoints, `@layer`, primitivas del hero.
-- `src/pages/[...slug].astro` — catch-all (richpages) + blog.
+- `src/pages/[...slug].astro` — catch-all del blog.
 - `tools/qa/cdp-pc.ps1` — harness de QA.

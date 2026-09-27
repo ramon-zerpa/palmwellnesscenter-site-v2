@@ -77,10 +77,13 @@ una ruta a propósito, es un bug: alguna ruta se perdió o se duplicó.
 
 ```
 astro.config.mjs      site, i18n (en raíz / es en /es/), sitemap, inlineStylesheets: "always",
-                      rehypeLocalImageDimensions (añade width/height/loading/decoding a los <img>)
-src/pages/            rutas explícitas + catch-all [...slug].astro
-src/components/       Header, TopBar, Footer, Icon, AnchorNav, HomePage, pages/*
-src/data/             contenido (ver 4.6)
+                      rehype: dimensiones de <img> (rehypeLocalImageDimensions) y data-label
+                      para tablas responsive (rehype-table-labels.mjs)
+src/pages/            rutas explícitas + catch-all [...slug].astro (solo blog)
+src/components/       Header, TopBar, Footer, Icon, AnchorNav, HomePage, BlogIndex/BlogPost,
+                      blog/*, Contact*, pages/*
+src/data/             helpers (blogArchive.ts, home.ts)
+src/lib/              lucide.ts, structured-data.ts, rehype-table-labels.mjs
 src/i18n/             ui.ts (nav + diccionario), utils.ts (rutas, APPOINTMENT_URL, NAP), altmap.ts (hreflang)
 src/content/blog/     posts markdown (en/ y es/), colección Astro
 src/styles/global.css design system completo: tokens, breakpoints, base, @layer components
@@ -97,40 +100,24 @@ legacy/               sitio viejo, solo lectura
 
 ## 4. Arquitectura
 
-### 4.1 Routing y el mecanismo de migración
+### 4.1 Routing
 
-Hay tres vías de render, y **la tercera es la que importa para saber si una página está
-migrada o no**:
+Hay **dos** vías de render:
 
-1. **Rutas explícitas** en `src/pages/` (`index.astro`, `primary-care/index.astro`, …). Se
-   renderizan con su componente dedicado.
-2. **Blog**: `src/content/blog/**/*.md` vía la colección, resuelta en `[...slug].astro`.
-3. **Todo lo demás**: `src/pages/[...slug].astro`, que lee `src/data/richpages.json`
-   (41 entradas) y lo pinta con `RichPage.astro`.
+1. **Rutas explícitas** en `src/pages/` (`index.astro`, `primary-care/index.astro`,
+   `news-blog.astro`, …). Se renderizan con su componente dedicado.
+2. **Blog**: `src/content/blog/**/*.md` vía la colección, resuelta en el catch-all
+   `src/pages/[...slug].astro`. Es lo **único** que sirve ese catch-all.
 
-**Cómo se migra una página a diseño nuevo**: **NO se borra la entrada de `richpages.json`.**
-Se añade la ruta al `Set` llamado `migrated` dentro de `getStaticPaths()` de `[...slug].astro`.
-Así la entrada vieja queda como archivo histórico y el catch-all la ignora. Migradas hoy:
-`/primary-care/`, `/medical-weight-loss/`, `/physical-rehabilitation/`,
-`/car-accident-rehabilitation/`, `/car-accident-treatment/`, `/auto-accident-injury-clinic/`,
-`/car-accident-chiropractor/`, `/car-accident-physical-therapy/`, `/whiplash-treatment-tampa/`
-y sus espejos ES.
+**El mecanismo de migración heredado ya no existe.** `src/data/richpages.json` (41 entradas),
+`RichPage.astro`, `RichSection.astro` y `BlockList.astro` se **eliminaron** cuando las 41 entradas
+quedaron migradas a páginas propias o retiradas. No los recrees: **cada URL tiene hoy su ruta
+explícita** (o un 301, como `/business-profiles/` → Brand Hub, en `vercel.json` y
+`public/_redirects`).
 
-Ojo: **el `Set` `migrated` solo hace falta para rutas que existen en `richpages.json`.** Las otras
-cinco páginas del grupo de Atención Primaria (`/iv-therapy/`, `/chronic-condition-management/`,
-`/preventive-care/`, `/telemedicine/`, `/membership/` y sus espejos ES) **nunca estuvieron en el
-JSON**: venían de `src/data/newPages.ts` con el componente genérico `SimplePage.astro`, y ambos se
-borraron al cerrar el grupo. Por eso no aparecen en `migrated` y **no es un olvido**: al no haber
-entrada en el JSON, la ruta explícita es la única que existe.
-
-El catch-all **ya no hace sustitución de contenido**: los archivos de sustitución
-(`physicalRehabilitation.ts`, `therapeuticExercises.ts`) se eliminaron y esas rutas ya son páginas
-propias. `richpages.json` queda solo como archivo histórico del resto.
-
-Hay además un `Set` **`removed`** (distinto de `migrated`) para rutas **retiradas del sitio** que no
-se reconstruyen: hoy solo `/business-profiles/`, que deja de generarse y pasa a un **301** hacia el
-Brand Hub externo (en `vercel.json` y `public/_redirects`). Cuando una ruta se retire con 301
-aprobado, va aquí, no a `migrated`.
+**Para añadir una página nueva:** crea su componente en `src/components/pages/` y su ruta explícita
+EN/ES. No hay ningún `Set` `migrated`/`removed` que tocar (ese mecanismo se borró con el renderer
+heredado).
 
 ### 4.2 i18n
 
@@ -148,10 +135,8 @@ aprobado, va aquí, no a `migrated`.
 
 - Única fuente: `src/lib/lucide.ts`. Mapea nombres heredados de Font Awesome/WordPress a iconos
   de Lucide, cachea el SVG y **lanza un error en build si el nombre no existe**.
-- `src/components/Icon.astro` es el componente real (`name`, `class`, `solid`). `FaIcon.astro`
-  es un simple delegado que se conserva para no tocar los sitios que aún lo usan.
-- Los únicos SVG que no son de Lucide: los glifos de marca Facebook/Instagram y 1 marca de agua
-  decorativa en `RichSection.astro`.
+- `src/components/Icon.astro` es el componente real (`name`, `class`, `solid`).
+- Los únicos SVG que no son de Lucide: los glifos de marca Facebook/Instagram (en el footer).
 - **Regla:** nunca añadas un `<svg>` a mano. Añade el alias en `lucide.ts` y usa `<Icon>`.
 
 ### 4.4 Layout: un solo contenedor
@@ -251,11 +236,11 @@ tiene que dar 0 *y* no debe haber elementos con `getBoundingClientRect().right >
 **El link de reserva se rompe en cuanto lo copias.** En septiembre de 2026 el `lid` de
 `APPOINTMENT_URL` estaba corrupto (decodificaba a un base64 inválido: llevaba un `.`) y, además, la
 misma URL estaba **hardcodeada en 5 puntos del código y en 82 enlaces del contenido heredado**
-(`richpages.json` y 2 posts del blog) apuntando al endpoint viejo V1
+(`richpages.json` —hoy eliminado— y 2 posts del blog) apuntando al endpoint viejo V1
 (`/optimus/patient/patientaccess/servicesall`). Resultado: el botón de reserva abría el scheduler
 en unas páginas y no en otras. **Impórtala siempre.** Si hay que cambiarla, se cambia en
 `src/i18n/utils.ts` y en ningún sitio más; si además hay que tocarla en datos que no admiten
-`import` (`richpages.json`, markdown), hazlo y verifica con `Select-String` que no queda ninguna
+`import` (markdown), hazlo y verifica con `Select-String` que no queda ninguna
 aparición del valor viejo **ni en `src` ni en `dist`**.
 
 **Cuidado con las imágenes que en realidad son "gráficos con texto".**
@@ -403,9 +388,10 @@ mediciones concretas (deriva del hero, latido, alineación, prose).
   marcador de esas carencias.
 - El logo es `public/images/logo.webp`, 120×60 y de baja resolución. El cliente debe entregar
   SVG o 2×. Es inmutable: no lo rediseñes.
-- **Ya no queda ninguna página heredada**: las 41 entradas de `richpages.json` están migradas o
-  retiradas, así que `RichPage`/`RichSection` quedan **sin uso** (el catch-all solo sirve el blog).
-  El blog (lista + post) también está rediseñado: no queda cuerpo heredado.
+- **No queda ninguna página heredada**: las 41 entradas de `richpages.json` quedaron migradas o
+  retiradas, y el renderer heredado (`richpages.json`, `RichPage`, `RichSection`, `BlockList`,
+  `FaIcon`, `LiteYouTube`) se **eliminó**. El catch-all solo sirve el blog, que también está
+  rediseñado: no queda cuerpo heredado.
 - **El frame `EnF3Q` y el código divergen en 2 puntos**: Pencil todavía muestra el separador del
   bloque de Related Services (eliminado en código) y el orden viejo del nav de anclas. El código
   aprobado prevalece; sincronizar Pencil si se vuelve a editar ese frame.
@@ -569,8 +555,9 @@ para no añadir esa fricción. Consecuencia aceptada: cualquiera con el enlace p
 - No toques `legacy/` (solo lectura) ni `seo/sitemap-baseline.xml`.
 - No cambies una URL existente ni añadas un 301 sin aprobación.
 - No copies `APPOINTMENT_URL`: impórtala siempre desde `src/i18n/utils.ts` (§ 6).
-- No recrees `SimplePage.astro` ni `src/data/newPages.ts`: se eliminaron al cerrar el grupo de
-  Atención Primaria y todas sus rutas ya tienen página propia.
+- No recrees el renderer heredado: `RichPage.astro`, `RichSection.astro`, `BlockList.astro`,
+  `FaIcon.astro`, `LiteYouTube.astro`, `SimplePage.astro`, `src/data/richpages.json` y
+  `src/data/newPages.ts` se eliminaron; cada URL tiene hoy su ruta explícita.
 - No reescribas el logo, el NAP, las licencias ni los profesionales.
 - No añadas un segundo contenedor ni un ancho distinto de `.shell`.
 - No añadas breakpoints fuera de los 4 declarados.
