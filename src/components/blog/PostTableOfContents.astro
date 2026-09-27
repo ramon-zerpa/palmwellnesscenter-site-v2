@@ -1,0 +1,122 @@
+---
+import Icon from "../Icon.astro";
+
+interface TocItem {
+  id: string;
+  label: string;
+  depth: number;
+}
+
+interface Props {
+  items: ReadonlyArray<TocItem>;
+  label: string;
+}
+
+const { items, label } = Astro.props;
+---
+
+{
+  items.length >= 3 && (
+    <details class="toc" data-post-toc open>
+      <summary class="toc__summary">
+        <span class="toc__heading">
+          <Icon name="list" class="h-[18px] w-[18px] text-blue" />
+          <span class="font-titles text-[15px] font-bold text-blue-deep">{label}</span>
+        </span>
+        <Icon name="chevron-down" class="toc__chev h-4 w-4 text-blue" />
+      </summary>
+      <ul class="toc__list">
+        {items.map((item) => (
+          <li class:list={["toc__item", item.depth >= 3 && "toc__item--nested"]}>
+            <a href={`#${item.id}`} class="toc__link">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </details>
+  )
+}
+
+<script>
+  // Scroll to the section WITHOUT writing the hash into the URL.
+  document.querySelectorAll<HTMLElement>("[data-post-toc]").forEach((toc) => {
+    toc.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const link = event.target.closest('a[href^="#"]');
+      if (
+        !(link instanceof HTMLAnchorElement) ||
+        event.defaultPrevented ||
+        event.button !== 0 ||
+        event.metaKey ||
+        event.ctrlKey ||
+        event.shiftKey ||
+        event.altKey
+      ) {
+        return;
+      }
+      const id = decodeURIComponent(link.hash.slice(1));
+      const heading = document.getElementById(id);
+      if (!heading) return;
+      event.preventDefault();
+      heading.scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        block: "start",
+      });
+      heading.setAttribute("tabindex", "-1");
+      heading.focus({ preventScroll: true });
+    });
+  });
+</script>
+
+<style>
+  .toc {
+    padding: 0.75rem 1.5rem 1.25rem;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+  }
+  .toc__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    list-style: none;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .toc__summary::-webkit-details-marker {
+    display: none;
+  }
+  .toc__heading {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .toc__chev {
+    transition: transform 160ms ease;
+  }
+  .toc[open] .toc__chev {
+    transform: rotate(180deg);
+  }
+  .toc__list {
+    display: grid;
+    gap: 0.4rem;
+    padding: 0;
+    margin: 0.9rem 0 0;
+    list-style: none;
+  }
+  .toc__item--nested {
+    padding-left: 1rem;
+  }
+  .toc__link {
+    color: var(--color-blue);
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .toc__link:hover {
+    color: var(--color-green-dark);
+    text-decoration: underline;
+  }
+</style>

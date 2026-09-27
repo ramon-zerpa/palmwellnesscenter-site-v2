@@ -19,11 +19,11 @@ En [Palm Wellness Center en Tampa](/car-accident-rehabilitation/), hemos apoyado
 
 ### Qué Hacer y Qué No Hacer al Conducir Después de un Accidente
 
-- ✓ Deténgase si es seguro
+- Deténgase si es seguro
 
-- ✓ Encienda las luces de emergencia
+- Encienda las luces de emergencia
 
-- ✓ Coloque conos/triángulos (si están disponibles)
+- Coloque conos/triángulos (si están disponibles)
 
 ❌ No camine hacia el tráfico
 

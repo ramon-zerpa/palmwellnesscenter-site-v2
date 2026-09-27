@@ -4,7 +4,8 @@ import TopBar from "../../components/TopBar.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import BlogIndex from "../../components/BlogIndex.astro";
-import { getBlogArchivePage, getBlogTotalPages } from "../../data/blogArchive";
+import { getBlogArchivePage, getBlogTotalPages, BLOG_PAGE_SIZE } from "../../data/blogArchive";
+import { createBreadcrumbSchema, createItemListSchema } from "../../lib/structured-data";
 
 const lang = "en";
 const basePath = "/news-blog/";
@@ -22,10 +23,26 @@ const path = `${basePath}${page}/`;
 const esTotalPages = await getBlogTotalPages("es");
 const altPath = page <= esTotalPages ? `/es/blog-de-noticias/${page}/` : "/es/blog-de-noticias/";
 const archive = await getBlogArchivePage(lang, page);
+
+const structuredData = [
+  createBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "News & Blog", path: basePath },
+    { name: `Page ${page}`, path },
+  ]),
+  createItemListSchema({
+    name: `Health News and Advice Blog — Page ${page}`,
+    description: "Health news, recovery tips, and wellness advice from Palm Wellness Center.",
+    path,
+    startPosition: (page - 1) * BLOG_PAGE_SIZE + 1,
+    items: archive.posts.map((post) => ({ name: post.title, path: post.url })),
+  }),
+];
 ---
 <Layout lang={lang} path={path} altPath={altPath}
   title={`News Blog - Page ${page} - Palm Wellness Center`}
-  description="Health news, recovery tips, and wellness advice from Palm Wellness Center in Tampa.">
+  description="Health news, recovery tips, and wellness advice from Palm Wellness Center in Tampa."
+  structuredData={structuredData}>
   <TopBar lang={lang} />
   <Header lang={lang} path={path} altPath={altPath} />
   <main id="main"><BlogIndex lang={lang} basePath={basePath} {...archive} /></main>

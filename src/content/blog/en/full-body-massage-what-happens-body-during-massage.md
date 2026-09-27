@@ -62,19 +62,19 @@ After a full body massage Tampa session, patients often notice changes that go b
 
 ### Quick Benefits Checklist
 
-- ✓ ️ Deep relaxation and reduced stress
+- Deep relaxation and reduced stress
 
-- ✓ ️ Relief from back pain, neck stiffness, or joint strain
+- Relief from back pain, neck stiffness, or joint strain
 
-- ✓ ️ Improved flexibility and range of motion
+- Improved flexibility and range of motion
 
-- ✓ ️ Brighter mood and higher energy levels
+- Brighter mood and higher energy levels
 
-- ✓ ️ Better sleep quality and fewer headaches
+- Better sleep quality and fewer headaches
 
-- ✓ ️ Natural pain management without medication
+- Natural pain management without medication
 
-- ✓ ️ Healthier skin tone and circulation
+- Healthier skin tone and circulation
 
 ### Muscle and Joint Relief
 
@@ -96,15 +96,15 @@ Massage therapy doesn’t just ease muscles — it also supports the mind and lo
 
 ### Emotional & Mental Health Benefits at a Glance
 
-- ✓ ️ Lowers cortisol while boosting serotonin and endorphins → improved mood and focus
+- Lowers cortisol while boosting serotonin and endorphins → improved mood and focus
 
-- ✓ ️ Reduces anxiety, psychological stress, and mild depressive symptoms
+- Reduces anxiety, psychological stress, and mild depressive symptoms
 
-- ✓ ️ Improves sleep quality, easing insomnia and restoring energy
+- Improves sleep quality, easing insomnia and restoring energy
 
-- ✓ ️ Strengthens the immune system by supporting lymphatic system circulation and toxin removal
+- Strengthens the immune system by supporting lymphatic system circulation and toxin removal
 
-- ✓ ️ Complements natural wellness practices like nutrition, exercise, reflexology, acupuncture, acupressure, shiatsu, aromatherapy, or myofascial release
+- Complements natural wellness practices like nutrition, exercise, reflexology, acupuncture, acupressure, shiatsu, aromatherapy, or myofascial release
 
 In Tampa neighborhoods like Carrollwood, Seminole Heights, and South Tampa, patients often share that routine sessions improve posture, ease neck and back pain, and help them recharge after long workdays, athletic training, or community events like Gasparilla.
 

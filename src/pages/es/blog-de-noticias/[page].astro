@@ -4,7 +4,12 @@ import TopBar from "../../../components/TopBar.astro";
 import Header from "../../../components/Header.astro";
 import Footer from "../../../components/Footer.astro";
 import BlogIndex from "../../../components/BlogIndex.astro";
-import { getBlogArchivePage, getBlogTotalPages } from "../../../data/blogArchive";
+import {
+  getBlogArchivePage,
+  getBlogTotalPages,
+  BLOG_PAGE_SIZE,
+} from "../../../data/blogArchive";
+import { createBreadcrumbSchema, createItemListSchema } from "../../../lib/structured-data";
 
 const lang = "es";
 const basePath = "/es/blog-de-noticias/";
@@ -22,10 +27,26 @@ const path = `${basePath}${page}/`;
 const enTotalPages = await getBlogTotalPages("en");
 const altPath = page <= enTotalPages ? `/news-blog/${page}/` : "/news-blog/";
 const archive = await getBlogArchivePage(lang, page);
+
+const structuredData = [
+  createBreadcrumbSchema([
+    { name: "Inicio", path: "/es/inicio/" },
+    { name: "Noticias y Blog", path: basePath },
+    { name: `Página ${page}`, path },
+  ]),
+  createItemListSchema({
+    name: `Blog de Noticias y Consejos de Salud — Página ${page}`,
+    description: "Noticias de salud, consejos de recuperación y bienestar de Palm Wellness Center.",
+    path,
+    startPosition: (page - 1) * BLOG_PAGE_SIZE + 1,
+    items: archive.posts.map((post) => ({ name: post.title, path: post.url })),
+  }),
+];
 ---
 <Layout lang={lang} path={path} altPath={altPath}
-  title={`Blog de Noticias - Pagina ${page} - Palm Wellness Center`}
-  description="Noticias de salud, consejos de recuperacion y bienestar de Palm Wellness Center en Tampa.">
+  title={`Blog de Noticias - Página ${page} - Palm Wellness Center`}
+  description="Noticias de salud, consejos de recuperación y bienestar de Palm Wellness Center en Tampa."
+  structuredData={structuredData}>
   <TopBar lang={lang} />
   <Header lang={lang} path={path} altPath={altPath} />
   <main id="main"><BlogIndex lang={lang} basePath={basePath} {...archive} /></main>

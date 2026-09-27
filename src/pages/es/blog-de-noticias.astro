@@ -5,14 +5,30 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import BlogIndex from "../../components/BlogIndex.astro";
 import { getBlogArchivePage } from "../../data/blogArchive";
+import { createBreadcrumbSchema, createItemListSchema } from "../../lib/structured-data";
 
 const lang = "es";
 const path = "/es/blog-de-noticias/";
 const archive = await getBlogArchivePage(lang);
+
+const structuredData = [
+  createBreadcrumbSchema([
+    { name: "Inicio", path: "/es/inicio/" },
+    { name: "Noticias y Blog", path },
+  ]),
+  createItemListSchema({
+    name: "Blog de Noticias y Consejos de Salud",
+    description:
+      "Noticias de salud, consejos de recuperación y bienestar de Palm Wellness Center en Tampa.",
+    path,
+    items: archive.posts.map((post) => ({ name: post.title, path: post.url })),
+  }),
+];
 ---
 <Layout lang={lang} path={path}
   title="Blog de Noticias - Palm Wellness Center"
-  description="Noticias de salud, consejos de recuperacion y bienestar de Palm Wellness Center en Tampa - quiropractica, fisioterapia, masajes, ultrasonido y recuperacion de lesiones.">
+  description="Noticias de salud, consejos de recuperación y bienestar de Palm Wellness Center en Tampa - quiropráctica, fisioterapia, masajes, ultrasonido y recuperación de lesiones."
+  structuredData={structuredData}>
   <TopBar lang={lang} />
   <Header lang={lang} path={path} />
   <main id="main"><BlogIndex lang={lang} basePath={path} {...archive} /></main>

@@ -6,6 +6,7 @@ import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import sharp from "sharp";
+import rehypeTableLabels from "./src/lib/rehype-table-labels.mjs";
 
 const rootDir = dirname(fileURLToPath(import.meta.url));
 const publicDir = resolve(rootDir, "public");
@@ -72,7 +73,7 @@ export default defineConfig({
     inlineStylesheets: "always", // eliminate render-blocking CSS
   },
   markdown: {
-    rehypePlugins: [rehypeLocalImageDimensions],
+    rehypePlugins: [rehypeLocalImageDimensions, rehypeTableLabels],
   },
   i18n: {
     defaultLocale: "en",

@@ -16,6 +16,8 @@ interface Props {
   ogImage?: string;
   robots?: string;
   ogType?: "website" | "article";
+  /** Extra JSON-LD blocks (Article, BreadcrumbList, ItemList…) for this page. */
+  structuredData?: ReadonlyArray<Record<string, unknown>>;
 }
 
 const SITE = "https://www.palmwellness.center";
@@ -29,6 +31,7 @@ const {
   ogImage = "/images/og-default.jpg",
   robots = "index, follow, max-image-preview:large",
   ogType = "website",
+  structuredData = [],
 } = Astro.props;
 
 const canonical = SITE + path;
@@ -107,6 +110,10 @@ const ogImageAbs = ogImage.startsWith("http") ? ogImage : SITE + ogImage;
         "https://www.instagram.com/palmwellnesscenter/",
       ],
     })} />
+
+    {structuredData.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
 
     <slot name="head" />
   </head>

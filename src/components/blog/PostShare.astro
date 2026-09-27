@@ -1,0 +1,81 @@
+---
+import Icon from "../Icon.astro";
+
+interface Props {
+  title: string;
+  url: string;
+  shareLabel: string;
+  copyLabel: string;
+  copiedLabel: string;
+  emailLabel: string;
+}
+
+const { title, url, shareLabel, copyLabel, copiedLabel, emailLabel } = Astro.props;
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+const emailHref = `mailto:?subject=${encodedTitle}&body=${encodedUrl}`;
+---
+
+<div class="flex flex-wrap items-center gap-3" data-post-share>
+  <span class="text-[13px] font-bold uppercase tracking-[0.06em] text-muted">{shareLabel}</span>
+  <div class="flex flex-wrap items-center gap-2">
+    <a
+      href={emailHref}
+      aria-label={emailLabel}
+      title={emailLabel}
+      class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-blue transition-colors hover:border-blue hover:bg-blue hover:text-white"
+    >
+      <Icon name="mail" class="h-[18px] w-[18px]" />
+    </a>
+    <button
+      type="button"
+      data-copy-url={url}
+      data-copied-label={copiedLabel}
+      data-copy-label={copyLabel}
+      aria-label={copyLabel}
+      title={copyLabel}
+      class="relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-line bg-white text-blue transition-colors hover:border-blue hover:bg-blue hover:text-white"
+    >
+      <span data-copy-icon class="inline-flex transition-opacity">
+        <Icon name="link" class="h-[18px] w-[18px]" />
+      </span>
+      <span data-check-icon class="absolute inline-flex opacity-0 transition-opacity">
+        <Icon name="check" class="h-[18px] w-[18px]" />
+      </span>
+    </button>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-post-share]").forEach((root) => {
+    const button = root.querySelector<HTMLButtonElement>("[data-copy-url]");
+    if (!button) return;
+    const copyIcon = button.querySelector<HTMLElement>("[data-copy-icon]");
+    const checkIcon = button.querySelector<HTMLElement>("[data-check-icon]");
+    const copyLabel = button.dataset.copyLabel || "Copy link";
+    const copiedLabel = button.dataset.copiedLabel || "Link copied";
+
+    const reset = () => {
+      button.setAttribute("aria-label", copyLabel);
+      button.title = copyLabel;
+      copyIcon?.classList.remove("opacity-0");
+      checkIcon?.classList.add("opacity-0");
+    };
+
+    button.addEventListener("click", async () => {
+      const url = button.dataset.copyUrl;
+      if (!url) return;
+      try {
+        if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+        await navigator.clipboard.writeText(url);
+        button.setAttribute("aria-label", copiedLabel);
+        button.title = copiedLabel;
+        copyIcon?.classList.add("opacity-0");
+        checkIcon?.classList.remove("opacity-0");
+        window.setTimeout(reset, 1800);
+      } catch {
+        window.prompt(copyLabel, url);
+      }
+    });
+  });
+</script>

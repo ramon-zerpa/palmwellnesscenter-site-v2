@@ -1,116 +1,237 @@
 ---
 import type { Lang } from "../i18n/ui";
-import { useTranslations, route, APPOINTMENT_URL, PHONE_TEL } from "../i18n/utils";
+import { APPOINTMENT_URL, PHONE_TEL, route } from "../i18n/utils";
 import Icon from "./Icon.astro";
-import { getCollection } from "astro:content";
+import PostTableOfContents from "./blog/PostTableOfContents.astro";
+import PostShare from "./blog/PostShare.astro";
+import PostRecent from "./blog/PostRecent.astro";
+import { getBlogRecentPosts } from "../data/blogArchive";
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
 
 interface Props {
-  lang: Lang; title: string; date?: Date | string; image?: string; Content: any;
-  /** Slug of the current post, used to exclude it from "Recent Posts". */
+  lang: Lang;
+  title: string;
+  date?: Date | string;
+  updatedDate?: Date | string;
+  description?: string;
+  image?: string;
+  /** Filename slug, used to exclude this post from "Recent Posts". */
   slug?: string;
+  headings?: Heading[];
+  Content: any;
 }
-const { lang, title, date, image, Content, slug } = Astro.props;
-const t = useTranslations(lang);
-const blogHref = route(lang, "blog");
 
-function fmtDate(d?: Date | string) {
+const { lang, title, date, updatedDate, description, image, slug, headings = [], Content } =
+  Astro.props;
+
+const content = {
+  en: {
+    home: "Home",
+    blog: "News & Blog",
+    published: "Published",
+    updated: "Updated",
+    byline: "By Palm Wellness Center",
+    tocLabel: "Table of Contents",
+    shareLabel: "Share",
+    copyLabel: "Copy link",
+    copiedLabel: "Link copied",
+    emailLabel: "Share by email",
+    recentHeading: "Recent Posts",
+    readMore: "Read More",
+    backToBlog: "Back to Blog",
+    ctaHeading: "Ready to feel better?",
+    ctaBody: "Schedule your visit at Palm Wellness Center today.",
+    book: "Book an appointment",
+    call: "(813) 443-5370",
+  },
+  es: {
+    home: "Inicio",
+    blog: "Noticias y Blog",
+    published: "Publicado",
+    updated: "Actualizado",
+    byline: "Por Palm Wellness Center",
+    tocLabel: "Tabla de contenidos",
+    shareLabel: "Compartir",
+    copyLabel: "Copiar enlace",
+    copiedLabel: "Enlace copiado",
+    emailLabel: "Compartir por correo",
+    recentHeading: "Publicaciones Recientes",
+    readMore: "Leer más",
+    backToBlog: "Volver al Blog",
+    ctaHeading: "¿Listo para sentirte mejor?",
+    ctaBody: "Agenda tu cita en Palm Wellness Center hoy.",
+    book: "Reservar cita",
+    call: "(813) 443-5370",
+  },
+}[lang];
+
+const locale = lang === "es" ? "es-ES" : "en-US";
+function fmt(d?: Date | string): string {
   if (!d) return "";
   const dt = d instanceof Date ? d : new Date(String(d) + "T00:00:00");
   if (isNaN(dt.getTime())) return "";
-  return dt.toLocaleDateString(lang === "es" ? "es-ES" : "en-US", { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" });
+  return dt.toLocaleDateString(locale, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
 }
-const isoDate = date ? (date instanceof Date ? date.toISOString().slice(0, 10) : String(date)) : "";
-const dateStr = fmtDate(date);
+function iso(d?: Date | string): string {
+  if (!d) return "";
+  if (d instanceof Date) return d.toISOString().slice(0, 10);
+  return String(d);
+}
 
-/* ---- Recent Posts sidebar (same lang, newest first, excluding current) ---- */
-const allPosts = await getCollection("blog", (e) => e.data.lang === lang && !e.data.draft);
-const recentPosts = allPosts
-  .map((e) => {
-    const s = String(e.id).split("/").pop()!;
-    const url = e.data.path || (e.data.lang === "en" ? `/${s}/` : `/es/${s}/`);
-    return { ...e.data, slug: s, url };
-  })
-  .filter((p) => (slug ? p.slug !== slug : p.title !== title))
-  .sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime())
-  .slice(0, 5);
-function recentExcerpt(p: any): string {
-  const txt = p.description || "";
-  return txt.length > 120 ? txt.slice(0, 117) + "…" : txt;
+const dateStr = fmt(date);
+const updatedStr = updatedDate && fmt(updatedDate) !== dateStr ? fmt(updatedDate) : "";
+const blogHref = route(lang, "blog");
+const homeHref = lang === "es" ? "/es/inicio/" : "/";
+const bookAttrs = { target: "_blank", rel: "noopener" } as const;
+const hover = "hover-lift";
+const shareUrl = Astro.url.href;
+
+// Every legacy post ends with the same boilerplate block ("Related posts" then
+// "Palm Wellness Center / Transportation / Services / Contact"). Stop the table
+// of contents at the first of those headings so it only lists real sections.
+const LEGACY_TAIL =
+  /^(related posts|publicaciones relacionadas|palm wellness center|transportation available|transporte disponible)$/i;
+const tocItems: { id: string; label: string; depth: number }[] = [];
+for (const heading of headings) {
+  if (heading.depth === 2 && LEGACY_TAIL.test(heading.text.trim())) break;
+  if (heading.depth === 2) tocItems.push({ id: heading.slug, label: heading.text, depth: 2 });
 }
-const recentHeading = lang === "es" ? "Publicaciones Recientes" : "Recent Posts";
+
+const recentPosts = await getBlogRecentPosts(lang, { excludeSlug: slug, limit: 5 });
 ---
 
 <article>
-  <header class="bg-bg-alt">
-    <div class="shell max-w-4xl py-10 lg:py-12">
-      <nav class="text-[13px] text-muted" aria-label="Breadcrumb">
-        <a href={lang === "en" ? "/" : "/es/inicio/"} class="hover:text-blue">{lang === "es" ? "Inicio" : "Home"}</a>
-        <span class="mx-1.5">/</span>
-        <a href={blogHref} class="hover:text-blue">Blog</a>
-      </nav>
-      <h1 class="mt-3 text-3xl leading-tight text-blue sm:text-4xl">{title}</h1>
-      {dateStr && <p class="mt-3 text-[14px] text-muted">{t("blog.published")}: <time datetime={isoDate}>{dateStr}</time></p>}
-    </div>
-  </header>
+  <div class="shell pt-14 pb-8 sm:pt-16 lg:pt-24 lg:pb-12">
+    <nav class="text-[13px] text-muted" aria-label="Breadcrumb">
+      <a href={homeHref} class="hover:text-blue">{content.home}</a>
+      <span class="mx-1.5" aria-hidden="true">/</span>
+      <a href={blogHref} class="hover:text-blue">{content.blog}</a>
+      <span class="mx-1.5" aria-hidden="true">/</span>
+      <span aria-current="page" class="text-ink">{title}</span>
+    </nav>
 
-  <div class="shell max-w-6xl py-10 lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start lg:gap-12">
-    <div class="min-w-0">
-      {image && (
-        <img src={image} alt={title} width="1000" height="560" fetchpriority="high" decoding="async" class="mb-8 w-full rounded-lg object-cover" />
-      )}
+    <div class="mt-6 grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-14">
+      <div class="min-w-0">
+        <div class="flex flex-col gap-4">
+          <h1 class="font-titles text-[30px] leading-[1.12] text-ink sm:text-[38px] lg:text-[44px]">
+            {title}
+          </h1>
+          {description && (
+            <p class="max-w-[68ch] text-[17px] leading-[1.6] text-body sm:text-[18px]">
+              {description}
+            </p>
+          )}
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-[14px] text-muted">
+            {dateStr && (
+              <span>
+                {content.published}: <time datetime={iso(date)}>{dateStr}</time>
+              </span>
+            )}
+            {updatedStr && (
+              <span>
+                · {content.updated}: <time datetime={iso(updatedDate)}>{updatedStr}</time>
+              </span>
+            )}
+            <span class="text-ink">· {content.byline}</span>
+          </div>
+          <PostShare
+            title={title}
+            url={shareUrl}
+            shareLabel={content.shareLabel}
+            copyLabel={content.copyLabel}
+            copiedLabel={content.copiedLabel}
+            emailLabel={content.emailLabel}
+          />
+        </div>
 
-      <div class="prose">
-        <Content />
-      </div>
+        {image && (
+          <figure class="mt-8 overflow-hidden rounded-lg">
+            <img
+              src={image}
+              alt={title}
+              width="1000"
+              height="563"
+              fetchpriority="high"
+              decoding="async"
+              class="aspect-[16/9] w-full object-cover"
+            />
+          </figure>
+        )}
 
-      <div class="mt-12 rounded-lg bg-blue-deep p-8 text-center text-white">
-        <p class="text-xl font-bold" style="font-family:var(--font-titles)">
-          {lang === "es" ? "¿Listo para sentirte mejor?" : "Ready to feel better?"}
-        </p>
-        <p class="mt-2 text-white/85">
-          {lang === "es" ? "Agenda tu cita en Palm Wellness Center hoy." : "Schedule your visit at Palm Wellness Center today."}
-        </p>
-        <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
-          <a href={APPOINTMENT_URL} target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-full bg-green px-7 py-3 font-bold text-white transition-colors hover:bg-green-dark"><Icon name="calendar" class="h-4 w-4" />{t("cta.request")}</a>
-          <a href={PHONE_TEL} class="inline-flex items-center gap-2 rounded-full border-2 border-white/70 px-7 py-2.5 font-bold text-white transition-colors hover:bg-white hover:text-blue-deep"><Icon name="phone" class="h-4 w-4" />{t("cta.phone")}</a>
+        <div class="mt-8">
+          <PostTableOfContents items={tocItems} label={content.tocLabel} />
+        </div>
+
+        <div class="prose mt-8 max-w-none">
+          <Content />
+        </div>
+
+        <div class="mt-12 rounded-lg bg-blue-deep p-8 text-center text-white sm:p-10">
+          <h2 class="font-titles text-[22px] leading-[1.2] text-white sm:text-[26px]">
+            {content.ctaHeading}
+          </h2>
+          <p class="mx-auto mt-2 max-w-[560px] text-[15px] leading-[1.6] text-blue-tint">
+            {content.ctaBody}
+          </p>
+          <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={APPOINTMENT_URL}
+              {...bookAttrs}
+              class={`inline-flex items-center gap-2 rounded-md bg-white px-7 py-3.5 font-bold text-blue-deep hover:bg-blue-pale ${hover}`}
+            >
+              <Icon name="calendar-check" class="h-[18px] w-[18px]" />{content.book}
+            </a>
+            <a
+              href={PHONE_TEL}
+              class={`inline-flex items-center gap-2 rounded-md border-[1.5px] border-blue-tint px-6 py-3.5 font-bold text-white hover:bg-white/10 ${hover}`}
+            >
+              <Icon name="phone" class="h-[18px] w-[18px]" />{content.call}
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <a
+            href={blogHref}
+            class="inline-flex items-center gap-1.5 text-[15px] font-semibold text-blue hover:text-green-dark"
+          >
+            <Icon name="arrow" class="h-4 w-4 rotate-180" />{content.backToBlog}
+          </a>
         </div>
       </div>
 
-      <div class="mt-8">
-        <a href={blogHref} class="inline-flex items-center gap-1.5 text-[15px] font-semibold text-blue hover:text-green-dark">← {t("blog.backToBlog")}</a>
-      </div>
-    </div>
-
-    {recentPosts.length > 0 && (
-      <aside class="mt-12 lg:mt-0" aria-label={recentHeading}>
-        <h2 class="border-b-2 border-line pb-2 text-xl text-blue" style="font-family:var(--font-titles)">{recentHeading}</h2>
-        <ul class="mt-5 space-y-7">
-          {recentPosts.map((p) => (
-            <li>
-              <a href={p.url} class="text-[15px] font-bold leading-snug text-blue hover:text-green-dark" style="font-family:var(--font-titles)">{p.title}</a>
-              {p.heroImage && (
-                <a href={p.url} class="mt-2 block overflow-hidden rounded-md">
-                  <img src={p.heroImage} alt={p.title} width="320" height="180" loading="lazy" decoding="async" class="aspect-[16/9] w-full object-cover" />
-                </a>
-              )}
-              {recentExcerpt(p) && <p class="mt-2 text-[13px] leading-relaxed text-body">{recentExcerpt(p)}</p>}
-              <a href={p.url} class="mt-2 inline-flex items-center rounded bg-green px-3 py-1.5 text-[12px] font-semibold uppercase tracking-wide text-white transition-colors hover:bg-green-dark">{t("blog.readMore")}</a>
-            </li>
-          ))}
-        </ul>
+      <aside class="mt-12 lg:mt-0" aria-label={content.recentHeading}>
+        <PostRecent
+          posts={recentPosts.map((p) => ({
+            title: p.title,
+            url: p.url,
+            description: p.description,
+            heroImage: p.heroImage,
+          }))}
+          heading={content.recentHeading}
+          readMore={content.readMore}
+        />
       </aside>
-    )}
+    </div>
   </div>
 </article>
 
 <style>
-  /* Article body headings render in dark charcoal, matching the source post.
-     The base layer sets all h1–h6 to brand blue; the markdown rendered inside
-     <Content /> is not Astro-scoped, so :global() is required to reach it.
-     Scoped to .prose (used only by this component), so the site-wide heading
-     color is untouched — only the article body changes. */
+  /* Article body headings stay dark charcoal (readability) and keep the sticky
+     header from covering the anchor target when the TOC links are used. */
   :global(.prose h2),
   :global(.prose h3) {
     color: var(--color-ink);
+    scroll-margin-top: 96px;
   }
 </style>
